@@ -1,0 +1,538 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load tags %}
+{% load container_tags %}
+
+
+{% block content %}
+<div class="main container">
+    <div class="main__left">
+        <div class="main__heading">
+            <p>Логистика, продажа <br> и аренда контейнеров <br> для технических рейсов <br> в России и Китае</p>
+        </div>
+        <div class="main__points">
+            <div class="main__checkbox">
+                <div class=main__checkbox-wrap>
+                    <input checked type=checkbox id=consent name=consent required>
+                </div>
+                <div>
+                    <label for=consent class=main__checkbox-label>
+                        Продажа: большой выбор новых и б/у
+                    </label>
+                </div>
+            </div>
+            <div class="main__checkbox">
+                <div class=main__checkbox-wrap>
+                    <input checked type=checkbox id=consent name=consent required>
+                </div>
+                <div>
+                    <label for=consent class=main__checkbox-label>
+                        Аренда: выгодные условия на любой срок
+                    </label>
+                </div>
+            </div>
+            <div class="main__checkbox">
+                <div class=main__checkbox-wrap>
+                    <input checked type=checkbox id=consent name=consent required>
+                </div>
+                <div>
+                    <label for=consent class=main__checkbox-label>
+                        Запчасти: склад Carrier, ThermoKing, Daikin, StarCool и аналогов
+                    </label>
+                </div>
+            </div>
+            <div class="main__checkbox">
+                <div class=main__checkbox-wrap>
+                    <input checked type=checkbox id=consent name=consent required>
+                </div>
+                <div>
+                    <label for=consent class=main__checkbox-label>
+                        Сервис и ремонт
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="main__buttons">
+            <button class="main__button-red">
+                Скачать презентацию
+            </button>
+            <button class="main__button-transparent">
+                <img src="static/images/whatsapp.svg" alt="">
+                Написать в WhatsApp
+            </button>
+        </div>
+    </div>
+    <div class="main__right">
+        <div class="main__image">
+            <img src="static/images/main-container.png" alt="">
+        </div>
+        <div class="main__prices">
+            <div class="main__price active">
+                <div class="main__price-label">Аренда универсальных контейнеров</div>
+                <div class="main__price-value">
+                    <span class="main__price-big">от 2$</span> /сутки
+                </div>
+                <div class="main__price-button">
+                    <button>Выбрать модель</button>
+                </div>
+            </div>
+            <div class="main__price">
+                <div class="main__price-label">Продажа разных типов контейнеров</div>
+                <div class="main__price-value">
+                    <span class="main__price-big">от 1000$</span>
+                </div>
+                <div class="main__price-button">
+                    <button>Скачать каталог</button>
+                </div>
+            </div>
+            <div class="main__price">
+                <div class="main__price-label">Услуги импорта и экспорта</div>
+                <div class="main__price-value">
+                    <span class="main__price-big">По запросу</span>
+                </div>
+                <div class="main__price-button">
+                    <button>Консультация</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="home__stats">
+    <div class="container">
+        <div class="home__stats-inner">
+            <div class="home__stat">
+                <p class="home__stat-heading">5 лет </p>
+                <hr>
+                <p class="home__stat-label">успешного опыта в сфере логистики и рефконтейнеров</p>
+            </div>
+            <div class="home__stat">
+                <p class="home__stat-heading">1000+</p>
+                <hr>
+                <p class="home__stat-label">обслуженных рефконтейнеров по всей России</p>
+            </div>
+            <div class="home__stat">
+                <p class="home__stat-heading">50+</p>
+                <hr>
+                <p class="home__stat-label">городов, в которых мы работаем</p>
+            </div>
+            <div class="home__stat">
+                <p class="home__stat-heading">24/7</p>
+                <hr>
+                <p class="home__stat-label">поддержка клиентов без выходных</p>
+            </div>
+            <div class="home__stat">
+                <p class="home__stat-heading">10 000+</p>
+                <hr>
+                <p class="home__stat-label">доставок контейнеров организовано нашей командой</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="home__containers container">
+    <p class="block-heading">Рефконтейнеры</p>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        {% for category in categories %}
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {% if forloop.first %}active{% endif %} " id="{{ category.name }}-tab" data-bs-toggle="tab" data-bs-target="#tab-{{ category.name }}" type="button" role="tab" aria-controls="tab-{{ category.name }}" aria-selected="false">
+                    {{ category.name }}
+                </button>
+            </li>
+        {% endfor %}
+    </ul>
+      
+      <!-- Контент вкладок -->
+      <div class="tab-content" id="myTabContent">
+        {% for category in categories %}
+         <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="tab-{{ category.name }}" role="tabpanel" aria-labelledby="{{ category.name }}-tab">
+                <div class="tab__description">
+                    <div class="tab__text">
+                        {{ category.description|linebreaks }}
+                    </div>
+                    <div class="tab__label">
+                        *Обратите внимание, цены указаны с НДС
+                    </div>
+                </div>
+
+                <div class="home__containers-cards">
+                    {% for container in category.category_containers.all %}
+                        <div class="home__container-card">
+                            <img src="static/images/container-example.png" alt="">
+                            <div class="home__container-card-text">
+                                <div class="home__container-card-name">
+                                    <p class="home__container-card-name--big">{{ container.name }}</p>
+                                    <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }}, {{ container.year }}г., {{ container.model }}</p>
+                                </div>
+                                <p class="home__container-card-price">{{ container.price|price_format }} ₽ </p>
+                                {% if container.is_in_stock %}
+                                    <div class="home__container-card-in-stock">
+                                        <img src="static/images/green-mark.svg" alt="">
+                                        В наличии
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <button class="home__container-button">Подробнее</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <a href="" class="home__containers-watch-all">
+                    Смотреть все
+                </a>
+            </div>
+        {% endfor %}
+      </div>
+</div>
+
+<div class="home__parts container">
+    <div class="block-heading">
+        Запчасти
+    </div>
+    <div class="home__parts-row">
+        <div class="home__parts-left">
+            <div class="home__parts-description">
+                Мы предлагаем широкий выбор запчастей для рефрижераторов мировых брендов: Carrier, Thermo King, Daikin, Star Cool. Все запчасти поставляются с гарантией и возможностью доставки.
+            </div>
+            <div class="home__parts-points">
+                <div class="main__checkbox">
+                    <div class=main__checkbox-wrap>
+                        <input checked type=checkbox id=consent name=consent required>
+                    </div>
+                    <div>
+                        <label for=consent class=main__checkbox-label>
+                            Всегда в наличии востребованные оригинальные запчасти
+                        </label>
+                    </div>
+                </div>
+                <div class="main__checkbox">
+                    <div class=main__checkbox-wrap>
+                        <input checked type=checkbox id=consent name=consent required>
+                    </div>
+                    <div>
+                        <label for=consent class=main__checkbox-label>
+                            Быстрая доставка от 2-3 дней.
+                        </label>
+                    </div>
+                </div>
+                <div class="main__checkbox">
+                    <div class=main__checkbox-wrap>
+                        <input checked type=checkbox id=consent name=consent required>
+                    </div>
+                    <div>
+                        <label for=consent class=main__checkbox-label>
+                            Обеспечение всеми необходимыми запчастями и расходными материалами.
+                        </label>
+                    </div>
+                </div>
+                <div class="main__checkbox">
+                    <div class=main__checkbox-wrap>
+                        <input checked type=checkbox id=consent name=consent required>
+                    </div>
+                    <div>
+                        <label for=consent class=main__checkbox-label>
+                            Гарантия 30 дней на все запчасти при обнаружении заводского брака.
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="home__parts-right">
+            <div class="home__parts-brand-card">
+                <img src="static/images/part-brand-1.png" alt="">
+                <a class="home__parts-brand-card-button" href="">Смотреть все</a>
+            </div>
+            <div class="home__parts-brand-card">
+                <img src="static/images/part-brand-2.png" alt="">
+                <a class="home__parts-brand-card-button" href="">Смотреть все</a>
+            </div>
+            <div class="home__parts-brand-card">
+                <img src="static/images/part-brand-3.png" alt="">
+                <a class="home__parts-brand-card-button" href="">Смотреть все</a>
+            </div>
+            <div class="home__parts-brand-card">
+                <img src="static/images/part-brand-4.png" alt="">
+                <a class="home__parts-brand-card-button" href="">Смотреть все</a>
+            </div>
+            <div class="home__parts-brand-card">
+                <p class="home__parts-brand-card-heading">Расходники</p>
+                <a class="home__parts-brand-card-button" href="">Смотреть все</a>
+            </div>
+            <div class="home__parts-brand-card">
+                <p class="home__parts-brand-card-heading">Расходники</p>
+                <a class="home__parts-brand-card-button-red" href="">Запросить весь каталог</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="home__service container">
+    <div class="block-heading">
+        Обслуживание и ремонт рефконтейнеров
+    </div>
+    <div class="home__service-body">
+        <div class="home__service-left">
+            <img class="home__service-image" src="static/images/home-service-image.png" alt="">
+            <p class="home__service-text">Столкнулись с поломкой рефрижераторного контейнера? <br>
+                Мы предлагаем быстрые и качественные услуги по диагностике и ремонту, минимизируя ваши затраты и риски порчи груза.</p>
+            <div class="home__service-points">
+                <div class="home__service-point">
+                    <div class="home__service-point-icon">
+                        <img src="static/images/home-service-search.svg" alt="">
+                    </div>
+                    <div class="home__service-point-text">
+                        <p class="home__service-point-heading">Диагностика (Pre Trip Inspection)</p>
+                        <p class="home__service-point-sub">Проверка рефрижератора для выявления неисправностей и подготовки к эксплуатации</p>
+                    </div>
+                </div>
+                <div class="home__service-point">
+                    <div class="home__service-point-icon">
+                        <img src="static/images/home-service-settings.svg" alt="">
+                    </div>
+                    <div class="home__service-point-text">
+                        <p class="home__service-point-heading">Ремонт и замена узлов и агрегатов рефрижераторов</p>
+                        <p class="home__service-point-sub">Замена и ремонт компонентов рефрижераторов Carrier, Thermo King, Daikin.</p>
+                    </div>
+                </div>
+                <div class="home__service-point">
+                    <div class="home__service-point-icon">
+                        <img src="static/images/home-service-lightning.svg" alt="">
+                    </div>
+                    <div class="home__service-point-text">
+                        <p class="home__service-point-heading">Диагностика (Pre Trip Inspection)</p>
+                        <p class="home__service-point-sub">Восстановление компрессоров, микроконтроллеров и дисплеев.</p>
+                    </div>
+                </div>
+                <div class="home__service-point">
+                    <div class="home__service-point-icon">
+                        <img src="static/images/home-service-speedometer.svg" alt="">
+                    </div>
+                    <div class="home__service-point-text">
+                        <p class="home__service-point-heading">Диагностика (Pre Trip Inspection)</p>
+                        <p class="home__service-point-sub">Дозаправка системы для восстановления её эффективности.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="home__service-right">
+            <form class="home__service-form" action="">
+                <p class="home__service-form-heading">Расчитать стоимость обслуживания</p>
+                <div class="home__service-form-inputs">
+                    <select>
+                        <option value="" disabled selected hidden>Тип контейнера</option>
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                    <select>
+                        <option value="" disabled selected hidden>Вид обслуживания</option>
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                    <input type="text" placeholder="Город">
+                    <input type="tel" placeholder="Телефон">
+                    <textarea placeholder="Сообщение" rows="5"></textarea>
+                    <div class="form__checkbox">
+                        <div class=form__checkbox-wrap>
+                            <input type=checkbox id=consent name=consent required>
+                        </div>
+                        <div>
+                            <label for=consent class=form__checkbox-label>
+                                Согласен с обработкой персональных данных
+                            </label>
+                        </div>
+                    </div>
+                    <button class="red-button">Отправить</button>
+                </div>  
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="home__partners container">
+    <div class="block-heading">
+        Нам доверяют
+    </div>
+    <div class="home__partners-list">
+        <img src="static/images/partners-five.png" alt="">
+        <img src="static/images/partners-gazprom.png" alt="">
+        <img src="static/images/partners-agro.png" alt="">
+        <img src="static/images/partners-fesco.png" alt="">
+        <img src="static/images/partners-ab.png" alt="">
+        <img src="static/images/partners-ashan.png" alt="">
+        <img src="static/images/partners-ozon.png" alt="">
+    </div>
+    <div class="home__partners-quote-block">
+        <div class="home__partners-quote-author">
+            <img src="static/images/partners-quote-author.png" alt="">
+            <div class="home__partners-quote-author-content">
+                <p class="home__partners-quote-author-name">Мельников Сергей Владимирович</p>
+                <p class="home__partners-quote-author-role">Заместитель генерального директора по закупкам и снабжению
+                    АО фирмы «Агрокомплекс» им. Н.И. Ткачёва</p>
+            </div>
+        </div>
+        <div class="home__partners-quote-text">
+            <img src="static/images/quote-icon.svg" alt="">
+            <p>Компания зарекомендовала себя как надежный партнер в сфере логистики и предоставления контейнеров для технических рейсов. Высокий уровень сервиса, оперативность и профессиональный подход делают сотрудничество максимально комфортным и эффективным.</p>
+        </div>
+    </div>
+</div>
+
+<div class="home__questions">
+    <div class="container">
+        <div class="home__questions-inner">
+            <div class="block-heading">
+                Вопросы и ответы
+            </div>
+            <div class="home__questions-body">
+                <div class="home__questions-left">
+
+                    <div class="home__question-block">
+                        <div class="home__question">
+                            <p>Какие рефконтейнеры вы предлагаете?</p>
+                            <img class="icon" src="static/images/red-plus.svg">
+                        </div>
+                        <div class="home__answer">
+                            Мы организуем доставку контейнеров по всей России. Время и стоимость зависят от региона.
+                        </div>
+                    </div>
+                    <div class="home__question-block">
+                        <div class="home__question">
+                            <p>Можно ли купить контейнер в кредит/лизинг/рассрочку?</p>
+                            <img class="icon" src="static/images/red-plus.svg">
+                        </div>
+                        <div class="home__answer">
+                            Мы организуем доставку контейнеров по всей России. Время и стоимость зависят от региона.
+                        </div>
+                    </div>
+                    <div class="home__question-block">
+                        <div class="home__question">
+                            <p>Как происходит доставка рефконтейнеров?</p>
+                            <img class="icon" src="static/images/red-plus.svg">
+                        </div>
+                        <div class="home__answer">
+                            Мы организуем доставку контейнеров по всей России. Время и стоимость зависят от региона.
+                        </div>
+                    </div>
+                    <div class="home__question-block">
+                        <div class="home__question">
+                            <p>Предоставляете ли вы гарантию на контейнеры?</p>
+                            <img class="icon" src="static/images/red-plus.svg">
+                        </div>
+                        <div class="home__answer">
+                            Мы организуем доставку контейнеров по всей России. Время и стоимость зависят от региона.
+                        </div>
+                    </div>
+                    <div class="home__question-block">
+                        <div class="home__question">
+                            <p>Какие документы необходимы для аренды контейнера?</p>
+                            <img class="icon" src="static/images/red-plus.svg">
+                        </div>
+                        <div class="home__answer">
+                            Мы организуем доставку контейнеров по всей России. Время и стоимость зависят от региона.
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="home__questions-right">
+                    <form class="home__service-form" action="">
+                        <p class="home__service-form-heading">Остались вопросы? Свяжитесь с нами</p>
+                        <div class="home__service-form-inputs">
+                            <input type="text" placeholder="Имя">
+                            <input type="tel" placeholder="Телефон">
+                            <textarea placeholder="Сообщение" rows="5"></textarea>
+                            <div class="form__checkbox">
+                                <div class=form__checkbox-wrap>
+                                    <input type=checkbox id=consent name=consent required>
+                                </div>
+                                <div>
+                                    <label for=consent class=form__checkbox-label>
+                                        Согласен с обработкой персональных данных
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="red-button">Отправить</button>
+                        </div>  
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="home__contacts container">
+    <div class="block-heading">
+        Контакты
+    </div>
+    <div class="home__contacts-body">
+        <div class="home__contacts-left">
+            <div class="home__contacts-data">
+                <div class="home__contact-data">
+                    <p class="home__contact-data-label">Телефон: </p>
+                    <p class="home__contact-data-heading">+7 (925) 804-79-95</p>
+                </div>
+                <div class="home__contact-data">
+                    <p class="home__contact-data-label">Почта: </p>
+                    <p class="home__contact-data-heading color-red">sales@ttrans.pro</p>
+                </div>
+                <div class="home__contacts-social-links">
+                    <div class="home__contacts-social-link">
+                        <img src="static/images/whatsapp.svg" alt="">
+                        <p>WhatsApp</p>
+                    </div>
+                    <div class="home__contacts-social-link">
+                        <img src="static/images/telegram.svg" alt="">
+                        <p>WhatsApp</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="red-button">Заказать звонок</button>
+                </div>
+            </div>
+        </div>
+        <div class="home__contacts-right">
+            <img src="static/images/contacts-image.png" alt="">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block script %}
+<script>
+    // Слайдеры
+$(document).ready((function() {
+    $(".home__containers-cards").slick({
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 5,
+        adaptiveHeight: false,
+        autoplay: false, 
+    })
+}))
+
+// Вопросы и ответы
+document.querySelectorAll(".home__question").forEach((question) => {
+    question.addEventListener("click", () => {
+        const parentBlock = question.parentElement;
+        const answer = parentBlock.querySelector(".home__answer");
+
+        if (parentBlock.classList.contains("active")) {
+            parentBlock.classList.remove("active");
+            answer.style.maxHeight = null;
+        } else {
+            document.querySelectorAll(".home__question-block").forEach((block) => {
+                block.classList.remove("active");
+                block.querySelector(".home__answer").style.maxHeight = null;
+            });
+
+            answer.style.height = answer.scrollHeight + 20 + "px"; 
+            parentBlock.classList.add("active");
+        }
+    });
+});
+</script>
+{% endblock script %}
