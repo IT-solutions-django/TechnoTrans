@@ -1,0 +1,36 @@
+{% load static %}
+<div class="home__contacts container">
+    <div class="block-heading">
+        Контакты
+    </div>
+    <div class="home__contacts-body">
+        <div class="home__contacts-left">
+            <div class="home__contacts-data">
+                <div class="home__contact-data">
+                    <p class="home__contact-data-label">Телефон: </p>
+                    <p class="home__contact-data-heading">+7 (925) 804-79-95</p>
+                </div>
+                <div class="home__contact-data">
+                    <p class="home__contact-data-label">Почта: </p>
+                    <p class="home__contact-data-heading color-red">sales@ttrans.pro</p>
+                </div>
+                <div class="home__contacts-social-links">
+                    <div class="home__contacts-social-link">
+                        <img src="{% static 'images/whatsapp.svg' %}" alt="">
+                        <p>WhatsApp</p>
+                    </div>
+                    <div class="home__contacts-social-link">
+                        <img src="{% static 'images/telegram.svg' %}" alt="">
+                        <p>WhatsApp</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="red-button">Заказать звонок</button>
+                </div>
+            </div>
+        </div>
+        <div class="home__contacts-right">
+            <img src="{% static 'images/contacts-image.png' %}" alt="">
+        </div>
+    </div>
+</div>
