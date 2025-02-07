@@ -13,8 +13,9 @@ class HomeView(View):
     template_name = 'home/home.html'
 
     def get(self, request): 
-
+        categories = Category.objects.all().prefetch_related('category_containers').all()
         context = {
-            'categories': Category.objects.all().prefetch_related('category_containers').all(),
+            'categories': categories,
         }
         return render(request, self.template_name, context)
+    

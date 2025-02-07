@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,16 +16,16 @@
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
     <!-- Local files -->
-    <link rel="stylesheet" href="static/css/reset.css">
-    <link rel="stylesheet" href="static/css/style.css">
-    <script src="/static/js/header.js" defer=""></script>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/header.js' %}" defer=""></script>
 
     <!-- Libriaries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="static/js/slick/slick/slick.min.js"></script>
-    <link rel="stylesheet" href="static/js/slick/slick/slick.css">
-    <link rel="stylesheet" href="static/js/slick/slick/slick-theme.css">
-    <script src="static/js/imask/Imask.min.js"></script>
+    <script src="{% static 'js/slick/slick/slick.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'js/slick/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'js/slick/slick/slick-theme.css' %}">
+    <script src="{% static 'js/imask/Imask.min.js' %}"></script>
 
     <title>ТехноТранс</title>
 </head>
@@ -35,14 +36,14 @@
                 <div class="header__left-part">
                     <div class="header__logo">
                         <a href="{% url 'home:home' %}" class="header__logo-link">
-                            <img src="static/images/logo.svg" alt="Логотип">
+                            <img src="{% static 'images/logo.svg' %}" alt="Логотип">
                         </a>
                     </div>
                 </div>
                 <div class="header__nav">
                     <div class="header__menu">
                         <div class="header__menu-link">
-                            <a href="">Рефконтейнеры</a>
+                            <a href="{% url 'containers:catalog' %}">Рефконтейнеры</a>
                         </div>
                         <div class="header__menu-link">
                             <a href="">Запчасти</a>
@@ -63,11 +64,11 @@
                         </div>
                         <div class="header__contacts">
                             <div class="header__contact-link">
-                                <img src="static/images/whatsapp.svg" alt="">
+                                <img src="{% static 'images/whatsapp.svg' %}" alt="">
                                 WhatsApp
                             </div>
                             <div class="header__contact-link">
-                                <img src="static/images/telegram.svg" alt="">
+                                <img src="{% static 'images/telegram.svg' %}" alt="">
                                 Telegram
                             </div>
                         </div>
@@ -88,7 +89,7 @@
             <div class="footer-inner">
                 <div class="footer-upper">
                     <div class="footer__left">
-                        <img src="static/images/logo.svg" alt="">
+                        <img src="{% static 'images/logo.svg' %}" alt="">
                         <div class="footer__company-info">
                             <p class="footer__company-info-name">Технотранс</p>
                             <p class="footer__company-info-description">Логистика, продажа и аренда контейнеров для технических рейсов в России и Китае</p>
@@ -135,11 +136,11 @@
                         </div>
                         <div class="header__contacts">
                             <div class="header__contact-link">
-                                <img src="static/images/whatsapp.svg" alt="">
+                                <img src="{% static 'images/whatsapp.svg' %}" alt="">
                                 WhatsApp
                             </div>
                             <div class="header__contact-link">
-                                <img src="static/images/telegram.svg" alt="">
+                                <img src="{% static 'images/telegram.svg' %}" alt="">
                                 Telegram
                             </div>
                         </div>
@@ -147,7 +148,6 @@
                 </div>
             </div>
         </div>
-        
     </footer>
 </body>
 </html>

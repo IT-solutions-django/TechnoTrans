@@ -6,5 +6,5 @@ app_name = 'containers'
 
 
 urlpatterns = [
-    path('', ..., name='contacts'),
+    path('', CatalogView.as_view(), name='catalog'),
 ]

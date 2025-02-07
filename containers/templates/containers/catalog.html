@@ -1,0 +1,212 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load tags %}
+{% load container_tags %} 
+
+{% block content %}
+<div class="breadcrumbs container">
+    <p>Главная</p>
+    <img src="static/images/arrow-right-gray.svg" alt="">
+    <p>Рефконтейнеры</p>
+</div>
+
+<div class="catalog container">
+    <h1 class="catalog__heading">Рефконтейнеры</h1>
+    <div class="catalog-body">
+        <div class="catalog__filters">
+            <div class="catalog__filter-form catalog__categories-form">
+                <p class="catalog__filter-subtitle">Популярные</p>
+                <p class="catalog__filter-subtitle">Новые</p>
+                <p class="catalog__filter-subtitle">Б/У</p>
+                <p class="catalog__filter-subtitle">Аренда</p>
+                <p class="catalog__filter-subtitle">Спецконтейнеры</p>
+            </div>
+            <div class="catalog__filter-form">
+                <div class="catalog__filter-field">
+                    <p class="catalog__filter-subtitle">Цена</p>
+                    <div class="catalog__filter-field-variants">
+                        <div class="form__checkbox">
+                            <div class="form__checkbox-wrap">
+                                <input type="checkbox" id="consent" name="consent" required="">
+                            </div>
+                            <div>
+                                <label for="consent" class="form__checkbox-label">От 500 тыс. до 1 млн.руб</label>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers">4</p>
+                            </div>
+                        </div>
+                        <div class="form__checkbox">
+                            <div class="form__checkbox-wrap">
+                                <input type="checkbox" id="consent" name="consent" required="">
+                            </div>
+                            <div>
+                                <label for="consent" class="form__checkbox-label">От 1 млн. до 3 млн.руб</label>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers">42</p>
+                            </div>
+                        </div>
+                        <div class="form__checkbox">
+                            <div class="form__checkbox-wrap">
+                                <input type="checkbox" id="consent" name="consent" required="">
+                            </div>
+                            <div>
+                                <label for="consent" class="form__checkbox-label">Свыше 3 млн.руб </label>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers">4</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="catalog__filter-field">
+                    <p class="catalog__filter-subtitle">Год выпуска</p>
+                    <div class="catalog__filter-field-variants">
+                        <div class="form__checkbox">
+                            <div class="form__checkbox-wrap">
+                                <input type="checkbox" id="consent" name="consent" required="">
+                            </div>
+                            <div>
+                                <label for="consent" class="form__checkbox-label">2009</label>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers">4</p>
+                            </div>
+                        </div>
+                        <div class="form__checkbox">
+                            <div class="form__checkbox-wrap">
+                                <input type="checkbox" id="consent" name="consent" required="">
+                            </div>
+                            <div>
+                                <label for="consent" class="form__checkbox-label">2021</label>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers">42</p>
+                            </div>
+                        </div>
+                        <div class="form__checkbox">
+                            <div class="form__checkbox-wrap">
+                                <input type="checkbox" id="consent" name="consent" required="">
+                            </div>
+                            <div>
+                                <label for="consent" class="form__checkbox-label">2023</label>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers">4</p>
+                            </div>
+                        </div>
+                        <div class="form__checkbox">
+                            <div class="form__checkbox-wrap">
+                                <input type="checkbox" id="consent" name="consent" required="">
+                            </div>
+                            <div>
+                                <label for="consent" class="form__checkbox-label">2024</label>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers">4</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="catalog__filter-field">
+                    <p class="catalog__filter-subtitle">Тип</p>
+                    <div class="catalog__filter-field-variants">
+                        <div class="form__checkbox">
+                            <div class="form__checkbox-wrap">
+                                <input type="checkbox" id="consent" name="consent" required="">
+                            </div>
+                            <div>
+                                <label for="consent" class="form__checkbox-label">20 футов</label>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers">4</p>
+                            </div>
+                        </div>
+                        <div class="form__checkbox">
+                            <div class="form__checkbox-wrap">
+                                <input type="checkbox" id="consent" name="consent" required="">
+                            </div>
+                            <div>
+                                <label for="consent" class="form__checkbox-label">40 футов</label>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers">42</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p class="tab__label">*Обратите внимание, цены указаны с НДС</p>
+            </div>
+        </div>
+        <div class="catalog__main">
+            <div class="catalog__partners">
+                <div class="catalog__partner-card">
+                    <img src="static/images/part-brand-1.png" alt="">
+                </div>
+                <div class="catalog__partner-card">
+                    <img src="static/images/part-brand-2.png" alt="">
+                </div>
+                <div class="catalog__partner-card">
+                    <img src="static/images/part-brand-3.png" alt="">
+                </div>
+                <div class="catalog__partner-card">
+                    <img src="static/images/part-brand-4.png" alt="">
+                </div>
+            </div>
+            <div class="catalog__description">
+                <p>Выберите надежные рефконтейнеры для перевозки и хранения грузов. В наличии новые и б/у модели от Carrier, Thermo King, Daikin, Star Cool. Доступна аренда, продажа и доставка по всей России. Гарантия качества, выгодные условия и полный сервис. Найдите идеальный контейнер для вашего бизнеса!</p>
+            </div>
+            <div class="catalog__applied-filters">
+                <div class="catalog__applied-filter">
+                    Цена: От 1 млн. до 3 млн.руб
+                </div>
+                <div class="catalog__reset-button">
+                    Сбросить все
+                </div>
+            </div>
+            <div class="catalog__cards">
+                {% for container in containers %}
+                    <div class="home__container-card">
+                        <img src="{{ container.images.all.0.image.url }}" alt="">
+                        <div class="home__container-card-text">
+                            <div class="home__container-card-name">
+                                <p class="home__container-card-name--big">{{ container.name }}</p>
+                                <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }}, {{ container.year }}г., {{ container.model }}</p>
+                            </div>
+                            <p class="home__container-card-price">{{ container.price|price_format }} ₽ </p>
+                            {% if container.is_in_stock %}
+                                <div class="home__container-card-in-stock">
+                                    <img src="{% static 'images/green-mark.svg' %}" alt="">
+                                    В наличии
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <button class="home__container-button">Подробнее</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="pagination">
+                <a href="" class="pagination-button active">
+                    <p>1</p>
+                </a>
+                <a href="" class="pagination-button">
+                    <p>2</p>
+                </a>
+                <a href="" class="pagination-button">
+                    <p>3</p>
+                </a>
+                <a href="" class="pagination-button">
+                    <p>4</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'home/includes/contacts_block.html' %}
+{% endblock %}

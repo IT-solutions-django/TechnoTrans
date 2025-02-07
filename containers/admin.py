@@ -34,6 +34,7 @@ class ContainerImageInline(admin.TabularInline):
     extra = 1
     verbose_name = 'Картинка'
     verbose_name_plural = 'Картинки'
+    show_change_link = True
 
 
 @admin.register(Container)
