@@ -245,7 +245,10 @@ main {
 }
 .form__checkbox-wrap {
     &:has(input:checked)::after {
-        background-size: 12px;
+        background-size: 10px 8px;
+        background-image: url('../images/checkmark.svg');
+        background-color: var(--color-red);
+        border-radius: 4px;
     }
 }
 .main__checkbox-wrap {
@@ -521,6 +524,7 @@ main {
     background-color: var(--color-red);
     font-weight: 600;
     font-size: 14px;
+    line-height: 1em;
 }
 .home__container-button {
     padding: 12px;
@@ -695,6 +699,14 @@ main {
     flex-direction: column;
     gap: 12px;
 }
+.home__service-form-inputs select {
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+    background-image: url('/static/images/arrow-down.svg'); 
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+}
 .home__service-form-inputs select, 
 .home__service-form-inputs input, 
 .home__service-form-inputs textarea {
@@ -702,6 +714,13 @@ main {
     background-color: rgb(255, 255, 255, 0.1);
     border-radius: 8px;
     max-width: 280px;
+    outline: none;
+}
+.catalog__filter-subtitle input[type="radio"] {
+    appearance: none; /* Убираем стандартный стиль */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
 }
 .home__service-form-inputs textarea {
     max-width: none;
@@ -1001,12 +1020,9 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 36px;
-    padding: 16px;
+    padding: 24px 16px;
     background-color: rgb(255, 255, 255, 0.03);
     border-radius: 12px;
-}
-.catalog__categories-form {
-    gap: 24px;
 }
 .catalog__filter-subtitle {
     font-weight: 600;
@@ -1040,6 +1056,10 @@ footer {
     gap: 40px;
     flex: 1;
 }
+.catalog__filter-form-buttons {
+    display: flex;
+    gap: 10px;
+}
 .catalog__partners {
     display: flex;
     gap: 16px;
@@ -1055,6 +1075,7 @@ footer {
 .catalog__applied-filters {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 .catalog__applied-filter, 
 .catalog__reset-button {
@@ -1092,7 +1113,6 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* height: 66px; */
 }
 .pagination-button {
     padding: 21.5px;
@@ -1107,5 +1127,5 @@ footer {
     color: white;
 }
 .pagination-button.active {
-    border-bottom: 3px solid var(--color-red);
+    box-shadow: inset 0 -3px 0 var(--color-red); 
 }
