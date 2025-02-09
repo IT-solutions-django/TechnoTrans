@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.views import View 
 from .models import Container
 from .forms import FilterForm
@@ -68,8 +69,18 @@ class CatalogView(View):
         return render(request, self.template_name, context)
     
 
+class ContainerView(View): 
+    template_name = 'containers/container.html'
+
+    def get(self, request, container_slug: int): 
+        container = get_object_or_404(Container, slug=container_slug)
+        context = {
+            'container': container,
+        }
+        return render(request, self.template_name, context)
+    
+
 def get_min_and_max_price_for_choices(price_range_choices: list) -> tuple[float, float]: 
-    print(price_range_choices)
     min_price = CatalogView.MAX_INT
     max_price = 0
     for price_range in price_range_choices: 

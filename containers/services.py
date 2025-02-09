@@ -3,7 +3,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Container
 
 
-
 def get_paginated_collection(request, collection: QuerySet, count_per_page: int = 10): 
     paginator = Paginator(collection, count_per_page)
     page_number = request.GET.get('page', 1)
