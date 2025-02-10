@@ -1339,3 +1339,54 @@ footer {
     justify-content: start;
     min-width: 105px;
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(17, 17, 27, 0.95);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000000;
+}
+.modalSuccess {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(17, 17, 27, 0.95);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+#modal .home__service-form, 
+#modalSuccess .home__service-form {
+    background-color: #1B1C26;
+    padding: 28px;
+}
+#modal .home__service-form-heading, 
+#modalSuccess .home__service-form-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+#modal .home__service-form-heading img, 
+#modalSuccess .home__service-form-heading img {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+#modalSuccess .transparent-button {
+    width: min-content;
+}
+#modalSuccess .home__service-form {
+    background-image: url('/static/images/modal-success-background.svg');
+    background-repeat: no-repeat;
+    background-position: right -28px bottom -50px;
+}
