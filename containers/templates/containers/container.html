@@ -1,0 +1,212 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load tags %}
+{% load container_tags %} 
+
+{% block content %}
+<script src="{% static 'js/slick/slick/slick.min.js' %}"></script>
+<div class="breadcrumbs container">
+    <p>Главная</p>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <p>Рефконтейнеры</p>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <p>{{ container.brand.name }}</p>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <p class="active">{{ container.name }}</p>
+</div>
+
+<div class="catalog container">
+    <h1 class="catalog__heading">{{ container.name }}</h1>
+    <div class="container__general-info">
+        <div class="container__left">
+            <div class="container__slider">
+                <div class="container__current-slide" href="">
+                    {% for image in container.images.all %}
+                    <div>
+                        <a href="{{ image.image.url }}">
+                            <img src="{{ image.image.url }}" alt="Фото контейнера">
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="container__slider-nav">
+                    {% for image in container.images.all %}
+                    <div class="container__slide">
+                        <img src="{{ image.image.url }}" alt="Фото контейнера">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="container__right">
+            <div class="container__short-info">
+                <img class="container__brand-logo" src="{{ container.brand.image.url }}" alt="">
+                <div class="container__table-info">
+                    <div class="container__table-row">
+                        <span class="container__table-label">Модель</span>
+                        <span class="container__table-value">{{ container.model }}</span>
+                    </div>
+                    <div class="container__table-row">
+                        <span class="container__table-label">Год выпуска</span>
+                        <span class="container__table-value">{{ container.year    }}</span>
+                    </div>
+                    <div class="container__table-row container__table-row--last">
+                        <span class="container__table-label">Тип</span>
+                        <span class="container__table-value">{{ container.container_type }}</span>
+                    </div>
+                </div>
+                <div>
+                    <a href="" class="container__all-specs">Все характеристики</a>
+                </div>
+            </div>
+            <div class="container__order-card">
+                <div class="container__order-card-price-block">
+                    <div class="container__order-card-prices">
+                        <p class="container__order-card-price--main">{{ container.price|price_format }} ₽ </p>
+                        <p class="container__order-card-price--crossed">{{ container.old_price|price_format }} ₽ </p>
+                    </div>
+                    <div class="container__order-card-in-stock">
+                        <img src="{% static 'images/green-mark.svg' %}" alt="">
+                        В наличии
+                    </div>
+                    
+                </div>
+                <div class="main__buttons">
+                    <button class="main__button-red openModal">
+                        Оформить заказ
+                    </button>
+                    <button class="main__button-transparent">
+                        Запросить консультацию
+                    </button>
+                </div>
+                <div class="tab__label">
+                    *Обратите внимание, цены указаны с НДС
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container__info container">
+        <div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#tab-description" type="button" role="tab" aria-controls="tab-description" aria-selected="false">
+                        Описание
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#tab-specs" type="button" role="tab" aria-controls="tab-specs" aria-selected="false">
+                        Характеристики
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="delivery-tab" data-bs-toggle="tab" data-bs-target="#tab-delivery" type="button" role="tab" aria-controls="tab-delivery" aria-selected="false">
+                        Доставка
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#tab-payment" type="button" role="tab" aria-controls="tab-payment" aria-selected="false">
+                        Оплата
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="warranty-tab" data-bs-toggle="tab" data-bs-target="#tab-warranty" type="button" role="tab" aria-controls="tab-warranty" aria-selected="false">
+                        Гарантия
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="tab-description" role="tabpanel" aria-labelledby="description-tab">
+                {{ container.description|markdown }}     
+            </div>
+            <div class="tab-pane fade" id="tab-specs" role="tabpanel" aria-labelledby="specs-tab">
+                <p class="container__specs-subheading">Размеры (мм)</p>
+                <div>
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Длина внешняя</span>
+                        <span>{{ container.length_outer }}</span>
+                    </div>  
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Ширина внешняя</span>
+                        <span>{{ container.width_outer }}</span>
+                    </div>  
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Высота внешняя</span>
+                        <span>{{ container.height_outer }}</span>
+                    </div>  
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Длина внутренняя</span>
+                        <span>{{ container.length_inner }}</span>
+                    </div>  
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Ширина внутренняя</span>
+                        <span>{{ container.width_inner }}</span>
+                    </div>  
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Высота внутренняя</span>
+                        <span>{{ container.height_inner }}</span>
+                    </div> 
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Ширина дверного проёма</span>
+                        <span>{{ container.door_width }}</span>
+                    </div> 
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Высота дверного проёма</span>
+                        <span>{{ container.door_height }}</span>
+                    </div> 
+                </div>
+                <p class="container__specs-subheading">Вес (кг)</p>  
+                <div>
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Макс. масса брутто</span>
+                        <span>{{ container.max_weight_gross }}</span>
+                    </div> 
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Вес тары</span>
+                        <span>{{ container.tare_weight }}</span>
+                    </div> 
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Максимальная загрузка</span>
+                        <span>{{ container.max_load }}</span>
+                    </div> 
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tab-delivery" role="tabpanel" aria-labelledby="delivery-tab">
+                Текст о доставке   
+            </div>
+            <div class="tab-pane fade" id="tab-payment" role="tabpanel" aria-labelledby="payment-tab">
+                Текст об оплате    
+            </div>
+            <div class="tab-pane fade" id="tab-warranty" role="tabpanel" aria-labelledby="warranty-tab">
+                Текст о гарантии  
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'home/includes/questions_block.html' %}
+{% include 'home/includes/contacts_block.html' %}
+{% endblock %}
+
+{% block script %}
+<script defer>
+$(".container__current-slide").slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    fade: true,
+    infinite: true,
+    asNavFor: ".container__slider-nav"
+});
+$(".container__slider-nav").slick({
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    asNavFor: ".container__current-slide",
+    dots: false,
+    arrows: false,
+    infinite: true,
+    focusOnSelect: true
+}); 
+</script>
+{% endblock %}

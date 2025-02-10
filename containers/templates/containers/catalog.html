@@ -14,159 +14,133 @@
     <h1 class="catalog__heading">Рефконтейнеры</h1>
     <div class="catalog-body">
         <div class="catalog__filters">
-            <div class="catalog__filter-form catalog__categories-form">
-                <p class="catalog__filter-subtitle">Популярные</p>
-                <p class="catalog__filter-subtitle">Новые</p>
-                <p class="catalog__filter-subtitle">Б/У</p>
-                <p class="catalog__filter-subtitle">Аренда</p>
-                <p class="catalog__filter-subtitle">Спецконтейнеры</p>
-            </div>
-            <div class="catalog__filter-form">
+            <form method="get" action="" class="catalog__filter-form">
+                <div class="catalog__filter-field">
+                    <p class="catalog__filter-subtitle">Тип контейнера</p>
+                    <div class="catalog__filter-field-variants">
+                        {% for category_input in filter_form.category %}
+                            <div class="form__checkbox">
+                                <div class="form__checkbox-wrap">
+                                    {{ category_input.tag }} 
+                                </div>
+                                <div>
+                                    <label for="{{ category_input.id_for_label }}" class="form__checkbox-label">
+                                        {{ category_input.choice_label }}
+                                    </label>
+                                </div>
+                                <div>
+                                    <p class="catalog__filter-numbers">{% container_count_for_category category_input.data.value %}</p> 
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
                 <div class="catalog__filter-field">
                     <p class="catalog__filter-subtitle">Цена</p>
                     <div class="catalog__filter-field-variants">
-                        <div class="form__checkbox">
-                            <div class="form__checkbox-wrap">
-                                <input type="checkbox" id="consent" name="consent" required="">
+                        {% for price_input in filter_form.price %}
+                            <div class="form__checkbox">
+                                <div class="form__checkbox-wrap">
+                                    {{ price_input.tag }} 
+                                </div>
+                                <div>
+                                    <label for="{{ price_input.id_for_label }}" class="form__checkbox-label">
+                                        {{ price_input.choice_label }}
+                                    </label>
+                                </div>
+                                <div>
+                                    <p class="catalog__filter-numbers">{% container_count_for_price price_input.data.value %}</p> 
+                                </div>
                             </div>
-                            <div>
-                                <label for="consent" class="form__checkbox-label">От 500 тыс. до 1 млн.руб</label>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="catalog__filter-field">
+                    <p class="catalog__filter-subtitle">Производитель</p>
+                    <div class="catalog__filter-field-variants">
+                        {% for brand_input in filter_form.brand %}
+                            <div class="form__checkbox">
+                                <div class="form__checkbox-wrap">
+                                    {{ brand_input.tag }} 
+                                </div>
+                                <div>
+                                    <label for="{{ brand_input.id_for_label }}" class="form__checkbox-label">
+                                        {{ brand_input.choice_label }}
+                                    </label>
+                                </div>
+                                <div>
+                                    <p class="catalog__filter-numbers">{% container_count_for_brand brand_input.data.value %}</p> 
+                                </div>
                             </div>
-                            <div>
-                                <p class="catalog__filter-numbers">4</p>
-                            </div>
-                        </div>
-                        <div class="form__checkbox">
-                            <div class="form__checkbox-wrap">
-                                <input type="checkbox" id="consent" name="consent" required="">
-                            </div>
-                            <div>
-                                <label for="consent" class="form__checkbox-label">От 1 млн. до 3 млн.руб</label>
-                            </div>
-                            <div>
-                                <p class="catalog__filter-numbers">42</p>
-                            </div>
-                        </div>
-                        <div class="form__checkbox">
-                            <div class="form__checkbox-wrap">
-                                <input type="checkbox" id="consent" name="consent" required="">
-                            </div>
-                            <div>
-                                <label for="consent" class="form__checkbox-label">Свыше 3 млн.руб </label>
-                            </div>
-                            <div>
-                                <p class="catalog__filter-numbers">4</p>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="catalog__filter-field">
                     <p class="catalog__filter-subtitle">Год выпуска</p>
                     <div class="catalog__filter-field-variants">
-                        <div class="form__checkbox">
-                            <div class="form__checkbox-wrap">
-                                <input type="checkbox" id="consent" name="consent" required="">
+                        {% for year_input in filter_form.year %}
+                            <div class="form__checkbox">
+                                <div class="form__checkbox-wrap">
+                                    {{ year_input.tag }}
+                                </div>
+                                <div>
+                                    <label for="{{ year_input.id_for_label }}" class="form__checkbox-label">
+                                        {{ year_input.choice_label }}
+                                    </label>
+                                </div>
+                                <div>
+                                    <p class="catalog__filter-numbers">{% container_count_for_year year_input.data.value %}</p>
+                                </div>
                             </div>
-                            <div>
-                                <label for="consent" class="form__checkbox-label">2009</label>
-                            </div>
-                            <div>
-                                <p class="catalog__filter-numbers">4</p>
-                            </div>
-                        </div>
-                        <div class="form__checkbox">
-                            <div class="form__checkbox-wrap">
-                                <input type="checkbox" id="consent" name="consent" required="">
-                            </div>
-                            <div>
-                                <label for="consent" class="form__checkbox-label">2021</label>
-                            </div>
-                            <div>
-                                <p class="catalog__filter-numbers">42</p>
-                            </div>
-                        </div>
-                        <div class="form__checkbox">
-                            <div class="form__checkbox-wrap">
-                                <input type="checkbox" id="consent" name="consent" required="">
-                            </div>
-                            <div>
-                                <label for="consent" class="form__checkbox-label">2023</label>
-                            </div>
-                            <div>
-                                <p class="catalog__filter-numbers">4</p>
-                            </div>
-                        </div>
-                        <div class="form__checkbox">
-                            <div class="form__checkbox-wrap">
-                                <input type="checkbox" id="consent" name="consent" required="">
-                            </div>
-                            <div>
-                                <label for="consent" class="form__checkbox-label">2024</label>
-                            </div>
-                            <div>
-                                <p class="catalog__filter-numbers">4</p>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="catalog__filter-field">
-                    <p class="catalog__filter-subtitle">Тип</p>
+                    <p class="catalog__filter-subtitle">Размер</p>
                     <div class="catalog__filter-field-variants">
-                        <div class="form__checkbox">
-                            <div class="form__checkbox-wrap">
-                                <input type="checkbox" id="consent" name="consent" required="">
+                        {% for container_type in filter_form.container_type %}
+                            <div class="form__checkbox">
+                                <div class="form__checkbox-wrap">
+                                    {{ container_type.tag }}
+                                </div>
+                                <div>
+                                    <label for="{{ container_type.id_for_label }}" class="form__checkbox-label">{{ container_type.choice_label }}</label>
+                                </div>
+                                <div>
+                                    <p class="catalog__filter-numbers">{% container_count_for_container_type container_type.data.value %}</p>
+                                </div>
                             </div>
-                            <div>
-                                <label for="consent" class="form__checkbox-label">20 футов</label>
-                            </div>
-                            <div>
-                                <p class="catalog__filter-numbers">4</p>
-                            </div>
-                        </div>
-                        <div class="form__checkbox">
-                            <div class="form__checkbox-wrap">
-                                <input type="checkbox" id="consent" name="consent" required="">
-                            </div>
-                            <div>
-                                <label for="consent" class="form__checkbox-label">40 футов</label>
-                            </div>
-                            <div>
-                                <p class="catalog__filter-numbers">42</p>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-            </div>
+                <div class="catalog__filter-form-buttons">
+                    <button type="submit" class="red-button home__container-button">Применить</button>
+                    <a href="{% url 'containers:catalog' %}" class="catalog__reset-button">Сбросить</a>
+                </div>
+            </form>
             <div>
                 <p class="tab__label">*Обратите внимание, цены указаны с НДС</p>
             </div>
         </div>
         <div class="catalog__main">
-            <div class="catalog__partners">
-                <div class="catalog__partner-card">
-                    <img src="static/images/part-brand-1.png" alt="">
-                </div>
-                <div class="catalog__partner-card">
-                    <img src="static/images/part-brand-2.png" alt="">
-                </div>
-                <div class="catalog__partner-card">
-                    <img src="static/images/part-brand-3.png" alt="">
-                </div>
-                <div class="catalog__partner-card">
-                    <img src="static/images/part-brand-4.png" alt="">
-                </div>
-            </div>
             <div class="catalog__description">
                 <p>Выберите надежные рефконтейнеры для перевозки и хранения грузов. В наличии новые и б/у модели от Carrier, Thermo King, Daikin, Star Cool. Доступна аренда, продажа и доставка по всей России. Гарантия качества, выгодные условия и полный сервис. Найдите идеальный контейнер для вашего бизнеса!</p>
             </div>
-            <div class="catalog__applied-filters">
-                <div class="catalog__applied-filter">
-                    Цена: От 1 млн. до 3 млн.руб
+            {% if applied_filters %}
+                <div class="catalog__applied-filters">
+                    {% for applied_filter in applied_filters %}
+                        <button 
+                            data-filter-name="{{ applied_filter.name }}" 
+                            data-filter-value="{{ applied_filter.value }}"
+                            class="catalog__applied-filter">
+                            {{ applied_filter.name|applied_filter_name_translate }}: {{ applied_filter.human_value }}
+                        </button>
+                    {% endfor %}
+                    <a href="{% url 'containers:catalog' %}" class="catalog__reset-button">
+                        Сбросить все
+                    </a>
                 </div>
-                <div class="catalog__reset-button">
-                    Сбросить все
-                </div>
-            </div>
+            {% endif %}
             <div class="catalog__cards">
                 {% for container in containers %}
                     <div class="home__container-card">
@@ -185,28 +159,83 @@
                             {% endif %}
                         </div>
                         <div>
-                            <button class="home__container-button">Подробнее</button>
+                            <a href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
                         </div>
                     </div>
+                {% empty %}
+                    <p>Ничего не найдено</p>
                 {% endfor %}
             </div>
+            {% if containers %}
             <div class="pagination">
-                <a href="" class="pagination-button active">
-                    <p>1</p>
-                </a>
-                <a href="" class="pagination-button">
-                    <p>2</p>
-                </a>
-                <a href="" class="pagination-button">
-                    <p>3</p>
-                </a>
-                <a href="" class="pagination-button">
-                    <p>4</p>
-                </a>
+                {% for num in containers.paginator.page_range %}
+                    <a href="?page={{ num }}" class="pagination-button {% if num == containers.number %}active{% endif %}">
+                        <p>{{ num }}</p>
+                    </a>
+                {% endfor %}
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
 
+{% include 'home/includes/questions_block.html' %}
 {% include 'home/includes/contacts_block.html' %}
+{% endblock %}
+
+{% block script %}
+<script> 
+document.addEventListener("DOMContentLoaded", () => {
+    // Пагинация
+    document.querySelectorAll(".pagination a").forEach((e) => {
+        e.addEventListener("click", (a) => {
+            a.preventDefault();
+            const n = new URL(e.href);
+            const currentParams = new URLSearchParams(window.location.search);
+
+            currentParams.delete('page');
+
+            const page = new URL(n).searchParams.get('page');
+            if (page) {
+                currentParams.set('page', page);
+            }
+
+            n.search = currentParams.toString();
+            window.location.href = n.toString();
+        });
+    });
+
+    // Обработчик клика по кнопкам фильтров
+    document.querySelectorAll(".catalog__applied-filter").forEach((button) => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            const filterName = button.getAttribute("data-filter-name");
+            const filterValue = button.getAttribute("data-filter-value");
+
+            const url = new URL(window.location.href);
+            const params = new URLSearchParams(url.search);
+
+            const filterValues = params.getAll(filterName);
+
+            const newFilterValues = filterValues.filter(value => value !== filterValue);
+
+            if (newFilterValues.length > 0) {
+                params.delete(filterName); 
+                newFilterValues.forEach(value => {
+                    params.append(filterName, value); 
+                });
+            } else {
+                params.delete(filterName);
+            }
+
+            params.delete("page");
+
+            url.search = params.toString();
+            window.location.href = url.toString();
+        });
+    });
+});
+
+</script>
 {% endblock %}

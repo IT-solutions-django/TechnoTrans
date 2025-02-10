@@ -30,6 +30,52 @@
     <title>ТехноТранс</title>
 </head>
 <body>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="home__questions-right">
+                <form id="modalFeedbackForm" class="home__service-form" action="">
+                    <div class="home__service-form-heading">
+                        <span>Свяжитесь с нами</span>
+                        <img id="closeModal" src="{% static 'images/cross-white.svg' %}" alt="">
+                    </div>
+                    <div class="home__service-form-inputs">
+                        <input type="text" placeholder="Имя">
+                        <input type="tel" placeholder="Телефон">
+                        <textarea placeholder="Сообщение" rows="5"></textarea>
+                        <div class="form__checkbox">
+                            <div class=form__checkbox-wrap>
+                                <input type=checkbox id=consent name=consent required>
+                            </div>
+                            <div>
+                                <label for=consent class=form__checkbox-label>
+                                    Согласен с обработкой персональных данных
+                                </label>
+                            </div>
+                        </div>
+                        <button class="red-button">Отправить</button>
+                    </div>  
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modalSuccess" class="modalSuccess">
+        <div class="modal-success-content">
+           <div class="home__questions-right">
+            <div class="home__service-form">
+                <div class="home__service-form-heading">
+                    <span>Успешно отправлено</span>
+                    <img class="closeSuccessModal" src="{% static 'images/cross-white.svg' %}" alt="">
+                </div>
+                
+                    <p>Вскоре наши менеджеры свяжутся с вами</p>
+                <button class="transparent-button closeSuccessModal">Закрыть</button>
+            </div>
+           </div>
+        </div>
+    </div>
+
+
     <header class="header">
         <div class="container">
             <div class="header__row">
@@ -43,19 +89,19 @@
                 <div class="header__nav">
                     <div class="header__menu">
                         <div class="header__menu-link">
-                            <a href="{% url 'containers:catalog' %}">Рефконтейнеры</a>
+                            <a class="red-hover" href="{% url 'containers:catalog' %}">Рефконтейнеры</a>
                         </div>
                         <div class="header__menu-link">
-                            <a href="">Запчасти</a>
+                            <a class="red-hover" href="">Запчасти</a>
                         </div>
                         <div class="header__menu-link">
-                            <a href="">Дизель-генераторы</a>
+                            <a class="red-hover" href="">Дизель-генераторы</a>
                         </div>
                         <div class="header__menu-link">
-                            <a href="">Обслуживание и ремонт</a>
+                            <a class="red-hover" href="">Обслуживание и ремонт</a>
                         </div>
                         <div class="header__menu-link">
-                            <a href="">О компании</a>
+                            <a class="red-hover" href="{% url 'contacts:about_company' %}">О компании</a>
                         </div>
                     </div>
                     <div class="header__right-part">
@@ -155,6 +201,85 @@
 
 {% block script %}
 {% endblock script %}
+
+<!-- Модальное окно -->
+<script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const modal = document.getElementById('modal');
+        const modalSuccess = document.getElementById('modalSuccess');
+        const closeModalButton = document.getElementById('closeModal');
+        const closeSuccessModalButtons = document.querySelectorAll('.closeSuccessModal')
+        const feedbackForm = document.getElementById('modalFeedbackForm');
+        const formSection = document.getElementById('modal');
+        const successSection = document.getElementById('modalSuccess');
+
+        console.log(feedbackForm)
+
+        const messageField = document.getElementById("id_message"); 
+
+        const openModalButtons = document.querySelectorAll('.openModal');
+
+
+        openModalButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                modal.style.display = 'flex';
+            });
+        });
+
+        closeModalButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+            messageField.value = "";
+        });
+        closeSuccessModalButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                modalSuccess.style.display = 'none';
+                messageField.value = "";
+            });
+        }) 
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                messageField.value = "";
+            }
+        });
+
+        feedbackForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            formSection.style.display = 'none';
+            successSection.style.display = 'flex';
+
+            let q = new FormData(feedbackForm),
+                o = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+            feedbackForm.reset();
+
+            try {
+                let s = await fetch(`${window.location.origin}/contacts/api/save-request/`, {
+                    method: "POST",
+                    body: q,
+                    headers: {
+                        "X-CSRFToken": o
+                    }
+                });
+                s.status
+            } catch (n) {
+                console.error("Ошибка запроса:", n)
+            }
+        });
+
+        var modalPhoneInput = document.getElementById("modalFeedbackForm").querySelector('input[type="tel"]');
+        var modalPhoneMask = IMask(modalPhoneInput, { mask: "+{7} (000) 000 00 00" });
+        function validatePhoneNumber() {
+            let t = modalPhoneInput.value.replace(/\D/g, "");
+            return t.length < 11 ? (modalPhoneInput.setCustomValidity("Необходимо минимум 11 цифр"), !1) : (modalPhoneInput.setCustomValidity(""), !0)
+        }
+        modalPhoneInput.addEventListener("input", function () {
+            validatePhoneNumber()
+        });
+    });
+
+</script>
 
 <script>
     // Слайдеры

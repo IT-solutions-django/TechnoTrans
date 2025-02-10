@@ -55,7 +55,7 @@
 
         <div class="main__buttons">
             <button class="main__button-red">
-                Скачать презентацию
+                Связаться с нами
             </button>
             <button class="main__button-transparent">
                 <img src="static/images/whatsapp.svg" alt="">
@@ -64,11 +64,11 @@
         </div>
     </div>
     <div class="main__right">
-        <div class="main__image">
-            <img src="static/images/main-container.png" alt="">
-        </div>
         <div class="main__prices">
-            <div class="main__price active">
+            <img class="main-image" id="mainImage1" src="static/images/main-container.png" alt="">
+            <img class="main-image" id="mainImage2" src="{% static 'images/main2.png' %}" alt="">
+            <img class="main-image" id="mainImage3" src="{% static 'images/main3.png' %}" alt="">
+            <div id="mainDivision1" class="main__price main-division">
                 <div class="main__price-label">Аренда универсальных контейнеров</div>
                 <div class="main__price-value">
                     <span class="main__price-big">от 2$</span> /сутки
@@ -77,7 +77,7 @@
                     <button>Выбрать модель</button>
                 </div>
             </div>
-            <div class="main__price">
+            <div id="mainDivision2" class="main__price main-division">
                 <div class="main__price-label">Продажа разных типов контейнеров</div>
                 <div class="main__price-value">
                     <span class="main__price-big">от 1000$</span>
@@ -86,7 +86,7 @@
                     <button>Скачать каталог</button>
                 </div>
             </div>
-            <div class="main__price">
+            <div id="mainDivision3" class="main__price main-division">
                 <div class="main__price-label">Услуги импорта и экспорта</div>
                 <div class="main__price-value">
                     <span class="main__price-big">По запросу</span>
@@ -400,6 +400,24 @@ $(document).ready((function() {
     })
 }))
 
+// Главная 
+document.querySelectorAll('.main__price').forEach((division) => {
+    division.addEventListener('mouseenter', () => {
+        document.getElementById('mainImage1').style.opacity = '0';
+        document.getElementById('mainImage2').style.opacity = '0';
+        document.getElementById('mainImage3').style.opacity = '0';
+ 
+        if (division.id === 'mainDivision1') {
+            document.getElementById('mainImage1').style.opacity = '1'; 
+        } else if (division.id === 'mainDivision2') {
+            document.getElementById('mainImage2').style.opacity = '1'; 
+        } else if (division.id === 'mainDivision3') {
+            document.getElementById('mainImage3').style.opacity = '1'; 
+        }
+    });
+});
+
+
 // Вопросы и ответы
 document.querySelectorAll(".home__question").forEach((question) => {
     question.addEventListener("click", () => {
@@ -420,5 +438,21 @@ document.querySelectorAll(".home__question").forEach((question) => {
         }
     });
 });
+
+document.querySelectorAll('.main__price').forEach((division) => {
+    division.addEventListener('mouseenter', () => {
+        // Убираем класс active у всех блоков
+        document.querySelectorAll('.main__price').forEach((div) => {
+            div.classList.remove('active');
+        });
+
+        // Добавляем класс active для текущего блока
+        division.classList.add('active');
+    });
+    if (division.id === 'mainDivision1') {
+        division.classList.add('active');
+    }
+});
+
 </script>
 {% endblock script %}
