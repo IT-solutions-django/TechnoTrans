@@ -54,7 +54,7 @@
         </div>
 
         <div class="main__buttons">
-            <button class="main__button-red">
+            <button class="main__button-red background-red-hover">
                 Связаться с нами
             </button>
             <button class="main__button-transparent">
@@ -160,10 +160,12 @@
                 <div class="home__containers-cards">
                     {% for container in category.category_containers.all %}
                         <div class="home__container-card">
-                            <img src="static/images/container-example.png" alt="">
+                            <a href="{{ container.get_absolute_url }}">
+                                <img src="static/images/container-example.png" alt="">
+                            </a>
                             <div class="home__container-card-text">
                                 <div class="home__container-card-name">
-                                    <p class="home__container-card-name--big">{{ container.name }}</p>
+                                    <a href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
                                     <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }}, {{ container.year }}г., {{ container.model }}</p>
                                 </div>
                                 <p class="home__container-card-price">{{ container.price|price_format }} ₽ </p>
@@ -175,7 +177,7 @@
                                 {% endif %}
                             </div>
                             <div>
-                                <button class="home__container-button">Подробнее</button>
+                                <a href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
                             </div>
                         </div>
                     {% endfor %}

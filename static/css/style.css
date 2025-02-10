@@ -22,6 +22,12 @@ a {
 .red-hover:active {
     color: var(--color-red)
 }
+.background-red-hover {
+    transition: all 0.3s ease;
+}
+.background-red-hover:hover {
+    background-color: var(--color-dark-red);
+}
 
 html {
     width: 100%;
@@ -281,10 +287,15 @@ main {
     padding: 20px 30px;
     border-radius: 12px;
     align-items: center;
+
+    transition: all 0.3s ease;
 }
 .main__button-red {
     background-color: var(--color-red); 
     box-shadow: 0px 5px 24px 3px rgba(255, 0, 0, 0.2);
+}
+.main__button-transparent:hover {
+    border: 1px solid rgb(255, 255, 255, 0.4)
 }
 .main__button-transparent {
     padding: 20px 30px;
@@ -539,12 +550,21 @@ main {
 }
 .red-button,
 .home__container-button {
+    display: block;
+    width: fit-content;
     padding: 12px 16px;
     border-radius: 8px;
     background-color: var(--color-red);
     font-weight: 600;
     font-size: 14px;
     line-height: 1em;
+
+    transition: all 0.3s ease;
+}
+
+.red-button:hover,
+.home__container-button:hover {
+    background-color: #B71016;
 }
 .home__container-button {
     padding: 12px;
@@ -621,6 +641,9 @@ main {
     border-radius: 8px;
     font-weight: 600;
     font-size: 14px;
+}
+.home__parts-brand-card-button {
+    
 }
 .home__parts-brand-card-button-red {
     background-color: var(--color-red);
@@ -1109,6 +1132,11 @@ footer {
     font-weight: 600;
     padding: 12px;
     border-radius: 8px;
+
+    transition: all 0.3s ease;
+}
+.transparent-button:hover {
+    border: 1px solid rgb(255, 255, 255, 0.4);
 }
 .container__all-specs {
     display: inline-block;
