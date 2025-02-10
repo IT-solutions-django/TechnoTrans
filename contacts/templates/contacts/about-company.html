@@ -1,0 +1,89 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load tags %}
+{% load container_tags %}
+
+
+{% block content %}
+<div class="breadcrumbs container">
+    <p>Главная</p>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <p class="active">О компании</p>
+</div>
+<div class="about-company container">
+    <h1 class="catalog__heading">О компании</h1>
+    <div class="about-company__body">
+        <img src="{% static 'images/about-company-background.png' %}" alt="">
+        <div class="about-company__description">
+            {{ company_info.description|markdown }}
+        </div>
+        <div class="home__service-points">
+            <div class="home__service-point">
+                <div class="home__service-point-icon">
+                    <img src="{% static 'images/about-company-key.svg' %}" alt="">
+                </div>
+                <div class="home__service-point-text">
+                    <p class="home__service-point-heading">Индивидуальный подход к каждому клиенту</p>
+                    <p class="home__service-point-sub">Компания предлагает уникальные решения, учитывая специфику бизнеса и пожелания клиента. Это позволяет находить оптимальные варианты для каждого заказчика.</p>
+                </div>
+            </div>
+            <div class="home__service-point">
+                <div class="home__service-point-icon">
+                    <img src="{% static 'images/about-company-bag.svg' %}" alt="">
+                </div>
+                <div class="home__service-point-text">
+                    <p class="home__service-point-heading">Профессионализм и опыт команды</p>
+                    <p class="home__service-point-sub">Компания объединяет опытных логистов и использует передовые технологии, что позволяет обеспечивать высокий уровень сервиса и эффективность решений.</p>
+                </div>
+            </div>
+            <div class="home__service-point">
+                <div class="home__service-point-icon">
+                    <img src="{% static 'images/about-company-checkmark.svg' %}" alt="">
+                </div>
+                <div class="home__service-point-text">
+                    <p class="home__service-point-heading">Гибкость и поддержка клиентов</p>
+                    <p class="home__service-point-sub">Менеджеры компании всегда на связи, готовы оперативно ответить на вопросы и помочь в решении любых задач, связанных с логистикой и использованием рефконтейнеров.</p>
+                </div>
+            </div>
+            <div class="home__service-point">
+                <div class="home__service-point-icon">
+                    <img src="{% static 'images/about-company-well.svg' %}" alt="">
+                </div>
+                <div class="home__service-point-text">
+                    <p class="home__service-point-heading">Удобство и простота в сотрудничестве</p>
+                    <p class="home__service-point-sub">Компания стремится сделать логистику максимально понятной и удобной для клиентов, предлагая бесплатную доставку в сотни городов России и детально проработанные решения.</p>
+                </div>
+            </div>
+        </div>
+        <div class="about-company__stages">
+            <p class="block-heading">Схема работы</p>
+            <div class="about-company__stages-body">
+                <div class="about-company__stage">
+                    <span>Заявка и консультация</span>
+                    <span class="about-company__stage-number">01</span>
+                </div>
+                <div class="about-company__stage">
+                    <span>Выбор и оформление</span>
+                    <span class="about-company__stage-number">02</span>
+                </div>
+                <div class="about-company__stage">
+                    <span>Доставка в ваш регион</span>
+                    <span class="about-company__stage-number">03</span>
+                </div>
+                <div class="about-company__stage">
+                    <span>Сервис и гарантия</span>
+                    <span class="about-company__stage-number">04</span>
+                </div>
+                <div class="about-company__stage">
+                    <span>Запчасти и поддержка</span>
+                    <span class="about-company__stage-number">05</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% include 'home/includes/questions_block.html' %}
+{% include 'home/includes/contacts_block.html' %}
+{% endblock %}

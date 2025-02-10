@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     'home',
     'containers',
+    'contacts',
 ]
 
 MIDDLEWARE = [

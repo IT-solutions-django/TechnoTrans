@@ -1261,9 +1261,6 @@ footer {
     margin-right: 8px; 
     margin-left: 8px;
 }
-.container__info #tab-specs {
-    
-}
 .container__specs-subheading {
     font-weight: 600;
     font-size: 20px;
@@ -1279,12 +1276,6 @@ footer {
 }
 .container__specs-label {
     width: 500px;
-}
-.container__slider {
-
-}
-.container__current-slide {
-
 }
 .container__current-slide img, 
 .container__slide img {
@@ -1302,9 +1293,49 @@ footer {
 .container__slide img {
     height: 100% !important;
 }
-.container__slide {
-
+.about-company {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-bottom: 113px;
 }
-.container__slider-nav {
+.about-company__body {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+.about-company .home__service-points, 
+.about-company__stages {
+    max-width: 860px;
+}
+.about-company__stages {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.about-company__stages-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.about-company__stage {
+    padding: 24px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 30px;
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.03);
 
+    display: flex;
+    justify-content: space-between;
+
+    overflow: hidden;
+}
+.about-company__stage-number {
+    font-weight: 800;
+    font-size: 80px;
+    color: rgb(255, 255, 255, 0.05);
+    transform: translateY(-12px);
+    justify-content: start;
+    min-width: 105px;
 }
