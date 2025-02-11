@@ -59,12 +59,12 @@
                     <form class="home__service-form" action="">
                         <p class="home__service-form-heading">Остались вопросы? Свяжитесь с нами</p>
                         <div class="home__service-form-inputs">
-                            <input type="text" placeholder="Имя">
-                            <input type="tel" placeholder="Телефон">
-                            <textarea placeholder="Сообщение" rows="5"></textarea>
+                            <input type="text" placeholder="Имя *">
+                            <input type="tel" placeholder="Телефон *">
+                            <textarea placeholder="Сообщение *" rows="5"></textarea>
                             <div class="form__checkbox">
                                 <div class=form__checkbox-wrap>
-                                    <input type=checkbox id=consent name=consent required>
+                                    <input checked type=checkbox id=consent name=consent required>
                                 </div>
                                 <div>
                                     <label for=consent class=form__checkbox-label>
@@ -83,23 +83,34 @@
 
 <script>
     // Вопросы и ответы
-document.querySelectorAll(".home__question").forEach((question) => {
-    question.addEventListener("click", () => {
-        const parentBlock = question.parentElement;
-        const answer = parentBlock.querySelector(".home__answer");
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".home__question").forEach((question) => {
+        question.addEventListener("click", () => {
+            const parentBlock = question.parentElement;
+            const answer = parentBlock.querySelector(".home__answer");
 
-        if (parentBlock.classList.contains("active")) {
-            parentBlock.classList.remove("active");
-            answer.style.maxHeight = null;
-        } else {
-            document.querySelectorAll(".home__question-block").forEach((block) => {
-                block.classList.remove("active");
-                block.querySelector(".home__answer").style.maxHeight = null;
-            });
+            console.log(parentBlock)
 
-            answer.style.height = answer.scrollHeight + 20 + "px"; 
-            parentBlock.classList.add("active");
-        }
+
+            if (parentBlock.classList.contains("active")) {
+                console.log(parentBlock.classList)
+                console.log('убираем')
+                parentBlock.classList.remove("active");
+                answer.style.maxHeight = null;
+            } else {
+                document.querySelectorAll(".home__question-block").forEach((block) => {
+                    block.classList.remove("active");
+                    block.querySelector(".home__answer").style.maxHeight = null;
+                });
+
+                console.log('добавляем')
+
+                answer.style.height = answer.scrollHeight + 20 + "px"; 
+                parentBlock.classList.add("active");
+            }
+        });
     });
+
+    
 });
 </script>

@@ -54,7 +54,7 @@
         </div>
 
         <div class="main__buttons">
-            <button class="main__button-red background-red-hover">
+            <button class="main__button-red background-red-hover openModal">
                 Связаться с нами
             </button>
             <button class="main__button-transparent">
@@ -66,14 +66,14 @@
     <div class="main__right">
         <div class="main__prices">
             <img class="main-image" id="mainImage1" src="static/images/main-container.png" alt="">
-            <img class="main-image" id="mainImage2" src="{% static 'images/main2.png' %}" alt="">
+            <img class="main-image" id="mainImage2" src="{% static 'images/main-2-2.png' %}" alt="">
             <img class="main-image" id="mainImage3" src="{% static 'images/main3.png' %}" alt="">
             <div id="mainDivision1" class="main__price main-division">
                 <div class="main__price-label">Аренда универсальных контейнеров</div>
                 <div class="main__price-value">
                     <span class="main__price-big">от 2$</span> /сутки
                 </div>
-                <div class="main__price-button">
+                <div class="transparent-button">
                     <button>Выбрать модель</button>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                 <div class="main__price-value">
                     <span class="main__price-big">от 1000$</span>
                 </div>
-                <div class="main__price-button">
+                <div class="transparent-button">
                     <button>Скачать каталог</button>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                 <div class="main__price-value">
                     <span class="main__price-big">По запросу</span>
                 </div>
-                <div class="main__price-button">
+                <div class="transparent-button">
                     <button>Консультация</button>
                 </div>
             </div>
@@ -161,17 +161,17 @@
                     {% for container in category.category_containers.all %}
                         <div class="home__container-card">
                             <a href="{{ container.get_absolute_url }}">
-                                <img src="static/images/container-example.png" alt="">
+                                <img src="{{ container.images.all.0.image.url }}" alt="">
                             </a>
                             <div class="home__container-card-text">
                                 <div class="home__container-card-name">
                                     <a href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
-                                    <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }}, {{ container.year }}г., {{ container.model }}</p>
+                                    <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ container.year }}г. <span class="container__name-divider">|</span> {{ container.model }}</p>
                                 </div>
                                 <p class="home__container-card-price">{{ container.price|price_format }} ₽ </p>
                                 {% if container.is_in_stock %}
                                     <div class="home__container-card-in-stock">
-                                        <img src="static/images/green-mark.svg" alt="">
+                                        <img src="{% static 'images/green-mark.svg' %}" alt="">
                                         В наличии
                                     </div>
                                 {% endif %}
@@ -182,7 +182,7 @@
                         </div>
                     {% endfor %}
                 </div>
-                <a href="" class="home__containers-watch-all">
+                <a href="{% url 'containers:catalog' %}" class="home__containers-watch-all">
                     Смотреть все
                 </a>
             </div>
@@ -245,27 +245,27 @@
         <div class="home__parts-right">
             <div class="home__parts-brand-card">
                 <img src="static/images/part-brand-1.png" alt="">
-                <a class="home__parts-brand-card-button" href="">Смотреть все</a>
+                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card">
                 <img src="static/images/part-brand-2.png" alt="">
-                <a class="home__parts-brand-card-button" href="">Смотреть все</a>
+                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card">
                 <img src="static/images/part-brand-3.png" alt="">
-                <a class="home__parts-brand-card-button" href="">Смотреть все</a>
+                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card">
                 <img src="static/images/part-brand-4.png" alt="">
-                <a class="home__parts-brand-card-button" href="">Смотреть все</a>
+                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card">
                 <p class="home__parts-brand-card-heading">Расходники</p>
-                <a class="home__parts-brand-card-button" href="">Смотреть все</a>
+                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card">
                 <p class="home__parts-brand-card-heading">Расходники</p>
-                <a class="home__parts-brand-card-button-red" href="">Запросить весь каталог</a>
+                <a class="home__parts-brand-card-button-red background-red-hover" href="">Запросить весь каталог</a>
             </div>
         </div>
     </div>
@@ -334,14 +334,14 @@
                         <option>2</option>
                     </select>
                     <input type="text" placeholder="Город">
-                    <input type="tel" placeholder="Телефон">
-                    <textarea placeholder="Сообщение" rows="5"></textarea>
+                    <input type="tel" placeholder="Телефон *">
+                    <textarea placeholder="Сообщение *" rows="5"></textarea>
                     <div class="form__checkbox">
                         <div class=form__checkbox-wrap>
-                            <input type=checkbox id=consent name=consent required>
+                            <input checked type=checkbox id=service-form-input name=consent required>
                         </div>
                         <div>
-                            <label for=consent class=form__checkbox-label>
+                            <label for=service-form-input class=form__checkbox-label>
                                 Согласен с обработкой персональных данных
                             </label>
                         </div>
@@ -418,29 +418,6 @@ document.querySelectorAll('.main__price').forEach((division) => {
         }
     });
 });
-
-
-// Вопросы и ответы
-document.querySelectorAll(".home__question").forEach((question) => {
-    question.addEventListener("click", () => {
-        const parentBlock = question.parentElement;
-        const answer = parentBlock.querySelector(".home__answer");
-
-        if (parentBlock.classList.contains("active")) {
-            parentBlock.classList.remove("active");
-            answer.style.maxHeight = null;
-        } else {
-            document.querySelectorAll(".home__question-block").forEach((block) => {
-                block.classList.remove("active");
-                block.querySelector(".home__answer").style.maxHeight = null;
-            });
-
-            answer.style.height = answer.scrollHeight + 20 + "px"; 
-            parentBlock.classList.add("active");
-        }
-    });
-});
-
 document.querySelectorAll('.main__price').forEach((division) => {
     division.addEventListener('mouseenter', () => {
         // Убираем класс active у всех блоков
@@ -455,6 +432,5 @@ document.querySelectorAll('.main__price').forEach((division) => {
         division.classList.add('active');
     }
 });
-
 </script>
 {% endblock script %}

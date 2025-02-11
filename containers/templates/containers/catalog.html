@@ -6,7 +6,7 @@
 {% block content %}
 <div class="breadcrumbs container">
     <p>Главная</p>
-    <img src="static/images/arrow-right-gray.svg" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
     <p>Рефконтейнеры</p>
 </div>
 
@@ -144,11 +144,13 @@
             <div class="catalog__cards">
                 {% for container in containers %}
                     <div class="home__container-card">
-                        <img src="{{ container.images.all.0.image.url }}" alt="">
+                        <a href="{{ container.get_absolute_url }}">
+                            <img src="{{ container.images.all.0.image.url }}" alt="">
+                        </a>
                         <div class="home__container-card-text">
                             <div class="home__container-card-name">
-                                <p class="home__container-card-name--big">{{ container.name }}</p>
-                                <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }}, {{ container.year }}г., {{ container.model }}</p>
+                                <a href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
+                                <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ container.year }}г. <span class="container__name-divider">|</span> {{ container.model }}</p>
                             </div>
                             <p class="home__container-card-price">{{ container.price|price_format }} ₽ </p>
                             {% if container.is_in_stock %}
@@ -170,7 +172,7 @@
             <div class="pagination">
                 {% for num in containers.paginator.page_range %}
                     <a href="?page={{ num }}" class="pagination-button {% if num == containers.number %}active{% endif %}">
-                        <p>{{ num }}</p>
+                        <p class="red-hover">{{ num }}</p>
                     </a>
                 {% endfor %}
             </div>

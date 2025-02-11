@@ -29,6 +29,10 @@ a {
     background-color: var(--color-dark-red);
 }
 
+.display-block {
+    display: block;
+}
+
 html {
     width: 100%;
     max-width: 100%;
@@ -101,6 +105,8 @@ main {
 
 .header__logo-link {
     display: block;
+
+    transition: all 0.3s ease;
 }
 
 .header__left-part {
@@ -162,14 +168,15 @@ main {
 
     background-image: url('../images/main-bg.png');
     background-repeat: no-repeat;
-    background-position: right;
+    background-position: right 85px bottom 100px;
 }
 .main__left {
     max-width: 50%;
+    flex: 1;
 }
 .main__right {
     max-width: 60%;
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     flex-direction: column;
 }
@@ -317,7 +324,7 @@ main {
     width: 700px;
     float: right;
     flex: 1;
-    /* padding-top: 500px; */
+    /* padding-top: 600px; */
 }
 .main__price {
     width: 33.3%;
@@ -348,11 +355,6 @@ main {
 .main__price-big {
     font-weight: 600;
     font-size: 28px;
-}
-.main__price-button button {
-    background-color: #111111;
-    border-radius: 8px;
-    padding: 12px;
 }
 .home__stats {
     background-color: rgba(255, 255, 255, 0.03);
@@ -580,6 +582,11 @@ main {
     line-height: 130%;
     letter-spacing: 0.008em;
     font-weight: 600;
+    transition: all 0.4s ease;
+}
+.home__parts-brand-card-button:hover,
+.home__containers-watch-all:hover {
+    border: 1px solid rgb(255, 255, 255, 0.4);
 }
 .home__parts {
     padding-top: 145px;
@@ -641,9 +648,8 @@ main {
     border-radius: 8px;
     font-weight: 600;
     font-size: 14px;
-}
-.home__parts-brand-card-button {
-    
+
+    transition: all 0.3s ease;
 }
 .home__parts-brand-card-button-red {
     background-color: var(--color-red);
@@ -742,6 +748,10 @@ main {
     flex-direction: column;
     gap: 12px;
 }
+.home__service-form-inputs option {
+    background-color: #32333C;
+    color: white;
+}
 .home__service-form-inputs select {
     appearance: none; 
     -webkit-appearance: none;
@@ -749,6 +759,7 @@ main {
     background-image: url('/static/images/arrow-down.svg'); 
     background-repeat: no-repeat;
     background-position: right 14px center;
+    cursor: pointer;
 }
 .home__service-form-inputs select, 
 .home__service-form-inputs input, 
@@ -758,12 +769,18 @@ main {
     border-radius: 8px;
     max-width: 280px;
     outline: none;
+
+    transition: all 0.3s ease;
+}
+.home__service-form-inputs input:focus, 
+.home__service-form-inputs textarea:focus {
+    background-color: white;
+    color: #999999;
 }
 .catalog__filter-subtitle input[type="radio"] {
-    appearance: none; /* Убираем стандартный стиль */
+    appearance: none; 
     -webkit-appearance: none;
     -moz-appearance: none;
-
 }
 .home__service-form-inputs textarea {
     max-width: none;
@@ -998,13 +1015,13 @@ footer {
 .footer__list {
     gap: 4px;
 }
-.footer__column p {
+.footer__column-subtitle {
     font-weight: 500;
     font-size: 18px;
     line-height: 24px;
     white-space: nowrap;
 }
-.footer__column a {
+.footer__column-item {
     font-size: 14px;
     line-height: 130%;
     color: rgb(255, 255, 255, 0.6);
@@ -1135,6 +1152,16 @@ footer {
 
     transition: all 0.3s ease;
 }
+.catalog__applied-filter {
+    transition: all 0.2s ease;
+}
+.catalog__applied-filter:hover {
+    background-color: rgb(var(--color-red-numbers), 0.38);
+}
+.transparent-button {
+    width: fit-content;
+}
+.catalog__reset-button:hover,
 .transparent-button:hover {
     border: 1px solid rgb(255, 255, 255, 0.4);
 }
@@ -1186,6 +1213,14 @@ footer {
 }
 .pagination-button {
     padding: 21.5px;
+}
+.pagination-button p {
+    transition: all 0.3s ease;
+}
+.pagination-button:hover {
+    p {
+        color: var(--color-red)
+    }
 }
 .pagination-button p {
     font-size: 18px;
@@ -1329,6 +1364,9 @@ footer {
 .container__slide img {
     height: 100% !important;
 }
+.container__name-divider {
+    color: rgb(255, 255, 255, 0.3)
+}
 .about-company {
     display: flex;
     flex-direction: column;
@@ -1441,13 +1479,20 @@ footer {
 .main-image {
     z-index: 2;
     max-height: 500px;
-    max-width: 750px;
+    max-width: 825px;
     right: calc((100% - 1380px) / 2); 
+    top: 165px;
     transition: right 0.3s ease-in-out;
+}
+.main-image {
+    max-height: 660px;
 }
 
 .main__price:hover {
     border-bottom: 6px solid var(--color-red);
     backdrop-filter: blur(26px);
     transition: border-bottom 0.3s ease, backdrop-filter 0.3s ease; 
+}
+.main__price .transparent-button {
+    margin-top: 16px;
 }
