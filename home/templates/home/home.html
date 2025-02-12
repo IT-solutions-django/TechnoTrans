@@ -103,7 +103,9 @@
     <div class="container">
         <div class="home__stats-inner">
             <div class="home__stat">
-                <p class="home__stat-heading">5 лет </p>
+                <div style="display: flex;">
+                    <p class="home__stat-heading">5 лет </p>
+                </div>
                 <hr>
                 <p class="home__stat-label">успешного опыта в сфере логистики и рефконтейнеров</p>
             </div>
@@ -168,16 +170,20 @@
                                     <a href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
                                     <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ container.year }}г. <span class="container__name-divider">|</span> {{ container.model }}</p>
                                 </div>
-                                <p class="home__container-card-price">{{ container.price|price_format }} ₽ </p>
-                                {% if container.is_in_stock %}
-                                    <div class="home__container-card-in-stock">
-                                        <img src="{% static 'images/green-mark.svg' %}" alt="">
-                                        В наличии
+                                <div class="home__container-lower">
+                                    <div class="home__container-lower-left">
+                                        <p class="home__container-card-price">{{ container.price|price_format }} ₽ </p>
+                                        {% if container.is_in_stock %}
+                                            <div class="home__container-card-in-stock">
+                                                <img src="{% static 'images/green-mark.svg' %}" alt="">
+                                                В наличии
+                                            </div>
+                                        {% endif %}
                                     </div>
-                                {% endif %}
-                            </div>
-                            <div>
-                                <a href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                    <div>
+                                        <a href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     {% endfor %}
@@ -259,15 +265,21 @@
                 <img src="static/images/part-brand-4.png" alt="">
                 <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
-            <div class="home__parts-brand-card">
+            <div class="home__parts-brand-card only-desktop">
                 <p class="home__parts-brand-card-heading">Расходники</p>
                 <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
-            <div class="home__parts-brand-card">
+            <div class="home__parts-brand-card only-desktop">
                 <p class="home__parts-brand-card-heading">Расходники</p>
                 <a class="home__parts-brand-card-button-red background-red-hover" href="">Запросить весь каталог</a>
             </div>
         </div>
+        <a href="#" class="home__parts-brand-card-button--mobile-container only-mobile--flex">
+            <p class="home__parts-brand-card-button--mobile" href="">Расходники</p>
+        </a>
+        <a href="#" class="home__parts-brand-card-button--mobile-container-red only-mobile--flex background-red-hover">
+            <p class="home__parts-brand-card-button--mobile" href="">Запросить весь каталог</p>
+        </a>
     </div>
 </div>
 
@@ -304,7 +316,7 @@
                         <img src="static/images/home-service-lightning.svg" alt="">
                     </div>
                     <div class="home__service-point-text">
-                        <p class="home__service-point-heading">Диагностика (Pre Trip Inspection)</p>
+                        <p class="home__service-point-heading">Ремонт компрессоров, микроконтроллеров, дисплеев и других компонентов</p>
                         <p class="home__service-point-sub">Восстановление компрессоров, микроконтроллеров и дисплеев.</p>
                     </div>
                 </div>
@@ -313,7 +325,7 @@
                         <img src="static/images/home-service-speedometer.svg" alt="">
                     </div>
                     <div class="home__service-point-text">
-                        <p class="home__service-point-heading">Диагностика (Pre Trip Inspection)</p>
+                        <p class="home__service-point-heading">Заправка системы фреоном</p>
                         <p class="home__service-point-sub">Дозаправка системы для восстановления её эффективности.</p>
                     </div>
                 </div>
@@ -393,12 +405,34 @@
     // Слайдеры
 $(document).ready((function() {
     $(".home__containers-cards").slick({
+        arrows: true,
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 5,
+        slidesToShow: 4,
         adaptiveHeight: false,
-        autoplay: false, 
+        autoplay: false,
+        responsive: [{
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 768,
+            settings: {
+                centerMode: !0,
+                slidesToShow: 2,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 576,
+            settings: {
+                centerMode: !0,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }] 
     })
 }))
 
