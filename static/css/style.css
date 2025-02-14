@@ -1830,6 +1830,32 @@ footer {
 .main__price .transparent-button {
     margin-top: 16px;
 }
+.article__content-block {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.article__paragraph {
+    display: flex;
+    gap: 30px;
+}
+.article__paragraph-heading {
+    width: calc((100% - 20px) / 3 + 40px);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 26px;
+}
+
+.article__paragraph-text,
+.article__image img {
+    max-width: calc((100% - 20px) / 3 * 2 - 40px);
+}
+.article__paragraph-text p {
+    font-size: 18px;
+}
+.privacy-policy {
+    padding-bottom: 0px;
+}
 @media (max-width: 1380px) {
     .container {
         padding-left: 8px;
