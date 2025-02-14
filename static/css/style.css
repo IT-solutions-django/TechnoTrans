@@ -1856,6 +1856,15 @@ footer {
 .privacy-policy {
     padding-bottom: 0px;
 }
+.repair-parts .home__container-image-link  {
+    background-color: rgb(20, 21, 31);
+    border-radius: 12px;
+}
+.repair-parts .home__container-image-link img {
+    object-fit: contain;
+    background-color: rgb(20, 21, 31);
+    padding: 32px;
+}
 @media (max-width: 1380px) {
     .container {
         padding-left: 8px;
@@ -2052,6 +2061,13 @@ footer {
         border: 2px solid var(--color-red);
         height: min-content !important;
         border-radius: 12px;
+    }
+
+    .article__paragraph {
+        flex-direction: column;
+    }
+    .article__paragraph-text {
+        max-width: 100%;
     }
 }
 @media (max-width: 768px) {
@@ -2433,6 +2449,23 @@ footer {
     }
     .home__questions {
         background-color: transparent;
+    }
+
+    .article__paragraph-heading {
+        font-size: 20px;
+        max-width: 100%;
+        width: 100%;
+    }
+    .article__paragraph-text p {
+        font-size: 14px;
+    }
+    .article__paragraph {
+        gap: 16px;
+    }
+    .header__hamburger--menu, 
+    .header__hamburger img {
+        width: 22px;
+        height: 16px;
     }
 }
 @media (max-width: 720px) {

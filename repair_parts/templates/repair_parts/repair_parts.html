@@ -1,17 +1,18 @@
 {% extends 'base.html' %} 
 {% load static %}
 {% load tags %}
-{% load container_tags %} 
+{% load repair_parts_tags %} 
+{% load container_tags %}
 
 {% block content %}
 <div class="breadcrumbs container">
     <p>Главная</p>
     <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
-    <p class="active">Рефконтейнеры</p>
+    <p class="active">Запчасти</p>
 </div>
 
-<div class="catalog container">
-    <h1 class="catalog__heading">Рефконтейнеры</h1>
+<div class="catalog container repair-parts">
+    <h1 class="catalog__heading">Запчасти</h1>
     <div class="catalog__open-filters-button transparent-button">
         <div class="catalog__open-filters-button--label">
             <img src="{% static 'images/settings.svg' %}" alt="">
@@ -25,7 +26,7 @@
         <div class="catalog__filters">
             <form method="get" action="" class="catalog__filter-form">
                 <div class="catalog__filter-field">
-                    <p class="catalog__filter-subtitle">Тип контейнера</p>
+                    <p class="catalog__filter-subtitle">Тип</p>
                     <div class="catalog__filter-field-variants">
                         {% for category_input in filter_form.category %}
                             <div class="form__checkbox">
@@ -38,34 +39,14 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <p class="catalog__filter-numbers">{% container_count_for_category category_input.data.value %}</p> 
+                                    <p class="catalog__filter-numbers">{% repair_part_count_for_category category_input.data.value %}</p> 
                                 </div>
                             </div>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="catalog__filter-field">
-                    <p class="catalog__filter-subtitle">Цена</p>
-                    <div class="catalog__filter-field-variants">
-                        {% for price_input in filter_form.price %}
-                            <div class="form__checkbox">
-                                <div class="form__checkbox-wrap">
-                                    {{ price_input.tag }} 
-                                </div>
-                                <div>
-                                    <label for="{{ price_input.id_for_label }}" class="form__checkbox-label">
-                                        {{ price_input.choice_label }}
-                                    </label>
-                                </div>
-                                <div>
-                                    <p class="catalog__filter-numbers">{% container_count_for_price price_input.data.value %}</p> 
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="catalog__filter-field">
-                    <p class="catalog__filter-subtitle">Производитель</p>
+                    <p class="catalog__filter-subtitle">Бренд</p>
                     <div class="catalog__filter-field-variants">
                         {% for brand_input in filter_form.brand %}
                             <div class="form__checkbox">
@@ -78,45 +59,7 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <p class="catalog__filter-numbers">{% container_count_for_brand brand_input.data.value %}</p> 
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="catalog__filter-field">
-                    <p class="catalog__filter-subtitle">Год выпуска</p>
-                    <div class="catalog__filter-field-variants">
-                        {% for year_input in filter_form.year %}
-                            <div class="form__checkbox">
-                                <div class="form__checkbox-wrap">
-                                    {{ year_input.tag }}
-                                </div>
-                                <div>
-                                    <label for="{{ year_input.id_for_label }}" class="form__checkbox-label">
-                                        {{ year_input.choice_label }}
-                                    </label>
-                                </div>
-                                <div>
-                                    <p class="catalog__filter-numbers">{% container_count_for_year year_input.data.value %}</p>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="catalog__filter-field">
-                    <p class="catalog__filter-subtitle">Размер</p>
-                    <div class="catalog__filter-field-variants">
-                        {% for container_type in filter_form.container_type %}
-                            <div class="form__checkbox">
-                                <div class="form__checkbox-wrap">
-                                    {{ container_type.tag }}
-                                </div>
-                                <div>
-                                    <label for="{{ container_type.id_for_label }}" class="form__checkbox-label">{{ container_type.choice_label }}</label>
-                                </div>
-                                <div>
-                                    <p class="catalog__filter-numbers">{% container_count_for_container_type container_type.data.value %}</p>
+                                    <p class="catalog__filter-numbers">{% repair_part_count_for_brand brand_input.data.value %}</p> 
                                 </div>
                             </div>
                         {% endfor %}
@@ -124,7 +67,7 @@
                 </div>
                 <div class="catalog__filter-form-buttons">
                     <button type="submit" class="red-button home__container-button">Применить</button>
-                    <a href="{% url 'containers:catalog' %}" class="catalog__reset-button">Сбросить</a>
+                    <a href="{% url 'repair_parts:catalog' %}" class="catalog__reset-button">Сбросить</a>
                 </div>
             </form>
             <div>
@@ -145,26 +88,25 @@
                             {{ applied_filter.name|applied_filter_name_translate }}: {{ applied_filter.human_value }}
                         </button>
                     {% endfor %}
-                    <a href="{% url 'containers:catalog' %}" class="catalog__reset-button">
+                    <a href="{% url 'repair_parts:catalog' %}" class="catalog__reset-button">
                         Сбросить все
                     </a>
                 </div>
             {% endif %}
             <div class="catalog__cards">
-                {% for container in containers %}
+                {% for part in repair_parts %}
                     <div class="home__container-card">
-                        <a class="home__container-image-link" href="{{ container.get_absolute_url }}">
-                            <img src="{{ container.images.all.0.image.url }}" alt="">
+                        <a class="home__container-image-link" href="{{ part.get_absolute_url }}">
+                            <img src="{{ part.images.all.0.image.url }}" alt="">
                         </a>
                         <div class="home__container-card-text">
                             <div class="home__container-card-name">
-                                <a href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
-                                <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ container.year }}г. <span class="container__name-divider">|</span> {{ container.model }}</p>
+                                <a href="{{ part.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ part.name }}</a>
                             </div>
                             <div class="home__container-lower">
                                 <div class="home__container-lower-left">
-                                    <p class="home__container-card-price">{{ container.price|price_format }} ₽ </p>
-                                    {% if container.is_in_stock %}
+                                    <p class="home__container-card-price">{{ part.price|price_format }} ₽ </p>
+                                    {% if part.is_in_stock %}
                                         <div class="home__container-card-in-stock">
                                             <img src="{% static 'images/green-mark.svg' %}" alt="">
                                             В наличии
@@ -172,7 +114,7 @@
                                     {% endif %}
                                 </div>
                                 <div>
-                                    <a href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                    <a href="{{ part.get_absolute_url }}" class="home__container-button">Подробнее</a>
                                 </div>
                             </div>
                         </div>
@@ -181,10 +123,10 @@
                     <p>Ничего не найдено</p>
                 {% endfor %}
             </div>
-            {% if containers %}
+            {% if repair_parts %}
             <div class="pagination">
-                {% for num in containers.paginator.page_range %}
-                    <a href="?page={{ num }}" class="pagination-button {% if num == containers.number %}active{% endif %}">
+                {% for num in repair_parts.paginator.page_range %}
+                    <a href="?page={{ num }}" class="pagination-button {% if num == repair_parts.number %}active{% endif %}">
                         <p class="red-hover">{{ num }}</p>
                     </a>
                 {% endfor %}

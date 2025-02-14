@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'home',
     'containers',
     'contacts',
+    'repair_parts',
 ]
 
 MIDDLEWARE = [

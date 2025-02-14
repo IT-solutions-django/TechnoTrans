@@ -127,7 +127,7 @@
                             </div>
                         </div>
                         <div class="header__menu-link">
-                            <a class="red-hover" href="">Запчасти</a>
+                            <a class="red-hover" href="{% url 'repair_parts:catalog' %}">Запчасти</a>
                         </div>
                         <div class="header__menu-link">
                             <a class="red-hover" href="">Дизель-генераторы</a>
@@ -202,6 +202,7 @@
                             <div class="footer__list">
                                 <a class="footer__column-item red-hover only-desktop" href="">Обслуживание и ремонт </a>
                                 <a class="footer__column-item red-hover only-desktop" href="">Контакты</a>
+                                <a class="footer__column-item red-hover only-desktop" href="{% url 'contacts:privacy_policy' %}">Политика конфиденциальности</a>
                             </div>
                         </div>
                     </div>
