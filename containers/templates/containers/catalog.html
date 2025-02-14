@@ -10,15 +10,154 @@
     <p class="active">Рефконтейнеры</p>
 </div>
 
+<div id="mobileFilters" class="mobile-filters">
+    <div class="mobile__upper">
+        <div>
+            <p class="mobile__heading">Фильтры</p>
+        </div>
+        <img id="closeMobileFilters" class="" src="{% static 'images/close.svg' %}" alt="Закрыть">
+    </div>
+    <form method="get" action="" class="mobileFiltersForm">
+        <div class="catalog__filter-field">
+            <p class="catalog__filter-subtitle">Тип контейнера</p>
+            <div class="catalog__filter-field-variants">
+                {% for category_input in filter_form.category %}
+                    <div class="form__checkbox">
+                        <div class="form__checkbox-wrap">
+                            
+                            <input type="checkbox"
+                                name="{{ filter_form.category.html_name }}" 
+                                value="{{ category_input.data.value }}" 
+                                id="mobile_{{ category_input.id_for_label }}"
+                                {% if category_input.data.selected %}checked{% endif %}
+                            >
+                        </div>
+                        <div>
+                            <label for="mobile_{{ category_input.id_for_label }}" class="form__checkbox-label">
+                                {{ category_input.choice_label }}
+                            </label>
+                        </div>
+                        <div>
+                            <p class="catalog__filter-numbers">{% container_count_for_category category_input.data.value %}</p> 
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="catalog__filter-field">
+            <p class="catalog__filter-subtitle">Цена</p>
+            <div class="catalog__filter-field-variants">
+                {% for price_input in filter_form.price %}
+                    <div class="form__checkbox">
+                        <div class="form__checkbox-wrap">
+                            <input type="checkbox"
+                                name="{{ filter_form.price.html_name }}" 
+                                value="{{ price_input.data.value }}" 
+                                id="mobile_{{ price_input.id_for_label }}"
+                                {% if price_input.data.selected %}checked{% endif %}
+                            >
+                        </div>
+                        <div>
+                            <label for="mobile_{{ price_input.id_for_label }}" class="form__checkbox-label">
+                                {{ price_input.choice_label }}
+                            </label>
+                        </div>
+                        <div>
+                            <p class="catalog__filter-numbers">{% container_count_for_price price_input.data.value %}</p> 
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="catalog__filter-field">
+            <p class="catalog__filter-subtitle">Производитель</p>
+            <div class="catalog__filter-field-variants">
+                {% for brand_input in filter_form.brand %}
+                    <div class="form__checkbox">
+                        <div class="form__checkbox-wrap">
+                            <input type="checkbox"
+                                name="{{ filter_form.brand.html_name }}" 
+                                value="{{ brand_input.data.value }}" 
+                                id="mobile_{{ brand_input.id_for_label }}"
+                                {% if brand_input.data.selected %}checked{% endif %}
+                            >
+                        </div>
+                        <div>
+                            <label for="mobile_{{ brand_input.id_for_label }}" class="form__checkbox-label">
+                                {{ brand_input.choice_label }}
+                            </label>
+                        </div>
+                        <div>
+                            <p class="catalog__filter-numbers">{% container_count_for_brand brand_input.data.value %}</p> 
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="catalog__filter-field">
+            <p class="catalog__filter-subtitle">Год выпуска</p>
+            <div class="catalog__filter-field-variants">
+                {% for year_input in filter_form.year %}
+                    <div class="form__checkbox">
+                        <div class="form__checkbox-wrap">
+                            <input type="checkbox"
+                                name="{{ filter_form.year.html_name }}" 
+                                value="{{ year_input.data.value }}" 
+                                id="mobile_{{ year_input.id_for_label }}"
+                                {% if year_input.data.selected %}checked{% endif %}
+                            >
+                        </div>
+                        <div>
+                            <label for="mobile_{{ year_input.id_for_label }}" class="form__checkbox-label">
+                                {{ year_input.choice_label }}
+                            </label>
+                        </div>
+                        <div>
+                            <p class="catalog__filter-numbers">{% container_count_for_year year_input.data.value %}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="catalog__filter-field">
+            <p class="catalog__filter-subtitle">Размер</p>
+            <div class="catalog__filter-field-variants">
+                {% for container_type in filter_form.container_type %}
+                    <div class="form__checkbox">
+                        <div class="form__checkbox-wrap">
+                            <input type="checkbox"
+                                name="{{ container_type.year.html_name }}" 
+                                value="{{ container_type.data.value }}" 
+                                id="mobile_{{ container_type.id_for_label }}"
+                                {% if container_type.data.selected %}checked{% endif %}
+                            >
+                        </div>
+                        <div>
+                            <label for="mobile_{{ container_type.id_for_label }}" class="form__checkbox-label">{{ container_type.choice_label }}</label>
+                        </div>
+                        <div>
+                            <p class="catalog__filter-numbers">{% container_count_for_container_type container_type.data.value %}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="catalog__filter-form-buttons">
+            <button type="submit" class="red-button home__container-button">Применить</button>
+            <a href="{% url 'containers:catalog' %}" class="catalog__reset-button">Сбросить</a>
+        </div>
+    </form>
+</div>
+
 <div class="catalog container">
     <h1 class="catalog__heading">Рефконтейнеры</h1>
     <div class="catalog__open-filters-button transparent-button">
-        <div class="catalog__open-filters-button--label">
+        <div id="openMobileFilters" class="catalog__open-filters-button--label">
             <img src="{% static 'images/settings.svg' %}" alt="">
             <p>Фильтры</p>
         </div>
     </div>
-    <div>
+    <div class="only-mobile--block">
         <p class="tab__label">*Обратите внимание, цены указаны с НДС</p>
     </div>
     <div class="catalog-body">
@@ -250,6 +389,20 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = url.toString();
         });
     });
+
+    // Мобильные фильтры
+    const openMobileFilters = document.getElementById('openMobileFilters');
+    const closeMobileFilters = document.getElementById('closeMobileFilters');
+    const mobileFilters = document.getElementById('mobileFilters'); 
+    
+    openMobileFilters.addEventListener('click', () => {
+        mobileFilters.classList.add('active');
+    });
+
+    closeMobileFilters.addEventListener('click', () => {
+        mobileFilters.classList.remove('active');
+    });
+
 });
 
 </script>
