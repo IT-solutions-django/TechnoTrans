@@ -81,6 +81,9 @@
     <header class="header">
         <div class="container">
             <div class="header__row">
+                <div class="header__mobile-menu-heading">
+                    Меню
+                </div>
                 <div class="header__left-part">
                     <div class="header__logo">
                         <a href="{% url 'home:home' %}" class="header__logo-link">
@@ -107,17 +110,24 @@
                     <button class="header__hamburger" aria-label="Toggle menu">
                         <div class="header__hamburger--menu-container">
                             <img class="header__hamburger--menu" src="{% static 'images/burger.svg' %}" alt="Меню">
+                            <img class="header__hamburger--close" src="{% static 'images/close.svg' %}" alt="Закрыть">
                         </div>
-                        <img class="header__hamburger--close" src="{% static 'images/close.svg' %}" alt="Закрыть">
                     </button>
                 </div>
                 <div class="header__nav">
                     <div class="header__menu">
-                        <div class="header__menu-link">
+                        <div class="header__menu-link header__menu-link--dropdown nav__dropdown">
                             <a class="red-hover" href="{% url 'containers:catalog' %}">Рефконтейнеры</a>
+                            <div class="nav__dropdown-content-wrapper">
+                                <div class="nav__dropdown-content">
+                                    {% for category in categories %}
+                                        <a href="{% url 'containers:catalog' %}" class="nav__link red-hover">{{ category.name }}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
                         <div class="header__menu-link">
-                            <a class="red-hover" href="">Запчасти</a>
+                            <a class="red-hover" href="{% url 'repair_parts:catalog' %}">Запчасти</a>
                         </div>
                         <div class="header__menu-link">
                             <a class="red-hover" href="">Дизель-генераторы</a>
@@ -192,6 +202,7 @@
                             <div class="footer__list">
                                 <a class="footer__column-item red-hover only-desktop" href="">Обслуживание и ремонт </a>
                                 <a class="footer__column-item red-hover only-desktop" href="">Контакты</a>
+                                <a class="footer__column-item red-hover only-desktop" href="{% url 'contacts:privacy_policy' %}">Политика конфиденциальности</a>
                             </div>
                         </div>
                     </div>
@@ -306,7 +317,7 @@
 
 </script>
 
-<script>
+<script defer>
     // Слайдеры
 $(document).ready((function() {
     $(".home__containers-cards").slick({
@@ -318,6 +329,34 @@ $(document).ready((function() {
         autoplay: false, 
     })
 }))
+</script>
+
+<!-- Меню-бургер -->
+<script defer>
+    document.addEventListener("DOMContentLoaded", function () {
+        let scrollPosition = 0;
+
+        document.querySelector(".header__hamburger").addEventListener("click", function () {
+            this.classList.toggle("active");
+            document.querySelector('.header__mobile-menu-heading').classList.toggle("active");
+            const nav = document.querySelector(".header__nav");
+            const body = document.querySelector("body");
+
+            nav.classList.toggle("active");
+
+            if (nav.classList.contains("active")) {
+                // Сохраняем текущую позицию и отключаем прокрутку
+                scrollPosition = window.scrollY;
+                body.classList.add("scroll-disabled");
+                body.style.top = `-${scrollPosition}px`;
+            } else {
+                // Убираем блокировку и восстанавливаем позицию
+                body.classList.remove("scroll-disabled");
+                body.style.top = "";
+                window.scrollTo(0, scrollPosition);
+            }
+        });
+    });
 </script>
 
 </html>

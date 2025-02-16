@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('home.urls', namespace='home')),
     path('containers/', include('containers.urls', namespace='containers')),
     path('about/', include('contacts.urls', namespace='contacts')),
+    path('repair-parts/', include('repair_parts.urls', namespace='repair_parts')),
 
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

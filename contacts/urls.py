@@ -7,4 +7,5 @@ app_name = 'contacts'
 
 urlpatterns = [
     path('about-company/', AboutCompanyView.as_view(), name='about_company'),
+    path('privacy-policy/', PrivacyPolicyView.as_view(), name='privacy_policy'),
 ]

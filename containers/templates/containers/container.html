@@ -56,7 +56,9 @@
                     </div>
                 </div>
                 <div>
-                    <a href="" class="container__all-specs">Все характеристики</a>
+                    <a href="" class="container__all-specs">
+                        <p>Все характеристики</p>
+                    </a>
                 </div>
             </div>
             <div class="container__order-card">
@@ -198,7 +200,7 @@ $(".container__current-slide").slick({
     arrows: false,
     fade: true,
     infinite: true,
-    asNavFor: ".container__slider-nav"
+    asNavFor: ".container__slider-nav", 
 });
 $(".container__slider-nav").slick({
     slidesToShow: 5,
@@ -207,7 +209,8 @@ $(".container__slider-nav").slick({
     dots: false,
     arrows: false,
     infinite: true,
-    focusOnSelect: true
+    focusOnSelect: true, 
+    variableWidth: true, 
 }); 
 </script>
 {% endblock %}

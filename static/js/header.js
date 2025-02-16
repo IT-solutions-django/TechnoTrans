@@ -14,7 +14,12 @@ setInterval(function() {
     }    
 }, 150);    
 
-function hasScrolled() {        
+function hasScrolled() {  
+    let nav = document.querySelector('.header__nav');      
+    if (nav && nav.classList.contains('active')) {
+        return;
+    }
+
     var st = window.pageYOffset || document.documentElement.scrollTop;  
 
     // Проверяем, изменился ли scroll больше, чем delta

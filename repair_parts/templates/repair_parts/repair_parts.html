@@ -1,0 +1,279 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load tags %}
+{% load repair_parts_tags %} 
+{% load container_tags %}
+
+{% block content %}
+<div id="mobileFilters" class="mobile-filters">
+    <div class="mobile__upper">
+        <div>
+            <p class="mobile__heading">Фильтры</p>
+        </div>
+        <img id="closeMobileFilters" class="" src="{% static 'images/close.svg' %}" alt="Закрыть">
+    </div>
+    <form method="get" action="" class="mobileFiltersForm">
+        <div class="mobile-filters__inputs">
+            <div class="catalog__filter-field">
+                <p class="catalog__filter-subtitle">Тип</p>
+                <div class="catalog__filter-field-variants">
+                    {% for category_input in filter_form.category %}
+                        <div class="form__checkbox">
+                            <div class="form__checkbox-wrap">
+                                
+                                <input type="checkbox"
+                                    name="{{ filter_form.category.html_name }}" 
+                                    value="{{ category_input.data.value }}" 
+                                    id="mobile_{{ category_input.id_for_label }}"
+                                    {% if category_input.data.selected %}checked{% endif %}
+                                >
+                            </div>
+                            <div>
+                                <label for="mobile_{{ category_input.id_for_label }}" class="form__checkbox-label">
+                                    {{ category_input.choice_label }}
+                                </label>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers">{% repair_part_count_for_category category_input.data.value %}</p> 
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="catalog__filter-field">
+                <p class="catalog__filter-subtitle">Производитель</p>
+                <div class="catalog__filter-field-variants">
+                    {% for brand_input in filter_form.brand %}
+                        <div class="form__checkbox">
+                            <div class="form__checkbox-wrap">
+                                <input type="checkbox"
+                                    name="{{ filter_form.brand.html_name }}" 
+                                    value="{{ brand_input.data.value }}" 
+                                    id="mobile_{{ brand_input.id_for_label }}"
+                                    {% if brand_input.data.selected %}checked{% endif %}
+                                >
+                            </div>
+                            <div>
+                                <label for="mobile_{{ brand_input.id_for_label }}" class="form__checkbox-label">
+                                    {{ brand_input.choice_label }}
+                                </label>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers">{% repair_part_count_for_brand brand_input.data.value %}</p> 
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="catalog__filter-form-buttons">
+            <button type="submit" class="red-button home__container-button">Применить</button>
+            <a href="{% url 'containers:catalog' %}" class="catalog__reset-button">Сбросить</a>
+        </div>
+    </form>
+</div>
+
+<div class="breadcrumbs container">
+    <p>Главная</p>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <p class="active">Запчасти</p>
+</div>
+
+<div class="catalog container repair-parts">
+    <h1 class="catalog__heading">Запчасти</h1>
+    <div class="catalog__open-filters-button transparent-button">
+        <div id="openMobileFilters" class="catalog__open-filters-button--label">
+            <img src="{% static 'images/settings.svg' %}" alt="">
+            <p>Фильтры</p>
+        </div>
+    </div>
+    <div class="only-mobile--block-990">
+        <p class="tab__label">*Обратите внимание, цены указаны с НДС</p>
+    </div>
+    <div class="catalog-body">
+        <div class="catalog__filters">
+            <form method="get" action="" class="catalog__filter-form">
+                <div class="catalog__filter-field">
+                    <p class="catalog__filter-subtitle">Тип</p>
+                    <div class="catalog__filter-field-variants">
+                        {% for category_input in filter_form.category %}
+                            <div class="form__checkbox">
+                                <div class="form__checkbox-wrap">
+                                    {{ category_input.tag }} 
+                                </div>
+                                <div>
+                                    <label for="{{ category_input.id_for_label }}" class="form__checkbox-label">
+                                        {{ category_input.choice_label }}
+                                    </label>
+                                </div>
+                                <div>
+                                    <p class="catalog__filter-numbers">{% repair_part_count_for_category category_input.data.value %}</p> 
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="catalog__filter-field">
+                    <p class="catalog__filter-subtitle">Бренд</p>
+                    <div class="catalog__filter-field-variants">
+                        {% for brand_input in filter_form.brand %}
+                            <div class="form__checkbox">
+                                <div class="form__checkbox-wrap">
+                                    {{ brand_input.tag }} 
+                                </div>
+                                <div>
+                                    <label for="{{ brand_input.id_for_label }}" class="form__checkbox-label">
+                                        {{ brand_input.choice_label }}
+                                    </label>
+                                </div>
+                                <div>
+                                    <p class="catalog__filter-numbers">{% repair_part_count_for_brand brand_input.data.value %}</p> 
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="catalog__filter-form-buttons">
+                    <button type="submit" class="red-button home__container-button">Применить</button>
+                    <a href="{% url 'repair_parts:catalog' %}" class="catalog__reset-button">Сбросить</a>
+                </div>
+            </form>
+            <div>
+                <p class="tab__label">*Обратите внимание, цены указаны с НДС</p>
+            </div>
+        </div>
+        <div class="catalog__main">
+            <div class="catalog__description">
+                <p>Выберите надежные рефконтейнеры для перевозки и хранения грузов. В наличии новые и б/у модели от Carrier, Thermo King, Daikin, Star Cool. Доступна аренда, продажа и доставка по всей России. Гарантия качества, выгодные условия и полный сервис. Найдите идеальный контейнер для вашего бизнеса!</p>
+            </div>
+            {% if applied_filters %}
+                <div class="catalog__applied-filters">
+                    {% for applied_filter in applied_filters %}
+                        <button 
+                            data-filter-name="{{ applied_filter.name }}" 
+                            data-filter-value="{{ applied_filter.value }}"
+                            class="catalog__applied-filter">
+                            {{ applied_filter.name|applied_filter_name_translate }}: {{ applied_filter.human_value }}
+                        </button>
+                    {% endfor %}
+                    <a href="{% url 'repair_parts:catalog' %}" class="catalog__reset-button">
+                        Сбросить все
+                    </a>
+                </div>
+            {% endif %}
+            <div class="catalog__cards">
+                {% for part in repair_parts %}
+                    <div class="home__container-card">
+                        <a class="home__container-image-link" href="{{ part.get_absolute_url }}">
+                            <img src="{{ part.images.all.0.image.url }}" alt="">
+                        </a>
+                        <div class="home__container-card-text">
+                            <div class="home__container-card-name">
+                                <a href="{{ part.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ part.name }}</a>
+                            </div>
+                            <div class="home__container-lower">
+                                <div class="home__container-lower-left">
+                                    <p class="home__container-card-price">{{ part.price|price_format }} ₽ </p>
+                                    {% if part.is_in_stock %}
+                                        <div class="home__container-card-in-stock">
+                                            <img src="{% static 'images/green-mark.svg' %}" alt="">
+                                            В наличии
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <a href="{{ part.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>Ничего не найдено</p>
+                {% endfor %}
+            </div>
+            {% if repair_parts %}
+            <div class="pagination">
+                {% for num in repair_parts.paginator.page_range %}
+                    <a href="?page={{ num }}" class="pagination-button {% if num == repair_parts.number %}active{% endif %}">
+                        <p class="red-hover">{{ num }}</p>
+                    </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% include 'home/includes/questions_block.html' %}
+{% include 'home/includes/contacts_block.html' %}
+{% endblock %}
+
+{% block script %}
+<script> 
+document.addEventListener("DOMContentLoaded", () => {
+    // Пагинация
+    document.querySelectorAll(".pagination a").forEach((e) => {
+        e.addEventListener("click", (a) => {
+            a.preventDefault();
+            const n = new URL(e.href);
+            const currentParams = new URLSearchParams(window.location.search);
+
+            currentParams.delete('page');
+
+            const page = new URL(n).searchParams.get('page');
+            if (page) {
+                currentParams.set('page', page);
+            }
+
+            n.search = currentParams.toString();
+            window.location.href = n.toString();
+        });
+    });
+
+    // Обработчик клика по кнопкам фильтров
+    document.querySelectorAll(".catalog__applied-filter").forEach((button) => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            const filterName = button.getAttribute("data-filter-name");
+            const filterValue = button.getAttribute("data-filter-value");
+
+            const url = new URL(window.location.href);
+            const params = new URLSearchParams(url.search);
+
+            const filterValues = params.getAll(filterName);
+
+            const newFilterValues = filterValues.filter(value => value !== filterValue);
+
+            if (newFilterValues.length > 0) {
+                params.delete(filterName); 
+                newFilterValues.forEach(value => {
+                    params.append(filterName, value); 
+                });
+            } else {
+                params.delete(filterName);
+            }
+
+            params.delete("page");
+
+            url.search = params.toString();
+            window.location.href = url.toString();
+        });
+    });
+    
+    // Мобильные фильтры
+    const openMobileFilters = document.getElementById('openMobileFilters');
+    const closeMobileFilters = document.getElementById('closeMobileFilters');
+    const mobileFilters = document.getElementById('mobileFilters'); 
+    
+    openMobileFilters.addEventListener('click', () => {
+        mobileFilters.classList.add('active');
+    });
+
+    closeMobileFilters.addEventListener('click', () => {
+        mobileFilters.classList.remove('active');
+    });
+});
+
+</script>
+{% endblock %}
