@@ -465,6 +465,8 @@ html, body, .container {
     background-image: url('../images/main-bg.png');
     background-repeat: no-repeat;
     background-position: right 85px bottom 100px;
+
+    justify-content: space-between;
 }
 .main__left {
     max-width: 50%;
@@ -1929,14 +1931,17 @@ footer {
     flex-direction: column;
     gap: 20px;
 }
+.main-image--centered {
+    display: none;
+}
 @media (max-width: 1380px) {
     .container {
         padding-left: 8px;
         padding-right: 8px;
     }
     .main-image {
-        /* max-width: 600px; */
-        display: none;
+        right: 0;
+        transform: scale(0.9) translateX(40px);
     }
     .header__row {
         gap: 20px;
@@ -1955,6 +1960,9 @@ footer {
     .catalog .home__container-card {
         max-width: min(calc((100% - 16px * 2) / 3), 280px);
         width: 100%;
+    }
+    .main__prices {
+        width: 600px;
     }
 }
 @media (max-width: 1200px) {
@@ -1993,6 +2001,20 @@ footer {
         width: fit-content;
         padding: 18px 22px;
     }
+
+    .main__prices {
+        width: 550px;
+    }
+    .main__price-big {
+        font-size: 24px;
+    }
+    .main-image {
+        right: 0;
+        transform: scale(0.7) translateX(130px);
+    }
+    #mainImage1 {
+        transform: scale(0.7) translateX(90px);
+    }
 }
 @media (max-width: 1100px) {
     .catalog .home__container-card {
@@ -2013,6 +2035,13 @@ footer {
     .home__stat-heading {
         font-size: 30px;
     }
+    .main__heading {
+        font-size: 34px;
+    }
+    .main-image {
+        right: 0;
+        transform: scale(0.7) translateX(140px);
+    }   
 }
 @media (max-width: 990px) {
     main {
@@ -2028,8 +2057,28 @@ footer {
     .main__heading {
         padding-top: 20px;
     }
+    .main__prices {
+        min-height: 600px;
+    }
+    #mainDivision2 {
+        overflow: visible;
+    }
+    .main-image--centered {
+        filter: none !important;
+        display: block; 
+        position: absolute;
+        z-index: 20;
+        width: calc(100vw - 32px);
+        max-width: calc(100vw - 32px);
+        max-height: 400px;
+        object-fit: contain;
+    }
     .main-image {
-        max-width: 100px;
+        display: none;
+    }
+    .main__price,
+    .main__price.active {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
     .main__right {
         max-width: 100%;
@@ -2188,10 +2237,15 @@ footer {
         padding: 13.5px 8px;
         font-size: 10px;
     }
+    .main__prices {
+        min-height: 400px;
+    }
     .main__price {
         padding: 0px 8px 16px 8px;
-
-        justify-content:start; 
+    }
+    .main-image--centered {
+        height: 218px;
+        transform: translateY(20px);
     }
     .main {
         padding-bottom: 74px;
