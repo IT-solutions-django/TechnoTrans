@@ -27,7 +27,7 @@ urlpatterns = [
     path('containers/', include('containers.urls', namespace='containers')),
     path('about/', include('contacts.urls', namespace='contacts')),
     path('repair-parts/', include('repair_parts.urls', namespace='repair_parts')),
-
+    path('generators/', include('generators.urls', namespace='generators')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

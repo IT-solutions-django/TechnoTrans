@@ -1450,6 +1450,7 @@ footer {
     padding: 24px 16px;
     background-color: rgb(255, 255, 255, 0.03);
     border-radius: 12px;
+    max-width: 265px;
 }
 .catalog__filter-subtitle {
     font-weight: 600;
