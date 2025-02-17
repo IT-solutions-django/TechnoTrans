@@ -280,7 +280,11 @@ html, body, .container {
 .header__mobile-menu-heading {
     display: none;
 }
-
+@media (max-width: 1410px) { 
+    .header__row {
+        gap: 20px;
+    }
+}
 @media (max-width: 1400px) {
     .header__right-part {
         flex-direction: column;
@@ -288,9 +292,19 @@ html, body, .container {
         padding-top: 4px;
         padding-bottom: 4px;
     }
+    .header__menu {
+        gap: 26px
+    }
+    .header__nav {
+        gap: 16px
+    }
+
+    .home__stats-inner {
+        gap: 20px;
+    }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1240px) {
     .header__menu {
         gap: 40px;
     }
@@ -312,6 +326,17 @@ html, body, .container {
     }
     .header__phone a {
         font-size: 14px;
+    }
+}
+@media (max-width: 1180px) {
+    .header__menu {
+        gap: 14px;
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+    .header__row {
+        gap: 10px;
+        font-size: 14.3px;
     }
 }
 @media (max-width: 990px) {
@@ -589,6 +614,7 @@ html, body, .container {
 }
 .main__button-red, 
 .main__button-transparent {
+    display: block;
     padding: 20px 30px;
     border-radius: 12px;
     align-items: center;
@@ -701,6 +727,8 @@ html, body, .container {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     gap: 30px;
+    flex-wrap: wrap;
+    row-gap: 12px;
 }
 .container__info .nav-tabs {
     padding-top: 16px;
@@ -1337,6 +1365,9 @@ footer {
     flex: 1;
     justify-content: end;
 }
+.footer__logo-link {
+    flex: none
+}
 .footer__column, 
 .footer__list {
     display: flex;
@@ -1386,10 +1417,10 @@ footer {
     padding-top: 74px;
     padding-bottom: 10px;
 }
-.breadcrumbs p {
+.breadcrumbs a {
     font-size: 14px;
 }
-.breadcrumbs p.active {
+.breadcrumbs a.active {
     color: #666666;
 }
 .catalog {
@@ -1419,6 +1450,7 @@ footer {
     padding: 24px 16px;
     background-color: rgb(255, 255, 255, 0.03);
     border-radius: 12px;
+    max-width: 265px;
 }
 .catalog__filter-subtitle {
     font-weight: 600;
@@ -1483,8 +1515,13 @@ footer {
     font-weight: 600;
     padding: 12px;
     border-radius: 8px;
+    cursor: pointer;
 
     transition: all 0.3s ease;
+}
+.transparent-button a {
+    width: 100%;
+    height: 100%;
 }
 .catalog__applied-filter {
     transition: all 0.2s ease;
@@ -1721,6 +1758,81 @@ footer {
 .container__name-divider {
     color: rgb(255, 255, 255, 0.3)
 }
+.lum-img {
+    max-height: 90vh !important;
+    max-width: 1200px !important;
+}
+@media (max-width: 1200px) {
+    .lum-img {
+        max-width: 100% !important;
+    }
+}
+@media (max-width: 990px) {
+    .lum-gallery-button {
+        display: none !important;
+    }
+}
+@keyframes lum-noop {
+    0% {
+        zoom: 1
+    }
+}
+
+.lum-lightbox {
+    position: fixed;
+    display: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0
+}
+
+.lum-lightbox.lum-open {
+    display: block;
+    z-index: 1000000
+}
+
+.lum-lightbox.lum-closing,
+.lum-lightbox.lum-opening {
+    animation: lum-noop 1ms
+}
+
+.lum-lightbox-inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden
+}
+
+.lum-lightbox-loader {
+    display: none
+}
+
+.lum-lightbox-inner img {
+    max-width: 100%;
+    max-height: 100%
+}
+
+.lum-lightbox-image-wrapper {
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7)
+}
+
+.lum-img {
+    object-fit: cover !important;
+    width: 85vw
+}
+
+@media (max-width:990px) {
+    .lum-img {
+        width: 100vw
+    }
+}
+
 .about-company {
     display: flex;
     flex-direction: column;
@@ -1731,6 +1843,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 60px;
+    overflow: hidden;
 }
 .about-company .home__service-points, 
 .about-company__stages {
@@ -1747,17 +1860,44 @@ footer {
     gap: 12px;
 }
 .about-company__stage {
-    padding: 24px;
+    /* padding: 24px; */
     font-weight: 500;
     font-size: 18px;
     line-height: 30px;
     border-radius: 12px;
     background-color: rgb(255, 255, 255, 0.03);
-
+}
+.about-company__stage-upper {
     display: flex;
     justify-content: space-between;
+    padding: 24px;
 
     overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: inherit;
+}
+.about-company__stage-lower {
+    max-height: 0;
+    opacity: 0;
+    font-size: 16px;
+    overflow: hidden; 
+    transition: all 0.3s ease;
+    padding: 0 24px; 
+}
+.about-company__stage-lower p {
+    max-height: inherit;
+}
+.about-company__stage.active .about-company__stage-upper {
+    padding-bottom: 20px;
+}
+.about-company__stage.active .about-company__stage-lower {
+    max-height: 500px;
+    opacity: 1;
+    padding-bottom: 24px; 
+}
+.about-company__stage:not(.active) .about-company__stage-upper:hover {
+    background-color: rgb(255, 255, 255, 0.01);
 }
 .about-company__stage-number {
     font-weight: 800;
@@ -1934,6 +2074,14 @@ footer {
 .main-image--centered {
     display: none;
 }
+@media (max-width: 1420px) {
+    .home__partners-list {
+        gap: 40px;
+        flex-wrap: wrap;
+        height: auto;
+        justify-content: start;
+    }
+}
 @media (max-width: 1380px) {
     .container {
         padding-left: 8px;
@@ -1942,19 +2090,6 @@ footer {
     .main-image {
         right: 0;
         transform: scale(0.9) translateX(40px);
-    }
-    .header__row {
-        gap: 20px;
-    }
-    .header__menu {
-        gap: 26px
-    }
-    .header__nav {
-        gap: 16px
-    }
-
-    .home__stats-inner {
-        gap: 20px;
     }
 
     .catalog .home__container-card {
@@ -2015,23 +2150,38 @@ footer {
     #mainImage1 {
         transform: scale(0.7) translateX(90px);
     }
+    .home__parts-left {
+        max-width: 760px;
+    }
 }
 @media (max-width: 1100px) {
     .catalog .home__container-card {
         max-width: calc((100% - 16px) / 2);
     }
+    .main {
+        padding-bottom: 90px;
+    }
+    .home__containers {
+        padding-top: 90px;
+    }
+    .home__parts {
+        padding-top: 70px;
+    }
+    .home__service, 
+    .home__partners, 
+    .home__contacts {
+        padding-top: 100px;
+    }
+    .home__partners, 
+    .home__contacts {
+        padding-bottom: 80px;
+    }
+    .home__questions {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
 }
 @media (max-width: 1100px) {
-    .header__menu {
-        gap: 14px
-    }
-    .header__menu {
-        padding-left: 22px;
-        padding-right: 22px;
-    }
-    .header__row {
-        gap: 10px;
-    }
     .home__stat-heading {
         font-size: 30px;
     }
@@ -2163,18 +2313,6 @@ footer {
     .container__left {
         width: 100%;
     }
-    .container__slider-nav img {
-        width: 48px;
-        height: 48px !important;
-    }
-    .container__current-slide.slick-initialized.slick-slider img{
-        min-height: 240px;
-    }
-    .container__slide.slick-slide.slick-current.slick-active {
-        border: 2px solid var(--color-red);
-        height: min-content !important;
-        border-radius: 12px;
-    }
 
     .article__paragraph {
         flex-direction: column;
@@ -2249,6 +2387,20 @@ footer {
     }
     .main {
         padding-bottom: 74px;
+    }
+
+
+    .container__slider-nav img {
+        width: 48px;
+        height: 48px !important;
+    }
+    .container__current-slide.slick-initialized.slick-slider img{
+        min-height: 240px;
+    }
+    .container__slide.slick-slide.slick-current.slick-active {
+        border: 2px solid var(--color-red);
+        height: min-content !important;
+        border-radius: 12px;
     }
 
 
@@ -2502,8 +2654,17 @@ footer {
     .about-company .about-company__stages .block-heading {
         margin-top: 20px;
     }
-    .about-company__stage {
+    .about-company__stage-upper {
         padding: 12px;
+    }
+    .about-company__stage-lower {
+        padding-bottom: 12px;
+        font-size: 12px; 
+        line-height: 16px;
+        padding: 0px 12px;
+    }
+    .about-company__stage.active .about-company__stage-lower {
+        padding-bottom: 12px;
     }
     .about-company__stage-number {
         font-size: 49px;
@@ -2565,6 +2726,9 @@ footer {
     .container.catalog {
         padding-bottom: 20px;
     }
+    .container__order-card {
+        padding: 12px;
+    }
     .home__questions {
         background-color: transparent;
     }
@@ -2612,9 +2776,36 @@ footer {
     .catalog .home__container-lower {
         align-items: start;
     }
+    .home__container-image-link {
+        min-width: 100px;
+    }
+    .repair-parts .home__container-image-link img {
+        padding: 10px;
+    }
 }
 @media (max-width: 400px) {
     .header__hamburger-wrapper {
         gap: 16px
+    }
+    .home__parts-brand-card {
+        padding: 10px;
+    }
+}
+@media (max-width: 348px) {
+    .container .main__buttons {
+        flex-direction: column;
+    }
+    .container .main__buttons .main__button-red, 
+    .container .main__buttons .main__button-transparent {
+        width: 100%;
+        justify-content: center;
+    }
+    .home__container-lower {
+        flex-direction: column;
+        gap: 12px;
+        align-items: start;
+    }
+    .home__container-button-container {
+        width: 100%;
     }
 }

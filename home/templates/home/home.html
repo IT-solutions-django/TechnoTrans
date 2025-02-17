@@ -57,10 +57,10 @@
             <button class="main__button-red background-red-hover openModal">
                 Связаться с нами
             </button>
-            <button class="main__button-transparent">
+            <a href="{{ company_info.whatsapp_link }}" class="main__button-transparent">
                 <img src="static/images/whatsapp.svg" alt="">
                 Написать в WhatsApp
-            </button>
+            </a>
         </div>
     </div>
     <div class="main__right">
@@ -74,9 +74,9 @@
                 <div class="main__price-value">
                     <span class="main__price-big">от 2$</span> /сутки
                 </div>
-                <div class="transparent-button">
+                <a target="_blank" href="{% url 'containers:catalog' %}" class="transparent-button">
                     <button>Выбрать модель</button>
-                </div>
+                </a>
             </div>
             <div id="mainDivision2" class="main__price main-division">
                 <!-- <img class="main-image--centered" src="static/images/main-container.png" alt=""> -->
@@ -93,7 +93,7 @@
                 <div class="main__price-value">
                     <span class="main__price-big">По запросу</span>
                 </div>
-                <div class="transparent-button">
+                <div class="transparent-button openModal">
                     <button>Консультация</button>
                 </div>
             </div>
@@ -164,12 +164,12 @@
                 <div class="home__containers-cards">
                     {% for container in category.category_containers.all %}
                         <div class="home__container-card">
-                            <a href="{{ container.get_absolute_url }}">
+                            <a target="_blank" href="{{ container.get_absolute_url }}">
                                 <img src="{{ container.images.all.0.image.url }}" alt="">
                             </a>
                             <div class="home__container-card-text">
                                 <div class="home__container-card-name">
-                                    <a href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
+                                    <a target="_blank" href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
                                     <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ container.year }}г. <span class="container__name-divider">|</span> {{ container.model }}</p>
                                 </div>
                                 <div class="home__container-lower">
@@ -182,15 +182,15 @@
                                             </div>
                                         {% endif %}
                                     </div>
-                                    <div>
-                                        <a href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                    <div class="home__container-button-container">
+                                        <a target="_blank" href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
-                <a href="{% url 'containers:catalog' %}" class="home__containers-watch-all">
+                <a target="_blank" href="{% url 'containers:catalog' %}" class="home__containers-watch-all">
                     Смотреть все
                 </a>
             </div>
@@ -253,34 +253,34 @@
         <div class="home__parts-right">
             <div class="home__parts-brand-card">
                 <img src="static/images/part-brand-1.png" alt="">
-                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
+                <a target="_blank" class="home__parts-brand-card-button" href="{% url 'repair_parts:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card">
                 <img src="static/images/part-brand-2.png" alt="">
-                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
+                <a target="_blank" class="home__parts-brand-card-button" href="{% url 'repair_parts:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card">
                 <img src="static/images/part-brand-3.png" alt="">
-                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
+                <a target="_blank" class="home__parts-brand-card-button" href="{% url 'repair_parts:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card">
                 <img src="static/images/part-brand-4.png" alt="">
-                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
+                <a target="_blank" class="home__parts-brand-card-button" href="{% url 'repair_parts:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card only-desktop">
                 <p class="home__parts-brand-card-heading">Расходники</p>
-                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
+                <a target="_blank" class="home__parts-brand-card-button" href="{% url 'repair_parts:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card only-desktop">
                 <p class="home__parts-brand-card-heading">Расходники</p>
-                <a class="home__parts-brand-card-button-red background-red-hover" href="">Запросить весь каталог</a>
+                <a target="_blank" class="home__parts-brand-card-button-red background-red-hover" href="">Запросить весь каталог</a>
             </div>
         </div>
-        <a href="#" class="home__parts-brand-card-button--mobile-container only-mobile--flex">
-            <p class="home__parts-brand-card-button--mobile" href="">Расходники</p>
+        <a target="_blank" href="{% url 'repair_parts:catalog' %}" class="home__parts-brand-card-button--mobile-container only-mobile--flex">
+            <p class="home__parts-brand-card-button--mobile">Расходники</p>
         </a>
-        <a href="#" class="home__parts-brand-card-button--mobile-container-red only-mobile--flex background-red-hover">
-            <p class="home__parts-brand-card-button--mobile" href="">Запросить весь каталог</p>
+        <a target="_blank" href="{% url 'repair_parts:catalog' %}" class="home__parts-brand-card-button--mobile-container-red only-mobile--flex background-red-hover">
+            <p class="home__parts-brand-card-button--mobile">Запросить весь каталог</p>
         </a>
     </div>
 </div>
@@ -334,22 +334,26 @@
             </div>
         </div>
         <div class="home__service-right">
-            <form class="home__service-form" action="">
+            <form id="serviceBlockForm" class="home__service-form" action="">
+                {% csrf_token %}
                 <p class="home__service-form-heading">Расчитать стоимость обслуживания</p>
                 <div class="home__service-form-inputs">
-                    <select>
+                    <select name="{{ calculate_form.container_type.name }}" id="{{ calculate_form.container_type.id_for_label }}" required>
                         <option value="" disabled selected hidden>Тип контейнера</option>
-                        <option>1</option>
-                        <option>2</option>
+                        {% for category in calculate_form.container_type.field.queryset %}
+                            <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
                     </select>
-                    <select>
+                    <select name="{{ calculate_form.service_type.name }}" id="{{ calculate_form.service_type.id_for_label }}" required>
                         <option value="" disabled selected hidden>Вид обслуживания</option>
-                        <option>1</option>
-                        <option>2</option>
+                        {% for service_type in calculate_form.service_type.field.queryset %}
+                            <option value="{{ service_type.id }}">{{ service_type.name }}</option>
+                        {% endfor %}
                     </select>
-                    <input type="text" placeholder="Город">
-                    <input type="tel" placeholder="Телефон *">
-                    <textarea placeholder="Сообщение *" rows="5"></textarea>
+                    
+                    {{ calculate_form.city }}
+                    {{ calculate_form.phone }}
+                    {{ calculate_form.message }}
                     <div class="form__checkbox">
                         <div class=form__checkbox-wrap>
                             <input checked type=checkbox id=service-form-input name=consent required>
@@ -525,6 +529,38 @@ document.querySelectorAll('.home__partners-list img').forEach(logo => {
             quoteBlock.style.opacity = "1"; 
         }, 150); 
     });
+});
+
+
+// Форма ОС в блоке "Обслуживание контейнеров"
+const feedbackForm = document.getElementById("serviceBlockForm");
+console.log(feedbackForm);
+
+feedbackForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const successSection = document.getElementById('modalSuccess');
+    const containerType = document.getElementById("{{ calculate_form.container_type.id_for_label }}");
+    const serviceType = document.getElementById("{{ calculate_form.service_type.id_for_label }}");
+
+    successSection.style.display = 'flex'; 
+
+    let data = new FormData(feedbackForm);
+    let csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+    
+    feedbackForm.reset();
+
+    try {
+        let s = await fetch(`/api/save-calculate-request/`, {
+        method: "POST",
+        body: data,
+        headers: {
+            "X-CSRFToken": csrfToken
+        }
+    });
+        s.status
+    } catch (n) {
+        console.error("Ошибка запроса:", n)
+    }
 });
 
 

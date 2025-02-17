@@ -36,14 +36,15 @@
         <div class="modal-content">
             <div class="home__questions-right">
                 <form id="modalFeedbackForm" class="home__service-form" action="">
+                    {% csrf_token %}
                     <div class="home__service-form-heading">
                         <span>Свяжитесь с нами</span>
                         <img id="closeModal" src="{% static 'images/cross-white.svg' %}" alt="">
                     </div>
                     <div class="home__service-form-inputs">
-                        <input type="text" placeholder="Имя">
-                        <input type="tel" placeholder="Телефон">
-                        <textarea placeholder="Сообщение" rows="5"></textarea>
+                        {{ feedback_form.name }}
+                        {{ feedback_form.phone }}
+                        {{ feedback_form.message }}
                         <div class="form__checkbox">
                             <div class=form__checkbox-wrap>
                                 <input checked type=checkbox id=consent name=consent required>
@@ -94,16 +95,16 @@
                 <div class="header__hamburger-wrapper">
                     <div class="header__phone-adaptive">
                         <div class="header__phone">
-                            <a href="tel:+7 (123) 45-67-89">+7 (123) 453-67-89</a>
+                            <a target="_blank" href="tel:{{ company_info.phone }}">{{ company_info.phone }}</a>
                         </div>
                         <div class="header__contacts">
                             <div class="header__contact-link">
                                 <img src="{% static 'images/whatsapp.svg' %}" alt="">
-                                <a href="https://wa.me/79089939287">WhatsApp</a>
+                                <a target="_blank" href="{{ company_info.whatsapp_link }}">WhatsApp</a>
                             </div>
                             <div class="header__contact-link">
                                 <img src="{% static 'images/telegram.svg' %}" alt="">
-                                <a href="https://wa.me/79089939287">Telegram</a>
+                                <a target="_blank" href="{{ company_info.telegram_link }}">Telegram</a>
                             </div>
                         </div>
                     </div>
@@ -117,40 +118,40 @@
                 <div class="header__nav">
                     <div class="header__menu">
                         <div class="header__menu-link header__menu-link--dropdown nav__dropdown">
-                            <a class="red-hover" href="{% url 'containers:catalog' %}">Рефконтейнеры</a>
+                            <a target="_blank" class="red-hover" href="{% url 'containers:catalog' %}">Рефконтейнеры</a>
                             <div class="nav__dropdown-content-wrapper">
                                 <div class="nav__dropdown-content">
                                     {% for category in categories %}
-                                        <a href="{% url 'containers:catalog' %}" class="nav__link red-hover">{{ category.name }}</a>
+                                        <a target="_blank" href="{% url 'containers:catalog' %}?category={{ category.pk }}" class="nav__link red-hover">{{ category.name }}</a>
                                     {% endfor %}
                                 </div>
                             </div>
                         </div>
                         <div class="header__menu-link">
-                            <a class="red-hover" href="{% url 'repair_parts:catalog' %}">Запчасти</a>
+                            <a target="_blank" class="red-hover" href="{% url 'repair_parts:catalog' %}">Запчасти</a>
                         </div>
                         <div class="header__menu-link">
-                            <a class="red-hover" href="">Дизель-генераторы</a>
+                            <a target="_blank" class="red-hover" href="{% url 'generators:catalog' %}">Дизель-генераторы</a>
                         </div>
                         <div class="header__menu-link">
-                            <a class="red-hover" href="">Обслуживание и ремонт</a>
+                            <a target="_blank" class="red-hover" href="">Обслуживание и ремонт</a>
                         </div>
                         <div class="header__menu-link">
-                            <a class="red-hover" href="{% url 'contacts:about_company' %}">О компании</a>
+                            <a target="_blank" class="red-hover" href="{% url 'contacts:about_company' %}">О компании</a>
                         </div>
                     </div>
                     <div class="header__right-part">
                         <div class="header__phone">
-                            <a href="tel:+7 (123) 45-67-89">+7 (123) 453-67-89</a>
+                            <a target="_blank" href="tel:{{ company_info.phone }}">{{ company_info.phone }}</a>
                         </div>
                         <div class="header__contacts">
                             <div class="header__contact-link">
                                 <img src="{% static 'images/whatsapp.svg' %}" alt="">
-                                <a href="https://wa.me/79089939287">WhatsApp</a>
+                                <a target="_blank" href="{{ company_info.whatsapp_link }}">WhatsApp</a>
                             </div>
                             <div class="header__contact-link">
                                 <img src="{% static 'images/telegram.svg' %}" alt="">
-                                <a href="https://wa.me/79089939287">Telegram</a>
+                                <a target="_blank" href="{{ company_info.telegram_link }}">Telegram</a>
                             </div>
                         </div>
                     </div>
@@ -170,7 +171,9 @@
             <div class="footer-inner">
                 <div class="footer-upper">
                     <div class="footer__left">
+                        <a target="_blank" href="{% url 'home:home' %}" class="footer__logo-link">
                             <img src="{% static 'images/logo.svg' %}" alt="">
+                        </a>
                         <div class="footer__company-info">
                             <p class="footer__company-info-name">Технотранс</p>
                             <p class="footer__company-info-description">Логистика, продажа и аренда контейнеров для технических рейсов в России и Китае</p>
@@ -178,17 +181,15 @@
                     </div>
                     <div class="footer__right">
                         <div class="footer__column">
-                            <a href="{% url 'containers:catalog' %}" class="red-hover footer__column-subtitle">Рефконтейнеры</a>
+                            <a target="_blank" href="{% url 'containers:catalog' %}" class="red-hover footer__column-subtitle">Рефконтейнеры</a>
                             <div class="footer__list">
-                                <a class="footer__column-item red-hover only-desktop" href="">Популярные</a>
-                                <a class="footer__column-item red-hover only-desktop" href="">Новые</a>
-                                <a class="footer__column-item red-hover only-desktop" href="">Б/У</a>
-                                <a class="footer__column-item red-hover only-desktop" href="">Аренда</a>
-                                <a class="footer__column-item red-hover only-desktop" href="">Спецконтейнеры</a>
+                                {% for category in categories %}
+                                    <a target="_blank" href="{% url 'containers:catalog' %}?category={{ category.pk }}" class="footer__column-item red-hover only-desktop">{{ category.name }}</a>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="footer__column">
-                            <a href="#" class="red-hover footer__column-subtitle">Запчасти</a>
+                            <a target="_blank" href="#" class="red-hover footer__column-subtitle">Запчасти</a>
                             <div class="footer__list">
                                 <a class="footer__column-item red-hover only-desktop" href="">Carrier</a>
                                 <a class="footer__column-item red-hover only-desktop" href="">Thermo King</a>
@@ -198,7 +199,7 @@
                             </div>
                         </div>
                         <div class="footer__column">
-                            <a href="{% url 'contacts:about_company' %}" class="red-hover footer__column-subtitle">О компании</a>
+                            <a target="_blank" href="{% url 'contacts:about_company' %}" class="red-hover footer__column-subtitle">О компании</a>
                             <div class="footer__list">
                                 <a class="footer__column-item red-hover only-desktop" href="">Обслуживание и ремонт </a>
                                 <a class="footer__column-item red-hover only-desktop" href="">Контакты</a>
@@ -214,16 +215,16 @@
                     </div>
                     <div class="header__right-part">
                         <div class="header__phone">
-                            <a href="tel:+7 (123) 45-67-89">+7 (123) 453-67-89</a>
+                            <a href="tel:{{ company_info.phone }}">{{ company_info.phone }}</a>
                         </div>
                         <div class="header__contacts">
                             <div class="header__contact-link">
                                 <img src="{% static 'images/whatsapp.svg' %}" alt="">
-                                <a href="https://wa.me/79089939287">WhatsApp</a>
+                                <a href="{{ company_info.whatsapp_link }}">WhatsApp</a>
                             </div>
                             <div class="header__contact-link">
                                 <img src="{% static 'images/telegram.svg' %}" alt="">
-                                <a href="https://wa.me/79089939287">Telegram</a>
+                                <a href="{{ company_info.telegram_link }}">Telegram</a>
                             </div>
                         </div>
                     </div>
@@ -249,8 +250,6 @@
         const feedbackForm = document.getElementById('modalFeedbackForm');
         const formSection = document.getElementById('modal');
         const successSection = document.getElementById('modalSuccess');
-
-        console.log(feedbackForm)
 
         const messageField = document.getElementById("id_message"); 
 
@@ -291,7 +290,7 @@
             feedbackForm.reset();
 
             try {
-                let s = await fetch(`${window.location.origin}/contacts/api/save-request/`, {
+                let s = await fetch(`/api/save-request/`, {
                     method: "POST",
                     body: q,
                     headers: {
@@ -304,14 +303,16 @@
             }
         });
 
-        var modalPhoneInput = document.getElementById("modalFeedbackForm").querySelector('input[type="tel"]');
-        var modalPhoneMask = IMask(modalPhoneInput, { mask: "+{7} (000) 000 00 00" });
-        function validatePhoneNumber() {
-            let t = modalPhoneInput.value.replace(/\D/g, "");
-            return t.length < 11 ? (modalPhoneInput.setCustomValidity("Необходимо минимум 11 цифр"), !1) : (modalPhoneInput.setCustomValidity(""), !0)
-        }
-        modalPhoneInput.addEventListener("input", function () {
-            validatePhoneNumber()
+        // Маска
+        document.querySelectorAll('input[type="tel"]').forEach(input => {
+            let phoneMask = IMask(input, { mask: "+{7} (000) 000-00-00" });
+
+            function validatePhoneNumber() {
+                let t = input.value.replace(/\D/g, "");
+                return t.length < 11 ? (input.setCustomValidity("Необходимо минимум 11 цифр"), !1) : (input.setCustomValidity(""), !0);
+            }
+
+            input.addEventListener("input", validatePhoneNumber);
         });
     });
 

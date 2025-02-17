@@ -86,6 +86,7 @@ class Container(models.Model):
     def get_absolute_url(self) -> str: 
         return reverse('containers:container', args=[self.slug])
 
+
 class ContainerImage(models.Model): 
     image = models.ImageField('Картинка', upload_to='containers/') 
     container = models.ForeignKey(verbose_name='Контейнер', to=Container, on_delete=models.CASCADE, related_name='images')

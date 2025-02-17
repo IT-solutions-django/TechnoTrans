@@ -15,17 +15,6 @@ class RepairPartCategory(models.Model):
         return f'{self.name}'
 
 
-class ContainerType(models.Model): 
-    name = models.CharField('Название', max_length=50) 
-
-    class Meta: 
-        verbose_name = 'Тип контейнера'
-        verbose_name_plural = 'Типы контейнеров'
-    
-    def __str__(self):
-        return f'{self.name}'
-
-
 class RepairPart(models.Model):
     name = models.CharField('Название', max_length=255)
     brand = models.ForeignKey(verbose_name='Производитель', to=Brand, related_name='brand_parts', max_length=255, on_delete=models.CASCADE)

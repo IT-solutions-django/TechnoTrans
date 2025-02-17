@@ -39,7 +39,7 @@ class CatalogView(View):
                 min_price, max_price = get_min_and_max_price_for_choices(cd.get('price'))
                 containers = containers.filter(price__gte=min_price)
                 if max_price < self.MAX_INT:
-                    containers = containers.filter(price__lte=max_price)
+                    containers = containers.filter(price__lt=max_price)
 
 
         applied_filters = []

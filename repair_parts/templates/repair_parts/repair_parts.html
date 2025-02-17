@@ -74,15 +74,15 @@
 </div>
 
 <div class="breadcrumbs container">
-    <p>Главная</p>
+    <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
     <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
-    <p class="active">Запчасти</p>
+    <a href=" " class="active">Запчасти</a>
 </div>
 
 <div class="catalog container repair-parts">
     <h1 class="catalog__heading">Запчасти</h1>
-    <div class="catalog__open-filters-button transparent-button">
-        <div id="openMobileFilters" class="catalog__open-filters-button--label">
+    <div id="openMobileFilters" class="catalog__open-filters-button transparent-button">
+        <div class="catalog__open-filters-button--label">
             <img src="{% static 'images/settings.svg' %}" alt="">
             <p>Фильтры</p>
         </div>
