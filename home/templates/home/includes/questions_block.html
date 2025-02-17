@@ -56,18 +56,19 @@
                     
                 </div>
                 <div class="home__questions-right">
-                    <form class="home__service-form" action="">
+                    <form id="questionsBlockForm" class="home__service-form" action="">
+                        {% csrf_token %}
                         <p class="home__service-form-heading">Остались вопросы? Свяжитесь с нами</p>
                         <div class="home__service-form-inputs">
-                            <input type="text" placeholder="Имя *">
-                            <input type="tel" placeholder="Телефон *">
-                            <textarea placeholder="Сообщение *" rows="5"></textarea>
+                            {{ feedback_form.name }}
+                            {{ feedback_form.phone }}
+                            {{ feedback_form.message }}
                             <div class="form__checkbox">
                                 <div class=form__checkbox-wrap>
-                                    <input checked type=checkbox id=consent name=consent required>
+                                    <input checked type=checkbox id=questionsCheckbox name=consent required>
                                 </div>
                                 <div>
-                                    <label for=consent class=form__checkbox-label>
+                                    <label for=questionsCheckbox class=form__checkbox-label>
                                         Согласен с обработкой персональных данных
                                     </label>
                                 </div>
@@ -111,6 +112,33 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    
+    // Форма ОС 
+    const feedbackForm = document.getElementById("questionsBlockForm"); 
+    if (!feedbackForm) {
+        return;
+    }
+    feedbackForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const successSection = document.getElementById('modalSuccess');
+        successSection.style.display = 'flex'; 
+
+        let data = new FormData(feedbackForm);
+        let csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+        
+        feedbackForm.reset();
+
+        try {
+            let s = await fetch(`/api/save-request/`, {
+            method: "POST",
+            body: data,
+            headers: {
+                "X-CSRFToken": csrfToken
+            }
+        });
+            s.status
+        } catch (n) {
+            console.error("Ошибка запроса:", n)
+        }
+    });
 });
 </script>

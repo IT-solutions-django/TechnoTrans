@@ -4,15 +4,16 @@
 {% load container_tags %} 
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
 <script src="{% static 'js/slick/slick/slick.min.js' %}"></script>
 <div class="breadcrumbs container">
-    <p>Главная</p>
+    <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
     <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
-    <p>Рефконтейнеры</p>
+    <a class="red-hover" href="{% url 'containers:catalog' %}">Рефконтейнеры</a>
     <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
-    <p>{{ container.brand.name }}</p>
+    <a class="red-hover" href="{% url 'containers:catalog' %}?brand={{ container.brand.pk }}">{{ container.brand.name }}</a>
     <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
-    <p class="active">{{ container.name }}</p>
+    <a class="active" href=" ">{{ container.name }}</a>
 </div>
 
 <div class="catalog container">
@@ -77,10 +78,10 @@
                     <button class="main__button-red openModal background-red-hover">
                         Оформить заказ
                     </button>
-                    <button class="main__button-transparent">
+                    <a href="{{ company_info.whatsapp_link }}" class="main__button-transparent">
                         <img src="{% static 'images/whatsapp.svg' %}" alt="">
-                        <a href="https://wa.me/79089939287">Написать в Whatsapp</a>
-                    </button>
+                        <p>Написать в Whatsapp</p>
+                    </a>
                 </div>
                 <div class="tab__label">
                     *Обратите внимание, цены указаны с НДС
@@ -193,6 +194,7 @@
 {% endblock %}
 
 {% block script %}
+<!-- Слайдеры -->
 <script defer>
 $(".container__current-slide").slick({
     slidesToShow: 1,
@@ -212,5 +214,28 @@ $(".container__slider-nav").slick({
     focusOnSelect: true, 
     variableWidth: true, 
 }); 
+
+// Все характеристики
+const specsButton = document.getElementById("specs-tab");
+document.querySelector(".container__all-specs").addEventListener("click", (button) => {
+    event.preventDefault();
+    specsButton.click();
+    document.getElementById("specs-tab").scrollIntoView({ behavior: "smooth" });
+
+});
+</script>
+
+<script type=module>
+    import{L as LuminousGallery}from"/static/js/luminous-lightbox/luminous-lightbox.js";
+
+    function initGallery() {
+        var l = document.querySelectorAll(".container__current-slide a");
+        const e = {
+            showCloseButton: !0
+        };
+        l.length > 0 && new LuminousGallery(l, e);
+    }
+    
+    initGallery()
 </script>
 {% endblock %}

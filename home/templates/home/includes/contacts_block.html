@@ -8,20 +8,20 @@
             <div class="home__contacts-data">
                 <div class="home__contact-data">
                     <p class="home__contact-data-label">Телефон: </p>
-                    <a href="tel:89137839236" class="home__contact-data-heading">+7 (925) 804-79-95</a>
+                    <a href="tel:{{ company_info.phone }}" class="home__contact-data-heading">{{ company_info.phone }}</a>
                 </div>
                 <div class="home__contact-data">
                     <p class="home__contact-data-label">Почта: </p>
-                    <a href="mailto:sales@ttrans.pro" class="home__contact-data-heading color-red">sales@ttrans.pro</a>
+                    <a href="mailto:{{ company_info.email }}" class="home__contact-data-heading color-red">{{ company_info.email }}</a>
                 </div>
                 <div class="home__contacts-social-links">
                     <div class="home__contacts-social-link">
                         <img src="{% static 'images/whatsapp.svg' %}" alt="">
-                        <a href="https://wa.me/79089939287">WhatsApp</a>
+                        <a href="{{ company_info.whatsapp_link }}">WhatsApp</a>
                     </div>
                     <div class="home__contacts-social-link">
                         <img src="{% static 'images/telegram.svg' %}" alt="">
-                        <a href="https://wa.me/79089939287">Telegram</a>
+                        <a href="{{ company_info.telegram_link }}">Telegram</a>
                     </div>
                 </div>
                 <div>

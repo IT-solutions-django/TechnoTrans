@@ -5,9 +5,9 @@
 
 {% block content %}
 <div class="breadcrumbs container">
-    <p>Главная</p>
+    <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
     <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
-    <p class="active">Рефконтейнеры</p>
+    <a href=" " class="active">Рефконтейнеры</a>
 </div>
 
 <div id="mobileFilters" class="mobile-filters">
@@ -151,8 +151,8 @@
 
 <div class="catalog container">
     <h1 class="catalog__heading">Рефконтейнеры</h1>
-    <div class="catalog__open-filters-button transparent-button">
-        <div id="openMobileFilters" class="catalog__open-filters-button--label">
+    <div id="openMobileFilters" class="catalog__open-filters-button transparent-button">
+        <div class="catalog__open-filters-button--label">
             <img src="{% static 'images/settings.svg' %}" alt="">
             <p>Фильтры</p>
         </div>
@@ -292,12 +292,12 @@
             <div class="catalog__cards">
                 {% for container in containers %}
                     <div class="home__container-card">
-                        <a class="home__container-image-link" href="{{ container.get_absolute_url }}">
+                        <a target="_blank"class="home__container-image-link" href="{{ container.get_absolute_url }}">
                             <img src="{{ container.images.all.0.image.url }}" alt="">
                         </a>
                         <div class="home__container-card-text">
                             <div class="home__container-card-name">
-                                <a href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
+                                <a target="_blank" href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
                                 <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ container.year }}г. <span class="container__name-divider">|</span> {{ container.model }}</p>
                             </div>
                             <div class="home__container-lower">
@@ -311,7 +311,7 @@
                                     {% endif %}
                                 </div>
                                 <div>
-                                    <a href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                    <a target="_blank"href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
                                 </div>
                             </div>
                         </div>

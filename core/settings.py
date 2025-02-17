@@ -80,6 +80,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'home.context_processors.global_context',
+                'home.context_processors.company_info',
             ],
         },
     },

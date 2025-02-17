@@ -6,9 +6,9 @@
 
 {% block content %}
 <div class="breadcrumbs container">
-    <p>Главная</p>
+    <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
     <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
-    <p class="active">О компании</p>
+    <a href=" " class="active">О компании</a>
 </div>
 <div class="about-company container">
     <h1 class="catalog__heading">О компании</h1>
@@ -59,30 +59,87 @@
             <p class="block-heading">Схема работы</p>
             <div class="about-company__stages-body">
                 <div class="about-company__stage">
-                    <span class="about-company__stage-heading">Заявка и консультация</span>
-                    <span class="about-company__stage-number">01</span>
+                    <div class="about-company__stage-upper">
+                        <span class="about-company__stage-heading">Заявка и консультация</span>
+                        <span class="about-company__stage-number">01</span>
+                    </div>
+                    <div class="about-company__stage-lower">
+                        <p>Оперативно доставляем оборудование в РФ и страны ТС. Стоимость доставки уточняйте у наших менеджеров.</p>
+                    </div>
                 </div>
                 <div class="about-company__stage">
-                    <span class="about-company__stage-heading">Выбор и оформление</span>
-                    <span class="about-company__stage-number">02</span>
+                    <div class="about-company__stage-upper">
+                        <span class="about-company__stage-heading">Выбор и оформление</span>
+                        <span class="about-company__stage-number">02</span>
+                    </div>
+                    <div class="about-company__stage-lower">
+                        <p>Оперативно доставляем оборудование в РФ и страны ТС. Стоимость доставки уточняйте у наших менеджеров.</p>
+                    </div>
                 </div>
                 <div class="about-company__stage">
-                    <span class="about-company__stage-heading">Доставка в ваш регион</span>
-                    <span class="about-company__stage-number">03</span>
+                    <div class="about-company__stage-upper">
+                        <span class="about-company__stage-heading">Доставка в ваш регион</span>
+                        <span class="about-company__stage-number">03</span>
+                    </div>
+                    <div class="about-company__stage-lower">
+                        <p>Оперативно доставляем оборудование в РФ и страны ТС. Стоимость доставки уточняйте у наших менеджеров.</p>
+                    </div>
                 </div>
                 <div class="about-company__stage">
-                    <span class="about-company__stage-heading">Сервис и гарантия</span>
-                    <span class="about-company__stage-number">04</span>
+                    <div class="about-company__stage-upper">
+                        <span class="about-company__stage-heading">Сервис и гарантия</span>
+                        <span class="about-company__stage-number">04</span>
+                    </div>
+                    <div class="about-company__stage-lower">
+                        <p>Оперативно доставляем оборудование в РФ и страны ТС. Стоимость доставки уточняйте у наших менеджеров.</p>
+                    </div>
                 </div>
                 <div class="about-company__stage">
-                    <span class="about-company__stage-heading">Запчасти и поддержка</span>
-                    <span class="about-company__stage-number">05</span>
+                    <div class="about-company__stage-upper">
+                        <span class="about-company__stage-heading">Запчасти и поддержка</span>
+                        <span class="about-company__stage-number">05</span>
+                    </div>
+                    <div class="about-company__stage-lower">
+                        <p>Оперативно доставляем оборудование в РФ и страны ТС. Стоимость доставки уточняйте у наших менеджеров.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     </div>
 </div>
+
+<script defer>
+    // Вопросы и ответы
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".about-company__stage-upper").forEach((question) => {
+        question.addEventListener("click", () => {
+            const parentBlock = question.parentElement;
+            const answer = parentBlock.querySelector(".about-company__stage-lower");
+
+            console.log(parentBlock)
+
+
+            if (parentBlock.classList.contains("active")) {
+                console.log(parentBlock.classList)
+                console.log('убираем')
+                parentBlock.classList.remove("active");
+                answer.style.maxHeight = null;
+            } else {
+                document.querySelectorAll(".home__question-block").forEach((block) => {
+                    block.classList.remove("active");
+                    block.querySelector(".home__answer").style.maxHeight = null;
+                });
+
+                console.log('добавляем')
+
+                // answer.style.height = answer.scrollHeight + 20 + "px"; 
+                parentBlock.classList.add("active");
+            }
+        });
+    });
+});
+</script>
 
 {% include 'home/includes/questions_block.html' %}
 {% include 'home/includes/contacts_block.html' %}

@@ -3,6 +3,10 @@ from django.db import models
 
 class CompanyInfo(models.Model): 
     description = models.TextField('Описание', max_length=5000)
+    whatsapp_link = models.URLField('Ссылка на WhatsApp', max_length=200, null=True, blank=True)
+    telegram_link = models.URLField('Ссылка на Telegram', max_length=200, null=True, blank=True)
+    phone = models.CharField('Номер телефона', max_length=20, null=True, blank=True)
+    email = models.CharField('Email', max_length=50, null=True, blank=True)
 
     class Meta: 
         verbose_name = 'Информация о компании'
