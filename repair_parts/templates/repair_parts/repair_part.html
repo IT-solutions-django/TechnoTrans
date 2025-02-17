@@ -1,0 +1,190 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load tags %}
+{% load container_tags %} 
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+<script src="{% static 'js/slick/slick/slick.min.js' %}"></script>
+<div class="breadcrumbs container">
+    <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <a class="red-hover" href="{% url 'repair_parts:catalog' %}">Запчасти</a>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <a class="red-hover" href="{% url 'repair_parts:catalog' %}?brand={{ repair_part.brand.pk }}">{{ repair_part.brand.name }}</a>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <a class="active" href=" ">{{ repair_part.name }}</a>
+</div>
+
+<div class="catalog container">
+    <h1 class="catalog__heading">{{ container.name }}</h1>
+    <div class="container__general-info">
+        <div class="container__left">
+            <div class="container__slider">
+                <div class="container__current-slide" href="">
+                    {% for image in repair_part.images.all %}
+                    <div>
+                        <a href="{{ image.image.url }}">
+                            <img src="{{ image.image.url }}" alt="Фото контейнера">
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="container__slider-nav">
+                    {% for image in repair_part.images.all %}
+                    <div class="container__slide">
+                        <img src="{{ image.image.url }}" alt="Фото контейнера">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="container__right">
+            <div class="container__short-info">
+                <img class="container__brand-logo" src="{{ repair_part.brand.image.url }}" alt="">
+                <div class="container__table-info">
+                    <div class="container__table-row container__table-row--last">
+                        <span class="container__table-label">Производитель</span>
+                        <span class="container__table-value">{{ repair_part.brand.name }}</span>
+                    </div>
+                </div>
+                <div>
+                    <a href="" class="container__all-specs">
+                        <p>Все характеристики</p>
+                    </a>
+                </div>
+            </div>
+            <div class="container__order-card">
+                <div class="container__order-card-price-block">
+                    <div class="container__order-card-prices">
+                        <p class="container__order-card-price--main">{{ repair_part.price|price_format }} ₽ </p>
+                        <p class="container__order-card-price--crossed">{{ repair_part.old_price|price_format }} ₽ </p>
+                    </div>
+                    <div class="container__order-card-in-stock">
+                        <img src="{% static 'images/green-mark.svg' %}" alt="">
+                        В наличии
+                    </div>
+                    
+                </div>
+                <div class="main__buttons">
+                    <button class="main__button-red openModal background-red-hover">
+                        Оформить заказ
+                    </button>
+                    <a href="{{ company_info.whatsapp_link }}" class="main__button-transparent">
+                        <img src="{% static 'images/whatsapp.svg' %}" alt="">
+                        <p>Написать в Whatsapp</p>
+                    </a>
+                </div>
+                <div class="tab__label">
+                    *Обратите внимание, цены указаны с НДС
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container__info container">
+        <div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#tab-description" type="button" role="tab" aria-controls="tab-description" aria-selected="false">
+                        Описание
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#tab-specs" type="button" role="tab" aria-controls="tab-specs" aria-selected="false">
+                        Характеристики
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="delivery-tab" data-bs-toggle="tab" data-bs-target="#tab-delivery" type="button" role="tab" aria-controls="tab-delivery" aria-selected="false">
+                        Доставка
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#tab-payment" type="button" role="tab" aria-controls="tab-payment" aria-selected="false">
+                        Оплата
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="warranty-tab" data-bs-toggle="tab" data-bs-target="#tab-warranty" type="button" role="tab" aria-controls="tab-warranty" aria-selected="false">
+                        Гарантия
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="tab-description" role="tabpanel" aria-labelledby="description-tab">
+                {{ repair_part.description|markdown }}     
+            </div>
+            <div class="tab-pane fade" id="tab-specs" role="tabpanel" aria-labelledby="specs-tab">
+                <p class="container__specs-subheading">Общая информация</p>
+                <div>
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Производитель</span>
+                        <span>{{ repair_part.brand.name }}</span>
+                    </div>  
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tab-delivery" role="tabpanel" aria-labelledby="delivery-tab">
+                Текст о доставке   
+            </div>
+            <div class="tab-pane fade" id="tab-payment" role="tabpanel" aria-labelledby="payment-tab">
+                Текст об оплате    
+            </div>
+            <div class="tab-pane fade" id="tab-warranty" role="tabpanel" aria-labelledby="warranty-tab">
+                Текст о гарантии  
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'home/includes/questions_block.html' %}
+{% include 'home/includes/contacts_block.html' %}
+{% endblock %}
+
+{% block script %}
+<!-- Слайдеры -->
+<script defer>
+$(".container__current-slide").slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    fade: true,
+    infinite: true,
+    asNavFor: ".container__slider-nav", 
+});
+$(".container__slider-nav").slick({
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    asNavFor: ".container__current-slide",
+    dots: false,
+    arrows: false,
+    infinite: true,
+    focusOnSelect: true, 
+    variableWidth: true, 
+}); 
+
+// Все характеристики
+const specsButton = document.getElementById("specs-tab");
+document.querySelector(".container__all-specs").addEventListener("click", (button) => {
+    event.preventDefault();
+    specsButton.click();
+    document.getElementById("specs-tab").scrollIntoView({ behavior: "smooth" });
+
+});
+</script>
+
+<script type=module>
+    import{L as LuminousGallery}from"/static/js/luminous-lightbox/luminous-lightbox.js";
+
+    function initGallery() {
+        var l = document.querySelectorAll(".container__current-slide a");
+        const e = {
+            showCloseButton: !0
+        };
+        l.length > 0 && new LuminousGallery(l, e);
+    }
+    
+    initGallery()
+</script>
+{% endblock %}
