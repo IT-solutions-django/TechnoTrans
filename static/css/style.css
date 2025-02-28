@@ -127,7 +127,8 @@ html, body, .container {
 
 .header__row {
     display: flex;
-    gap: 72.5px;
+    /* gap: 72.5px; */
+    gap: 60px;
     align-items: center;
 }
 
