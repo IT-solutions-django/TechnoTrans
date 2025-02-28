@@ -111,7 +111,11 @@ def get_min_and_max_price_for_choice(price_range_choice: str) -> tuple[float, fl
     return int(min_price), int(max_price)
     
     
+class ContainersRentView(View): 
+    template_name = 'containers/rent.html'
 
+    def get(self, request): 
+        context = {
 
-
-    
+        }
+        return render(request, self.template_name, context)

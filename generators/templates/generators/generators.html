@@ -12,324 +12,95 @@
     <a href=" " class="active">Дизель-генераторы</a>
 </div>
 
-<div id="mobileFilters" class="mobile-filters">
-    <div class="mobile__upper">
-        <div>
-            <p class="mobile__heading">Фильтры</p>
-        </div>
-        <img id="closeMobileFilters" class="" src="{% static 'images/close.svg' %}" alt="Закрыть">
-    </div>
-    <form method="get" action="" class="mobileFiltersForm">
-        <div class="catalog__filter-field">
-            <p class="catalog__filter-subtitle">Раздел</p>
-            <div class="catalog__filter-field-variants">
-                {% for category_input in filter_form.category %}
-                    <div class="form__checkbox">
-                        <div class="form__checkbox-wrap">
-                            
-                            <input type="checkbox"
-                                name="{{ filter_form.category.html_name }}" 
-                                value="{{ category_input.data.value }}" 
-                                id="mobile_{{ category_input.id_for_label }}"
-                                {% if category_input.data.selected %}checked{% endif %}
-                            >
-                        </div>
-                        <div>
-                            <label for="mobile_{{ category_input.id_for_label }}" class="form__checkbox-label">
-                                {{ category_input.choice_label }}
-                            </label>
-                        </div>
-                        <div>
-                            <p class="catalog__filter-numbers">{% generator_count_for_category category_input.data.value %}</p> 
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="catalog__filter-field">
-            <p class="catalog__filter-subtitle">Цена</p>
-            <div class="catalog__filter-field-variants">
-                {% for price_input in filter_form.price %}
-                    <div class="form__checkbox">
-                        <div class="form__checkbox-wrap">
-                            <input type="checkbox"
-                                name="{{ filter_form.price.html_name }}" 
-                                value="{{ price_input.data.value }}" 
-                                id="mobile_{{ price_input.id_for_label }}"
-                                {% if price_input.data.selected %}checked{% endif %}
-                            >
-                        </div>
-                        <div>
-                            <label for="mobile_{{ price_input.id_for_label }}" class="form__checkbox-label">
-                                {{ price_input.choice_label }}
-                            </label>
-                        </div>
-                        <div>
-                            <p class="catalog__filter-numbers">{% generator_count_for_price price_input.data.value %}</p> 
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="catalog__filter-field">
-            <p class="catalog__filter-subtitle">Тип</p>
-            <div class="catalog__filter-field-variants">
-                {% for generator_type_input in filter_form.generator_type %}
-                    <div class="form__checkbox">
-                        <div class="form__checkbox-wrap">
-                            <input type="checkbox"
-                                name="{{ filter_form.generator_type.html_name }}" 
-                                value="{{ generator_type_input.data.value }}" 
-                                id="mobile_{{ generator_type_input.id_for_label }}"
-                                {% if generator_type_input.data.selected %}checked{% endif %}
-                            >
-                        </div>
-                        <div>
-                            <label for="mobile_{{ generator_type_input.id_for_label }}" class="form__checkbox-label">{{ generator_type_input.choice_label }}</label>
-                        </div>
-                        <div>
-                            <p class="catalog__filter-numbers">{% generator_count_for_type generator_type_input.data.value %}</p>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="catalog__filter-field">
-            <p class="catalog__filter-subtitle">Год выпуска</p>
-            <div class="catalog__filter-field-variants">
-                {% for year_input in filter_form.year %}
-                    <div class="form__checkbox">
-                        <div class="form__checkbox-wrap">
-                            <input type="checkbox"
-                                name="{{ filter_form.year.html_name }}" 
-                                value="{{ year_input.data.value }}" 
-                                id="mobile_{{ year_input.id_for_label }}"
-                                {% if year_input.data.selected %}checked{% endif %}
-                            >
-                        </div>
-                        <div>
-                            <label for="mobile_{{ year_input.id_for_label }}" class="form__checkbox-label">
-                                {{ year_input.choice_label }}
-                            </label>
-                        </div>
-                        <div>
-                            <p class="catalog__filter-numbers">{% generator_count_for_year year_input.data.value %}</p>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="catalog__filter-field">
-            <p class="catalog__filter-subtitle">Мощность номинальная, квт</p>
-            <div class="catalog__filter-field-variants">
-                {% for power_input in filter_form.power %}
-                    <div class="form__checkbox">
-                        <div class="form__checkbox-wrap">
-                            <input type="checkbox"
-                                name="{{ filter_form.power.html_name }}" 
-                                value="{{ power_input.data.value }}" 
-                                id="mobile_{{ power_input.id_for_label }}"
-                                {% if power_input.data.selected %}checked{% endif %}
-                            >
-                        </div>
-                        <div>
-                            <label for="mobile_{{ power_input.id_for_label }}" class="form__checkbox-label">
-                                {{ power_input.choice_label }}
-                            </label>
-                        </div>
-                        <div>
-                            <p class="catalog__filter-numbers">{% generator_count_for_power power_input.data.value %}</p> 
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="catalog__filter-form-buttons">
-            <button type="submit" class="red-button home__container-button">Применить</button>
-            <a href="{% url 'generators:catalog' %}" class="catalog__reset-button">Сбросить</a>
-        </div>
-    </form>
-</div>
-
 <div class="catalog container">
     <h1 class="catalog__heading">Дизель-генераторы</h1>
-    <div id="openMobileFilters" class="catalog__open-filters-button transparent-button">
-        <div class="catalog__open-filters-button--label">
-            <img src="{% static 'images/settings.svg' %}" alt="">
-            <p>Фильтры</p>
-        </div>
-    </div>
-    <div class="only-mobile--block">
-        <p class="tab__label">*Обратите внимание, цены указаны с НДС</p>
-    </div>
     <div class="catalog-body">
-        <div class="catalog__filters">
-            <form method="get" action="" class="catalog__filter-form">
-                <div class="catalog__filter-field">
-                    <p class="catalog__filter-subtitle">Раздел</p>
-                    <div class="catalog__filter-field-variants">
-                        {% for category_input in filter_form.category %}
-                            <div class="form__checkbox">
-                                <div class="form__checkbox-wrap">
-                                    {{ category_input.tag }} 
-                                </div>
-                                <div>
-                                    <label for="{{ category_input.id_for_label }}" class="form__checkbox-label">
-                                        {{ category_input.choice_label }}
-                                    </label>
-                                </div>
-                                <div>
-                                    <p class="catalog__filter-numbers">{% generator_count_for_category category_input.data.value %}</p> 
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="catalog__filter-field">
-                    <p class="catalog__filter-subtitle">Цена</p>
-                    <div class="catalog__filter-field-variants">
-                        {% for price_input in filter_form.price %}
-                            <div class="form__checkbox">
-                                <div class="form__checkbox-wrap">
-                                    {{ price_input.tag }} 
-                                </div>
-                                <div>
-                                    <label for="{{ price_input.id_for_label }}" class="form__checkbox-label">
-                                        {{ price_input.choice_label }}
-                                    </label>
-                                </div>
-                                <div>
-                                    <p class="catalog__filter-numbers">{% generator_count_for_price price_input.data.value %}</p> 
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="catalog__filter-field">
-                    <p class="catalog__filter-subtitle">Тип</p>
-                    <div class="catalog__filter-field-variants">
-                        {% for generator_type in filter_form.generator_type %}
-                            <div class="form__checkbox">
-                                <div class="form__checkbox-wrap">
-                                    {{ generator_type.tag }}
-                                </div>
-                                <div>
-                                    <label for="{{ generator_type.id_for_label }}" class="form__checkbox-label">{{ generator_type.choice_label }}</label>
-                                </div>
-                                <div>
-                                    <p class="catalog__filter-numbers">{% generator_count_for_type generator_type.data.value %}</p>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="catalog__filter-field">
-                    <p class="catalog__filter-subtitle">Год выпуска</p>
-                    <div class="catalog__filter-field-variants">
-                        {% for year_input in filter_form.year %}
-                            <div class="form__checkbox">
-                                <div class="form__checkbox-wrap">
-                                    {{ year_input.tag }}
-                                </div>
-                                <div>
-                                    <label for="{{ year_input.id_for_label }}" class="form__checkbox-label">
-                                        {{ year_input.choice_label }}
-                                    </label>
-                                </div>
-                                <div>
-                                    <p class="catalog__filter-numbers">{% generator_count_for_year year_input.data.value %}</p>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="catalog__filter-field">
-                    <p class="catalog__filter-subtitle">Мощность номинальная, квт</p>
-                    <div class="catalog__filter-field-variants">
-                        {% for power_input in filter_form.power %}
-                            <div class="form__checkbox">
-                                <div class="form__checkbox-wrap">
-                                    {{ power_input.tag }} 
-                                </div>
-                                <div>
-                                    <label for="{{ power_input.id_for_label }}" class="form__checkbox-label">
-                                        {{ power_input.choice_label }}
-                                    </label>
-                                </div>
-                                <div>
-                                    <p class="catalog__filter-numbers">{% generator_count_for_power power_input.data.value %}</p> 
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="catalog__filter-form-buttons">
-                    <button type="submit" class="red-button home__container-button">Применить</button>
-                    <a href="{% url 'generators:catalog' %}" class="catalog__reset-button">Сбросить</a>
-                </div>
-            </form>
-            <div>
-                <p class="tab__label">*Обратите внимание, цены указаны с НДС</p>
+        <div class="about-company__body">
+            <div class="about-company__description">
+                <p>При многочасовой перевозке рефконтейнера на контейнеровозе или при временном отключении хранимого груженого рефконтейнера от электропитания существует риск изменения температуры груза внутри контейнера  и, как следствие, его порчи. </p><br>
+                <p>Использование автономных навесных дизель-генераторов (Clip On genset или дженсетов) сводит эти риски практически к нулю. Дженсет вырабатывает электричество и питает рефустановку контейнера на протяжении длительного времени (до 7 суток, при условии полного заполнения топливного бака, 460 л).</p><br>
+                <p>В свою очередь, рефконтейнер непрерывно поддерживает заданную температуру груза.</p><br>
+                <p>Наша компания осуществляет прямые поставки из Европы навесных дизель-генераторов на территорию РФ от надежных и проверенных  поставщиков.</p>
             </div>
-        </div>
-        <div class="catalog__main">
-            <div class="catalog__description">
-                <p>Выберите надежные рефконтейнеры для перевозки и хранения грузов. В наличии новые и б/у модели от Carrier, Thermo King, Daikin, Star Cool. Доступна аренда, продажа и доставка по всей России. Гарантия качества, выгодные условия и полный сервис. Найдите идеальный контейнер для вашего бизнеса!</p>
-            </div>
-            {% if applied_filters %}
-                <div class="catalog__applied-filters">
-                    {% for applied_filter in applied_filters %}
-                        <button 
-                            data-filter-name="{{ applied_filter.name }}" 
-                            data-filter-value="{{ applied_filter.value }}"
-                            class="catalog__applied-filter">
-                            {{ applied_filter.name|applied_filter_name_translate }}: {{ applied_filter.human_value }}
-                        </button>
-                    {% endfor %}
-                    <a href="{% url 'generators:catalog' %}" class="catalog__reset-button">
-                        Сбросить все
-                    </a>
+            <div class="home__service-points">
+                <div class="home__service-point">
+                    <div class="home__service-point-icon">
+                        <img src="{% static 'images/about-company-key.svg' %}" alt="">
+                    </div>
+                    <div class="home__service-point-text">
+                        <p class="home__service-point-heading">Индивидуальный подход к каждому клиенту</p>
+                        <p class="home__service-point-sub">Компания предлагает уникальные решения, учитывая специфику бизнеса и пожелания клиента. Это позволяет находить оптимальные варианты для каждого заказчика.</p>
+                    </div>
                 </div>
-            {% endif %}
-            <div class="catalog__cards">
-                {% for generator in generators %}
-                    <div class="home__container-card">
-                        <a target="_blank"class="home__container-image-link" href="{{ generator.get_absolute_url }}">
-                            <img src="{{ generator.images.all.0.image.url }}" alt="">
-                        </a>
-                        <div class="home__container-card-text">
-                            <div class="home__container-card-name">
-                                <a target="_blank" href="{{ generator.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ generator.name }}</a>
-                            </div>
-                            <div class="home__container-lower">
-                                <div class="home__container-lower-left">
-                                    <p class="home__container-card-price">{{ generator.price|price_format }} ₽ </p>
-                                    {% if generator.is_in_stock %}
-                                        <div class="home__container-card-in-stock">
-                                            <img src="{% static 'images/green-mark.svg' %}" alt="">
-                                            В наличии
-                                        </div>
-                                    {% endif %}
+                <div class="home__service-point">
+                    <div class="home__service-point-icon">
+                        <img src="{% static 'images/about-company-bag.svg' %}" alt="">
+                    </div>
+                    <div class="home__service-point-text">
+                        <p class="home__service-point-heading">Профессионализм и опыт команды</p>
+                        <p class="home__service-point-sub">Компания объединяет опытных логистов и использует передовые технологии, что позволяет обеспечивать высокий уровень сервиса и эффективность решений.</p>
+                    </div>
+                </div>
+                <div class="home__service-point">
+                    <div class="home__service-point-icon">
+                        <img src="{% static 'images/about-company-checkmark.svg' %}" alt="">
+                    </div>
+                    <div class="home__service-point-text">
+                        <p class="home__service-point-heading">Гибкость и поддержка клиентов</p>
+                        <p class="home__service-point-sub">Менеджеры компании всегда на связи, готовы оперативно ответить на вопросы и помочь в решении любых задач, связанных с логистикой и использованием рефконтейнеров.</p>
+                    </div>
+                </div>
+                <div class="home__service-point">
+                    <div class="home__service-point-icon">
+                        <img src="{% static 'images/about-company-well.svg' %}" alt="">
+                    </div>
+                    <div class="home__service-point-text">
+                        <p class="home__service-point-heading">Удобство и простота в сотрудничестве</p>
+                        <p class="home__service-point-sub">Компания стремится сделать логистику максимально понятной и удобной для клиентов, предлагая бесплатную доставку в сотни городов России и детально проработанные решения.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="generators-list">
+                <p class="block-heading">Популярные предложения</p>
+                <div class="home__containers-cards">
+                    {% for generator in generators %}
+                        <div class="home__container-card">
+                            <a target="_blank" href="{{ generator.get_absolute_url }}">
+                                <img src="{{ generator.images.all.0.image.url }}" alt="">
+                            </a>
+                            <div class="home__container-card-text">
+                                <div class="home__container-card-name">
+                                    <a target="_blank" href="{{ generator.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ generator.name }}</a>
+                                    <p class="home__container-card-name--small">{{ generator.generator_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ generator.year }}г.</p>
                                 </div>
-                                <div>
-                                    <a target="_blank" href="{{ generator.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                <div class="home__container-lower">
+                                    <div class="home__container-lower-left">
+                                        <p class="home__container-card-price">{{ generator.price|price_format }} ₽ </p>
+                                        {% if generator.is_in_stock %}
+                                            <div class="home__container-card-in-stock">
+                                                <img src="{% static 'images/green-mark.svg' %}" alt="">
+                                                В наличии
+                                            </div>
+                                        {% else %}
+                                            <div class="home__container-card-in-stock">
+                                                <img src="{% static 'images/gray-circle.svg' %}" alt="">
+                                                Под заказ
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="home__container-button-container">
+                                        <a target="_blank" href="{{ generator.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% empty %}
-                    <p>Ничего не найдено</p>
-                {% endfor %}
+                    {% endfor %}
+                </div>
+                <a target="_blank" href="{% url 'generators:catalog' %}" class="home__containers-watch-all">
+                    Смотреть все
+                </a>
             </div>
-            {% if generators %}
-            <div class="pagination">
-                {% for num in generators.paginator.page_range %}
-                    <a href="?page={{ num }}" class="pagination-button {% if num == generators.number %}active{% endif %}">
-                        <p class="red-hover">{{ num }}</p>
-                    </a>
-                {% endfor %}
-            </div>
-            {% endif %}
         </div>
     </div>
 </div>
@@ -390,21 +161,41 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = url.toString();
         });
     });
-
-    // Мобильные фильтры
-    const openMobileFilters = document.getElementById('openMobileFilters');
-    const closeMobileFilters = document.getElementById('closeMobileFilters');
-    const mobileFilters = document.getElementById('mobileFilters'); 
-    
-    openMobileFilters.addEventListener('click', () => {
-        mobileFilters.classList.add('active');
-    });
-
-    closeMobileFilters.addEventListener('click', () => {
-        mobileFilters.classList.remove('active');
-    });
-
 });
+
+// Слайдеры
+$(document).ready((function() {
+    $(".home__containers-cards").slick({
+        arrows: true,
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        adaptiveHeight: false,
+        autoplay: false,
+        responsive: [{
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 768,
+            settings: {
+                centerMode: !0,
+                slidesToShow: 2,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 576,
+            settings: {
+                centerMode: !0,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }] 
+    })
+}))
 
 </script>
 {% endblock %}

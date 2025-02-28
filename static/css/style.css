@@ -198,7 +198,7 @@ html, body, .container {
     display: none;
     min-width: 228px;
     z-index: 10;
-    background-color: #1B1C26;
+    background-color: #1f202c;
     padding: 20px;
     border-radius: 20px;
     transform: translateX(-20px);
@@ -788,7 +788,8 @@ html, body, .container {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.4)
 }
-.home__containers .slick-arrow {
+.home__containers .slick-arrow, 
+.generators-list .slick-arrow {
     width: 32px;
     height: 32px;
     content: none !important;
@@ -796,15 +797,19 @@ html, body, .container {
     background-position: center !important;
 }
 .home__containers .slick-prev:before,
-.home__containers .slick-next:before {
+.home__containers .slick-next:before, 
+.generators-list .slick-prev:before,
+.generators-list .slick-next:before {
     content: none;
 }
-.home__containers .slick-next {
+.home__containers .slick-next, 
+.generators-list .slick-next {
     background-image: url('../images/arrow-right.svg') !important;
     right: -36px !important;
     z-index: 100;
 }
-.home__containers .slick-prev {
+.home__containers .slick-prev, 
+.generators .slick-prev {
     background-image: url('../images/arrow-left.svg') !important;
     left: -36px !important;
 }
@@ -1715,12 +1720,24 @@ footer {
     max-width: 800px;
     line-height: 22px;
 }
-.container__info #tab-description ul li::before {
+.container__info #tab-description ul li::before, 
+.about-company__description ul li::before {
     content: "•"; 
     color: rgb(255, 255, 255); 
     font-size: 16px; 
     margin-right: 8px; 
     margin-left: 8px;
+}
+.rent .home__questions-right {
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+.rent .red-button {
+    padding: 20px 30px;
+    font-size: 20px;
+    font-weight: 600;
 }
 .container__specs-subheading {
     font-weight: 600;
@@ -2102,6 +2119,10 @@ footer {
     object-fit: contain;
     transform: translateY(-50px);
 }
+.rent .home__questions-body {
+    width: 100%;
+    justify-content: space-between;
+}
 .documentation .catalog__filters {
     width: 265px;
 }
@@ -2155,6 +2176,15 @@ footer {
 .documentation__section-heading {
     font-size: 28px;
     line-height: 32px;
+}
+.about-company__description p {
+    line-height: 24px;
+    color: var(--color-dark-white)
+}
+.generators-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 @media (max-width: 1420px) {
     .home__partners-list {
@@ -2851,6 +2881,16 @@ footer {
         width: 24px;
         height: 24px;
     }
+    .rent .home__questions-right {
+        gap: 32px;
+    }
+    .rent .red-button {
+        padding: 12px;
+        font-size: 12px;
+    }
+    .rent.about-company {
+        padding-bottom: 5px;
+    }
 }
 @media (max-width: 720px) {
     .catalog .home__container-card {
@@ -2865,7 +2905,12 @@ footer {
     .catalog .home__container-card {
         flex-direction: row;
         gap: 16px;
-        
+    }
+    .catalog .generators-list .home__container-card {
+        flex-direction: column;
+    }
+    .home__container-card-text {
+        gap: 12px;
     }
     .catalog .home__container-image-link img {
         max-width: 120px;

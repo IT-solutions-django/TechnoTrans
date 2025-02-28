@@ -6,9 +6,9 @@
 
 {% block content %}
 <div class="breadcrumbs container">
-    <p>Главная</p>
+    <a>Главная</a>
     <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
-    <p class="active">Документация</p>
+    <a class="active">Документация</a>
 </div>
 <div class="about-company container documentation">
     <h1 class="catalog__heading">Документация</h1>
@@ -32,7 +32,7 @@
                 <p class="documentation__section-heading">{{ section.full_name }}</p>
                 <div class="documentation__section-body">
                     {% for file in section.files.all %}
-                        <a href="{{ file.file.url }}" class="documentation__file-row">
+                        <a target="_blank" href="{{ file.file.url }}" class="documentation__file-row">
                             <img src="{% static 'images/pdf-icon.svg' %}" alt="">
                             <p href="{{ file.file.url }}">{{ file.get_file_name }}</p>
                         </a>

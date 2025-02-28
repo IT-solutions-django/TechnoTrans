@@ -69,8 +69,15 @@
                         <p class="container__order-card-price--crossed">{{ container.old_price|price_format }} ₽ </p>
                     </div>
                     <div class="container__order-card-in-stock">
-                        <img src="{% static 'images/green-mark.svg' %}" alt="">
-                        В наличии
+                        {% if container.is_in_stock %}
+                            <img src="{% static 'images/green-mark.svg' %}" alt="">
+                            В наличии
+                        {% else %}
+                            <div class="home__container-card-in-stock">
+                                <img src="{% static 'images/gray-circle.svg' %}" alt="">
+                                Под заказ
+                            </div>
+                        {% endif %}
                     </div>
                     
                 </div>

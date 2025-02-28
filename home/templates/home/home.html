@@ -179,6 +179,11 @@
                                                 <img src="{% static 'images/green-mark.svg' %}" alt="">
                                                 В наличии
                                             </div>
+                                        {% else %}
+                                            <div class="home__container-card-in-stock">
+                                                <img src="{% static 'images/gray-circle.svg' %}" alt="">
+                                                Под заказ
+                                            </div>
                                         {% endif %}
                                     </div>
                                     <div class="home__container-button-container">
@@ -509,8 +514,6 @@ document.querySelectorAll('.home__partners-list img').forEach(logo => {
 
     logo.addEventListener('mouseenter', function () {
         quoteBlock.style.opacity = "0.2"; 
-
-        
 
         setTimeout(() => {
             document.querySelector('.home__partners-quote-author-name').textContent = this.dataset.name;

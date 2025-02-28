@@ -127,9 +127,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="header__menu-link">
+                        <!-- <div class="header__menu-link">
                             <a class="red-hover" href="#">Запчасти</a>
-                        </div>
+                        </div> -->
                         <div class="header__menu-link">
                             <a class="red-hover" href="{% url 'generators:catalog' %}">Дизель-генераторы</a>
                         </div>
@@ -188,7 +188,7 @@
                                 {% endfor %}
                             </div>
                         </div>
-                        <div class="footer__column">
+                        <!-- <div class="footer__column">
                             <a href="#" class="red-hover footer__column-subtitle">Запчасти</a>
                             <div class="footer__list">
                                 <a class="footer__column-item red-hover only-desktop" href="">Carrier</a>
@@ -197,12 +197,12 @@
                                 <a class="footer__column-item red-hover only-desktop" href="">Star Cool</a>
                                 <a class="footer__column-item red-hover only-desktop" href="">Расходники</a>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="footer__column">
                             <a href="{% url 'contacts:about_company' %}" class="red-hover footer__column-subtitle">О компании</a>
                             <div class="footer__list">
-                                <a class="footer__column-item red-hover only-desktop" href="">Обслуживание и ремонт </a>
-                                <a class="footer__column-item red-hover only-desktop" href="">Контакты</a>
+                                <a class="footer__column-item red-hover only-desktop" href="{% url 'contacts:documentation' %}">Документация</a>
+                                <a class="footer__column-item red-hover only-desktop" href="">Аренда контейнеров</a>
                                 <a class="footer__column-item red-hover only-desktop" href="{% url 'contacts:privacy_policy' %}">Политика конфиденциальности</a>
                             </div>
                         </div>
