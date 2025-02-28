@@ -1,4 +1,8 @@
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
+import os
+from containers.models import Brand
 
 
 class CompanyInfo(models.Model): 
@@ -49,3 +53,42 @@ class PrivacyPolicyParagraph(models.Model):
     title = models.TextField('Заголовок') 
     content = models.TextField('Содержание')
     privacy_policy = models.ForeignKey(verbose_name='Политика конфиденциальности', to=PrivacyPolicy, on_delete=models.CASCADE, related_name='paragraphs')
+
+
+class DocumentationSection(models.Model): 
+    short_name = models.CharField('Название', max_length=50)
+    full_name = models.CharField('Полное название', max_length=255) 
+    brand = models.ForeignKey(verbose_name='Производитель', to=Brand, null=True, blank=True, on_delete=models.SET_NULL)
+
+    class Meta: 
+        verbose_name = 'раздел документации'
+        verbose_name_plural = 'Документация'
+
+    def __str__(self) -> str: 
+        return f'{self.full_name}'
+    
+
+class DocumentationFile(models.Model): 
+    file = models.FileField(verbose_name='Файл', upload_to='documentation/')
+    doc_section = models.ForeignKey(verbose_name='Раздел документации', to=DocumentationSection, on_delete=models.CASCADE, related_name='files')
+
+    class Meta: 
+        verbose_name = 'файл документации'
+        verbose_name_plural = 'файлы документации'
+
+    def __str__(self):
+        return f'{self.file.name}'
+    
+    def get_file_name(self): 
+        """Возвращает название файла без расширения"""
+        return ''.join(os.path.basename(self.file.name).split('.')[:-1])
+
+
+@receiver(post_delete, sender=DocumentationFile)
+def delete_file_on_delete(sender, instance, **kwargs):
+    """
+    Удаляет файл из файловой системы при удалении объекта DocumentationFile
+    """
+    if instance.file:
+        if os.path.isfile(instance.file.path):
+            os.remove(instance.file.path) 

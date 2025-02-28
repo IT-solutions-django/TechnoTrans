@@ -1,0 +1,80 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load tags %}
+{% load container_tags %}
+
+
+{% block content %}
+<div class="breadcrumbs container">
+    <a>Главная</a>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <a>Рефконтейнеры</a>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <a class="active">Аренда рефконтейнеров</a>
+</div>
+<div class="about-company container rent">
+    <h1 class="catalog__heading">Аренда рефконтейнеров</h1>
+    <div class="catalog-body">
+        <div class="home__questions-body">
+            <div class="about-company__description">
+                <p>В ряде случаев аренда рефрижераторных контейнеров может быть предпочтительней покупки:</p><br>
+                <ul>
+                    <li>зависимость бизнеса от сезонного спроса, который существенно влияет на объемы закупок товара и в разгар сезона требует дополнительных складских площадей;</li><br>
+                    <li>у вновь создаваемых торгово-производственных фирм не всегда имеется финансовая возможность для строительства склада или покупки рефоборудования в постоянное пользование;</li><br>
+                    <li>производственным и торговым организациям периодически требуется транспортировка товаров в условиях определенных температур.</li><br>
+                </ul>
+                <p>Использование автономных навесных дизель-генераторов (Clip On genset или дженсетов) сводит эти риски практически к нулю. Дженсет вырабатывает электричество и питает рефустановку контейнера на протяжении длительного времени (до 7 суток, при условии полного заполнения топливного бака, 460 л).</p><br>
+                <p>В свою очередь, рефконтейнер непрерывно поддерживает заданную температуру груза.</p><br>
+                <p>Наша компания осуществляет прямые поставки из Европы навесных дизель-генераторов на территорию РФ от надежных и проверенных  поставщиков.</p>
+            </div>
+                <div class="home__questions-right">
+                    <div class="home__parts-points">
+                        <div class="main__checkbox">
+                            <div class=main__checkbox-wrap>
+                                <input checked type=checkbox id=consent name=consent required>
+                            </div>
+                            <div>
+                                <label for=consent class=main__checkbox-label>
+                                    Всегда в наличии востребованные оригинальные запчасти
+                                </label>
+                            </div>
+                        </div>
+                        <div class="main__checkbox">
+                            <div class=main__checkbox-wrap>
+                                <input checked type=checkbox id=consent name=consent required>
+                            </div>
+                            <div>
+                                <label for=consent class=main__checkbox-label>
+                                    Быстрая доставка от 2-3 дней.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="main__checkbox">
+                            <div class=main__checkbox-wrap>
+                                <input checked type=checkbox id=consent name=consent required>
+                            </div>
+                            <div>
+                                <label for=consent class=main__checkbox-label>
+                                    Обеспечение всеми необходимыми запчастями и расходными материалами.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="main__checkbox">
+                            <div class=main__checkbox-wrap>
+                                <input checked type=checkbox id=consent name=consent required>
+                            </div>
+                            <div>
+                                <label for=consent class=main__checkbox-label>
+                                    Гарантия 30 дней на все запчасти при обнаружении заводского брака.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="red-button openModal">Связаться с нами</button>
+                </div>
+            </div>
+    </div>
+</div>
+{% include 'home/includes/questions_block.html' %}
+{% include 'home/includes/contacts_block.html' %}
+{% endblock %}

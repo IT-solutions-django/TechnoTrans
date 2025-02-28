@@ -1,0 +1,68 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load tags %}
+{% load container_tags %}
+
+
+{% block content %}
+<div class="breadcrumbs container">
+    <a>Главная</a>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <a class="active">Документация</a>
+</div>
+<div class="about-company container documentation">
+    <h1 class="catalog__heading">Документация</h1>
+    
+    <img class="about-company__image" src="{% static 'images/documentation-bg.png' %}" alt="">
+
+    <div class="catalog-body">
+        <div class="catalog__filters">
+            <div class="documentation__sidebar">
+                <p class="catalog__filter-subtitle">Производитель</p>
+                <div class="documentation__sidebar-list">
+                    {% for section in doc_sections %}
+                        <a href="#section-{{ section.pk }}" class="red-hover">{{ section.short_name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="documentation__main">
+            {% for section in doc_sections %}
+            <div id="section-{{ section.pk }}" class="documentation__section">
+                <p class="documentation__section-heading">{{ section.full_name }}</p>
+                <div class="documentation__section-body">
+                    {% for file in section.files.all %}
+                        <a target="_blank" href="{{ file.file.url }}" class="documentation__file-row">
+                            <img src="{% static 'images/pdf-icon.svg' %}" alt="">
+                            <p href="{{ file.file.url }}">{{ file.get_file_name }}</p>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% include 'home/includes/questions_block.html' %}
+{% include 'home/includes/contacts_block.html' %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const producerLinks = document.querySelectorAll(".documentation__sidebar-list a");
+
+    producerLinks.forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            const targetId = this.getAttribute("href").substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
+    });
+});
+</script>
+
+{% endblock %}
