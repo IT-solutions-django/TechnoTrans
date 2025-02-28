@@ -3,6 +3,8 @@ from django.views import View
 from .models import (
     CompanyInfo, 
     PrivacyPolicy,
+    DocumentationSection, 
+    DocumentationFile,
 )
 
 
@@ -27,6 +29,19 @@ class PrivacyPolicyView(View):
 
         context = {
             'privacy_policy': privacy_policy,
+        }
+
+        return render(request, self.template_name, context)
+    
+
+class DocumentationView(View): 
+    template_name = 'contacts/documentation.html' 
+
+    def get(self, request): 
+        doc_sections = DocumentationSection.objects.all()
+
+        context = {
+            'doc_sections': doc_sections,
         }
 
         return render(request, self.template_name, context)

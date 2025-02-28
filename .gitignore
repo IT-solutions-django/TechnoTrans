@@ -173,3 +173,5 @@ cython_debug/
 
 media/brands/*
 media/containers/*
+media/generators/*
+media/documentation/*

@@ -118,26 +118,26 @@
                 <div class="header__nav">
                     <div class="header__menu">
                         <div class="header__menu-link header__menu-link--dropdown nav__dropdown">
-                            <a target="_blank" class="red-hover" href="{% url 'containers:catalog' %}">Рефконтейнеры</a>
+                            <a class="red-hover" href="{% url 'containers:catalog' %}">Рефконтейнеры</a>
                             <div class="nav__dropdown-content-wrapper">
                                 <div class="nav__dropdown-content">
                                     {% for category in categories %}
-                                        <a target="_blank" href="{% url 'containers:catalog' %}?category={{ category.pk }}" class="nav__link red-hover">{{ category.name }}</a>
+                                        <a href="{% url 'containers:catalog' %}?category={{ category.pk }}" class="nav__link red-hover">{{ category.name }}</a>
                                     {% endfor %}
                                 </div>
                             </div>
                         </div>
                         <div class="header__menu-link">
-                            <a target="_blank" class="red-hover" href="{% url 'repair_parts:catalog' %}">Запчасти</a>
+                            <a class="red-hover" href="#">Запчасти</a>
                         </div>
                         <div class="header__menu-link">
-                            <a target="_blank" class="red-hover" href="{% url 'generators:catalog' %}">Дизель-генераторы</a>
+                            <a class="red-hover" href="{% url 'generators:catalog' %}">Дизель-генераторы</a>
                         </div>
                         <div class="header__menu-link">
-                            <a target="_blank" class="red-hover" href="">Обслуживание и ремонт</a>
+                            <a class="red-hover" href="{% url 'contacts:about_company' %}">О компании</a>
                         </div>
                         <div class="header__menu-link">
-                            <a target="_blank" class="red-hover" href="{% url 'contacts:about_company' %}">О компании</a>
+                            <a class="red-hover" href="{% url 'contacts:documentation' %}">Документация</a>
                         </div>
                     </div>
                     <div class="header__right-part">
@@ -171,7 +171,7 @@
             <div class="footer-inner">
                 <div class="footer-upper">
                     <div class="footer__left">
-                        <a target="_blank" href="{% url 'home:home' %}" class="footer__logo-link">
+                        <a href="{% url 'home:home' %}" class="footer__logo-link">
                             <img src="{% static 'images/logo.svg' %}" alt="">
                         </a>
                         <div class="footer__company-info">
@@ -181,15 +181,15 @@
                     </div>
                     <div class="footer__right">
                         <div class="footer__column">
-                            <a target="_blank" href="{% url 'containers:catalog' %}" class="red-hover footer__column-subtitle">Рефконтейнеры</a>
+                            <a href="{% url 'containers:catalog' %}" class="red-hover footer__column-subtitle">Рефконтейнеры</a>
                             <div class="footer__list">
                                 {% for category in categories %}
-                                    <a target="_blank" href="{% url 'containers:catalog' %}?category={{ category.pk }}" class="footer__column-item red-hover only-desktop">{{ category.name }}</a>
+                                    <a href="{% url 'containers:catalog' %}?category={{ category.pk }}" class="footer__column-item red-hover only-desktop">{{ category.name }}</a>
                                 {% endfor %}
                             </div>
                         </div>
                         <div class="footer__column">
-                            <a target="_blank" href="#" class="red-hover footer__column-subtitle">Запчасти</a>
+                            <a href="#" class="red-hover footer__column-subtitle">Запчасти</a>
                             <div class="footer__list">
                                 <a class="footer__column-item red-hover only-desktop" href="">Carrier</a>
                                 <a class="footer__column-item red-hover only-desktop" href="">Thermo King</a>
@@ -199,7 +199,7 @@
                             </div>
                         </div>
                         <div class="footer__column">
-                            <a target="_blank" href="{% url 'contacts:about_company' %}" class="red-hover footer__column-subtitle">О компании</a>
+                            <a href="{% url 'contacts:about_company' %}" class="red-hover footer__column-subtitle">О компании</a>
                             <div class="footer__list">
                                 <a class="footer__column-item red-hover only-desktop" href="">Обслуживание и ремонт </a>
                                 <a class="footer__column-item red-hover only-desktop" href="">Контакты</a>

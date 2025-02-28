@@ -70,13 +70,13 @@ html {
 }
 
 body {
-    background-color: #14151F;
+    background-color: var(--dark-bg-color);
     font-size: 16px;
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    color: white;
+    color: var(--color-dark-white);
     
     max-width: 100%;
     width: 100%;
@@ -84,12 +84,11 @@ body {
 }
 
 header {
-    /* height: 150px; */
     position: fixed;
     top: 0;
     z-index: 100;
     width: 100%;
-    background-color: #14151F;
+    background-color: #232432;
     border-bottom: 1px solid rgb(255, 255, 255, 0.03);
 }
 
@@ -117,10 +116,6 @@ main {
     max-width: 1380px;
     margin: 0 auto;
     width: 100%;
-
-    
-    /* TODO: убрать */
-    /* border: 1px solid white;  */
 }
 header .container {
     overflow-x: visible;
@@ -394,7 +389,7 @@ html, body, .container {
         right: 0;
         left: 0;
         background-color: #fff;
-        background-color: #14151F; 
+        background-color: var(--dark-bg-color); 
         z-index: 9000;
         width: 100vw;
         height: 100vh;
@@ -807,6 +802,7 @@ html, body, .container {
 .home__containers .slick-next {
     background-image: url('../images/arrow-right.svg') !important;
     right: -36px !important;
+    z-index: 100;
 }
 .home__containers .slick-prev {
     background-image: url('../images/arrow-left.svg') !important;
@@ -829,6 +825,7 @@ html, body, .container {
     /* max-width: 220px; */
     object-fit: cover;
     height: 220px; 
+    width: 220px;
     border-radius: 8px;
 
 }
@@ -920,7 +917,9 @@ html, body, .container {
 .home__container-lower {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
+    flex-direction: column;
+    gap: 24px;
 }
 .home__container-lower-left {
     display: flex;
@@ -1591,8 +1590,8 @@ footer {
 }
 @media (min-width: 1150px) {
     .home__container-card.slick-slide {
-        margin-left: 26px;
-        margin-right: 26px;
+        margin-left: 8px;
+        margin-right: 8px;
     }
 }
 .pagination {
@@ -1743,6 +1742,21 @@ footer {
 .container__slide img {
     object-fit: cover;
     border-radius: 12px;
+}
+.container__slide.slick-slide {
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+.container__slide.slick-slide:hover {
+    
+}
+.container__slide.slick-slide.slick-current.slick-active {
+    border: 2px solid var(--color-red);
+    border-radius: 12px;
+}
+.container__slider-nav img {
+    width: 98px;
+    height: 98px;
 }
 .container__current-slide img {
     margin-bottom: 30px;
@@ -1969,6 +1983,7 @@ footer {
 }
 #mainImage1 {
     opacity: 1;
+    max-width: 790px;
 }
 .main-image {
     z-index: 2;
@@ -2034,7 +2049,7 @@ footer {
     right: 0;
     left: 0;
     background-color: #fff;
-    background-color: #14151F;
+    background-color: var(--dark-bg-color);
     z-index: 9000;
     width: 100vw;
     height: 100vh;
@@ -2074,6 +2089,73 @@ footer {
 .main-image--centered {
     display: none;
 }
+.about-company__delivery {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.about-company__delivery-description {
+    max-width: 694px;
+}
+.about-company__delivery-map {
+    max-width: 100%;
+    object-fit: contain;
+    transform: translateY(-50px);
+}
+.documentation .catalog__filters {
+    width: 265px;
+}
+.documentation__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 16px;
+    background-color: rgb(255, 255, 255, 0.03);
+    border-radius: 12px;
+    width: 100%;
+}
+.documentation__sidebar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.documentation__sidebar-list a {
+    width: min-content;
+}
+.documentation__main {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    flex: 1;
+}
+.documentation__section {
+    display: flex; 
+    flex-direction: column;
+    gap: 24px;
+}
+.documentation__section-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.documentation__file-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+.documentation__file-row p {
+    transition: inherit;
+}
+.documentation__file-row:hover p {
+    color: var(--color-red)
+}
+.documentation__section-heading {
+    font-size: 28px;
+    line-height: 32px;
+}
 @media (max-width: 1420px) {
     .home__partners-list {
         gap: 40px;
@@ -2098,6 +2180,10 @@ footer {
     }
     .main__prices {
         width: 600px;
+    }
+    .about-company__delivery-map {
+        transform: none;
+        margin-top: 32px;
     }
 }
 @media (max-width: 1200px) {
@@ -2148,7 +2234,7 @@ footer {
         transform: scale(0.7) translateX(130px);
     }
     #mainImage1 {
-        transform: scale(0.7) translateX(90px);
+        /* transform: scale(0.7) translateX(90px); */
     }
     .home__parts-left {
         max-width: 760px;
@@ -2219,7 +2305,7 @@ footer {
         position: absolute;
         z-index: 20;
         width: calc(100vw - 32px);
-        max-width: calc(100vw - 32px);
+        /* max-width: calc(100vw - 120px); */
         max-height: 400px;
         object-fit: contain;
     }
@@ -2454,7 +2540,7 @@ footer {
     }
     .home__container-card img {
         height: 160px;
-        /* width: 160px; */
+        width: 160px;
     }
     .home__container-card-name--small, 
     .home__container-card-in-stock {
@@ -2748,6 +2834,22 @@ footer {
     .header__hamburger img {
         width: 22px;
         height: 16px;
+    }
+    .main-image--centered {
+        max-width: calc(100vw - 32px);
+    }
+    .documentation__section-heading {
+        font-size: 20px;
+        line-height: 26px;
+    }
+    .documentation__file-row p {
+        font-size: 12px;
+        line-height: 17px;
+        word-break: break-all;
+    }
+    .documentation__file-row img {
+        width: 24px;
+        height: 24px;
     }
 }
 @media (max-width: 720px) {
