@@ -3,6 +3,25 @@
 {% load tags %}
 {% load container_tags %} 
 
+
+{% block title %}Рефконтейнеры на 20, 30 футов - покупка, аренда, цены | ТехноТранс{% endblock %} 
+{% block meta_title %}Рефконтейнеры на 20, 30 футов - покупка, аренда, цены | ТехноТранс{% endblock %} 
+{% block description %}
+    {% if applied_filters %}
+        Рефрижераторные контейнеры под любые цели с доставкой по России. Контейнеры {% if selected_types %} размером {{ selected_types }}{% endif %}{% if selected_years %} {{ selected_years }} года производства{% endif %}{% if selected_brands %} {{ selected_brands }}{% endif %}. Цены от {{ min_price|price_format }}! Оставьте заявку или рассчитайте стоимость на нашем сайте. 
+    {% else %}
+        Рефрижераторные контейнеры под любые цели. Контейнеры для перевозок новые и б/у от брендов {{ brands_list }} с доставкой по России. Оставьте заявку на покупку или аренду на нашем сайте!
+    {% endif %}
+{% endblock %} 
+{% block meta_description %}
+    {% if applied_filters %}
+        Рефрижераторные контейнеры под любые цели с доставкой по России. Контейнеры {% if selected_types %} размером {{ selected_types }}{% endif %}{% if selected_years %} {{ selected_years }} года производства{% endif %}{% if selected_brands %} {{ selected_brands }}{% endif %}. Цены от {{ min_price|price_format }}! Оставьте заявку или рассчитайте стоимость на нашем сайте. 
+    {% else %}
+        Рефрижераторные контейнеры под любые цели. Контейнеры для перевозок новые и б/у от брендов {{ brands_list }} с доставкой по России. Оставьте заявку на покупку или аренду на нашем сайте!
+    {% endif %}
+{% endblock %} 
+
+
 {% block content %}
 <div class="breadcrumbs container">
     <a class="red-hover" href="{% url 'home:home' %}">Главная</a>

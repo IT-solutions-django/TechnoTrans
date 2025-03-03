@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.views import View 
-from .models import Container
+from django.db.models import Min
+from .models import Container, ContainerType, Brand
 from .forms import FilterForm
 from .services import get_paginated_collection
+
 
 
 class CatalogView(View): 
@@ -15,6 +17,11 @@ class CatalogView(View):
     def get(self, request): 
         containers = Container.objects.all() 
         filter_form = FilterForm(request.GET)
+        min_price = Container.objects.aggregate(Min('price'))['price__min']
+
+        selected_years = []
+        selected_brands = []
+        selected_types = []
 
         if filter_form.is_valid():
             cd = filter_form.cleaned_data
@@ -28,12 +35,15 @@ class CatalogView(View):
 
             if cd.get('container_type'):
                 containers = containers.filter(container_type__id__in=cd['container_type'])
+                selected_types = list(ContainerType.objects.filter(id__in=cd['container_type']).values_list('name', flat=True))
 
             if cd.get('brand'):
                 containers = containers.filter(brand__id__in=cd['brand'])
+                selected_brands = list(Brand.objects.filter(id__in=cd['brand']).values_list('name', flat=True))
 
             if cd.get('year'):
                 containers = containers.filter(year__in=cd['year'])
+                selected_years = list(map(str, cd['year']))
 
             if cd.get('price'): 
                 min_price, max_price = get_min_and_max_price_for_choices(cd.get('price'))
@@ -57,14 +67,20 @@ class CatalogView(View):
                         'value': value,
                         'human_value': dict(field.choices).get(value, value)
                     })
-
             
         containers = get_paginated_collection(request, containers, self.ITEMS_PER_PAGE)
+
+        brands_list = ', '.join(brand.name for brand in Brand.objects.all())
 
         context = {
             'containers': containers,
             'filter_form': filter_form,
             'applied_filters': applied_filters,
+            'selected_years': ', '.join(selected_years),
+            'selected_brands': ', '.join(selected_brands),
+            'selected_types': ', '.join(selected_types),
+            'min_price': min_price,
+            'brands_list': brands_list,
         }
         return render(request, self.template_name, context)
     

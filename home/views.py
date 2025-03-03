@@ -18,9 +18,11 @@ class HomeView(View):
     def get(self, request): 
         categories = Category.objects.all().prefetch_related('category_containers').all()
         calculate_form = CalculatePriceRequestForm()
+        brands_list = ', '.join(brand.name for brand in Brand.objects.all())
         context = {
             'categories': categories,
             'calculate_form': calculate_form,
+            'brands_list': brands_list,
         }
         return render(request, self.template_name, context)
     
