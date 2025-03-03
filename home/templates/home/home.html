@@ -58,17 +58,17 @@
                 Связаться с нами
             </button>
             <a href="{{ company_info.whatsapp_link }}" class="main__button-transparent">
-                <img src="static/images/whatsapp.svg" alt="">
+                <img src="static/images/whatsapp.svg" alt="Логтип WhatsApp">
                 Написать в WhatsApp
             </a>
         </div>
     </div>
     <div class="main__right">
         <div class="main__prices">
-            <img class="main-image" id="mainImage1" src="static/images/new-main1.png" alt="">
-            <img class="main-image" id="mainImage2" src="{% static 'images/main-2-2.png' %}" alt="">
-            <img class="main-image" id="mainImage3" src="{% static 'images/main3.png' %}" alt="">
-            <img class="main-image--centered" src="static/images/new-main1.png" alt="">
+            <img class="main-image" id="mainImage1" src="static/images/new-main1.png" alt="Контейнер">
+            <img class="main-image" id="mainImage2" src="{% static 'images/main-2-2.png' %}" alt="Контейнер">
+            <img class="main-image" id="mainImage3" src="{% static 'images/main3.png' %}" alt="Фото">
+            <img class="main-image--centered" src="static/images/new-main1.png" alt="Контейнер">
             <div id="mainDivision1" class="main__price main-division">
                 <div class="main__price-label">Аренда универсальных контейнеров</div>
                 <div class="main__price-value">
@@ -164,7 +164,7 @@
                     {% for container in category.category_containers.all %}
                         <div class="home__container-card">
                             <a target="_blank" href="{{ container.get_absolute_url }}">
-                                <img src="{{ container.images.all.0.image.url }}" alt="">
+                                <img src="{{ container.images.all.0.image.url }}" alt="Фото контейнера">
                             </a>
                             <div class="home__container-card-text">
                                 <div class="home__container-card-name">
@@ -176,12 +176,12 @@
                                         <p class="home__container-card-price">{{ container.price|price_format }} ₽ </p>
                                         {% if container.is_in_stock %}
                                             <div class="home__container-card-in-stock">
-                                                <img src="{% static 'images/green-mark.svg' %}" alt="">
+                                                <img src="{% static 'images/green-mark.svg' %}" alt="Галочка">
                                                 В наличии
                                             </div>
                                         {% else %}
                                             <div class="home__container-card-in-stock">
-                                                <img src="{% static 'images/gray-circle.svg' %}" alt="">
+                                                <img src="{% static 'images/gray-circle.svg' %}" alt="Крест">
                                                 Под заказ
                                             </div>
                                         {% endif %}
@@ -256,19 +256,19 @@
         </div>
         <div class="home__parts-right">
             <div class="home__parts-brand-card">
-                <img src="static/images/part-brand-1.png" alt="">
+                <img src="static/images/part-brand-1.png" alt="Логотип бренда">
                 <a target="_blank" class="home__parts-brand-card-button" href="{% url 'repair_parts:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card">
-                <img src="static/images/part-brand-2.png" alt="">
+                <img src="static/images/part-brand-2.png" alt="Логотип бренда">
                 <a target="_blank" class="home__parts-brand-card-button" href="{% url 'repair_parts:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card">
-                <img src="static/images/part-brand-3.png" alt="">
+                <img src="static/images/part-brand-3.png" alt="Логотип бренда">
                 <a target="_blank" class="home__parts-brand-card-button" href="{% url 'repair_parts:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card">
-                <img src="static/images/part-brand-4.png" alt="">
+                <img src="static/images/part-brand-4.png" alt="Логотип бренда">
                 <a target="_blank" class="home__parts-brand-card-button" href="{% url 'repair_parts:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card only-desktop">
@@ -295,13 +295,13 @@
     </div>
     <div class="home__service-body">
         <div class="home__service-left">
-            <img class="home__service-image" src="static/images/home-service-image.png" alt="">
+            <img class="home__service-image" src="static/images/home-service-image.png" alt="Фото">
             <p class="home__service-text">Столкнулись с поломкой рефрижераторного контейнера? <br>
                 Мы предлагаем быстрые и качественные услуги по диагностике и ремонту, минимизируя ваши затраты и риски порчи груза.</p>
             <div class="home__service-points">
                 <div class="home__service-point">
                     <div class="home__service-point-icon">
-                        <img src="static/images/home-service-search.svg" alt="">
+                        <img src="static/images/home-service-search.svg" alt="Иконка 1">
                     </div>
                     <div class="home__service-point-text">
                         <p class="home__service-point-heading">Диагностика (Pre Trip Inspection)</p>
@@ -310,7 +310,7 @@
                 </div>
                 <div class="home__service-point">
                     <div class="home__service-point-icon">
-                        <img src="static/images/home-service-settings.svg" alt="">
+                        <img src="static/images/home-service-settings.svg" alt="Иконка 2">
                     </div>
                     <div class="home__service-point-text">
                         <p class="home__service-point-heading">Ремонт и замена узлов и агрегатов рефрижераторов</p>
@@ -319,7 +319,7 @@
                 </div>
                 <div class="home__service-point">
                     <div class="home__service-point-icon">
-                        <img src="static/images/home-service-lightning.svg" alt="">
+                        <img src="static/images/home-service-lightning.svg" alt="Иконка 3">
                     </div>
                     <div class="home__service-point-text">
                         <p class="home__service-point-heading">Ремонт компрессоров, микроконтроллеров, дисплеев и других компонентов</p>
@@ -328,7 +328,7 @@
                 </div>
                 <div class="home__service-point">
                     <div class="home__service-point-icon">
-                        <img src="static/images/home-service-speedometer.svg" alt="">
+                        <img src="static/images/home-service-speedometer.svg" alt="Иконка 4">
                     </div>
                     <div class="home__service-point-text">
                         <p class="home__service-point-heading">Заправка системы фреоном</p>
@@ -378,43 +378,43 @@
 <div class="home__partners container">
     <div class="block-heading">Нам доверяют</div>
     <div class="home__partners-list">
-        <img src="static/images/partners-five.png" alt="" 
+        <img src="static/images/partners-five.png" alt="Логотип компании" 
             data-name="Иванов Алексей Петрович" 
             data-role="Директор по развитию X5 Group"
             data-quote="X5 Group ценит качество обслуживания и надежность партнера."
             data-img="static/images/partners-quote-author.png">
         
-        <img src="static/images/partners-gazprom.png" alt="" 
+        <img src="static/images/partners-gazprom.png" alt="Логотип компании" 
             data-name="Петров Сергей Викторович" 
             data-role="Руководитель логистического отдела Газпром"
             data-quote="Газпром отмечает высокий профессионализм и оперативность."
             data-img="static/images/partners-quote-author.png">
         
-        <img src="static/images/partners-agro.png" alt="" 
+        <img src="static/images/partners-agro.png" alt="Логотип компании" 
             data-name="Мельников Сергей Владимирович" 
             data-role="Заместитель генерального директора по закупкам и снабжению АО фирмы «Агрокомплекс»"
             data-quote="Компания зарекомендовала себя как надежный партнер в сфере логистики."
             data-img="static/images/partners-quote-author.png">
 
-        <img src="static/images/partners-fesco.png" alt=""
+        <img src="static/images/partners-fesco.png" alt="Логотип компании"
             data-name="Сидоров Иван Геннадьевич"
             data-role="Глава отдела перевозок FESCO"
             data-quote="FESCO доверяет надежным партнерам в сфере перевозок."
             data-img="static/images/partners-quote-author.png">
         
-        <img src="static/images/partners-ab.png" alt=""
+        <img src="static/images/partners-ab.png" alt="Логотип компании"
             data-name="Александров Дмитрий Сергеевич"
             data-role="Логистический менеджер AB Group"
             data-quote="AB Group сотрудничает только с лучшими компаниями."
             data-img="static/images/partners-quote-author.png">
         
-        <img src="static/images/partners-ashan.png" alt=""
+        <img src="static/images/partners-ashan.png" alt="Логотип компании"
             data-name="Кузнецов Николай Владимирович"
             data-role="Менеджер по логистике Ашан"
             data-quote="Ашан отмечает высокий уровень сервиса."
             data-img="static/images/partners-quote-author.png">
         
-        <img src="static/images/partners-ozon.png" alt=""
+        <img src="static/images/partners-ozon.png" alt="Логотип компании"
             data-name="Смирнов Олег Игоревич"
             data-role="Глава отдела партнерств Ozon"
             data-quote="Ozon доверяет партнерам, которые соблюдают стандарты качества."
@@ -422,14 +422,14 @@
     </div>
     <div class="home__partners-quote-block">
         <div class="home__partners-quote-author">
-            <img class="home__partners-quote-author-img" src="static/images/partners-quote-author.png" alt="">
+            <img class="home__partners-quote-author-img" src="static/images/partners-quote-author.png" alt="Фото представителя компании">
             <div class="home__partners-quote-author-content">
                 <p class="home__partners-quote-author-name">Мельников Сергей Владимирович</p>
                 <p class="home__partners-quote-author-role">Заместитель генерального директора по закупкам и снабжению АО фирмы «Агрокомплекс»</p>
             </div>
         </div>
         <div class="home__partners-quote-text">
-            <img src="static/images/quote-icon.svg" alt="">
+            <img src="static/images/quote-icon.svg" alt="Символ цитаты">
             <p id="quote-text">Компания зарекомендовала себя как надежный партнер в сфере логистики.</p>
         </div>
     </div>

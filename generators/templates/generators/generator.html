@@ -8,9 +8,9 @@
 <script src="{% static 'js/slick/slick/slick.min.js' %}"></script>
 <div class="breadcrumbs container">
     <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
     <a class="red-hover" href="{% url 'containers:catalog' %}">Генераторы</a>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
     <a class="active" href=" ">{{ generator.name }}</a>
 </div>
 
@@ -39,7 +39,7 @@
         </div>
         <div class="container__right">
             <div class="container__short-info">
-                <img class="container__brand-logo" src="{{ generator.brand.image.url }}" alt="">
+                <img class="container__brand-logo" src="{{ generator.brand.image.url }}" alt="Фото генератора">
                 <div class="container__table-info">
                     <div class="container__table-row">
                         <span class="container__table-label">Год выпуска</span>
@@ -68,10 +68,10 @@
                     </div>
                     <div class="container__order-card-in-stock">
                         {% if generator.is_in_stock %}
-                            <img src="{% static 'images/green-mark.svg' %}" alt="">
+                            <img src="{% static 'images/green-mark.svg' %}" alt="Галочка">
                             В наличии
                         {% else %}
-                            <img src="{% static 'images/gray-circle.svg' %}" alt="">
+                            <img src="{% static 'images/gray-circle.svg' %}" alt="Крест">
                             Под заказ
                         {% endif %}
                     </div>
@@ -82,7 +82,7 @@
                         Оформить заказ
                     </button>
                     <a href="{{ company_info.whatsapp_link }}" class="main__button-transparent">
-                        <img src="{% static 'images/whatsapp.svg' %}" alt="">
+                        <img src="{% static 'images/whatsapp.svg' %}" alt="Логотип WhatsApp">
                         <p>Написать в Whatsapp</p>
                     </a>
                 </div>

@@ -8,7 +8,7 @@
 {% block content %}
 <div class="breadcrumbs container">
     <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
     <a href=" " class="active">Дизель-генераторы</a>
 </div>
 
@@ -25,7 +25,7 @@
             <div class="home__service-points">
                 <div class="home__service-point">
                     <div class="home__service-point-icon">
-                        <img src="{% static 'images/about-company-key.svg' %}" alt="">
+                        <img src="{% static 'images/about-company-key.svg' %}" alt="Иконка 1">
                     </div>
                     <div class="home__service-point-text">
                         <p class="home__service-point-heading">Индивидуальный подход к каждому клиенту</p>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="home__service-point">
                     <div class="home__service-point-icon">
-                        <img src="{% static 'images/about-company-bag.svg' %}" alt="">
+                        <img src="{% static 'images/about-company-bag.svg' %}" alt="Иконка 2">
                     </div>
                     <div class="home__service-point-text">
                         <p class="home__service-point-heading">Профессионализм и опыт команды</p>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="home__service-point">
                     <div class="home__service-point-icon">
-                        <img src="{% static 'images/about-company-checkmark.svg' %}" alt="">
+                        <img src="{% static 'images/about-company-checkmark.svg' %}" alt="Иконка 3">
                     </div>
                     <div class="home__service-point-text">
                         <p class="home__service-point-heading">Гибкость и поддержка клиентов</p>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="home__service-point">
                     <div class="home__service-point-icon">
-                        <img src="{% static 'images/about-company-well.svg' %}" alt="">
+                        <img src="{% static 'images/about-company-well.svg' %}" alt="Иконка 4">
                     </div>
                     <div class="home__service-point-text">
                         <p class="home__service-point-heading">Удобство и простота в сотрудничестве</p>
@@ -67,7 +67,7 @@
                     {% for generator in generators %}
                         <div class="home__container-card">
                             <a target="_blank" href="{{ generator.get_absolute_url }}">
-                                <img src="{{ generator.images.all.0.image.url }}" alt="">
+                                <img src="{{ generator.images.all.0.image.url }}" alt="Фото генератора">
                             </a>
                             <div class="home__container-card-text">
                                 <div class="home__container-card-name">
@@ -79,12 +79,12 @@
                                         <p class="home__container-card-price">{{ generator.price|price_format }} ₽ </p>
                                         {% if generator.is_in_stock %}
                                             <div class="home__container-card-in-stock">
-                                                <img src="{% static 'images/green-mark.svg' %}" alt="">
+                                                <img src="{% static 'images/green-mark.svg' %}" alt="Галочка">
                                                 В наличии
                                             </div>
                                         {% else %}
                                             <div class="home__container-card-in-stock">
-                                                <img src="{% static 'images/gray-circle.svg' %}" alt="">
+                                                <img src="{% static 'images/gray-circle.svg' %}" alt="Крест">
                                                 Под заказ
                                             </div>
                                         {% endif %}
