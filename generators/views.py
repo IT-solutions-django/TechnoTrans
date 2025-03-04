@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from containers.services import get_paginated_collection
 from containers.views import get_min_and_max_price_for_choices 
 from .forms import GeneratorFilterForm
-from .models import Generator
+from .models import Generator, GeneratorType, GeneratorPower
 
 
 class GeneratorsCatalogView(View): 
@@ -16,6 +16,10 @@ class GeneratorsCatalogView(View):
     def get(self, request): 
         filter_form = GeneratorFilterForm(request.GET)
         generators = Generator.objects.all()
+
+        selected_years = []
+        selected_powers = []
+        selected_types = []
 
         if filter_form.is_valid():
             cd = filter_form.cleaned_data
@@ -30,12 +34,15 @@ class GeneratorsCatalogView(View):
             if cd.get('generator_type'):
                 print(cd.get('generator_type'))
                 generators = generators.filter(generator_type_id__in=cd['generator_type']).distinct()
+                selected_types = list(GeneratorType.objects.filter(id__in=cd['generator_type']).values_list('name', flat=True))
 
             if cd.get('power'):
-                generators = generators.filter(power__id__in=cd['power'])
+                generators = generators.filter(power__id__in=cd['power']).distinct()
+                selected_types = list(GeneratorType.objects.filter(id__in=cd['power']).values_list('name', flat=True))
 
             if cd.get('year'):
                 generators = generators.filter(year__in=cd['year'])
+                selected_years = list(map(str, cd['year']))
 
             if cd.get('price'): 
                 min_price, max_price = get_min_and_max_price_for_choices(cd.get('price'))
@@ -68,6 +75,9 @@ class GeneratorsCatalogView(View):
             'generators': generators,
             'filter_form': filter_form,
             'applied_filters': applied_filters,
+            'selected_years': ', '.join(selected_years),
+            'selected_powers': ', '.join(selected_powers),
+            'selected_types': ', '.join(selected_types),
         }
         return render(request, self.template_name, context)
     

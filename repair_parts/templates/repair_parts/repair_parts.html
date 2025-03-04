@@ -75,7 +75,7 @@
 
 <div class="breadcrumbs container">
     <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
     <a href=" " class="active">Запчасти</a>
 </div>
 
@@ -83,7 +83,7 @@
     <h1 class="catalog__heading">Запчасти</h1>
     <div id="openMobileFilters" class="catalog__open-filters-button transparent-button">
         <div class="catalog__open-filters-button--label">
-            <img src="{% static 'images/settings.svg' %}" alt="">
+            <img src="{% static 'images/settings.svg' %}" alt="Фильтры">
             <p>Фильтры</p>
         </div>
     </div>
@@ -165,7 +165,7 @@
                 {% for part in repair_parts %}
                     <div class="home__container-card">
                         <a class="home__container-image-link" href="{{ part.get_absolute_url }}">
-                            <img src="{{ part.images.all.0.image.url }}" alt="">
+                            <img src="{{ part.images.all.0.image.url }}" alt="Фото запчасти">
                         </a>
                         <div class="home__container-card-text">
                             <div class="home__container-card-name">

@@ -4,23 +4,29 @@
 {% load container_tags %}
 
 
+{% block title %}Компания по продаже рефконтейнеров и дизельных генераторов - контакты | ТехноТранс{% endblock %} 
+{% block meta_title %}Компания по продаже рефконтейнеров и дизельных генераторов - контакты | ТехноТранс{% endblock %} 
+{% block description %}История компании, этапы покупки и доставки и контактные данные компании ТехноТранс. Оставьте заявку на нашем сайте для получения подробного расчета стоимости рефконтейнера, дизель генератора или запчастей для них.{% endblock %} 
+{% block meta_description %}История компании, этапы покупки и доставки и контактные данные компании ТехноТранс. Оставьте заявку на нашем сайте для получения подробного расчета стоимости рефконтейнера, дизель генератора или запчастей для них.{% endblock %} 
+
+
 {% block content %}
 <div class="breadcrumbs container">
     <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Логотип">
     <a href=" " class="active">О компании</a>
 </div>
 <div class="about-company container">
     <h1 class="catalog__heading">О компании</h1>
     <div class="about-company__body">
-        <img class="about-company__image" src="{% static 'images/about-company-background.png' %}" alt="">
+        <img class="about-company__image" src="{% static 'images/about-company-background.png' %}" alt="О компании">
         <div class="about-company__description">
             {{ company_info.description|markdown }}
         </div>
         <div class="home__service-points">
             <div class="home__service-point">
                 <div class="home__service-point-icon">
-                    <img src="{% static 'images/about-company-key.svg' %}" alt="">
+                    <img src="{% static 'images/about-company-key.svg' %}" alt="Иконка 1">
                 </div>
                 <div class="home__service-point-text">
                     <p class="home__service-point-heading">Индивидуальный подход к каждому клиенту</p>
@@ -29,7 +35,7 @@
             </div>
             <div class="home__service-point">
                 <div class="home__service-point-icon">
-                    <img src="{% static 'images/about-company-bag.svg' %}" alt="">
+                    <img src="{% static 'images/about-company-bag.svg' %}" alt="Иконка 2">
                 </div>
                 <div class="home__service-point-text">
                     <p class="home__service-point-heading">Профессионализм и опыт команды</p>
@@ -38,7 +44,7 @@
             </div>
             <div class="home__service-point">
                 <div class="home__service-point-icon">
-                    <img src="{% static 'images/about-company-checkmark.svg' %}" alt="">
+                    <img src="{% static 'images/about-company-checkmark.svg' %}" alt="Иконка 3">
                 </div>
                 <div class="home__service-point-text">
                     <p class="home__service-point-heading">Гибкость и поддержка клиентов</p>
@@ -47,7 +53,7 @@
             </div>
             <div class="home__service-point">
                 <div class="home__service-point-icon">
-                    <img src="{% static 'images/about-company-well.svg' %}" alt="">
+                    <img src="{% static 'images/about-company-well.svg' %}" alt="Иконка 4">
                 </div>
                 <div class="home__service-point-text">
                     <p class="home__service-point-heading">Удобство и простота в сотрудничестве</p>
@@ -111,7 +117,7 @@
                 <div class="about-company__delivery-description">
                     Наша компания предоставляет полный спектр услуг по доставке и продаже контейнеров любого типа в любую точку России и стран СНГ. Мы гарантируем надежность, оперативность и индивидуальный подход к каждому клиенту
                 </div>
-                <img class="about-company__delivery-map" src="{% static 'images/map.svg' %}" alt="">
+                <img class="about-company__delivery-map" src="{% static 'images/map.svg' %}" alt="Карта">
             </div>
         </div>
     </div>

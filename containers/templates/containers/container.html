@@ -3,21 +3,28 @@
 {% load tags %}
 {% load container_tags %} 
 
+
+{% block title %}Рефконтейнер {{ container.brand }} {{  container.container_type}} за {{ container.price }} р | ТехноТранс{% endblock %} 
+{% block meta_title %}Рефконтейнер {{ container.brand }} {{  container.container_type}} за {{ container.price }} р | ТехноТранс{% endblock %} 
+{% block description %}Рефрижераторные контейнеры под любые цели с доставкой по России. Контейнеры размером {{ container.container_type }} {{ container.year }} года производства {{ container.brand }}. Цены от {{ container.price|price_format }} р! Оставьте заявку или рассчитайте стоимость на нашем сайте. {% endblock %} 
+{% block meta_description %}Рефрижераторные контейнеры под любые цели с доставкой по России. Контейнеры размером {{ container.container_type }} {{ container.year }} года производства {{ container.brand }}. Цены от {{ container.price|price_format }} р! Оставьте заявку или рассчитайте стоимость на нашем сайте. {% endblock %} 
+
+
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
 <script src="{% static 'js/slick/slick/slick.min.js' %}"></script>
 <div class="breadcrumbs container">
     <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
     <a class="red-hover" href="{% url 'containers:catalog' %}">Рефконтейнеры</a>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
     <a class="red-hover" href="{% url 'containers:catalog' %}?brand={{ container.brand.pk }}">{{ container.brand.name }}</a>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
     <a class="active" href=" ">{{ container.name }}</a>
 </div>
 
 <div class="catalog container">
-    <h1 class="catalog__heading">{{ container.name }}</h1>
+    <h1 class="catalog__heading">{{ container.name }} {{ container.container_type.name|foot_to_symbol }}</h1>
     <div class="container__general-info">
         <div class="container__left">
             <div class="container__slider">
@@ -41,7 +48,7 @@
         </div>
         <div class="container__right">
             <div class="container__short-info">
-                <img class="container__brand-logo" src="{{ container.brand.image.url }}" alt="">
+                <img class="container__brand-logo" src="{{ container.brand.image.url }}" alt="Бренд">
                 <div class="container__table-info">
                     <div class="container__table-row">
                         <span class="container__table-label">Модель</span>
@@ -70,13 +77,11 @@
                     </div>
                     <div class="container__order-card-in-stock">
                         {% if container.is_in_stock %}
-                            <img src="{% static 'images/green-mark.svg' %}" alt="">
+                            <img src="{% static 'images/green-mark.svg' %}" alt="Галочка">
                             В наличии
                         {% else %}
-                            <div class="home__container-card-in-stock">
-                                <img src="{% static 'images/gray-circle.svg' %}" alt="">
-                                Под заказ
-                            </div>
+                            <img src="{% static 'images/gray-circle.svg' %}" alt="Крест">
+                            Под заказ
                         {% endif %}
                     </div>
                     
@@ -86,7 +91,7 @@
                         Оформить заказ
                     </button>
                     <a href="{{ company_info.whatsapp_link }}" class="main__button-transparent">
-                        <img src="{% static 'images/whatsapp.svg' %}" alt="">
+                        <img src="{% static 'images/whatsapp.svg' %}" alt="Логотип WhatsApp">
                         <p>Написать в Whatsapp</p>
                     </a>
                 </div>

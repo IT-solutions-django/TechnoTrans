@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-from core.services import convert_image_to_webp
+from core.services import convert_image_to_webp, add_watermark
 
 
 class GeneratorCategory(models.Model): 
@@ -78,7 +78,12 @@ class GeneratorImage(models.Model):
                 return
 
         webp_image = convert_image_to_webp(self.image)
-        if webp_image:
-            self.image.save(webp_image.name, webp_image, save=False)
+
+        watermarked_image = add_watermark(
+            image_stream=webp_image
+        )
+
+        if watermarked_image:
+            self.image.save(webp_image.name, watermarked_image, save=False)
         
         super().save(*args, **kwargs)

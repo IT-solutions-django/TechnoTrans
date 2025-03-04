@@ -4,16 +4,22 @@
 {% load container_tags %}
 
 
+{% block title %}Руководство по эксплуатации рефконтейнеров Carrier, Daikin, ThermoKing | ТехноТранс{% endblock %} 
+{% block meta_title %}Руководство по эксплуатации рефконтейнеров Carrier, Daikin, ThermoKing | ТехноТранс{% endblock %} 
+{% block description %}Подробная документация по использованию рефрижераторных контейнеров самых популярных брендов. Документация по различным моделям на сайте ТехноТранс.{% endblock %} 
+{% block meta_description %}Подробная документация по использованию рефрижераторных контейнеров самых популярных брендов. Документация по различным моделям на сайте ТехноТранс.{% endblock %} 
+
+
 {% block content %}
 <div class="breadcrumbs container">
     <a>Главная</a>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
     <a class="active">Документация</a>
 </div>
 <div class="about-company container documentation">
     <h1 class="catalog__heading">Документация</h1>
     
-    <img class="about-company__image" src="{% static 'images/documentation-bg.png' %}" alt="">
+    <img class="about-company__image" src="{% static 'images/documentation-bg.png' %}" alt="Документация">
 
     <div class="catalog-body">
         <div class="catalog__filters">
@@ -33,7 +39,7 @@
                 <div class="documentation__section-body">
                     {% for file in section.files.all %}
                         <a target="_blank" href="{{ file.file.url }}" class="documentation__file-row">
-                            <img src="{% static 'images/pdf-icon.svg' %}" alt="">
+                            <img src="{% static 'images/pdf-icon.svg' %}" alt="PDF">
                             <p href="{{ file.file.url }}">{{ file.get_file_name }}</p>
                         </a>
                     {% endfor %}

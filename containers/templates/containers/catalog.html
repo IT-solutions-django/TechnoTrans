@@ -3,10 +3,29 @@
 {% load tags %}
 {% load container_tags %} 
 
+
+{% block title %}Рефконтейнеры на 20, 30 футов - покупка, аренда, цены | ТехноТранс{% endblock %} 
+{% block meta_title %}Рефконтейнеры на 20, 30 футов - покупка, аренда, цены | ТехноТранс{% endblock %} 
+{% block description %}
+    {% if applied_filters %}
+        Рефрижераторные контейнеры под любые цели с доставкой по России. Контейнеры {% if selected_types %} размером {{ selected_types }}{% endif %}{% if selected_years %} {{ selected_years }} года производства{% endif %}{% if selected_brands %} {{ selected_brands }}{% endif %}. Цены от {{ min_price|price_format }}! Оставьте заявку или рассчитайте стоимость на нашем сайте. 
+    {% else %}
+        Рефрижераторные контейнеры под любые цели. Контейнеры для перевозок новые и б/у от брендов {{ brands_list }} с доставкой по России. Оставьте заявку на покупку или аренду на нашем сайте!
+    {% endif %}
+{% endblock %} 
+{% block meta_description %}
+    {% if applied_filters %}
+        Рефрижераторные контейнеры под любые цели с доставкой по России. Контейнеры {% if selected_types %} размером {{ selected_types }}{% endif %}{% if selected_years %} {{ selected_years }} года производства{% endif %}{% if selected_brands %} {{ selected_brands }}{% endif %}. Цены от {{ min_price|price_format }}! Оставьте заявку или рассчитайте стоимость на нашем сайте. 
+    {% else %}
+        Рефрижераторные контейнеры под любые цели. Контейнеры для перевозок новые и б/у от брендов {{ brands_list }} с доставкой по России. Оставьте заявку на покупку или аренду на нашем сайте!
+    {% endif %}
+{% endblock %} 
+
+
 {% block content %}
 <div class="breadcrumbs container">
     <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
     <a href=" " class="active">Рефконтейнеры</a>
 </div>
 
@@ -153,7 +172,7 @@
     <h1 class="catalog__heading">Рефконтейнеры</h1>
     <div id="openMobileFilters" class="catalog__open-filters-button transparent-button">
         <div class="catalog__open-filters-button--label">
-            <img src="{% static 'images/settings.svg' %}" alt="">
+            <img src="{% static 'images/settings.svg' %}" alt="Фильтры">
             <p>Фильтры</p>
         </div>
     </div>
@@ -292,12 +311,12 @@
             <div class="catalog__cards">
                 {% for container in containers %}
                     <div class="home__container-card">
-                        <a target="_blank"class="home__container-image-link" href="{{ container.get_absolute_url }}">
-                            <img src="{{ container.images.all.0.image.url }}" alt="">
+                        <a class="home__container-image-link" href="{{ container.get_absolute_url }}">
+                            <img src="{{ container.images.all.0.image.url }}" alt="Фото контейнера">
                         </a>
                         <div class="home__container-card-text">
                             <div class="home__container-card-name">
-                                <a target="_blank" href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
+                                <a href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
                                 <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ container.year }}г. <span class="container__name-divider">|</span> {{ container.model }}</p>
                             </div>
                             <div class="home__container-lower">
@@ -305,18 +324,18 @@
                                     <p class="home__container-card-price">{{ container.price|price_format }} ₽ </p>
                                     {% if container.is_in_stock %}
                                         <div class="home__container-card-in-stock">
-                                            <img src="{% static 'images/green-mark.svg' %}" alt="">
+                                            <img src="{% static 'images/green-mark.svg' %}" alt="Галочка">
                                             В наличии
                                         </div>
                                     {% else %}
                                         <div class="home__container-card-in-stock">
-                                            <img src="{% static 'images/gray-circle.svg' %}" alt="">
+                                            <img src="{% static 'images/gray-circle.svg' %}" alt="Крест">
                                             Под заказ
                                         </div>
                                     {% endif %}
                                 </div>
                                 <div>
-                                    <a target="_blank"href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                    <a href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
                                 </div>
                             </div>
                         </div>

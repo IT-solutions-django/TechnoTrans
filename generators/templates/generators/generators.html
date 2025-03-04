@@ -5,10 +5,18 @@
 {% load repair_parts_tags %}
 {% load container_tags %}
 
+
+{% block title %}Дизельные генераторы трехфазные на 100, 300 квт - покупка, аренда, цены | ТехноТранс{% endblock %} 
+{% block meta_title %}Дизельные генераторы трехфазные на 100, 300 квт - покупка, аренда, цены | ТехноТранс{% endblock %} 
+{% block description %}Дизель генераторы под любые цели. Генераторы высоковольтные, трехфазные и с автозапуском с доставкой по России. Цены от 500 т.р! Оставьте заявку или рассчитайте стоимость на нашем сайте.  
+{% endblock %} 
+{% block meta_description %}Дизель генераторы под любые цели. Генераторы высоковольтные, трехфазные и с автозапуском с доставкой по России. Цены от 500 т.р! Оставьте заявку или рассчитайте стоимость на нашем сайте.{% endblock %} 
+
+
 {% block content %}
 <div class="breadcrumbs container">
     <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
     <a href=" " class="active">Дизель-генераторы</a>
 </div>
 
@@ -25,7 +33,7 @@
             <div class="home__service-points">
                 <div class="home__service-point">
                     <div class="home__service-point-icon">
-                        <img src="{% static 'images/about-company-key.svg' %}" alt="">
+                        <img src="{% static 'images/about-company-key.svg' %}" alt="Иконка 1">
                     </div>
                     <div class="home__service-point-text">
                         <p class="home__service-point-heading">Индивидуальный подход к каждому клиенту</p>
@@ -34,7 +42,7 @@
                 </div>
                 <div class="home__service-point">
                     <div class="home__service-point-icon">
-                        <img src="{% static 'images/about-company-bag.svg' %}" alt="">
+                        <img src="{% static 'images/about-company-bag.svg' %}" alt="Иконка 2">
                     </div>
                     <div class="home__service-point-text">
                         <p class="home__service-point-heading">Профессионализм и опыт команды</p>
@@ -43,7 +51,7 @@
                 </div>
                 <div class="home__service-point">
                     <div class="home__service-point-icon">
-                        <img src="{% static 'images/about-company-checkmark.svg' %}" alt="">
+                        <img src="{% static 'images/about-company-checkmark.svg' %}" alt="Иконка 3">
                     </div>
                     <div class="home__service-point-text">
                         <p class="home__service-point-heading">Гибкость и поддержка клиентов</p>
@@ -52,7 +60,7 @@
                 </div>
                 <div class="home__service-point">
                     <div class="home__service-point-icon">
-                        <img src="{% static 'images/about-company-well.svg' %}" alt="">
+                        <img src="{% static 'images/about-company-well.svg' %}" alt="Иконка 4">
                     </div>
                     <div class="home__service-point-text">
                         <p class="home__service-point-heading">Удобство и простота в сотрудничестве</p>
@@ -66,12 +74,12 @@
                 <div class="home__containers-cards">
                     {% for generator in generators %}
                         <div class="home__container-card">
-                            <a target="_blank" href="{{ generator.get_absolute_url }}">
-                                <img src="{{ generator.images.all.0.image.url }}" alt="">
+                            <a href="{{ generator.get_absolute_url }}">
+                                <img src="{{ generator.images.all.0.image.url }}" alt="Фото генератора">
                             </a>
                             <div class="home__container-card-text">
                                 <div class="home__container-card-name">
-                                    <a target="_blank" href="{{ generator.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ generator.name }}</a>
+                                    <a href="{{ generator.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ generator.name }}</a>
                                     <p class="home__container-card-name--small">{{ generator.generator_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ generator.year }}г.</p>
                                 </div>
                                 <div class="home__container-lower">
@@ -79,25 +87,25 @@
                                         <p class="home__container-card-price">{{ generator.price|price_format }} ₽ </p>
                                         {% if generator.is_in_stock %}
                                             <div class="home__container-card-in-stock">
-                                                <img src="{% static 'images/green-mark.svg' %}" alt="">
+                                                <img src="{% static 'images/green-mark.svg' %}" alt="Галочка">
                                                 В наличии
                                             </div>
                                         {% else %}
                                             <div class="home__container-card-in-stock">
-                                                <img src="{% static 'images/gray-circle.svg' %}" alt="">
+                                                <img src="{% static 'images/gray-circle.svg' %}" alt="Крест">
                                                 Под заказ
                                             </div>
                                         {% endif %}
                                     </div>
                                     <div class="home__container-button-container">
-                                        <a target="_blank" href="{{ generator.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                        <a href="{{ generator.get_absolute_url }}" class="home__container-button">Подробнее</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
-                <a target="_blank" href="{% url 'generators:catalog' %}" class="home__containers-watch-all">
+                <a href="{% url 'generators:catalog' %}" class="home__containers-watch-all">
                     Смотреть все
                 </a>
             </div>

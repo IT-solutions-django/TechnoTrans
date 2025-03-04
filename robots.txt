@@ -1,0 +1,7 @@
+User-agent: *
+
+Allow: /
+Disallow: /admin/
+Disallow: /about/privacy-policy/
+
+Sitemap: https://ttrans.pro/sitemap.xml

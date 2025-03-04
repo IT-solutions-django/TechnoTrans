@@ -8,11 +8,11 @@
 <script src="{% static 'js/slick/slick/slick.min.js' %}"></script>
 <div class="breadcrumbs container">
     <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
     <a class="red-hover" href="{% url 'repair_parts:catalog' %}">Запчасти</a>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
     <a class="red-hover" href="{% url 'repair_parts:catalog' %}?brand={{ repair_part.brand.pk }}">{{ repair_part.brand.name }}</a>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="">
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
     <a class="active" href=" ">{{ repair_part.name }}</a>
 </div>
 
@@ -41,7 +41,7 @@
         </div>
         <div class="container__right">
             <div class="container__short-info">
-                <img class="container__brand-logo" src="{{ repair_part.brand.image.url }}" alt="">
+                <img class="container__brand-logo" src="{{ repair_part.brand.image.url }}" alt="Логотип бренда">
                 <div class="container__table-info">
                     <div class="container__table-row container__table-row--last">
                         <span class="container__table-label">Производитель</span>
@@ -61,8 +61,13 @@
                         <p class="container__order-card-price--crossed">{{ repair_part.old_price|price_format }} ₽ </p>
                     </div>
                     <div class="container__order-card-in-stock">
-                        <img src="{% static 'images/green-mark.svg' %}" alt="">
-                        В наличии
+                        {% if container.is_in_stock %}
+                            <img src="{% static 'images/green-mark.svg' %}" alt="Галочка">
+                            В наличии
+                        {% else %}
+                            <img src="{% static 'images/gray-circle.svg' %}" alt="Крест">
+                            Под заказ
+                        {% endif %}
                     </div>
                     
                 </div>
@@ -71,7 +76,7 @@
                         Оформить заказ
                     </button>
                     <a href="{{ company_info.whatsapp_link }}" class="main__button-transparent">
-                        <img src="{% static 'images/whatsapp.svg' %}" alt="">
+                        <img src="{% static 'images/whatsapp.svg' %}" alt="Логотип WhatsApp">
                         <p>Написать в Whatsapp</p>
                     </a>
                 </div>

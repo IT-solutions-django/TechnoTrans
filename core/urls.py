@@ -18,6 +18,23 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static 
 from django.conf import settings
+from django.contrib.sitemaps.views import sitemap
+from django.urls import re_path
+from django.views.static import serve
+from .sitemaps import (
+    HomeViewSitemap,
+    StaticViewSitemap, 
+    ContainerViewSitemap, 
+    GeneratorViewSitemap,
+)
+
+
+sitemaps = {
+    'home': HomeViewSitemap,
+    'static': StaticViewSitemap,
+    'containers': ContainerViewSitemap,
+    'generators': GeneratorViewSitemap,
+}
 
 
 urlpatterns = [
@@ -28,6 +45,19 @@ urlpatterns = [
     path('about/', include('contacts.urls', namespace='contacts')),
     path('repair-parts/', include('repair_parts.urls', namespace='repair_parts')),
     path('generators/', include('generators.urls', namespace='generators')),
+
+
+    # re_path(r'^robots\.txt$', serve, {
+    #     'document_root': settings.BASE_DIR,
+    #     'path': 'robots.txt',
+    # }),
+
+    # path(
+    #     'sitemap.xml',
+    #     sitemap,
+    #     {'sitemaps': sitemaps},
+    #     name='django.contrib.sitemaps.views.sitemap',
+    # ),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
