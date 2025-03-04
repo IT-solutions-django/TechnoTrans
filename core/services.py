@@ -42,7 +42,7 @@ def add_watermark(image_stream, text="@ТехноТранс", font_size=50, posi
     txt_layer = PILImage.new("RGBA", image.size, (255, 255, 255, 0))
     draw = ImageDraw.Draw(txt_layer)
 
-    font = ImageFont.truetype("arial.ttf", font_size)
+    font = ImageFont.truetype("fonts/arial.ttf", font_size)
     text_width, text_height = draw.textbbox((0, 0),  text, font)[2:]
     print(text_height)
 
