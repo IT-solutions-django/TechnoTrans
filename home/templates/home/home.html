@@ -13,7 +13,7 @@
 <div class="main container">
     <div class="main__left">
         <div class="main__heading">
-            <p>Логистика, продажа <br> и аренда контейнеров <br> для технических рейсов <br> в России и Китае</p>
+            <h1>Логистика, продажа <br> и аренда контейнеров <br> для технических рейсов <br> в России и Китае</h1>
         </div>
         <div class="main__points">
             <div class="main__checkbox">
@@ -79,7 +79,7 @@
                 <div class="main__price-value">
                     <span class="main__price-big">от 2$</span> /сутки
                 </div>
-                <a target="_blank" href="{% url 'containers:catalog' %}" class="transparent-button">
+                <a href="{% url 'containers:catalog' %}" class="transparent-button">
                     <button>Выбрать модель</button>
                 </a>
             </div>
@@ -168,12 +168,12 @@
                 <div class="home__containers-cards">
                     {% for container in category.category_containers.all %}
                         <div class="home__container-card">
-                            <a target="_blank" href="{{ container.get_absolute_url }}">
+                            <a href="{{ container.get_absolute_url }}">
                                 <img src="{{ container.images.all.0.image.url }}" alt="Фото контейнера">
                             </a>
                             <div class="home__container-card-text">
                                 <div class="home__container-card-name">
-                                    <a target="_blank" href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
+                                    <a href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
                                     <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ container.year }}г. <span class="container__name-divider">|</span> {{ container.model }}</p>
                                 </div>
                                 <div class="home__container-lower">
@@ -192,14 +192,14 @@
                                         {% endif %}
                                     </div>
                                     <div class="home__container-button-container">
-                                        <a target="_blank" href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                        <a href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
-                <a target="_blank" href="{% url 'containers:catalog' %}" class="home__containers-watch-all">
+                <a href="{% url 'containers:catalog' %}" class="home__containers-watch-all">
                     Смотреть все
                 </a>
             </div>
@@ -262,33 +262,33 @@
         <div class="home__parts-right">
             <div class="home__parts-brand-card">
                 <img src="static/images/part-brand-1.png" alt="Логотип бренда">
-                <a target="_blank" class="home__parts-brand-card-button" href="{% url 'repair_parts:catalog' %}">Смотреть все</a>
+                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card">
                 <img src="static/images/part-brand-2.png" alt="Логотип бренда">
-                <a target="_blank" class="home__parts-brand-card-button" href="{% url 'repair_parts:catalog' %}">Смотреть все</a>
+                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card">
                 <img src="static/images/part-brand-3.png" alt="Логотип бренда">
-                <a target="_blank" class="home__parts-brand-card-button" href="{% url 'repair_parts:catalog' %}">Смотреть все</a>
+                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card">
                 <img src="static/images/part-brand-4.png" alt="Логотип бренда">
-                <a target="_blank" class="home__parts-brand-card-button" href="{% url 'repair_parts:catalog' %}">Смотреть все</a>
+                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card only-desktop">
                 <p class="home__parts-brand-card-heading">Расходники</p>
-                <a target="_blank" class="home__parts-brand-card-button" href="{% url 'repair_parts:catalog' %}">Смотреть все</a>
+                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
             <div class="home__parts-brand-card only-desktop">
                 <p class="home__parts-brand-card-heading">Расходники</p>
-                <a target="_blank" class="home__parts-brand-card-button-red background-red-hover" href="">Запросить весь каталог</a>
+                <a class="home__parts-brand-card-button-red background-red-hover" href="">Запросить весь каталог</a>
             </div>
         </div>
-        <a target="_blank" href="{% url 'repair_parts:catalog' %}" class="home__parts-brand-card-button--mobile-container only-mobile--flex">
+        <a href="{% url 'containers:catalog' %}" class="home__parts-brand-card-button--mobile-container only-mobile--flex">
             <p class="home__parts-brand-card-button--mobile">Расходники</p>
         </a>
-        <a target="_blank" href="{% url 'repair_parts:catalog' %}" class="home__parts-brand-card-button--mobile-container-red only-mobile--flex background-red-hover">
+        <a href="{% url 'containers:catalog' %}" class="home__parts-brand-card-button--mobile-container-red only-mobile--flex background-red-hover">
             <p class="home__parts-brand-card-button--mobile">Запросить весь каталог</p>
         </a>
     </div>

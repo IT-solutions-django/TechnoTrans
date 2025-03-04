@@ -311,12 +311,12 @@
             <div class="catalog__cards">
                 {% for container in containers %}
                     <div class="home__container-card">
-                        <a target="_blank"class="home__container-image-link" href="{{ container.get_absolute_url }}">
+                        <a class="home__container-image-link" href="{{ container.get_absolute_url }}">
                             <img src="{{ container.images.all.0.image.url }}" alt="Фото контейнера">
                         </a>
                         <div class="home__container-card-text">
                             <div class="home__container-card-name">
-                                <a target="_blank" href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
+                                <a href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
                                 <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ container.year }}г. <span class="container__name-divider">|</span> {{ container.model }}</p>
                             </div>
                             <div class="home__container-lower">
@@ -335,7 +335,7 @@
                                     {% endif %}
                                 </div>
                                 <div>
-                                    <a target="_blank"href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                    <a href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
                                 </div>
                             </div>
                         </div>

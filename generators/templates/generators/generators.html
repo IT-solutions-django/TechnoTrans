@@ -74,12 +74,12 @@
                 <div class="home__containers-cards">
                     {% for generator in generators %}
                         <div class="home__container-card">
-                            <a target="_blank" href="{{ generator.get_absolute_url }}">
+                            <a href="{{ generator.get_absolute_url }}">
                                 <img src="{{ generator.images.all.0.image.url }}" alt="Фото генератора">
                             </a>
                             <div class="home__container-card-text">
                                 <div class="home__container-card-name">
-                                    <a target="_blank" href="{{ generator.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ generator.name }}</a>
+                                    <a href="{{ generator.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ generator.name }}</a>
                                     <p class="home__container-card-name--small">{{ generator.generator_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ generator.year }}г.</p>
                                 </div>
                                 <div class="home__container-lower">
@@ -98,14 +98,14 @@
                                         {% endif %}
                                     </div>
                                     <div class="home__container-button-container">
-                                        <a target="_blank" href="{{ generator.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                        <a href="{{ generator.get_absolute_url }}" class="home__container-button">Подробнее</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
-                <a target="_blank" href="{% url 'generators:catalog' %}" class="home__containers-watch-all">
+                <a href="{% url 'generators:catalog' %}" class="home__containers-watch-all">
                     Смотреть все
                 </a>
             </div>
