@@ -808,6 +808,7 @@ html, body, .container {
     background-image: url('../images/arrow-right.svg') !important;
     right: 36px !important;
     z-index: 100;
+    /* display: none !important; */
 }
 .home__containers .slick-prev, 
 .generators .slick-prev {
@@ -815,6 +816,13 @@ html, body, .container {
     left: 36px !important;
     z-index: 20; */
 }
+@media (max-width: 1380px) {
+    .home__containers .slick-next, 
+    .generators .slick-next {
+        display: none !important;
+    }
+}
+    
 .home__container-card {
     border-radius: 12px;
     background-color: rgba(255, 255, 255, 0.03);
