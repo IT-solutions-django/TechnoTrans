@@ -806,13 +806,14 @@ html, body, .container {
 .home__containers .slick-next, 
 .generators-list .slick-next {
     background-image: url('../images/arrow-right.svg') !important;
-    right: -36px !important;
+    right: 36px !important;
     z-index: 100;
 }
 .home__containers .slick-prev, 
 .generators .slick-prev {
-    background-image: url('../images/arrow-left.svg') !important;
-    left: -36px !important;
+    /* background-image: url('../images/arrow-left.svg') !important;
+    left: 36px !important;
+    z-index: 20; */
 }
 .home__container-card {
     border-radius: 12px;
