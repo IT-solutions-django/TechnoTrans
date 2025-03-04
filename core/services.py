@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 from PIL import Image as PILImage, ImageDraw, ImageFont
 from django.core.files.base import ContentFile 
 from io import BytesIO
+from django.conf import settings
 
 
 def convert_image_to_webp(image_field):
@@ -42,9 +43,9 @@ def add_watermark(image_stream, text="@ТехноТранс", font_size=50, posi
     txt_layer = PILImage.new("RGBA", image.size, (255, 255, 255, 0))
     draw = ImageDraw.Draw(txt_layer)
 
-    font = ImageFont.truetype("fonts/arial.ttf", font_size)
+    font_path = os.path.join(settings.STATIC_ROOT, "fonts", "arial.ttf")
+    font = ImageFont.truetype(font_path, font_size)
     text_width, text_height = draw.textbbox((0, 0),  text, font)[2:]
-    print(text_height)
 
     PADDING = 20
     positions = {
