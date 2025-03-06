@@ -61,7 +61,7 @@ class Container(models.Model):
     brand = models.ForeignKey(verbose_name='Бренд', to=Brand, on_delete=models.CASCADE, null=True, blank=True)
     categories = models.ManyToManyField(verbose_name='Категория', to=Category, related_name='category_containers', null=True, blank=True)
     slug = models.SlugField(verbose_name='Слаг', max_length=500)
-    old_price = models.IntegerField(verbose_name='Старая цена', default=0)
+    old_price = models.IntegerField(verbose_name='Старая цена', null=True, blank=True)
     price = models.IntegerField(verbose_name='Цена', default=0)
     description = models.TextField('Описание', max_length=2000, default='', null=True, blank=True)
 
@@ -88,12 +88,6 @@ class Container(models.Model):
     
     def get_absolute_url(self) -> str: 
         return reverse('containers:container', args=[self.slug])
-    
-    def save(self, *args, **kwargs):
-        from .views import generate_slug
-        self.slug = generate_slug(self.name)
-        
-        super().save(*args, **kwargs)
 
 
 class ContainerImage(models.Model): 
