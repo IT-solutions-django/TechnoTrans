@@ -1,10 +1,13 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.views import View 
 from django.db.models import Min
-from .models import Container, ContainerType, Brand
+from .models import Container, ContainerType, Brand, ContainerImage
 from .forms import FilterForm
+from django.core.files.temp import NamedTemporaryFile
 from .services import get_paginated_collection
+from django.core.files import File
 
 
 
@@ -135,3 +138,76 @@ class ContainersRentView(View):
 
         }
         return render(request, self.template_name, context)
+    
+
+class AddContainersView(View): 
+    def get(self, request): 
+        import requests 
+        from bs4 import BeautifulSoup
+
+        response = requests.get('https://refexpress.ru/prodazha-refkonteynerov/')
+
+        with open('file.html', 'w', encoding='utf-8') as file: 
+            file.write(response.text)
+
+        if response.status_code == 200:
+            # Создаем объект BeautifulSoup для парсинга
+            soup = BeautifulSoup(response.text, 'lxml')
+            
+            containers = soup.find_all(class_='uc_post_grid_style_one_item')
+
+            for card in containers: 
+                link_to_card = card.find(class_='uc_post_grid_style_one_image')['href']
+                name = card.find(class_='uc_title').text
+                price = int(str(card.find(class_='woocommerce-Price-amount').text).replace('\xa0₽', '').replace(' ', '')[:-3])
+
+                response = requests.get(link_to_card) 
+
+                container, created = Container.objects.get_or_create(
+                    name=name,
+                    defaults={
+                        'price': price,
+                        'slug': generate_slug(name)
+                    }
+                )
+                container.save()
+
+
+                soup = BeautifulSoup(response.text, 'lxml') 
+                images = soup.find_all(class_='woocommerce-product-gallery__image')
+
+
+                container.images.all().delete()
+                for img in images:
+                    image_url = img.find("a").find("img")["data-large_image"]
+                    image_name = image_url.split('/')[-1] 
+
+                    image_response = requests.get(image_url)
+                    if image_response.status_code == 200:
+                        img_temp = NamedTemporaryFile()
+                        img_temp.write(image_response.content)
+                        img_temp.flush()
+
+                        container_image = ContainerImage(container=container)
+                        container_image.image.save(image_name, File(img_temp))
+
+                        print(f'Сохранено изображение: {image_name} для контейнера {container}')
+
+            
+        return JsonResponse({'status': 'super'})
+
+
+def generate_slug(name: str) -> str:
+    import re
+    from transliterate import translit
+    """
+    Генерирует слаг из названия.
+    Транслитерирует русские символы в латиницу, убирает пробелы и специальные символы.
+    """
+    slug = translit(name, 'ru', reversed=True)
+    
+    slug = re.sub(r'[^a-zA-Z0-9-]', ' ', slug)
+    slug = re.sub(r'\s+', '-', slug)
+    slug = slug.lower().strip('-') 
+    
+    return slug

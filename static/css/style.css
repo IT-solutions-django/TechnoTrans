@@ -1769,6 +1769,7 @@ footer {
 .container__slide img {
     object-fit: cover;
     border-radius: 12px;
+    max-height: 425px;
 }
 .container__slide.slick-slide {
     cursor: pointer;
@@ -1865,7 +1866,7 @@ footer {
 
 .lum-img {
     object-fit: cover !important;
-    width: 85vw
+    width: 85vw;
 }
 
 @media (max-width:990px) {
@@ -2522,6 +2523,7 @@ footer {
     }
     .container__current-slide.slick-initialized.slick-slider img{
         min-height: 240px;
+        max-height: 240px;
     }
     .container__slide.slick-slide.slick-current.slick-active {
         border: 2px solid var(--color-red);

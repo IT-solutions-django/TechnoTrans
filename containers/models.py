@@ -1,6 +1,9 @@
 from django.db import models
 from django.urls import reverse
 from core.services import convert_image_to_webp, add_watermark
+from django.dispatch import receiver
+from django.db.models.signals import post_delete
+import os
 
 
 class Category(models.Model): 
@@ -51,16 +54,16 @@ class ContainerModel(models.Model):
 
 class Container(models.Model): 
     name = models.CharField('Название', max_length=100)
-    model = models.ForeignKey(verbose_name='Модель', to=ContainerModel, on_delete=models.CASCADE, related_name='model_containers')
-    year = models.SmallIntegerField('Год выпуска') 
+    model = models.ForeignKey(verbose_name='Модель', to=ContainerModel, on_delete=models.CASCADE, related_name='model_containers', null=True, blank=True)
+    year = models.SmallIntegerField('Год выпуска', default=-1) 
     is_in_stock = models.BooleanField('В наличии', default=True)
-    container_type = models.ForeignKey(verbose_name='Тип', to=ContainerType, on_delete=models.CASCADE, related_name='type_containers')
-    brand = models.ForeignKey(verbose_name='Бренд', to=Brand, on_delete=models.CASCADE)
+    container_type = models.ForeignKey(verbose_name='Тип', to=ContainerType, on_delete=models.CASCADE, related_name='type_containers', null=True, blank=True)
+    brand = models.ForeignKey(verbose_name='Бренд', to=Brand, on_delete=models.CASCADE, null=True, blank=True)
     categories = models.ManyToManyField(verbose_name='Категория', to=Category, related_name='category_containers', null=True, blank=True)
     slug = models.SlugField(verbose_name='Слаг', max_length=500)
     old_price = models.IntegerField(verbose_name='Старая цена', default=0)
     price = models.IntegerField(verbose_name='Цена', default=0)
-    description = models.TextField('Описание', max_length=2000, default='')
+    description = models.TextField('Описание', max_length=2000, default='', null=True, blank=True)
 
     length_outer = models.SmallIntegerField('Длина внешняя', null=True, blank=True)
     width_outer = models.SmallIntegerField('Ширина внешняя', null=True, blank=True)
@@ -85,6 +88,12 @@ class Container(models.Model):
     
     def get_absolute_url(self) -> str: 
         return reverse('containers:container', args=[self.slug])
+    
+    def save(self, *args, **kwargs):
+        from .views import generate_slug
+        self.slug = generate_slug(self.name)
+        
+        super().save(*args, **kwargs)
 
 
 class ContainerImage(models.Model): 
@@ -115,3 +124,13 @@ class ContainerImage(models.Model):
             self.image.save(webp_image.name, watermarked_image, save=False)
         
         super().save(*args, **kwargs)
+
+
+@receiver(post_delete, sender=ContainerImage)
+def delete_image_file(sender, instance, **kwargs):
+    """
+    Сигнал для удаления файла изображения после удаления объекта.
+    """
+    if instance.image:
+        if os.path.isfile(instance.image.path):
+            os.remove(instance.image.path)

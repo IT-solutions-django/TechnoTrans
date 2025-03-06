@@ -38,7 +38,7 @@ def convert_image_to_webp(image_field):
     )
 
 
-def add_watermark(image_stream, text="@ТехноТранс", font_size=50, position="bottom_left", opacity=200):
+def add_watermark(image_stream, text="ttrans.pro", font_size=50, position="bottom_left", opacity=200):
     image = PILImage.open(image_stream).convert("RGBA")
     txt_layer = PILImage.new("RGBA", image.size, (255, 255, 255, 0))
     draw = ImageDraw.Draw(txt_layer)
@@ -47,11 +47,11 @@ def add_watermark(image_stream, text="@ТехноТранс", font_size=50, posi
     font = ImageFont.truetype(font_path, font_size)
     text_width, text_height = draw.textbbox((0, 0),  text, font)[2:]
 
-    PADDING = 20
+    PADDING = 26
     positions = {
         "top_left": (PADDING, PADDING),
         "top_right": (image.width - text_width - PADDING, PADDING),
-        "bottom_left": (10, image.height - text_height - PADDING),
+        "bottom_left": (PADDING, image.height - text_height - PADDING),
         "bottom_right": (image.width - text_width - PADDING, image.height - text_height - PADDING),
         "center": ((image.width - text_width) // 2, (image.height - text_height) // 2)
     }
