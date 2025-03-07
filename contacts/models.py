@@ -12,6 +12,9 @@ class CompanyInfo(models.Model):
     phone = models.CharField('Номер телефона', max_length=20, null=True, blank=True)
     email = models.CharField('Email', max_length=50, null=True, blank=True)
 
+    delivery_info = models.TextField('Доставка (текст)', max_length=1000, null=True, blank=True)
+    payment_info = models.TextField('Оплата (текст)', max_length=1000, null=True, blank=True)
+
     class Meta: 
         verbose_name = 'Информация о компании'
         verbose_name_plural = 'Информация о компании'
