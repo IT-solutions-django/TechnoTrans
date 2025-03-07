@@ -383,47 +383,14 @@
 <div class="home__partners container">
     <div class="block-heading">Нам доверяют</div>
     <div class="home__partners-list">
-        <img src="static/images/partners-five.png" alt="Логотип компании" 
-            data-name="Иванов Алексей Петрович" 
-            data-role="Директор по развитию X5 Group"
-            data-quote="X5 Group ценит качество обслуживания и надежность партнера."
-            data-img="static/images/partners-quote-author.png">
-        
-        <img src="static/images/partners-gazprom.png" alt="Логотип компании" 
-            data-name="Петров Сергей Викторович" 
-            data-role="Руководитель логистического отдела Газпром"
-            data-quote="Газпром отмечает высокий профессионализм и оперативность."
-            data-img="static/images/partners-quote-author.png">
-        
-        <img src="static/images/partners-agro.png" alt="Логотип компании" 
-            data-name="Мельников Сергей Владимирович" 
-            data-role="Заместитель генерального директора по закупкам и снабжению АО фирмы «Агрокомплекс»"
-            data-quote="Компания зарекомендовала себя как надежный партнер в сфере логистики."
-            data-img="static/images/partners-quote-author.png">
-
-        <img src="static/images/partners-fesco.png" alt="Логотип компании"
-            data-name="Сидоров Иван Геннадьевич"
-            data-role="Глава отдела перевозок FESCO"
-            data-quote="FESCO доверяет надежным партнерам в сфере перевозок."
-            data-img="static/images/partners-quote-author.png">
-        
-        <img src="static/images/partners-ab.png" alt="Логотип компании"
-            data-name="Александров Дмитрий Сергеевич"
-            data-role="Логистический менеджер AB Group"
-            data-quote="AB Group сотрудничает только с лучшими компаниями."
-            data-img="static/images/partners-quote-author.png">
-        
-        <img src="static/images/partners-ashan.png" alt="Логотип компании"
-            data-name="Кузнецов Николай Владимирович"
-            data-role="Менеджер по логистике Ашан"
-            data-quote="Ашан отмечает высокий уровень сервиса."
-            data-img="static/images/partners-quote-author.png">
-        
-        <img src="static/images/partners-ozon.png" alt="Логотип компании"
-            data-name="Смирнов Олег Игоревич"
-            data-role="Глава отдела партнерств Ozon"
-            data-quote="Ozon доверяет партнерам, которые соблюдают стандарты качества."
-            data-img="static/images/partners-quote-author.png">
+        {% for partner in partners %}
+            <img src="{{ partner.logo.url }}" alt="Логотип компании" 
+                data-name="Иванов Алексей Петрович" 
+                data-role="Директор по развитию X5 Group"
+                data-quote="X5 Group ценит качество обслуживания и надежность партнера."
+                data-img="static/images/partners-quote-author.png"
+            >
+        {% endfor %}
     </div>
     <div class="home__partners-quote-block">
         <div class="home__partners-quote-author">

@@ -7,6 +7,7 @@ from containers.models import (
     Container, 
     ContainerType,
 )
+from contacts.models import Partner
 from loguru import logger
 from .forms import FeedbackForm, CalculatePriceRequestForm
 from .models import Request 
@@ -19,10 +20,12 @@ class HomeView(View):
         categories = Category.objects.all().prefetch_related('category_containers').all()
         calculate_form = CalculatePriceRequestForm()
         brands_list = ', '.join(brand.name for brand in Brand.objects.all())
+        partners = Partner.objects.all()
         context = {
             'categories': categories,
             'calculate_form': calculate_form,
             'brands_list': brands_list,
+            'partners': partners,
         }
         return render(request, self.template_name, context)
     

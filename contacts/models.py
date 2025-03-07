@@ -101,3 +101,15 @@ class PopularQuestion(models.Model):
     class Meta: 
         verbose_name = 'Вопрос'
         verbose_name_plural = 'Часто задаваемые вопросы'
+
+
+class Partner(models.Model): 
+    company_name = models.CharField('Название компании', max_length=50) 
+    company_member = models.CharField('Представитель компании', max_length=100, null=True, blank=True) 
+    company_member_image = models.ImageField('Фото представителя компании', upload_to='contacts/partners/members/', null=True, blank=True) 
+    logo = models.FileField('Логотип', upload_to='contacts/partners/logo/') 
+    quote = models.CharField('Цитата', max_length=150, null=True, blank=True)
+
+    class Meta: 
+        verbose_name = 'Партнёр'
+        verbose_name_plural = 'Партнёры'

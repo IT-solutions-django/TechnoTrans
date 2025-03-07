@@ -6,6 +6,7 @@ from .models import (
     DocumentationSection, 
     DocumentationFile,
     PopularQuestion,
+    Partner,
 )
 
 
@@ -44,3 +45,10 @@ class DocumentationSectionAdmin(admin.ModelAdmin):
 class PopularQuestionAdmin(admin.ModelAdmin): 
     list_display = ['question', 'answer']
     search_fields = ['question', 'answer']
+
+
+    
+@admin.register(Partner)
+class PopularQuestionAdmin(admin.ModelAdmin): 
+    list_display = ['company_name']
+    search_fields = ['company_name', 'company_member']
