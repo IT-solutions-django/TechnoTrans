@@ -134,68 +134,75 @@
 
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="tab-description" role="tabpanel" aria-labelledby="description-tab">
-                {{ container.description|markdown }}     
+                {% if container.description %}
+                    {{ container.description|markdown }}     
+                {% else %}
+                Рефконтейнер — это высококачественное оборудование для перевозки продуктов. Он имеет габаритные размеры 40 футов и оснащен системой холодоснабжения, которая позволяет сохранять товары в свежем и замороженном состоянии в течение всей перевозки. Контейнер изготовлен из стали высокой прочности, что обеспечивает надежность и долговечность оборудования.
+                {% endif %}
             </div>
             <div class="tab-pane fade" id="tab-specs" role="tabpanel" aria-labelledby="specs-tab">
                 <p class="container__specs-subheading">Размеры (мм)</p>
                 <div>
                     <div class="container__specs-row">
                         <span class="container__specs-label">Длина внешняя</span>
-                        <span>{{ container.length_outer }}</span>
+                        <span>{{ container.length_outer|default:"-" }}</span>
                     </div>  
                     <div class="container__specs-row">
                         <span class="container__specs-label">Ширина внешняя</span>
-                        <span>{{ container.width_outer }}</span>
+                        <span>{{ container.width_outer|default:"-" }}</span>
                     </div>  
                     <div class="container__specs-row">
                         <span class="container__specs-label">Высота внешняя</span>
-                        <span>{{ container.height_outer }}</span>
+                        <span>{{ container.height_outer|default:"-" }}</span>
                     </div>  
                     <div class="container__specs-row">
                         <span class="container__specs-label">Длина внутренняя</span>
-                        <span>{{ container.length_inner }}</span>
+                        <span>{{ container.length_inner|default:"-" }}</span>
                     </div>  
                     <div class="container__specs-row">
                         <span class="container__specs-label">Ширина внутренняя</span>
-                        <span>{{ container.width_inner }}</span>
+                        <span>{{ container.width_inner|default:"-" }}</span>
                     </div>  
                     <div class="container__specs-row">
                         <span class="container__specs-label">Высота внутренняя</span>
-                        <span>{{ container.height_inner }}</span>
+                        <span>{{ container.height_inner|default:"-" }}</span>
                     </div> 
                     <div class="container__specs-row">
                         <span class="container__specs-label">Ширина дверного проёма</span>
-                        <span>{{ container.door_width }}</span>
+                        <span>{{ container.door_width|default:"-" }}</span>
                     </div> 
                     <div class="container__specs-row">
                         <span class="container__specs-label">Высота дверного проёма</span>
-                        <span>{{ container.door_height }}</span>
+                        <span>{{ container.doorh_height|default:"-" }}</span>
                     </div> 
                 </div>
+            
                 <p class="container__specs-subheading">Вес (кг)</p>  
                 <div>
                     <div class="container__specs-row">
                         <span class="container__specs-label">Макс. масса брутто</span>
-                        <span>{{ container.max_weight_gross }}</span>
+                        <span>{{ container.max_weight_gross|default:"-" }}</span>
                     </div> 
                     <div class="container__specs-row">
                         <span class="container__specs-label">Вес тары</span>
-                        <span>{{ container.tare_weight }}</span>
+                        <span>{{ container.tare_weight|default:"-" }}</span>
                     </div> 
                     <div class="container__specs-row">
                         <span class="container__specs-label">Максимальная загрузка</span>
-                        <span>{{ container.max_load }}</span>
+                        <span>{{ container.max_load|default:"-" }}</span>
                     </div> 
                 </div>
             </div>
+            
+            </div>
             <div class="tab-pane fade" id="tab-delivery" role="tabpanel" aria-labelledby="delivery-tab">
-                Текст о доставке   
+                Бесплатная доставка собственной транспортной компанией с главного склада в Санкт-Петербурге в города: Новосибирск, Иркутск, Владивосток, Екатеринбург, Красноярск, Якутск, Благовещенск, Улан-Удэ, Чита, Хабаровск. 
             </div>
             <div class="tab-pane fade" id="tab-payment" role="tabpanel" aria-labelledby="payment-tab">
-                Текст об оплате    
+                Оплата производится по безналичному расчету с НДС 20% и заключением договора купли-продажи. 
             </div>
             <div class="tab-pane fade" id="tab-warranty" role="tabpanel" aria-labelledby="warranty-tab">
-                Текст о гарантии  
+                Даем гарантию на 90 дней при покупке б/у рефконтейнера и 3 года при покупке нового рефконтейнера. В случае поломки, в течение гарантийного периода мы проведем бесплатный ремонт по Санкт-Петербургу и Ленинградской обл. или вышлем Вам все необходимые запчасти.
             </div>
         </div>
     </div>
