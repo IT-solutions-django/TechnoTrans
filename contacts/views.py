@@ -5,6 +5,7 @@ from .models import (
     PrivacyPolicy,
     DocumentationSection, 
     DocumentationFile,
+    Partner,
 )
 
 
@@ -13,9 +14,11 @@ class AboutCompanyView(View):
 
     def get(self, request): 
         company_info = CompanyInfo.get_instance()
+        partners = Partner.objects.all()
 
         context = {
             'company_info': company_info,
+            'partners': partners,
         }
 
         return render(request, self.template_name, context)

@@ -1894,11 +1894,39 @@ footer {
 .about-company__stages {
     max-width: 860px;
 }
-.about-company__stages {
+.about-company__stages, 
+.about-company__partners {
     display: flex;
     flex-direction: column;
     gap: 32px;
 }
+.swiper-container {
+    width: 100%;
+    padding: 20px 0;
+    overflow: hidden;
+}
+.swiper-wrapper {
+    display: flex;
+    align-items: center;
+}
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto; 
+    width: 300px !important;
+    margin-right: 20px !important;
+}
+.swiper-slide img {
+    height: 100px; 
+    width: 150px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: filter 0.3s;
+}
+.swiper-wrapper {
+    transition-timing-function: linear;
+  }
 .about-company__stages-body {
     display: flex;
     flex-direction: column;
