@@ -12,6 +12,9 @@ class CompanyInfo(models.Model):
     phone = models.CharField('Номер телефона', max_length=20, null=True, blank=True)
     email = models.CharField('Email', max_length=50, null=True, blank=True)
 
+    delivery_info = models.TextField('Доставка (текст)', max_length=1000, null=True, blank=True)
+    payment_info = models.TextField('Оплата (текст)', max_length=1000, null=True, blank=True)
+
     class Meta: 
         verbose_name = 'Информация о компании'
         verbose_name_plural = 'Информация о компании'
@@ -92,3 +95,24 @@ def delete_file_on_delete(sender, instance, **kwargs):
     if instance.file:
         if os.path.isfile(instance.file.path):
             os.remove(instance.file.path) 
+
+
+class PopularQuestion(models.Model): 
+    question = models.CharField('Вопрос', max_length=150)
+    answer = models.TextField('Ответ')
+
+    class Meta: 
+        verbose_name = 'Вопрос'
+        verbose_name_plural = 'Часто задаваемые вопросы'
+
+
+class Partner(models.Model): 
+    company_name = models.CharField('Название компании', max_length=50) 
+    company_member = models.CharField('Представитель компании', max_length=100, null=True, blank=True) 
+    company_member_image = models.ImageField('Фото представителя компании', upload_to='contacts/partners/members/', null=True, blank=True) 
+    logo = models.FileField('Логотип', upload_to='contacts/partners/logo/') 
+    quote = models.CharField('Цитата', max_length=150, null=True, blank=True)
+
+    class Meta: 
+        verbose_name = 'Партнёр'
+        verbose_name_plural = 'Партнёры'

@@ -193,13 +193,12 @@
                     </div> 
                 </div>
             </div>
-            
             </div>
             <div class="tab-pane fade" id="tab-delivery" role="tabpanel" aria-labelledby="delivery-tab">
-                Бесплатная доставка собственной транспортной компанией с главного склада в Санкт-Петербурге в города: Новосибирск, Иркутск, Владивосток, Екатеринбург, Красноярск, Якутск, Благовещенск, Улан-Удэ, Чита, Хабаровск. 
+                {{ company_info.delivery_info|markdown }}
             </div>
             <div class="tab-pane fade" id="tab-payment" role="tabpanel" aria-labelledby="payment-tab">
-                Оплата производится по безналичному расчету с НДС 20% и заключением договора купли-продажи. 
+                {{ company_info.payment_info|markdown }}
             </div>
             <div class="tab-pane fade" id="tab-warranty" role="tabpanel" aria-labelledby="warranty-tab">
                 Даем гарантию на 90 дней при покупке б/у рефконтейнера и 3 года при покупке нового рефконтейнера. В случае поломки, в течение гарантийного периода мы проведем бесплатный ремонт по Санкт-Петербургу и Ленинградской обл. или вышлем Вам все необходимые запчасти.
