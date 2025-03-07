@@ -92,3 +92,12 @@ def delete_file_on_delete(sender, instance, **kwargs):
     if instance.file:
         if os.path.isfile(instance.file.path):
             os.remove(instance.file.path) 
+
+
+class PopularQuestion(models.Model): 
+    question = models.CharField('Вопрос', max_length=150)
+    answer = models.TextField('Ответ')
+
+    class Meta: 
+        verbose_name = 'Вопрос'
+        verbose_name_plural = 'Часто задаваемые вопросы'

@@ -5,6 +5,7 @@ from .models import (
     PrivacyPolicyParagraph,
     DocumentationSection, 
     DocumentationFile,
+    PopularQuestion,
 )
 
 
@@ -37,3 +38,9 @@ class DocumentationFileAdminInline(admin.TabularInline):
 class DocumentationSectionAdmin(admin.ModelAdmin): 
     list_display = ['__str__']
     inlines = [DocumentationFileAdminInline]
+
+
+@admin.register(PopularQuestion)
+class PopularQuestionAdmin(admin.ModelAdmin): 
+    list_display = ['question', 'answer']
+    search_fields = ['question', 'answer']

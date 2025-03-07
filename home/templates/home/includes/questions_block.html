@@ -7,53 +7,17 @@
             </div>
             <div class="home__questions-body">
                 <div class="home__questions-left">
-
-                    <div class="home__question-block">
-                        <div class="home__question">
-                            <p>Какие рефконтейнеры вы предлагаете?</p>
-                            <img class="icon" src="{% static 'images/red-plus.svg' %}" alt="Плюс">
+                    {% for question in popular_questions %}
+                        <div class="home__question-block">
+                            <div class="home__question">
+                                <p>{{ question.question }}</p>
+                                <img class="icon" src="{% static 'images/red-plus.svg' %}" alt="Плюс">
+                            </div>
+                            <div class="home__answer">
+                                {{ question.answer }}
+                            </div>
                         </div>
-                        <div class="home__answer">
-                            Мы организуем доставку контейнеров по всей России. Время и стоимость зависят от региона.
-                        </div>
-                    </div>
-                    <div class="home__question-block">
-                        <div class="home__question">
-                            <p>Можно ли купить контейнер в кредит/лизинг/рассрочку?</p>
-                            <img class="icon" src="{% static 'images/red-plus.svg' %}" alt="Плюс">
-                        </div>
-                        <div class="home__answer">
-                            Мы организуем доставку контейнеров по всей России. Время и стоимость зависят от региона.
-                        </div>
-                    </div>
-                    <div class="home__question-block">
-                        <div class="home__question">
-                            <p>Как происходит доставка рефконтейнеров?</p>
-                            <img class="icon" src="{% static 'images/red-plus.svg' %}" alt="Плюс">
-                        </div>
-                        <div class="home__answer">
-                            Мы организуем доставку контейнеров по всей России. Время и стоимость зависят от региона.
-                        </div>
-                    </div>
-                    <div class="home__question-block">
-                        <div class="home__question">
-                            <p>Предоставляете ли вы гарантию на контейнеры?</p>
-                            <img class="icon" src="{% static 'images/red-plus.svg' %}" alt="Плюс">
-                        </div>
-                        <div class="home__answer">
-                            Мы организуем доставку контейнеров по всей России. Время и стоимость зависят от региона.
-                        </div>
-                    </div>
-                    <div class="home__question-block">
-                        <div class="home__question">
-                            <p>Какие документы необходимы для аренды контейнера?</p>
-                            <img class="icon" src="{% static 'images/red-plus.svg' %}" alt="Плюс">
-                        </div>
-                        <div class="home__answer">
-                            Мы организуем доставку контейнеров по всей России. Время и стоимость зависят от региона.
-                        </div>
-                    </div>
-                    
+                    {% endfor %}
                 </div>
                 <div class="home__questions-right">
                     <form id="questionsBlockForm" class="home__service-form" action="">
