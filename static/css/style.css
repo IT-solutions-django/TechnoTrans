@@ -1871,7 +1871,7 @@ footer {
     object-fit: contain !important;
     width: 85vw;
     border-radius: 12px;
-    width: min-content;
+    /* width: min-content; */
 }
 
 @media (max-width:990px) {

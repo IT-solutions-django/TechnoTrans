@@ -14,6 +14,7 @@ class CompanyInfo(models.Model):
 
     delivery_info = models.TextField('Доставка (текст)', max_length=1000, null=True, blank=True)
     payment_info = models.TextField('Оплата (текст)', max_length=1000, null=True, blank=True)
+    warranty_info = models.TextField('Гарантия (текст)', max_length=1000, null=True, blank=True)
 
     class Meta: 
         verbose_name = 'Информация о компании'
