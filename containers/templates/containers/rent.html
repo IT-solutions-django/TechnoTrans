@@ -12,11 +12,11 @@
 
 {% block content %}
 <div class="breadcrumbs container">
-    <a>Главная</a>
+    <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
     <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
-    <a>Рефконтейнеры</a>
+    <a class="red-hover" href="{% url 'containers:catalog' %}">Рефконтейнеры</a>
     <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
-    <a class="active">Аренда рефконтейнеров</a>
+    <a href=" " class="active">Аренда рефконтейнеров</a>
 </div>
 <div class="about-company container rent">
     <h1 class="catalog__heading">Аренда рефконтейнеров</h1>

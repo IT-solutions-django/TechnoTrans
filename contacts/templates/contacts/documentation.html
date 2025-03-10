@@ -12,9 +12,9 @@
 
 {% block content %}
 <div class="breadcrumbs container">
-    <a>Главная</a>
+    <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
     <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
-    <a class="active">Документация</a>
+    <a href=" " class="active">Документация</a>
 </div>
 <div class="about-company container documentation">
     <h1 class="catalog__heading">Документация</h1>
