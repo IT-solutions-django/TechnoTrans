@@ -32,7 +32,7 @@
                     {% for image in container.images.all %}
                         <div>
                             <a href="{{ image.image.url }}">
-                                <img src="{{ image.image.url }}" alt="Фото контейнера">
+                                <img loading="lazy" src="{{ image.image.url }}" alt="Фото контейнера">
                             </a>
                         </div>
                     {% endfor %}
@@ -40,7 +40,6 @@
                     <div>
                         <video controls width="500">
                             <source src="{{ video.video.url }}" type="video/mp4">
-                            Ваш браузер не поддерживает видео.
                         </video>
                     </div>
                     {% endfor %}
@@ -53,7 +52,7 @@
                     {% endfor %}
                     {% for video in container.videos.all %}
                         <div class="container__slide video-preview-container">
-                            <img class="video-preview" src="{{ container.images.all.0.image.url }}" alt="Фото контейнера">
+                            <img loading="lazy" class="video-preview" src="{{ container.images.all.0.image.url }}" alt="Видео контейнера">
                         </div>
                     {% endfor %}
                 </div>
@@ -86,7 +85,9 @@
                 <div class="container__order-card-price-block">
                     <div class="container__order-card-prices">
                         <p class="container__order-card-price--main">{{ container.price|price_format }} ₽ </p>
-                        <p class="container__order-card-price--crossed">{{ container.old_price|price_format }} ₽ </p>
+                        {% if container.old_price %}
+                            <p class="container__order-card-price--crossed">{{ container.old_price|price_format }} ₽ </p>
+                        {% endif %}
                     </div>
                     <div class="container__order-card-in-stock">
                         {% if container.is_in_stock %}

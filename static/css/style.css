@@ -1768,6 +1768,11 @@ footer {
 .container__specs-label {
     width: 500px;
 }
+.container__current-slide video {
+    width: 100%;
+    max-height: 425px;
+    max-width: 100%;
+}
 .container__current-slide video,
 .container__current-slide img, 
 .container__slide img {
@@ -2236,7 +2241,7 @@ footer {
 
 .video-preview {
     display: block;
-    width: 100%; /* Настройте размер видео по вашему усмотрению */
+    width: 100%; 
     height: auto;
 }
 
