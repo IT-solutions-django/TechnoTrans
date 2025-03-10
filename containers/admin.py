@@ -6,6 +6,7 @@ from .models import (
     ContainerImage, 
     Container,
     Category,
+    ContainerVideo,
 )
 
 
@@ -37,8 +38,19 @@ class ContainerImageInline(admin.TabularInline):
     show_change_link = True
 
 
+class ContainerVideoInline(admin.TabularInline): 
+    model = ContainerVideo 
+    extra = 1
+    verbose_name = 'Видео'
+    verbose_name_plural = 'Видео'
+    show_change_link = True
+
+
 @admin.register(Container)
 class ContainerAdmin(admin.ModelAdmin): 
     list_display = ['name']
-    inlines = [ContainerImageInline,]
+    inlines = [
+        ContainerImageInline,
+        ContainerVideoInline,
+    ]
     prepopulated_fields = {'slug': ('name',)}

@@ -2231,6 +2231,11 @@ footer {
     flex-direction: column;
     gap: 40px;
 }
+.video-preview {
+    background-image: url('../images/play.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+}
 @media (max-width: 1420px) {
     .home__partners-list {
         gap: 40px;

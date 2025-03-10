@@ -128,3 +128,24 @@ def delete_image_file(sender, instance, **kwargs):
     if instance.image:
         if os.path.isfile(instance.image.path):
             os.remove(instance.image.path)
+
+
+class ContainerVideo(models.Model):
+    video = models.FileField('Видео', upload_to='containers/videos/', help_text="Загрузите видео контейнера")
+    container = models.ForeignKey(verbose_name='Контейнер', to=Container, on_delete=models.CASCADE, related_name='videos')
+
+    class Meta:
+        verbose_name = 'Видео'
+        verbose_name_plural = 'Видео'
+
+    def __str__(self):
+        return f'Видео {self.video.name}'
+
+
+@receiver(post_delete, sender=ContainerVideo)
+def delete_video_file(sender, instance, **kwargs):
+    """
+    Сигнал для удаления файла видео после удаления объекта.
+    """
+    if instance.video and os.path.isfile(instance.video.path):
+        os.remove(instance.video.path)
