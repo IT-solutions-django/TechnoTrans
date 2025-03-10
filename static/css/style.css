@@ -1212,10 +1212,10 @@ html, body, .container {
     transition: opacity 0.3s ease-in-out;
 }
 .home__partners-list img {
-    filter: grayscale(100%); 
+    /* filter: grayscale(100%);  */
     transition: filter 0.3s ease-in-out, opacity 0.3s;
     cursor: pointer;
-    opacity: 0.5;
+    /* opacity: 0.5; */
 }
 
 .home__partners-list img.active {
@@ -1926,7 +1926,7 @@ footer {
     height: 100px; 
     width: 150px;
     object-fit: contain;
-    filter: grayscale(100%);
+    /* filter: grayscale(100%); */
     transition: filter 0.3s;
 }
 .swiper-wrapper {
