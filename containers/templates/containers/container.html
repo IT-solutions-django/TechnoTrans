@@ -52,8 +52,8 @@
                         </div>
                     {% endfor %}
                     {% for video in container.videos.all %}
-                        <div class="container__slide">
-                            <img class="video-preview" src="{{ container.images.all.0 }}" alt="Фото контейнера">
+                        <div class="container__slide video-preview-container">
+                            <img class="video-preview" src="{{ container.images.all.0.image.url }}" alt="Фото контейнера">
                         </div>
                     {% endfor %}
                 </div>
