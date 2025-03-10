@@ -85,7 +85,8 @@ class DocumentationFile(models.Model):
     
     def get_file_name(self): 
         """Возвращает название файла без расширения"""
-        return ''.join(os.path.basename(self.file.name).split('.')[:-1]).replace('_', '')
+        print(''.join(os.path.basename(self.file.name).split('.')[:-1]).replace('_', ' '))
+        return ''.join(os.path.basename(self.file.name).split('.')[:-1]).replace('_', ' ')
 
 
 @receiver(post_delete, sender=DocumentationFile)
