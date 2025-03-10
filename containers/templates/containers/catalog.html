@@ -312,7 +312,7 @@
                 {% for container in containers %}
                     <div class="home__container-card">
                         <a class="home__container-image-link" href="{{ container.get_absolute_url }}">
-                            <img src="{{ container.images.all.0.image.url }}" alt="Фото контейнера">
+                            <img loading="lazy" src="{{ container.images.all.0.image.url }}" alt="Фото контейнера">
                         </a>
                         <div class="home__container-card-text">
                             <div class="home__container-card-name">
@@ -324,12 +324,12 @@
                                     <p class="home__container-card-price">{{ container.price|price_format }} ₽ </p>
                                     {% if container.is_in_stock %}
                                         <div class="home__container-card-in-stock">
-                                            <img src="{% static 'images/green-mark.svg' %}" alt="Галочка">
+                                            <img loading="lazy" src="{% static 'images/green-mark.svg' %}" alt="Галочка">
                                             В наличии
                                         </div>
                                     {% else %}
                                         <div class="home__container-card-in-stock">
-                                            <img src="{% static 'images/gray-circle.svg' %}" alt="Крест">
+                                            <img loading="lazy" src="{% static 'images/gray-circle.svg' %}" alt="Крест">
                                             Под заказ
                                         </div>
                                     {% endif %}
