@@ -53,4 +53,5 @@ class ContainerAdmin(admin.ModelAdmin):
         ContainerImageInline,
         ContainerVideoInline,
     ]
+    list_filter = ['categories']
     prepopulated_fields = {'slug': ('name',)}
