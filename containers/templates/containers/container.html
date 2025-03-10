@@ -30,18 +30,31 @@
             <div class="container__slider">
                 <div class="container__current-slide" href="">
                     {% for image in container.images.all %}
+                        <div>
+                            <a href="{{ image.image.url }}">
+                                <img src="{{ image.image.url }}" alt="Фото контейнера">
+                            </a>
+                        </div>
+                    {% endfor %}
+                    {% for video in container.videos.all %}
                     <div>
-                        <a href="{{ image.image.url }}">
-                            <img src="{{ image.image.url }}" alt="Фото контейнера">
-                        </a>
+                        <video controls width="500">
+                            <source src="{{ video.video.url }}" type="video/mp4">
+                            Ваш браузер не поддерживает видео.
+                        </video>
                     </div>
                     {% endfor %}
                 </div>
                 <div class="container__slider-nav">
                     {% for image in container.images.all %}
-                    <div class="container__slide">
-                        <img src="{{ image.image.url }}" alt="Фото контейнера">
-                    </div>
+                        <div class="container__slide">
+                            <img src="{{ image.image.url }}" alt="Фото контейнера">
+                        </div>
+                    {% endfor %}
+                    {% for video in container.videos.all %}
+                        <div class="container__slide">
+                            <img class="video-preview" src="{{ container.images.all.0 }}" alt="Фото контейнера">
+                        </div>
                     {% endfor %}
                 </div>
             </div>

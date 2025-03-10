@@ -658,6 +658,8 @@ html, body, .container {
     gap: 10px;
     justify-content: flex-end;  
     border-bottom: 6px solid transparent;
+
+    transition: all 0.2s ease;
 }
 .main__price.active {
     border-bottom: 6px solid var(--color-red);
@@ -2050,7 +2052,7 @@ footer {
     max-width: 825px;
     right: calc((100% - 1380px) / 2); 
     top: 165px;
-    transition: right 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 .main-image {
     max-height: 660px;
@@ -2059,7 +2061,7 @@ footer {
 .main__price:hover {
     border-bottom: 6px solid var(--color-red);
     backdrop-filter: blur(26px);
-    transition: border-bottom 0.3s ease, backdrop-filter 0.3s ease; 
+    /* transition: border-bottom 0.3s ease, backdrop-filter 0.3s ease;  */
 }
 .main__price .transparent-button {
     margin-top: 16px;
@@ -2183,7 +2185,7 @@ footer {
     gap: 12px;
 }
 .documentation__sidebar-list a {
-    width: min-content;
+    width: fit-content;
 }
 .documentation__main {
     display: flex;
@@ -2206,6 +2208,7 @@ footer {
     gap: 10px;
     align-items: center;
     cursor: pointer;
+    width: fit-content;
 
     transition: all 0.3s ease;
 }
@@ -2227,6 +2230,11 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 40px;
+}
+.video-preview {
+    background-image: url('../images/play.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 @media (max-width: 1420px) {
     .home__partners-list {
