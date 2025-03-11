@@ -157,57 +157,106 @@
                 {% endif %}
             </div>
             <div class="tab-pane fade" id="tab-specs" role="tabpanel" aria-labelledby="specs-tab">
-                <p class="container__specs-subheading">Размеры (мм)</p>
-                <div>
-                    <div class="container__specs-row">
-                        <span class="container__specs-label">Длина внешняя</span>
-                        <span>{{ container.length_outer|default:"-" }}</span>
-                    </div>  
-                    <div class="container__specs-row">
-                        <span class="container__specs-label">Ширина внешняя</span>
-                        <span>{{ container.width_outer|default:"-" }}</span>
-                    </div>  
-                    <div class="container__specs-row">
-                        <span class="container__specs-label">Высота внешняя</span>
-                        <span>{{ container.height_outer|default:"-" }}</span>
-                    </div>  
-                    <div class="container__specs-row">
-                        <span class="container__specs-label">Длина внутренняя</span>
-                        <span>{{ container.length_inner|default:"-" }}</span>
-                    </div>  
-                    <div class="container__specs-row">
-                        <span class="container__specs-label">Ширина внутренняя</span>
-                        <span>{{ container.width_inner|default:"-" }}</span>
-                    </div>  
-                    <div class="container__specs-row">
-                        <span class="container__specs-label">Высота внутренняя</span>
-                        <span>{{ container.height_inner|default:"-" }}</span>
-                    </div> 
-                    <div class="container__specs-row">
-                        <span class="container__specs-label">Ширина дверного проёма</span>
-                        <span>{{ container.door_width|default:"-" }}</span>
-                    </div> 
-                    <div class="container__specs-row">
-                        <span class="container__specs-label">Высота дверного проёма</span>
-                        <span>{{ container.doorh_height|default:"-" }}</span>
-                    </div> 
-                </div>
-            
+                <p class="container__specs-subheading">Общая информация</p>
+                <div class="container__specs-row">
+                    <span class="container__specs-label">Модель</span>
+                    <span>{{ container.model }}</span>
+                </div>  
+                <div class="container__specs-row">
+                    <span class="container__specs-label">Год выпуска</span>
+                    <span>{{ container.year }}</span>
+                </div>  
+                <div class="container__specs-row">
+                    <span class="container__specs-label">Тип</span>
+                    <span>{{ container.container_type }}</span>
+                </div>  
+                {% if container.length_outer or container.width_outer or container.height_outer or container.length_inner or container.width_inner or container.height_inner or container.door_width or container.doorh_height %}
+                    <p class="container__specs-subheading">Размеры (мм)</p>
+                    <div>
+                        {% if container.length_outer %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Длина внешняя</span>
+                            <span>{{ container.length_outer }}</span>
+                        </div>  
+                        {% endif %}
+                    
+                        {% if container.width_outer %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Ширина внешняя</span>
+                            <span>{{ container.width_outer }}</span>
+                        </div>  
+                        {% endif %}
+                    
+                        {% if container.height_outer %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Высота внешняя</span>
+                            <span>{{ container.height_outer }}</span>
+                        </div>  
+                        {% endif %}
+                    
+                        {% if container.length_inner %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Длина внутренняя</span>
+                            <span>{{ container.length_inner }}</span>
+                        </div>  
+                        {% endif %}
+                    
+                        {% if container.width_inner %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Ширина внутренняя</span>
+                            <span>{{ container.width_inner }}</span>
+                        </div>  
+                        {% endif %}
+                    
+                        {% if container.height_inner %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Высота внутренняя</span>
+                            <span>{{ container.height_inner }}</span>
+                        </div>  
+                        {% endif %}
+                    
+                        {% if container.door_width %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Ширина дверного проёма</span>
+                            <span>{{ container.door_width }}</span>
+                        </div>  
+                        {% endif %}
+                    
+                        {% if container.doorh_height %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Высота дверного проёма</span>
+                            <span>{{ container.doorh_height }}</span>
+                        </div>  
+                        {% endif %}
+                    </div>
+                {% endif %}
+                
+                {% if container.max_weight_gross or container.tare_weight or container.max_load %}
                 <p class="container__specs-subheading">Вес (кг)</p>  
                 <div>
+                    {% if container.max_weight_gross %}
                     <div class="container__specs-row">
                         <span class="container__specs-label">Макс. масса брутто</span>
-                        <span>{{ container.max_weight_gross|default:"-" }}</span>
-                    </div> 
+                        <span>{{ container.max_weight_gross }}</span>
+                    </div>  
+                    {% endif %}
+                
+                    {% if container.tare_weight %}
                     <div class="container__specs-row">
                         <span class="container__specs-label">Вес тары</span>
-                        <span>{{ container.tare_weight|default:"-" }}</span>
-                    </div> 
+                        <span>{{ container.tare_weight }}</span>
+                    </div>  
+                    {% endif %}
+                
+                    {% if container.max_load %}
                     <div class="container__specs-row">
                         <span class="container__specs-label">Максимальная загрузка</span>
-                        <span>{{ container.max_load|default:"-" }}</span>
-                    </div> 
+                        <span>{{ container.max_load }}</span>
+                    </div>  
+                    {% endif %}
                 </div>
+                {% endif %}
+                
             </div>
             </div>
             <div class="tab-pane fade" id="tab-delivery" role="tabpanel" aria-labelledby="delivery-tab">

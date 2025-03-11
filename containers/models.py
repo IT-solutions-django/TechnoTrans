@@ -51,6 +51,17 @@ class ContainerModel(models.Model):
     
     def __str__(self):
         return f'{self.name}'
+    
+
+class Compressor(models.Model): 
+    name = models.CharField('Название', max_length=50)  
+
+    class Meta: 
+        verbose_name = 'Компрессор'
+        verbose_name_plural = 'Компрессоры'
+    
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Container(models.Model): 
@@ -74,6 +85,8 @@ class Container(models.Model):
     width_inner = models.SmallIntegerField('Ширина внутренняя', null=True, blank=True)
     height_inner = models.SmallIntegerField('Высота внутренняя', null=True, blank=True)
     specs = models.TextField('Характеристики (текст)', max_length=2000, null=True, blank=True)
+    compressor = models.ForeignKey(verbose_name='Компрессор', to=Compressor, null=True, blank=True, on_delete=models.SET_NULL)
+    volume = models.FloatField('Объём, м. куб. не более', null=True, blank=True)
 
     max_weight_gross = models.SmallIntegerField('Макс. масса брутто', null=True, blank=True)
     tare_weight = models.SmallIntegerField('Вес тары', null=True, blank=True)

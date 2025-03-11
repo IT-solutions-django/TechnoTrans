@@ -1783,7 +1783,7 @@ footer {
     margin-top: 16px;
 }
 .container__info .tab-pane p {
-    font-size: 14px;
+    font-size: 16px;
 }
 .container__info #tab-description {
     max-width: 800px;
@@ -3031,6 +3031,9 @@ footer {
     }
     .rent.about-company {
         padding-bottom: 5px;
+    }
+    .container__info .tab-pane p {
+        font-size: 14px;
     }
 }
 @media (max-width: 720px) {
