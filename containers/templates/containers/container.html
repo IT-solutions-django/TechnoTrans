@@ -109,9 +109,11 @@
                         <p>Написать в Whatsapp</p>
                     </a>
                 </div>
-                <div class="tab__label">
-                    *Обратите внимание, цены указаны с НДС
-                </div>
+                {% if container.with_nds %}
+                    <div class="tab__label">
+                        *Обратите внимание, цены указаны с НДС
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

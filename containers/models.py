@@ -64,6 +64,7 @@ class Container(models.Model):
     old_price = models.IntegerField(verbose_name='Старая цена', null=True, blank=True)
     price = models.IntegerField(verbose_name='Цена', default=0)
     description = models.TextField('Описание', max_length=2000, default='', null=True, blank=True)
+    with_nds = models.BooleanField('Цены указаны с НДС', default=True)
 
     length_outer = models.SmallIntegerField('Длина внешняя', null=True, blank=True)
     width_outer = models.SmallIntegerField('Ширина внешняя', null=True, blank=True)
