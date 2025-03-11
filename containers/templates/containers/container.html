@@ -170,6 +170,12 @@
                     <span class="container__specs-label">Тип</span>
                     <span>{{ container.container_type }}</span>
                 </div>  
+                {% if container.compressor %}
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Компрессор</span>
+                        <span>{{ container.compressor }}</span>
+                    </div> 
+                {% endif %}
                 {% if container.length_outer or container.width_outer or container.height_outer or container.length_inner or container.width_inner or container.height_inner or container.door_width or container.doorh_height %}
                     <p class="container__specs-subheading">Размеры (мм)</p>
                     <div>
@@ -255,6 +261,15 @@
                     </div>  
                     {% endif %}
                 </div>
+                {% endif %}
+                {% if container.volume %}
+                    <p class="container__specs-subheading">Объём</p>  
+                    <div>
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Объём, м. куб. не более</span>
+                            <span>{{ container.volume }}</span>
+                        </div>  
+                    </div>
                 {% endif %}
             </div>
             </div>
