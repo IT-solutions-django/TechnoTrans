@@ -9,9 +9,21 @@
 {% block meta_description %}Рефконтейнеры брендов {{ brands_list }} на 20 и 30 футов в наличии и под заказ. Продажа новых и б/у контейнеров. Дизель-генераторы на 3, 5 и 100 квт под любые цели. Оставьте заявку на сайте!{% endblock %} 
 
 
+{% block head %}
+<!-- Анимации -->
+<!-- Odometer.js -->
+<link rel="stylesheet" href="{% static 'css/odometer-default-theme.css' %}" />
+<script defer src="{% static 'js/odometer/odometer.js' %}"></script>
+<!-- Inview.js -->
+<script defer src="{% static 'js/inview/inview.js' %}"></script>
+<!-- Aos.js -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+{% endblock %}
+
 {% block content %}
 <div class="main container">
-    <div class="main__left">
+    <div data-aos="fade-right" class="main__left">
         <div class="main__heading">
             <h1>Логистика, продажа <br> и аренда контейнеров <br> для технических рейсов <br> в России и Китае</h1>
         </div>
@@ -74,7 +86,7 @@
             <img class="main-image" id="mainImage2" src="{% static 'images/main-2-2.png' %}" alt="Контейнер">
             <img class="main-image" id="mainImage3" src="{% static 'images/main3.png' %}" alt="Фото">
             <img class="main-image--centered" src="static/images/new-new-main1.png" alt="Контейнер">
-            <div id="mainDivision1" class="main__price main-division">
+            <div data-aos="fade-left" data-aos-duration="1000" id="mainDivision1" class="main__price main-division">
                 <div class="main__price-label">Аренда универсальных контейнеров</div>
                 <div class="main__price-value">
                     <span class="main__price-big">от 2$</span> /сутки
@@ -83,16 +95,16 @@
                     <button>Выбрать модель</button>
                 </a>
             </div>
-            <div id="mainDivision2" class="main__price main-division">
+            <div data-aos="fade-left" data-aos-duration="1000" id="mainDivision2" class="main__price main-division">
                 <div class="main__price-label">Продажа разных типов контейнеров</div>
                 <div class="main__price-value">
                     <span class="main__price-big">от 1000$</span>
                 </div>
                 <div class="transparent-button">
-                    <button>Скачать каталог</button>
+                    <a href="{% url 'containers:catalog' %}">Каталог</a>
                 </div>
             </div>
-            <div id="mainDivision3" class="main__price main-division">
+            <div data-aos="fade-left" data-aos-duration="1000" id="mainDivision3" class="main__price main-division">
                 <div class="main__price-label">Услуги импорта и экспорта</div>
                 <div class="main__price-value">
                     <span class="main__price-big">По запросу</span>
@@ -110,28 +122,28 @@
         <div class="home__stats-inner">
             <div class="home__stat">
                 <div style="display: flex;">
-                    <p class="home__stat-heading">5 лет </p>
+                    <p class="home__stat-heading"><span class="odometer years-count">0</span> лет</p>
                 </div>
                 <hr>
                 <p class="home__stat-label">успешного опыта в сфере логистики и рефконтейнеров</p>
             </div>
             <div class="home__stat">
-                <p class="home__stat-heading">1000+</p>
+                <p class="home__stat-heading"><span class="odometer containers-count">0</span>+</p>
                 <hr>
                 <p class="home__stat-label">обслуженных рефконтейнеров по всей России</p>
             </div>
             <div class="home__stat">
-                <p class="home__stat-heading">50+</p>
+                <p class="home__stat-heading"><span class="odometer cities-count">0</span>+</p>
                 <hr>
                 <p class="home__stat-label">городов, в которых мы работаем</p>
             </div>
             <div class="home__stat">
-                <p class="home__stat-heading">24/7</p>
+                <p class="home__stat-heading"><span class="odometer support-format-hours">0</span>/<span class="odometer support-format-days">0</span> </p>
                 <hr>
                 <p class="home__stat-label">поддержка клиентов без выходных</p>
             </div>
             <div class="home__stat">
-                <p class="home__stat-heading">10 000+</p>
+                <p class="home__stat-heading"><span class="odometer deliveries-count">0</span>+</p>
                 <hr>
                 <p class="home__stat-label">доставок контейнеров организовано нашей командой</p>
             </div>
@@ -139,7 +151,7 @@
     </div>
 </div>
 
-<div class="home__containers container">
+<div data-aos="fade-right" data-aos-duration="1400" class="home__containers container">
     <p class="block-heading">Рефконтейнеры</p>
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -160,11 +172,7 @@
                     <div class="tab__text">
                         {{ category.description|linebreaks }}
                     </div>
-                    <div class="tab__label">
-                        *Обратите внимание, цены указаны с НДС
-                    </div>
                 </div>
-
                 <div class="home__containers-cards">
                     {% for container in category.category_containers.all %}
                         <div class="home__container-card">
@@ -208,11 +216,11 @@
 </div>
 
 <div class="home__parts container">
-    <div class="block-heading">
+    <div data-aos="fade-right" class="block-heading">
         Запчасти
     </div>
     <div class="home__parts-row">
-        <div class="home__parts-left">
+        <div data-aos="fade-right" class="home__parts-left">
             <div class="home__parts-description">
                 Мы предлагаем широкий выбор запчастей для рефрижераторов мировых брендов: Carrier, Thermo King, Daikin, Star Cool. Все запчасти поставляются с гарантией и возможностью доставки.
             </div>
@@ -260,27 +268,27 @@
             </div>
         </div>
         <div class="home__parts-right">
-            <div class="home__parts-brand-card">
+            <div data-aos="fade-left" data-aos-duration="300" class="home__parts-brand-card">
                 <img src="static/images/part-brand-1.png" alt="Логотип бренда">
                 <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
-            <div class="home__parts-brand-card">
+            <div data-aos="fade-left" data-aos-duration="400" class="home__parts-brand-card">
                 <img src="static/images/part-brand-2.png" alt="Логотип бренда">
                 <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
-            <div class="home__parts-brand-card">
+            <div data-aos="fade-left" data-aos-duration="500" class="home__parts-brand-card">
                 <img src="static/images/part-brand-3.png" alt="Логотип бренда">
                 <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
-            <div class="home__parts-brand-card">
+            <div data-aos="fade-left" data-aos-duration="600" class="home__parts-brand-card">
                 <img src="static/images/part-brand-4.png" alt="Логотип бренда">
                 <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
-            <div class="home__parts-brand-card only-desktop">
+            <div data-aos="fade-left" data-aos-duration="700" class="home__parts-brand-card only-desktop">
                 <p class="home__parts-brand-card-heading">Расходники</p>
                 <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
-            <div class="home__parts-brand-card only-desktop">
+            <div data-aos="fade-left" data-aos-duration="800" class="home__parts-brand-card only-desktop">
                 <p class="home__parts-brand-card-heading">Расходники</p>
                 <a class="home__parts-brand-card-button-red background-red-hover" href="">Запросить весь каталог</a>
             </div>
@@ -295,11 +303,11 @@
 </div>
 
 <div class="home__service container">
-    <div class="block-heading">
+    <div data-aos="fade-right" class="block-heading">
         Обслуживание и ремонт рефконтейнеров
     </div>
     <div class="home__service-body">
-        <div class="home__service-left">
+        <div data-aos="fade-right" class="home__service-left">
             <img class="home__service-image" src="static/images/home-service-image.png" alt="Фото">
             <p class="home__service-text">Столкнулись с поломкой рефрижераторного контейнера? <br>
                 Мы предлагаем быстрые и качественные услуги по диагностике и ремонту, минимизируя ваши затраты и риски порчи груза.</p>
@@ -342,7 +350,7 @@
                 </div>
             </div>
         </div>
-        <div class="home__service-right">
+        <div data-aos="fade-left" class="home__service-right">
             <form id="serviceBlockForm" class="home__service-form" action="">
                 {% csrf_token %}
                 <p class="home__service-form-heading">Расчитать стоимость обслуживания</p>
@@ -391,19 +399,6 @@
                 data-img="static/images/partners-quote-author.png"
             >
         {% endfor %}
-    </div>
-    <div class="home__partners-quote-block">
-        <div class="home__partners-quote-author">
-            <img class="home__partners-quote-author-img" src="static/images/partners-quote-author.png" alt="Фото представителя компании">
-            <div class="home__partners-quote-author-content">
-                <p class="home__partners-quote-author-name">Мельников Сергей Владимирович</p>
-                <p class="home__partners-quote-author-role">Заместитель генерального директора по закупкам и снабжению АО фирмы «Агрокомплекс»</p>
-            </div>
-        </div>
-        <div class="home__partners-quote-text">
-            <img src="static/images/quote-icon.svg" alt="Символ цитаты">
-            <p id="quote-text">Компания зарекомендовала себя как надежный партнер в сфере логистики.</p>
-        </div>
     </div>
 </div>
 
@@ -536,7 +531,41 @@ feedbackForm.addEventListener("submit", async (event) => {
         console.error("Ошибка запроса:", n)
     }
 });
+</script>
+
+<script defer>
+    // Анимации
+document.addEventListener('DOMContentLoaded', () => {
+    let yearsCount = document.querySelector('.years-count'); 
+    let containersCount = document.querySelector('.containers-count');
+    let citiesCount = document.querySelector('.cities-count'); 
+    let supportFormatHours = document.querySelector('.support-format-hours'); 
+    let supportFormatDays = document.querySelector('.support-format-days'); 
+    let deliveriesCount = document.querySelector('.deliveries-count');
+
+    function runStatsAnimation() {
+        yearsCount.innerHTML = 5;
+        containersCount.innerHTML = 1000; 
+        citiesCount.innerHTML = 50; 
+        supportFormatHours.innerHTML = 24; 
+        supportFormatDays.innerHTML = 7; 
+        deliveriesCount.innerHTML = 10000;
+    }
+
+    inView('.home__stats').once('enter', runStatsAnimation);
+});
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        AOS.init({
+            offset: 100, 
+            delay: 0,   
+            duration: 900, 
+            easing: 'ease', 
+            once: true,   
+        });
+    }, 0);
+});
 </script>
 {% endblock script %}

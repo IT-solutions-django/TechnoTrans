@@ -18,7 +18,6 @@
     <!-- Local files -->
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="{% static 'js/header.js' %}" defer=""></script>
 
     <!-- Libriaries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -34,6 +33,10 @@
     <meta name=description content="{% block description %}{% endblock %}">
     <meta property=og:title content="{% block meta_title %}{% endblock %}">
     <meta property=og:description content="{% block meta_description %}{% endblock %}">
+
+
+    {% block head %}
+    {% endblock %}
 </head>
 <body>
     <div id="modal" class="modal">
@@ -126,16 +129,28 @@
                             <div class="nav__dropdown-content-wrapper">
                                 <div class="nav__dropdown-content">
                                     {% for category in categories %}
-                                        <a href="{% url 'containers:catalog' %}?category={{ category.pk }}" class="nav__link red-hover">{{ category.name }}</a>
+                                        {% if not 'Аренда' in category.full_name %}
+                                            <a href="{% url 'containers:catalog' %}?category={{ category.pk }}" class="nav__link red-hover">
+                                                {% if category.full_name %}
+                                                    {{ category.full_name }}
+                                                {% else %}
+                                                    {{ category.title }}
+                                                {% endif %}
+                                            </a>
+                                        {% endif %}
                                     {% endfor %}
+                                    <a class="nav__link red-hover" href="{% url 'containers:rent' %}">{{ rent_category.full_name }}</a>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="header__menu-link">
-                            <a class="red-hover" href="#">Запчасти</a>
-                        </div> -->
-                        <div class="header__menu-link">
+                        <div class="header__menu-link header__menu-link--dropdown nav__dropdown">
                             <a class="red-hover" href="{% url 'generators:catalog' %}">Дизель-генераторы</a>
+                            <div class="nav__dropdown-content-wrapper">
+                                <div class="nav__dropdown-content">
+                                    <a href="{% url 'generators:catalog' %}" class="nav__link red-hover">Продажа генераторов</a>
+                                    <a class="nav__link red-hover openModal">Аренда генераторов</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="header__menu-link">
                             <a class="red-hover" href="{% url 'containers:rent' %}">Аренда рефконтейнеров</a>
@@ -149,6 +164,7 @@
                     </div>
                     <div class="header__right-part">
                         <div class="header__phone">
+                            <img src="{% static 'images/call-icon.svg' %}" alt="">
                             <a target="_blank" href="tel:{{ company_info.phone }}">{{ company_info.phone }}</a>
                         </div>
                         <div class="header__contacts">
