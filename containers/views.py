@@ -93,6 +93,7 @@ class ContainerView(View):
 
     def get(self, request, container_slug: int): 
         container = get_object_or_404(Container, slug=container_slug)
+        container.is_new = container.categories.all().filter(name='Новые').exists()
         context = {
             'container': container,
         }
