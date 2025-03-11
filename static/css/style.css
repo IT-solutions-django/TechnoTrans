@@ -96,6 +96,16 @@ main {
     margin-top: 150px;
 }
 
+html, body {
+    /* height: 100%; */
+    /* overflow: hidden; */
+}
+
+main {
+    /* overflow-y: scroll; */
+    /* overflow-x: hidden; */
+}
+
 .header {
     transition: top 0.3s ease-in-out;
     top: 0;
@@ -212,6 +222,7 @@ html, body, .container {
 } 
 .nav__dropdown-content .nav__link {
     color: rgb(255, 255, 255, 0.6);
+    cursor: pointer;
 }
 
 .header__right-part {
@@ -864,6 +875,7 @@ html, body, .container {
 }
 .home__container-card-text {
     gap: 24px;
+    flex: 1;
 }
 .home__container-card-name {
     gap: 4px;
@@ -1146,11 +1158,13 @@ html, body, .container {
     width: min-content;
 }
 .home__partners {
-    padding-top: 200px;
     display: flex;
     flex-direction: column;
     gap: 40px;
-    padding-bottom: 194px;
+    /* padding-top: 200px; */
+    /* padding-bottom: 194px; */
+    padding-top: 160px;
+    padding-bottom: 180px;
 }
 .home__partners-list {
     display: flex;
@@ -1160,7 +1174,7 @@ html, body, .container {
 }
 .home__partners-list img {
     object-fit: contain;
-    max-width: 220px;
+    max-width: 150px;
 }
 .home__partners-quote-block {
     padding: 28px;
@@ -1680,6 +1694,9 @@ footer {
 .container__table-row--last {
    padding-bottom: 13px;
    border-bottom: 1px solid rgb(255, 255, 255, 0.1);
+}
+.container__table-label.no-border-top {
+    border-top: none;
 }
 .container__order-card {
     padding: 24px;

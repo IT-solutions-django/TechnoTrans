@@ -8,6 +8,7 @@ import os
 
 class Category(models.Model): 
     name = models.CharField('Название', max_length=50)  
+    full_name = models.CharField('Название в шапке сайта', max_length=100, null=True, blank=True)
     description = models.TextField('Описание', max_length=500)
 
     class Meta: 
@@ -72,6 +73,7 @@ class Container(models.Model):
     length_inner = models.SmallIntegerField('Длина внутренняя', null=True, blank=True)
     width_inner = models.SmallIntegerField('Ширина внутренняя', null=True, blank=True)
     height_inner = models.SmallIntegerField('Высота внутренняя', null=True, blank=True)
+    specs = models.TextField('Характеристики (текст)', max_length=2000, null=True, blank=True)
 
     max_weight_gross = models.SmallIntegerField('Макс. масса брутто', null=True, blank=True)
     tare_weight = models.SmallIntegerField('Вес тары', null=True, blank=True)

@@ -46,17 +46,16 @@
         </div>
         <div class="container__right">
             <div class="container__short-info">
-                <img class="container__brand-logo" src="{{ generator.brand.image.url }}" alt="Фото генератора">
                 <div class="container__table-info">
-                    <div class="container__table-row">
+                    <div class="container__table-row.no-border-top">
                         <span class="container__table-label">Год выпуска</span>
                         <span class="container__table-value">{{ generator.year    }}</span>
                     </div>
-                    <div class="container__table-row container__table-row--last">
+                    <div class="container__table-row">
                         <span class="container__table-label">Тип</span>
                         <span class="container__table-value">{{ generator.generator_type }}</span>
                     </div>
-                    <div class="container__table-row">
+                    <div class="container__table-row container__table-row--last">
                         <span class="container__table-label">Номинальная мощность, квт</span>
                         <span class="container__table-value">{{ generator.power }}</span>
                     </div>
