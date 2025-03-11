@@ -84,7 +84,6 @@ class Container(models.Model):
     length_inner = models.SmallIntegerField('Длина внутренняя', null=True, blank=True)
     width_inner = models.SmallIntegerField('Ширина внутренняя', null=True, blank=True)
     height_inner = models.SmallIntegerField('Высота внутренняя', null=True, blank=True)
-    specs = models.TextField('Характеристики (текст)', max_length=2000, null=True, blank=True)
     compressor = models.ForeignKey(verbose_name='Компрессор', to=Compressor, null=True, blank=True, on_delete=models.SET_NULL)
     volume = models.FloatField('Объём, м. куб. не более', null=True, blank=True)
 
