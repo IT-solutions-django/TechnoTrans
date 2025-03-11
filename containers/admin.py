@@ -7,6 +7,7 @@ from .models import (
     Container,
     Category,
     ContainerVideo,
+    Compressor,
 )
 
 
@@ -27,6 +28,11 @@ class ContainerTypeAdmin(admin.ModelAdmin):
 
 @admin.register(ContainerModel)
 class ContainerModelAdmin(admin.ModelAdmin): 
+    list_display = ['name']
+
+
+@admin.register(Compressor)
+class CompressorModelAdmin(admin.ModelAdmin): 
     list_display = ['name']
 
 
