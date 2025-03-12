@@ -909,6 +909,7 @@ html, body, .container {
 .home__container-card-text {
     gap: 24px;
     flex: 1;
+    justify-content: space-between;
 }
 .home__container-card-name {
     gap: 4px;
