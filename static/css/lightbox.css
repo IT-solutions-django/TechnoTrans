@@ -82,14 +82,14 @@
     border-radius: 12px;
 }
 
-@media(max-width:990px) {
+@media(max-width:680px) {
     .lum-gallery-button {
-        width: 30px;
-        height: 30px
+        width: 32px;
+        height: 32px
     }
 
     .lum-previous-button {
-        background-image: url('/static/images/small-gray-left-arrow.svg')
+        /* background-image: url('/static/images/small-gray-left-arrow.svg') */
     }
 
     .lum-next-button {
@@ -112,5 +112,11 @@
         width: 30px;
         height: 30px;
         background-size: 10px;
+    }
+    .lum-previous-button {
+        left: 8px;
+    }
+    .lum-next-button {
+        right: 8px;
     }
 }

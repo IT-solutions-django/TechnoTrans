@@ -7,6 +7,7 @@ from containers.models import (
     Container, 
     ContainerType,
 )
+from django.urls import reverse
 from contacts.models import Partner
 from loguru import logger
 from .forms import FeedbackForm, CalculatePriceRequestForm
@@ -21,11 +22,17 @@ class HomeView(View):
         calculate_form = CalculatePriceRequestForm()
         brands_list = ', '.join(brand.name for brand in Brand.objects.all())
         partners = Partner.objects.all()
+        brand_names = ('Carrier', 'Thermo King', 'Star Cool', 'Daikin')
+        urls_filtered_by_brand = {
+            brand.replace(' ', ''): f"{reverse('containers:catalog')}?brand={Brand.objects.filter(name=brand).first().pk}"
+            for brand in brand_names
+        }
         context = {
             'categories': categories,
             'calculate_form': calculate_form,
             'brands_list': brands_list,
             'partners': partners,
+            'urls_filtered_by_brand': urls_filtered_by_brand,
         }
         return render(request, self.template_name, context)
     

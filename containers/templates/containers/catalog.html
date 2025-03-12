@@ -41,25 +41,47 @@
             <p class="catalog__filter-subtitle">Тип контейнера</p>
             <div class="catalog__filter-field-variants">
                 {% for category_input in filter_form.category %}
-                    <div class="form__checkbox">
-                        <div class="form__checkbox-wrap">
-                            
-                            <input type="checkbox"
-                                name="{{ filter_form.category.html_name }}" 
-                                value="{{ category_input.data.value }}" 
-                                id="mobile_{{ category_input.id_for_label }}"
-                                {% if category_input.data.selected %}checked{% endif %}
-                            >
+                    {% if category_input.choice_label == 'Аренда' %}
+                        <div class="form__checkbox">
+                            <a href="{% url 'containers:rent' %}" class="form__checkbox-wrap pointer-events-none">
+                                
+                                <input type="checkbox"
+                                    name="{{ filter_form.category.html_name }}" 
+                                    value="{{ category_input.data.value }}" 
+                                    id="mobile_{{ category_input.id_for_label }}"
+                                    {% if category_input.data.selected %}checked{% endif %}
+                                >
+                            </a>
+                            <div>
+                                <a href="{% url 'containers:rent' %}" for="mobile_{{ category_input.id_for_label }}" class="form__checkbox-label">
+                                    {{ category_input.choice_label }}
+                                </a>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers"></p> 
+                            </div>
                         </div>
-                        <div>
-                            <label for="mobile_{{ category_input.id_for_label }}" class="form__checkbox-label">
-                                {{ category_input.choice_label }}
-                            </label>
+                    {% else %}
+                        <div class="form__checkbox">
+                            <div class="form__checkbox-wrap">
+                                
+                                <input type="checkbox"
+                                    name="{{ filter_form.category.html_name }}" 
+                                    value="{{ category_input.data.value }}" 
+                                    id="mobile_{{ category_input.id_for_label }}"
+                                    {% if category_input.data.selected %}checked{% endif %}
+                                >
+                            </div>
+                            <div>
+                                <label for="mobile_{{ category_input.id_for_label }}" class="form__checkbox-label">
+                                    {{ category_input.choice_label }}
+                                </label>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers">{% container_count_for_category category_input.data.value %}</p> 
+                            </div>
                         </div>
-                        <div>
-                            <p class="catalog__filter-numbers">{% container_count_for_category category_input.data.value %}</p> 
-                        </div>
-                    </div>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -183,19 +205,35 @@
                     <p class="catalog__filter-subtitle">Тип контейнера</p>
                     <div class="catalog__filter-field-variants">
                         {% for category_input in filter_form.category %}
-                            <div class="form__checkbox">
-                                <div class="form__checkbox-wrap">
-                                    {{ category_input.tag }} 
+                            {% if category_input.choice_label == 'Аренда' %}
+                                <div class="form__checkbox">
+                                    <a href="{% url 'containers:rent' %}" class="form__checkbox-wrap pointer-events-none">
+                                        {{ category_input.tag }} 
+                                    </a>
+                                    <div>
+                                        <a href="{% url 'containers:rent' %}" for="{{ category_input.id_for_label }}" class="form__checkbox-label">
+                                            {{ category_input.choice_label }}
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <p class="catalog__filter-numbers"></p> 
+                                    </div>
                                 </div>
-                                <div>
-                                    <label for="{{ category_input.id_for_label }}" class="form__checkbox-label">
-                                        {{ category_input.choice_label }}
-                                    </label>
+                            {% else %}
+                                <div class="form__checkbox">
+                                    <div class="form__checkbox-wrap">
+                                        {{ category_input.tag }} 
+                                    </div>
+                                    <div>
+                                        <label for="{{ category_input.id_for_label }}" class="form__checkbox-label">
+                                            {{ category_input.choice_label }}
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <p class="catalog__filter-numbers">{% container_count_for_category category_input.data.value %}</p> 
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="catalog__filter-numbers">{% container_count_for_category category_input.data.value %}</p> 
-                                </div>
-                            </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>

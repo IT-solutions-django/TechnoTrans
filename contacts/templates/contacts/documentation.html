@@ -34,7 +34,7 @@
         </div>
         <div class="documentation__main">
             {% for section in doc_sections %}
-            <div id="section-{{ section.pk }}" class="documentation__section">
+            <div id="section-{{ section.pk }}" class="documentation__section target-section">
                 <p class="documentation__section-heading">{{ section.full_name }}</p>
                 <div class="documentation__section-body">
                     {% for file in section.files.all %}

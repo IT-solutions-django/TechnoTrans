@@ -211,21 +211,11 @@
                                 {% endfor %}
                             </div>
                         </div>
-                        <!-- <div class="footer__column">
-                            <a href="#" class="red-hover footer__column-subtitle">Запчасти</a>
-                            <div class="footer__list">
-                                <a class="footer__column-item red-hover only-desktop" href="">Carrier</a>
-                                <a class="footer__column-item red-hover only-desktop" href="">Thermo King</a>
-                                <a class="footer__column-item red-hover only-desktop" href="">Daikin</a>
-                                <a class="footer__column-item red-hover only-desktop" href="">Star Cool</a>
-                                <a class="footer__column-item red-hover only-desktop" href="">Расходники</a>
-                            </div>
-                        </div> -->
                         <div class="footer__column">
                             <a href="{% url 'contacts:about_company' %}" class="red-hover footer__column-subtitle">О компании</a>
                             <div class="footer__list">
                                 <a class="footer__column-item red-hover only-desktop" href="{% url 'contacts:documentation' %}">Документация</a>
-                                <a class="footer__column-item red-hover only-desktop" href="">Аренда контейнеров</a>
+                                <a class="footer__column-item red-hover only-desktop" href="{% url 'containers:rent' %}">Аренда контейнеров</a>
                                 <a class="footer__column-item red-hover only-desktop" href="{% url 'contacts:privacy_policy' %}">Политика конфиденциальности</a>
                             </div>
                         </div>
@@ -243,11 +233,11 @@
                         <div class="header__contacts">
                             <div class="header__contact-link">
                                 <img src="{% static 'images/whatsapp.svg' %}" alt="Логотип WhatsApp">
-                                <a href="{{ company_info.whatsapp_link }}">WhatsApp</a>
+                                <a href="{{ company_info.whatsapp_link }}" target="_blank">WhatsApp</a>
                             </div>
                             <div class="header__contact-link">
                                 <img src="{% static 'images/telegram.svg' %}" alt="Логотип Telegram">
-                                <a href="{{ company_info.telegram_link }}">Telegram</a>
+                                <a href="{{ company_info.telegram_link }}" target="_blank">Telegram</a>
                             </div>
                         </div>
                     </div>

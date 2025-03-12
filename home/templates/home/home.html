@@ -74,7 +74,7 @@
             <button class="main__button-red background-red-hover openModal">
                 Связаться с нами
             </button>
-            <a href="{{ company_info.whatsapp_link }}" class="main__button-transparent">
+            <a href="{{ company_info.whatsapp_link }}" target="_blank" class="main__button-transparent">
                 <img src="static/images/whatsapp.svg" alt="Логтип WhatsApp">
                 Написать в WhatsApp
             </a>
@@ -91,7 +91,7 @@
                 <div class="main__price-value">
                     <span class="main__price-big">от 2$</span> /сутки
                 </div>
-                <a href="{% url 'containers:catalog' %}" class="transparent-button">
+                <a href="{% url 'containers:rent' %}" class="transparent-button">
                     <button>Выбрать модель</button>
                 </a>
             </div>
@@ -207,7 +207,13 @@
                         </div>
                     {% endfor %}
                 </div>
-                <a href="{% url 'containers:catalog' %}" class="home__containers-watch-all">
+                <a href="
+                {% if category.name == 'Аренда' %}
+                    {% url 'containers:rent' %}
+                {% else %} 
+                    {% url 'containers:catalog' %}?category={{ category.pk }}
+                {% endif %}
+                " class="home__containers-watch-all">
                     Смотреть все
                 </a>
             </div>
@@ -269,34 +275,34 @@
         </div>
         <div class="home__parts-right">
             <div data-aos="fade-left" data-aos-duration="300" class="home__parts-brand-card">
-                <img src="static/images/part-brand-1.png" alt="Логотип бренда">
-                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
+                <img src="static/images/part-brand-1.png" alt="Carrier">
+                <a class="home__parts-brand-card-button" href="{% if urls_filtered_by_brand.Carrier %}{{ urls_filtered_by_brand.Carrier }}{% else %}{% url 'containers:rent' %}{% endif %}">Смотреть все</a>
             </div>
             <div data-aos="fade-left" data-aos-duration="400" class="home__parts-brand-card">
-                <img src="static/images/part-brand-2.png" alt="Логотип бренда">
-                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
+                <img src="static/images/part-brand-2.png" alt="Thermo King">
+                <a class="home__parts-brand-card-button" href="{% if urls_filtered_by_brand.ThermoKing %}{{ urls_filtered_by_brand.ThermoKing }}{% else %}{% url 'containers:rent' %}{% endif %}">Смотреть все</a>
             </div>
             <div data-aos="fade-left" data-aos-duration="500" class="home__parts-brand-card">
-                <img src="static/images/part-brand-3.png" alt="Логотип бренда">
-                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
+                <img src="static/images/part-brand-3.png" alt="Star Cool">
+                <a class="home__parts-brand-card-button" href="{% if urls_filtered_by_brand.StarCool %}{{ urls_filtered_by_brand.StarCool }}{% else %}{% url 'containers:rent' %}{% endif %}">Смотреть все</a>
             </div>
             <div data-aos="fade-left" data-aos-duration="600" class="home__parts-brand-card">
                 <img src="static/images/part-brand-4.png" alt="Логотип бренда">
-                <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
+                <a class="home__parts-brand-card-button" href="{% if urls_filtered_by_brand.Daikin %}{{ urls_filtered_by_brand.Daikin }}{% else %}{% url 'containers:rent' %}{% endif %}">Смотреть все</a>
             </div>
             <div data-aos="fade-left" data-aos-duration="700" class="home__parts-brand-card only-desktop">
                 <p class="home__parts-brand-card-heading">Расходники</p>
                 <a class="home__parts-brand-card-button" href="{% url 'containers:catalog' %}">Смотреть все</a>
             </div>
-            <div data-aos="fade-left" data-aos-duration="800" class="home__parts-brand-card only-desktop">
+            <div data-aos="fade-left data-aos-duration="800" class="home__parts-brand-card only-desktop">
                 <p class="home__parts-brand-card-heading">Расходники</p>
-                <a class="home__parts-brand-card-button-red background-red-hover" href="">Запросить весь каталог</a>
+                <p class="home__parts-brand-card-button-red background-red-hover openModal">Запросить весь каталог</p>
             </div>
         </div>
         <a href="{% url 'containers:catalog' %}" class="home__parts-brand-card-button--mobile-container only-mobile--flex">
             <p class="home__parts-brand-card-button--mobile">Расходники</p>
         </a>
-        <a href="{% url 'containers:catalog' %}" class="home__parts-brand-card-button--mobile-container-red only-mobile--flex background-red-hover">
+        <a class="home__parts-brand-card-button--mobile-container-red only-mobile--flex background-red-hover openModal">
             <p class="home__parts-brand-card-button--mobile">Запросить весь каталог</p>
         </a>
     </div>
@@ -390,16 +396,46 @@
 
 <div class="home__partners container">
     <div class="block-heading">Нам доверяют</div>
-    <div class="home__partners-list">
-        {% for partner in partners %}
-            <img src="{{ partner.logo.url }}" alt="Логотип компании" 
-                data-name="Иванов Алексей Петрович" 
-                data-role="Директор по развитию X5 Group"
-                data-quote="X5 Group ценит качество обслуживания и надежность партнера."
-                data-img="static/images/partners-quote-author.png"
-            >
-        {% endfor %}
-    </div>
+        <div class="marquee-wrapper">
+            <div class="element">
+                <div class="bar">
+                    <div class="items">
+                        {% for partner in partners %}
+                        <div class="item">
+                            <img src="{{ partner.logo.url }}" alt="Логотип компании">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="bar">
+                    <div class="items">
+                        {% for partner in partners %}
+                        <div class="item">
+                            <img src="{{ partner.logo.url }}" alt="Логотип компании">
+                        </div>
+                        {% endfor %}    
+                    </div>
+                </div>
+                <div class="bar">
+                    <div class="items">
+                        {% for partner in partners %}
+                        <div class="item">
+                            <img src="{{ partner.logo.url }}" alt="Логотип компании">
+                        </div>
+                        {% endfor %}    
+                    </div>
+                </div>
+                <div class="bar">
+                    <div class="items">
+                        {% for partner in partners %}
+                        <div class="item">
+                            <img src="{{ partner.logo.url }}" alt="Логотип компании">
+                        </div>
+                        {% endfor %}    
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
 
 
@@ -425,11 +461,12 @@ $(document).ready((function() {
         responsive: [{
             breakpoint: 1024,
             settings: {
+                centerMode: true,
                 slidesToShow: 3,
                 slidesToScroll: 1
             }
         }, {
-            breakpoint: 768,
+            breakpoint: 820,
             settings: {
                 centerMode: !0,
                 slidesToShow: 2,
@@ -474,32 +511,6 @@ document.querySelectorAll('.main__price').forEach((division) => {
         division.classList.add('active');
     }
 });
-
-// Цитаты
-document.querySelectorAll('.home__partners-list img').forEach(logo => {
-    const quoteBlock = document.querySelector('.home__partners-quote-block');
-
-    logo.addEventListener('mouseenter', function () {
-        quoteBlock.style.opacity = "0.2"; 
-
-        setTimeout(() => {
-            document.querySelector('.home__partners-quote-author-name').textContent = this.dataset.name;
-        document.querySelector('.home__partners-quote-author-role').textContent = this.dataset.role;
-        document.getElementById('quote-text').textContent = this.dataset.quote;
-        
-        document.querySelector('.home__partners-quote-author-img').src = this.dataset.img;
-
-        document.querySelectorAll('.home__partners-list img').forEach(img => {
-            img.classList.remove('active');
-        });
-
-        this.classList.add('active');
-
-            quoteBlock.style.opacity = "1"; 
-        }, 150); 
-    });
-});
-
 
 // Форма ОС в блоке "Обслуживание контейнеров"
 const feedbackForm = document.getElementById("serviceBlockForm");

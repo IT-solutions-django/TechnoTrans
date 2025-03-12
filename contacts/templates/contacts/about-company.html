@@ -1,13 +1,17 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% load static %}
 {% load tags %}
 {% load container_tags %}
 
 
-{% block title %}Компания по продаже рефконтейнеров и дизельных генераторов - контакты | ТехноТранс{% endblock %} 
-{% block meta_title %}Компания по продаже рефконтейнеров и дизельных генераторов - контакты | ТехноТранс{% endblock %} 
-{% block description %}История компании, этапы покупки и доставки и контактные данные компании ТехноТранс. Оставьте заявку на нашем сайте для получения подробного расчета стоимости рефконтейнера, дизель генератора или запчастей для них.{% endblock %} 
-{% block meta_description %}История компании, этапы покупки и доставки и контактные данные компании ТехноТранс. Оставьте заявку на нашем сайте для получения подробного расчета стоимости рефконтейнера, дизель генератора или запчастей для них.{% endblock %} 
+{% block title %}Компания по продаже рефконтейнеров и дизельных генераторов - контакты | ТехноТранс{% endblock %}
+{% block meta_title %}Компания по продаже рефконтейнеров и дизельных генераторов - контакты | ТехноТранс{% endblock %}
+{% block description %}История компании, этапы покупки и доставки и контактные данные компании ТехноТранс. Оставьте
+заявку на нашем сайте для получения подробного расчета стоимости рефконтейнера, дизель генератора или запчастей для
+них.{% endblock %}
+{% block meta_description %}История компании, этапы покупки и доставки и контактные данные компании ТехноТранс. Оставьте
+заявку на нашем сайте для получения подробного расчета стоимости рефконтейнера, дизель генератора или запчастей для
+них.{% endblock %}
 
 
 {% block content %}
@@ -30,7 +34,9 @@
                 </div>
                 <div class="home__service-point-text">
                     <p class="home__service-point-heading">Индивидуальный подход к каждому клиенту</p>
-                    <p class="home__service-point-sub">Компания предлагает уникальные решения, учитывая специфику бизнеса и пожелания клиента. Это позволяет находить оптимальные варианты для каждого заказчика.</p>
+                    <p class="home__service-point-sub">Компания предлагает уникальные решения, учитывая специфику
+                        бизнеса и пожелания клиента. Это позволяет находить оптимальные варианты для каждого заказчика.
+                    </p>
                 </div>
             </div>
             <div class="home__service-point">
@@ -39,7 +45,8 @@
                 </div>
                 <div class="home__service-point-text">
                     <p class="home__service-point-heading">Профессионализм и опыт команды</p>
-                    <p class="home__service-point-sub">Компания объединяет опытных логистов и использует передовые технологии, что позволяет обеспечивать высокий уровень сервиса и эффективность решений.</p>
+                    <p class="home__service-point-sub">Компания объединяет опытных логистов и использует передовые
+                        технологии, что позволяет обеспечивать высокий уровень сервиса и эффективность решений.</p>
                 </div>
             </div>
             <div class="home__service-point">
@@ -48,7 +55,9 @@
                 </div>
                 <div class="home__service-point-text">
                     <p class="home__service-point-heading">Гибкость и поддержка клиентов</p>
-                    <p class="home__service-point-sub">Менеджеры компании всегда на связи, готовы оперативно ответить на вопросы и помочь в решении любых задач, связанных с логистикой и использованием рефконтейнеров.</p>
+                    <p class="home__service-point-sub">Менеджеры компании всегда на связи, готовы оперативно ответить на
+                        вопросы и помочь в решении любых задач, связанных с логистикой и использованием рефконтейнеров.
+                    </p>
                 </div>
             </div>
             <div class="home__service-point">
@@ -57,137 +66,135 @@
                 </div>
                 <div class="home__service-point-text">
                     <p class="home__service-point-heading">Удобство и простота в сотрудничестве</p>
-                    <p class="home__service-point-sub">Компания стремится сделать логистику максимально понятной и удобной для клиентов, предлагая бесплатную доставку в сотни городов России и детально проработанные решения.</p>
+                    <p class="home__service-point-sub">Компания стремится сделать логистику максимально понятной и
+                        удобной для клиентов, предлагая бесплатную доставку в сотни городов России и детально
+                        проработанные решения.</p>
                 </div>
             </div>
         </div>
         <div class="about-company__partners">
             <p class="block-heading">Нам доверяют</p>
             <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    {% for partner in partners %}
-                        <div class="swiper-slide">
-                            <img src="{{ partner.logo.url }}" alt="Логотип компании" 
-                                data-name="Иванов Алексей Петрович" 
-                                data-role="Директор по развитию X5 Group"
-                                data-quote="X5 Group ценит качество обслуживания и надежность партнера."
-                                data-img="static/images/partners-quote-author.png"
-                            >
+                <div class="marquee-wrapper">
+                    <div class="element">
+                        <div class="bar">
+                            <div class="items">
+                                {% for partner in partners %}
+                                <div class="item">
+                                    <img src="{{ partner.logo.url }}" alt="Логотип компании">
+                                </div>
+                                {% endfor %}
+                            </div>
                         </div>
-                    {% endfor %}
-                </div>
-            </div>
-        <div class="about-company__stages">
-            <p class="block-heading">Схема работы</p>
-            <div class="about-company__stages-body">
-                <div class="about-company__stage">
-                    <div class="about-company__stage-upper">
-                        <span class="about-company__stage-heading">Заявка и консультация</span>
-                        <span class="about-company__stage-number">01</span>
-                    </div>
-                    <div class="about-company__stage-lower">
-                        <p>Оперативно доставляем оборудование в РФ и страны ТС. Стоимость доставки уточняйте у наших менеджеров.</p>
-                    </div>
-                </div>
-                <div class="about-company__stage">
-                    <div class="about-company__stage-upper">
-                        <span class="about-company__stage-heading">Выбор и оформление</span>
-                        <span class="about-company__stage-number">02</span>
-                    </div>
-                    <div class="about-company__stage-lower">
-                        <p>Оперативно доставляем оборудование в РФ и страны ТС. Стоимость доставки уточняйте у наших менеджеров.</p>
-                    </div>
-                </div>
-                <div class="about-company__stage">
-                    <div class="about-company__stage-upper">
-                        <span class="about-company__stage-heading">Доставка в ваш регион</span>
-                        <span class="about-company__stage-number">03</span>
-                    </div>
-                    <div class="about-company__stage-lower">
-                        <p>Оперативно доставляем оборудование в РФ и страны ТС. Стоимость доставки уточняйте у наших менеджеров.</p>
-                    </div>
-                </div>
-                <div class="about-company__stage">
-                    <div class="about-company__stage-upper">
-                        <span class="about-company__stage-heading">Сервис и гарантия</span>
-                        <span class="about-company__stage-number">04</span>
-                    </div>
-                    <div class="about-company__stage-lower">
-                        <p>Оперативно доставляем оборудование в РФ и страны ТС. Стоимость доставки уточняйте у наших менеджеров.</p>
-                    </div>
-                </div>
-                <div class="about-company__stage">
-                    <div class="about-company__stage-upper">
-                        <span class="about-company__stage-heading">Запчасти и поддержка</span>
-                        <span class="about-company__stage-number">05</span>
-                    </div>
-                    <div class="about-company__stage-lower">
-                        <p>Оперативно доставляем оборудование в РФ и страны ТС. Стоимость доставки уточняйте у наших менеджеров.</p>
+                        <div class="bar">
+                            <div class="items">
+                                {% for partner in partners %}
+                                <div class="item">
+                                    <img src="{{ partner.logo.url }}" alt="Логотип компании">
+                                </div>
+                                {% endfor %}    
+                            </div>
+                        </div>
+                        <div class="bar">
+                            <div class="items">
+                                {% for partner in partners %}
+                                <div class="item">
+                                    <img src="{{ partner.logo.url }}" alt="Логотип компании">
+                                </div>
+                                {% endfor %}    
+                            </div>
+                        </div>
+                        <div class="bar">
+                            <div class="items">
+                                {% for partner in partners %}
+                                <div class="item">
+                                    <img src="{{ partner.logo.url }}" alt="Логотип компании">
+                                </div>
+                                {% endfor %}    
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="about-company__delivery">
-            <p class="block-heading">Доставка по России и странам СНГ</p>
-            <div class="about-company__delivery-body">
-                <div class="about-company__delivery-description">
-                    Наша компания предоставляет полный спектр услуг по доставке и продаже контейнеров любого типа в любую точку России и стран СНГ. Мы гарантируем надежность, оперативность и индивидуальный подход к каждому клиенту
+                <div class="about-company__stages">
+                    <p class="block-heading">Схема работы</p>
+                    <div class="about-company__stages-body">
+                        {% for stage in stages %}
+                            <div class="about-company__stage">
+                                <div class="about-company__stage-upper">
+                                    <span class="about-company__stage-heading">{{ stage.name }}</span>
+                                    <span class="about-company__stage-number">{{ forloop.counter|stringformat:"02d" }}</span>
+                                </div>
+                                <div class="about-company__stage-lower">
+                                    <p>{{ stage.description }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
-                <img class="about-company__delivery-map" src="{% static 'images/map.svg' %}" alt="Карта">
+                <div class="about-company__delivery">
+                    <p class="block-heading">Доставка по России и странам СНГ</p>
+                    <div class="about-company__delivery-body">
+                        <div class="about-company__delivery-description">
+                            Наша компания предоставляет полный спектр услуг по доставке и продаже контейнеров любого
+                            типа в любую точку России и стран СНГ. Мы гарантируем надежность, оперативность и
+                            индивидуальный подход к каждому клиенту
+                        </div>
+                        <img class="about-company__delivery-map" src="{% static 'images/map.svg' %}" alt="Карта">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    </div>
-</div>
 
-<script defer>
-    // Вопросы и ответы
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".about-company__stage-upper").forEach((question) => {
-        question.addEventListener("click", () => {
-            const parentBlock = question.parentElement;
-            const answer = parentBlock.querySelector(".about-company__stage-lower");
+    <script defer>
+        // Вопросы и ответы
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".about-company__stage-upper").forEach((question) => {
+                question.addEventListener("click", () => {
+                    const parentBlock = question.parentElement;
+                    const answer = parentBlock.querySelector(".about-company__stage-lower");
 
-            console.log(parentBlock)
+                    console.log(parentBlock)
 
 
-            if (parentBlock.classList.contains("active")) {
-                console.log(parentBlock.classList)
-                console.log('убираем')
-                parentBlock.classList.remove("active");
-                answer.style.maxHeight = null;
-            } else {
-                document.querySelectorAll(".home__question-block").forEach((block) => {
-                    block.classList.remove("active");
-                    block.querySelector(".home__answer").style.maxHeight = null;
+                    if (parentBlock.classList.contains("active")) {
+                        console.log(parentBlock.classList)
+                        console.log('убираем')
+                        parentBlock.classList.remove("active");
+                        answer.style.maxHeight = null;
+                    } else {
+                        document.querySelectorAll(".home__question-block").forEach((block) => {
+                            block.classList.remove("active");
+                            block.querySelector(".home__answer").style.maxHeight = null;
+                        });
+
+                        console.log('добавляем')
+
+                        // answer.style.height = answer.scrollHeight + 20 + "px"; 
+                        parentBlock.classList.add("active");
+                    }
                 });
-
-                console.log('добавляем')
-
-                // answer.style.height = answer.scrollHeight + 20 + "px"; 
-                parentBlock.classList.add("active");
-            }
+            });
         });
-    });
-});
-</script>
+    </script>
 
-<script defer>
-    document.addEventListener("DOMContentLoaded", function () {
-        const swiper = new Swiper('.swiper-container', {
-            slidesPerView: 'auto', 
-            // loopedSlides: 'auto',
-            spaceBetween: 200,  
-            loop: true,  
-            speed: 12000,  
-            autoplay: {
-                delay: 0, 
-                disableOnInteraction: false, 
-            },
-        }); 
-    });
-</script>
+    <!-- <script defer>
+        document.addEventListener("DOMContentLoaded", function () {
+            const swiper = new Swiper('.swiper-container', {
+                slidesPerView: 'auto',
+                // loopedSlides: 'auto',
+                spaceBetween: 200,
+                loop: true,
+                speed: 12000,
+                autoplay: {
+                    delay: 0,
+                    disableOnInteraction: false,
+                },
+            });
+        });
+    </script> -->
 
-{% include 'home/includes/questions_block.html' %}
-{% include 'home/includes/contacts_block.html' %}
-{% endblock %}
+    {% include 'home/includes/questions_block.html' %}
+    {% include 'home/includes/contacts_block.html' %}
+    {% endblock %}

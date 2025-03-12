@@ -46,7 +46,7 @@ class Generator(models.Model):
     old_price = models.IntegerField(verbose_name='Старая цена', default=0)
     price = models.IntegerField(verbose_name='Цена', default=0)
     description = models.TextField('Описание', max_length=2000, default='')
-    power = models.ForeignKey(verbose_name='Мощность номинальная, квт', to=GeneratorPower, on_delete=models.CASCADE, related_name='power_generators')
+    power = models.ForeignKey(verbose_name='Мощность номинальная, квт', to=GeneratorPower, on_delete=models.CASCADE, related_name='power_generators', null=True, blank=True)
     with_nds = models.BooleanField('Цены указаны с НДС', default=True)
     
     class Meta: 

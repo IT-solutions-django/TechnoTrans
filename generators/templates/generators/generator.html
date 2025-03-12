@@ -4,8 +4,8 @@
 {% load container_tags %} 
 
 
-{% block title %}Дизельный генератор мощностью {{ generator.power }} за {{ generator.price|price_format }} | Технотранс{% endblock %} 
-{% block meta_title %}Дизельный генератор мощностью {{ generator.power }} за {{ generator.price|price_format }} | Технотранс{% endblock %} 
+{% block title %}Дизельный генератор {% if generator.power %}мощностью {{ generator.power }} {% endif %}за {{ generator.price|price_format }} р | Технотранс{% endblock %} 
+{% block meta_title %}Дизельный генератор {% if generator.power %}мощностью {{ generator.power }} {% endif %}за {{ generator.price|price_format }} р | Технотранс{% endblock %} 
 {% block description %}Дизель генераторы под любые цели. Генераторы {{ generator.generator_type }} {{ generator.year }} года, мощностью {{ generator.power }} квт с доставкой по России. Цены от {{ generator.price }}! Оставьте заявку или рассчитайте стоимость на нашем сайте.{% endblock %} 
 {% block meta_description %}Дизель генераторы под любые цели. Генераторы {{ generator.generator_type }} {{ generator.year }} года, мощностью {{ generator.power }} квт с доставкой по России. Цены от {{ generator.price }}! Оставьте заявку или рассчитайте стоимость на нашем сайте.{% endblock %} 
 
@@ -21,8 +21,8 @@
     <a class="active" href=" ">{{ generator.name }}</a>
 </div>
 
-<div class="catalog container">
-    <h1 class="catalog__heading">{{ generator.name }} {{ generator.power }} квт</h1>
+<div class="catalog container generator">
+    <h1 class="catalog__heading">{{ generator.name }}{% if generator.power %} {{ generator.power }} квт{% endif %}</h1>
     <div class="container__general-info">
         <div class="container__left">
             <div class="container__slider">
@@ -47,7 +47,7 @@
         <div class="container__right">
             <div class="container__short-info">
                 <div class="container__table-info">
-                    <div class="container__table-row.no-border-top">
+                    <div class="container__table-row no-border-top">
                         <span class="container__table-label">Год выпуска</span>
                         <span class="container__table-value">{{ generator.year    }}</span>
                     </div>
@@ -55,10 +55,12 @@
                         <span class="container__table-label">Тип</span>
                         <span class="container__table-value">{{ generator.generator_type }}</span>
                     </div>
-                    <div class="container__table-row container__table-row--last">
-                        <span class="container__table-label">Номинальная мощность, квт</span>
-                        <span class="container__table-value">{{ generator.power }}</span>
-                    </div>
+                    {% if generator.power %}
+                        <div class="container__table-row container__table-row--last">
+                            <span class="container__table-label">Номинальная мощность, квт</span>
+                            <span class="container__table-value">{{ generator.power }}</span>
+                        </div>
+                    {% endif %}
                 </div>
                 <div>
                     <a href="" class="container__all-specs">
@@ -87,7 +89,7 @@
                     <button class="main__button-red openModal background-red-hover">
                         Оформить заказ
                     </button>
-                    <a href="{{ company_info.whatsapp_link }}" class="main__button-transparent">
+                    <a href="{{ company_info.whatsapp_link }}" target="_blank" class="main__button-transparent">
                         <img src="{% static 'images/whatsapp.svg' %}" alt="Логотип WhatsApp">
                         <p>Написать в Whatsapp</p>
                     </a>
@@ -141,11 +143,13 @@
                     <div class="container__specs-row">
                         <span class="container__specs-label">Название</span>
                         <span>{{ generator.name }}</span>
-                    </div>  
+                    </div> 
+                    {% if generator.power %} 
                     <div class="container__specs-row">
                         <span class="container__specs-label">Номинальная мощность, квт</span>
                         <span>{{ generator.power }}</span>
                     </div>  
+                    {% endif %}
                     <div class="container__specs-row">
                         <span class="container__specs-label">Год выпуска</span>
                         <span>{{ generator.year }}</span>

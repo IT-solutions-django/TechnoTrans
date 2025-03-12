@@ -119,3 +119,12 @@ class Partner(models.Model):
     class Meta: 
         verbose_name = 'Партнёр'
         verbose_name_plural = 'Партнёры'
+
+
+class WorkStage(models.Model): 
+    name = models.CharField('Название', max_length=80) 
+    description = models.CharField('Короткое описание', max_length=300) 
+
+    class Meta: 
+        verbose_name = 'Этап работы'
+        verbose_name_plural = 'Этапы работы'
