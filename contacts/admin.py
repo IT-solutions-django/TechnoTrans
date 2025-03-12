@@ -7,6 +7,7 @@ from .models import (
     DocumentationFile,
     PopularQuestion,
     Partner,
+    WorkStage,
 )
 
 
@@ -52,3 +53,9 @@ class PopularQuestionAdmin(admin.ModelAdmin):
 class PopularQuestionAdmin(admin.ModelAdmin): 
     list_display = ['company_name']
     search_fields = ['company_name', 'company_member']
+
+
+@admin.register(WorkStage)
+class WorkStageAdmin(admin.ModelAdmin): 
+    list_display = ['name']
+    search_fields = ['name', 'description']

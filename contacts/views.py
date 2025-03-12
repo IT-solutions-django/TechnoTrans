@@ -6,6 +6,7 @@ from .models import (
     DocumentationSection, 
     DocumentationFile,
     Partner,
+    WorkStage,
 )
 
 
@@ -15,10 +16,12 @@ class AboutCompanyView(View):
     def get(self, request): 
         company_info = CompanyInfo.get_instance()
         partners = Partner.objects.all()
+        stages = WorkStage.objects.all()
 
         context = {
             'company_info': company_info,
             'partners': partners,
+            'stages': stages,
         }
 
         return render(request, self.template_name, context)
