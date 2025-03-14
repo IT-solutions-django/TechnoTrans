@@ -47,17 +47,17 @@ urlpatterns = [
     path('generators/', include('generators.urls', namespace='generators')),
 
 
-    # re_path(r'^robots\.txt$', serve, {
-    #     'document_root': settings.BASE_DIR,
-    #     'path': 'robots.txt',
-    # }),
+    re_path(r'^robots\.txt$', serve, {
+        'document_root': settings.BASE_DIR,
+        'path': 'robots.txt',
+    }),
 
-    # path(
-    #     'sitemap.xml',
-    #     sitemap,
-    #     {'sitemaps': sitemaps},
-    #     name='django.contrib.sitemaps.views.sitemap',
-    # ),
+    path(
+        'sitemap.xml',
+        sitemap,
+        {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap',
+    ),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
