@@ -19,24 +19,29 @@
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-    <!-- Libriaries -->
+    <!-- Libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/slick/slick/slick.min.js' %}"></script>
     <link rel="stylesheet" href="{% static 'js/slick/slick/slick.css' %}">
     <link rel="stylesheet" href="{% static 'js/slick/slick/slick-theme.css' %}">
     <script src="{% static 'js/imask/Imask.min.js' %}"></script>
-
-    <link rel=icon type=image/png sizes=16x16 href="{% static 'images/logo.svg' %}">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+    <!-- Logo -->
+    <link rel=icon type=image/png sizes=16x16 href="{% static 'images/logo.svg' %}">
+
+    
     <title>{% block title %}{% endblock title %}</title>
     <meta name=description content="{% block description %}{% endblock %}">
     <meta property=og:title content="{% block meta_title %}{% endblock %}">
     <meta property=og:description content="{% block meta_description %}{% endblock %}">
-
-
+    
+    
     {% block head %}
     {% endblock %}
+    
+    <!-- Jivo -->
+    <script src="//code.jivo.ru/widget/ebpBPPYJ4H" async></script>
 </head>
 <body>
     <div id="modal" class="modal">
