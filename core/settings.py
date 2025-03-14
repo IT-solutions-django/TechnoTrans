@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
     'http://*.83.222.8.148', 
+    'http://*ttrans.pro',
 ]
 
 
