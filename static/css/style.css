@@ -1391,7 +1391,7 @@ body,
     }
     
     100%{
-    transform: translate(-160%, 0);
+    transform: translate(-100%, 0);
     }
 }
 
@@ -1406,12 +1406,12 @@ body,
     animation-name: moveSlideshow;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    animation-duration: 120s;
+    animation-duration: 40s;
     animation-direction: normal;
     animation-delay: 0s;
     display: flex;
     width: max-content;
-    min-width: 200%;
+    width: 200%;
     flex-shrink: 0;
     margin: 0px 40px;
 }
