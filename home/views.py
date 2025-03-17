@@ -11,7 +11,8 @@ from django.urls import reverse
 from contacts.models import Partner
 from loguru import logger
 from .forms import FeedbackForm, CalculatePriceRequestForm
-from .models import Request 
+from .models import CalculatePriceRequest, Request 
+from .services import send_email
 
 
 class HomeView(View): 
@@ -43,6 +44,16 @@ class SaveRequestView(View):
         if form.is_valid():
             try: 
                 new_request: Request = form.save() 
+                
+                email_subject = f'Новая заявка с сайта' 
+                email_message = f'Имя: {new_request.name}\nТелефон: {new_request.phone}' 
+                if new_request.message: 
+                    email_message += f'\nСообщение: {new_request.message}'
+                send_email(
+                    subject=email_subject, 
+                    content=email_message
+                )
+
             except Exception as e: 
                 logger.error('Ошибка при сохранении заявки')
 
@@ -57,7 +68,16 @@ class SaveCalculateRequestView(View):
         if form.is_valid():
             try: 
                 service_type = form.cleaned_data.pop("service_type")
-                new_request = form.save() 
+                new_request: CalculatePriceRequest  = form.save() 
+
+                email_subject = f'Новая заявка с сайта (расчёт стоимости обслуживания)' 
+                email_message = f'Тип контейнера: {new_request.container_type}\nВид обслуживания: {new_request.service_type}\nГород: {new_request.city}\nТелефон: {new_request.phone}' 
+                if new_request.message: 
+                    email_message += f'\nСообщение: {new_request.message}'
+                send_email(
+                    subject=email_subject, 
+                    content=email_message
+                )
 
                 logger.info(f"Заявка сохранена: {new_request}, Вид обслуживания: {service_type}")
 
