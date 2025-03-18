@@ -5,28 +5,21 @@
 
 
 {% block content %}
-<div class="breadcrumbs container">
-    <p>Главная</p>
-    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
-    <p class="active">Странциа не найдена</p>
-</div>
-<div class="about-company container privacy-policy">
-    <h1 class="catalog__heading">Политика конфиденциальности</h1>
-    <div class="about-company__body">
-        {% for paragraph in privacy_policy.paragraphs.all %}
-        <div class=article__content-block>
-            <div class=article__paragraph>
-                <div class=article__paragraph-heading>
-                    {{ paragraph.title|linebreaks }}
-                </div>
-                <div class="article__paragraph-text">
-                    {{ paragraph.content|linebreaks }}
-                </div>
+<div class="not-found container">
+    <img src="{% static 'images/not-found.png' %}" alt="Страница не найдена">
+    <div>
+        <div class="breadcrumbs">
+            <a href="{% url 'home:home' %}">Главная</a>
+            <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
+            <a href=" " class="active">404</a>
+        </div>
+        <div class="not-found-body">
+            <h1 class="catalog__heading">404. Ничего не найдено</h1>
+            <div class="not-found-content">
+                <p>Страница не существует или была удалена.</p>
+                <a class="red-button openModal" href="{% url 'home:home' %}">На главную</a>
             </div>
         </div>
-        {% endfor %}
-    </div>
     </div>
 </div>
-{% include 'home/includes/contacts_block.html' %}
 {% endblock %}

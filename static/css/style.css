@@ -1080,7 +1080,7 @@ body,
     display: block;
     width: fit-content;
     padding: 12px 16px;
-    border-radius: 8px;
+    border-radius: 12px;
     background-color: var(--color-red);
     font-weight: 600;
     font-size: 14px;
@@ -2212,6 +2212,7 @@ footer {
     gap: 36px;
 }
 
+.not-found .red-button,
 .rent .red-button {
     padding: 20px 30px;
     font-size: 20px;
@@ -2798,6 +2799,32 @@ footer {
     pointer-events: none;
     z-index: 10;
 }
+.not-found {
+    display: flex;
+    gap: 40px;
+    padding-top: 74px;
+}
+.not-found {
+    min-height: calc(100vh - 155px - 351px);
+}
+.not-found img:first-child {
+    object-fit:contain;
+    height: auto;
+    height: 243px;
+}
+.not-found .breadcrumbs {
+    padding-top: 0px;
+}
+.not-found-body {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.not-found-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
 
 @media (max-width: 1420px) {
     .main {
@@ -3282,6 +3309,10 @@ footer {
     .home__stat {
         width: calc((100% - 20px) / 2);
     }
+    .red-button,
+    .home__container-button {
+        border-radius: 8px;
+    }
 
     .home__stats {
         padding-top: 20px;
@@ -3486,7 +3517,6 @@ footer {
     }
 
     .home__questions-body {
-        /* flex-direction: column; */
         gap: 20px;
     }
 
@@ -3719,9 +3749,14 @@ footer {
         gap: 32px;
     }
 
+    .not-found .red-button,
     .rent .red-button {
         padding: 12px;
         font-size: 12px;
+    }
+    .not-found-body, 
+    .not-found-content {
+        gap: 20px;
     }
 
     .rent.about-company {
@@ -3738,6 +3773,15 @@ footer {
     .item img {
         object-fit: contain;
         height: 100%;
+    }
+    .not-found {
+        flex-direction: column;
+    }
+    .not-found img:first-child {
+        display: none;
+    }
+    .not-found {
+        padding-top: 18px;
     }
 }
 
