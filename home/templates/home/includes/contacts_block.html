@@ -6,24 +6,31 @@
     <div class="home__contacts-body">
         <div class="home__contacts-left">
             <div class="home__contacts-data">
-                <div class="home__contact-data">
-                    <p class="home__contact-data-label">Телефон: </p>
-                    <a href="tel:{{ company_info.phone }}" class="home__contact-data-heading">{{ company_info.phone }}</a>
-                </div>
-                <div class="home__contact-data">
-                    <p class="home__contact-data-label">Почта: </p>
-                    <a href="mailto:{{ company_info.email }}" class="home__contact-data-heading color-red">{{ company_info.email }}</a>
-                </div>
-                <div class="home__contacts-social-links">
-                    <div class="home__contacts-social-link">
-                        <img src="{% static 'images/whatsapp.svg' %}" alt="Логотип WhatsApp">
-                        <a href="{{ company_info.whatsapp_link }}" target="_blank">WhatsApp</a>
+                {% for filial in filials %}
+                    <div class="home__contacts-city-block">
+                        <p class="home__contacts-city-name">{{ filial.name }}</p>
+                        <div class="home__contacts-city-contacts">
+                            <div class="home__contacts-city-contacts-column">
+                                <p>Телефон</p>
+                                <a href="tel:{{ filial.phone }}" class="home__contacts-phone">{{ filial.phone }}</a>
+                            </div>
+                            <div class="home__contacts-city-contacts-column">
+                                <p>Почта</p>
+                                <a href="mailto:{{ filial.email }}" class="home__contacts-phone color-red">{{ filial.email }}</a>
+                            </div>
+                        </div>
+                        <div class="home__contacts-social-links">
+                            <div class="home__contacts-social-link">
+                                <img src="{% static 'images/whatsapp.svg' %}" alt="Логотип WhatsApp">
+                                <a href="{{ company_info.whatsapp_link }}" target="_blank">WhatsApp</a>
+                            </div>
+                            <div class="home__contacts-social-link">
+                                <img src="{% static 'images/telegram.svg' %}" alt="Логотип Telegram">
+                                <a href="{{ company_info.telegram_link }}" target="_blank">Telegram</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="home__contacts-social-link">
-                        <img src="{% static 'images/telegram.svg' %}" alt="Логотип Telegram">
-                        <a href="{{ company_info.telegram_link }}" target="_blank">Telegram</a>
-                    </div>
-                </div>
+                {% endfor %}
                 <div>
                     <button class="openModal red-button">Заказать звонок</button>
                 </div>

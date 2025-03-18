@@ -10,7 +10,6 @@ class CompanyInfo(models.Model):
     whatsapp_link = models.URLField('Ссылка на WhatsApp', max_length=200, null=True, blank=True)
     telegram_link = models.URLField('Ссылка на Telegram', max_length=200, null=True, blank=True)
     phone = models.CharField('Номер телефона', max_length=20, null=True, blank=True)
-    email = models.CharField('Email', max_length=50, null=True, blank=True)
 
     delivery_info = models.TextField('Доставка (текст)', max_length=1000, null=True, blank=True)
     payment_info = models.TextField('Оплата (текст)', max_length=1000, null=True, blank=True)
@@ -33,6 +32,19 @@ class CompanyInfo(models.Model):
     def get_instance(cls) -> "CompanyInfo":
         instance, created = cls.objects.get_or_create(id=1)
         return instance
+    
+
+class CityInfo(models.Model): 
+    name = models.CharField('Город', max_length=100) 
+    phone = models.CharField('Телефон', max_length=18) 
+    email = models.EmailField('Электронная почта', max_length=100) 
+
+    class Meta: 
+        verbose_name = 'Филиал'
+        verbose_name_plural = 'Филиалы'
+
+    def __str__(self) -> str: 
+        return f'Филиал {self.name}'
     
 
 class PrivacyPolicy(models.Model): 

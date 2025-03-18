@@ -10,4 +10,6 @@ urlpatterns = [
 
     path('api/save-request/', SaveRequestView.as_view(), name='save_request'),
     path('api/save-calculate-request/', SaveCalculateRequestView.as_view(), name='save_calculate_request'),
+
+    path('test-404/', Test404View.as_view()),
 ]

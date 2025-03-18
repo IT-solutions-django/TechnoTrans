@@ -8,12 +8,18 @@ from .models import (
     PopularQuestion,
     Partner,
     WorkStage,
+    CityInfo,
 )
 
 
 @admin.register(CompanyInfo)
 class CompanyInfoAdmin(admin.ModelAdmin): 
     list_display = ['__str__']
+
+
+@admin.register(CityInfo) 
+class CityInfoAdmin(admin.ModelAdmin): 
+    list_display = ['name', 'phone', 'email']
     
 
 class PrivacyPolicyParagraphInline(admin.TabularInline):

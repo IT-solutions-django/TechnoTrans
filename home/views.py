@@ -87,3 +87,14 @@ class SaveCalculateRequestView(View):
                 return JsonResponse({"status": "error"}, status=500)
 
         return JsonResponse({"status": "error", "errors": form.errors}, status=400)
+    
+
+class Test404View(View): 
+    template_name = '404.html' 
+
+    def get(self, request): 
+        return render(request, self.template_name)
+    
+
+def handler404(request, *args, **argv):
+    return render(request, '404.html', status=404)
