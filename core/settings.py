@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-mb7o)a)-65pp_viswiniqb$l^*^&kirv%962yv*fz*or^cilyt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['83.222.8.148', 'ttrans.pro', 'www.ttrans.pro']
+ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
     'http://*.83.222.8.148', 
