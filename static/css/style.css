@@ -1657,7 +1657,7 @@ body,
 .home__contacts-city-contacts {
     display: flex; 
     justify-content: space-between;
-    gap: 8px;
+    gap: 32px;
 }
 .home__contacts-city-contacts-column {
     display: flex;
@@ -3149,6 +3149,27 @@ footer {
     .generator .container__table-info {
         margin-top: 30px;
     }
+    .home__contacts-body {
+        flex-direction: column-reverse;
+    }
+    .home__contacts-left {
+        max-width: 829px;
+    }
+    .home__contacts-city-contacts-column {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        width: 100%;
+        font-size: 12px;
+        width: fit-content;
+        text-wrap: nowrap;
+    }
+    .home__contacts-city-contacts {
+        justify-content: flex-start;
+    }
+    .home__contacts-city-contacts-column:first-child {
+        width: auto;
+    }
 }
 
 @media (max-width: 768px) {
@@ -3783,6 +3804,10 @@ footer {
     }
     .element {
         animation-duration: 20s;
+    }
+    .home__contacts-city-contacts {
+        flex-direction: column;
+        gap: 8px;
     }
 }
 

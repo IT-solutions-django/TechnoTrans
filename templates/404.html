@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load tags %}
+{% load container_tags %}
+
+
+{% block content %}
+<div class="breadcrumbs container">
+    <p>Главная</p>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
+    <p class="active">Странциа не найдена</p>
+</div>
+<div class="about-company container privacy-policy">
+    <h1 class="catalog__heading">Политика конфиденциальности</h1>
+    <div class="about-company__body">
+        {% for paragraph in privacy_policy.paragraphs.all %}
+        <div class=article__content-block>
+            <div class=article__paragraph>
+                <div class=article__paragraph-heading>
+                    {{ paragraph.title|linebreaks }}
+                </div>
+                <div class="article__paragraph-text">
+                    {{ paragraph.content|linebreaks }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+</div>
+{% include 'home/includes/contacts_block.html' %}
+{% endblock %}
