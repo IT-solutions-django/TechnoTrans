@@ -2826,6 +2826,10 @@ footer {
     gap: 40px;
 }
 
+.documentation__sidebar-list a {
+    font-size: 14px;
+}
+
 @media (max-width: 1420px) {
     .main {
         padding-bottom: 90px;
