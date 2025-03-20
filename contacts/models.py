@@ -16,6 +16,9 @@ class CompanyInfo(models.Model):
     warranty_info_for_new = models.TextField('Гарантия для новых контейнеов (текст)', max_length=1000, null=True, blank=True)
     warranty_info_for_used = models.TextField('Гарантия для б/у контейнеов (текст)', max_length=1000, null=True, blank=True)
 
+    company_full_name = models.CharField('Полное наименование компании', null=True, blank=True, max_length=100, default='ООО "Техно Транс"')
+    requisites_file = models.FileField('Реквизиты', null=True, blank=True, upload_to='documentation/requisites/')
+
     class Meta: 
         verbose_name = 'Информация о компании'
         verbose_name_plural = 'Информация о компании'

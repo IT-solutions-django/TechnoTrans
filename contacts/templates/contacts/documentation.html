@@ -24,6 +24,10 @@
     <div class="catalog-body">
         <div class="catalog__filters">
             <div class="documentation__sidebar">
+                <p class="catalog__filter-subtitle">Реквизиты</p>
+                <div class="documentation__sidebar-list">
+                        <a href="#section-requisites" class="red-hover">Реквизиты {{ company_info.company_full_name }}</a>
+                </div>
                 <p class="catalog__filter-subtitle">Производитель</p>
                 <div class="documentation__sidebar-list">
                     {% for section in doc_sections %}
@@ -33,6 +37,17 @@
             </div>
         </div>
         <div class="documentation__main">
+            {% if company_info.requisites_file %}
+                <div id="section-requisites" class="documentation__section target-section">
+                    <p class="documentation__section-heading">Реквизиты {{ company_info.company_full_name }}</p>
+                    <div class="documentation__section-body">
+                        <a target="_blank" href="{{ company_info.requisites_file.url }}" class="documentation__file-row">
+                            <img src="{% static 'images/pdf-icon.svg' %}" alt="PDF">
+                            <p href="{{ company_info.requisites_file.file.url }}">Реквизиты {{ company_info.company_full_name }}, банковские реквизиты</p>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
             {% for section in doc_sections %}
             <div id="section-{{ section.pk }}" class="documentation__section target-section">
                 <p class="documentation__section-heading">{{ section.full_name }}</p>
