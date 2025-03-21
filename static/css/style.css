@@ -2602,6 +2602,11 @@ footer {
     max-width: calc((100% - 20px) / 3 * 2 - 40px);
 }
 
+.article__paragraph-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
 .article__paragraph-text p {
     font-size: 18px;
 }
@@ -3715,6 +3720,9 @@ footer {
         width: 100%;
     }
 
+    .article__paragraph-text {
+        gap: 8px;
+    }
     .article__paragraph-text p {
         font-size: 14px;
     }
