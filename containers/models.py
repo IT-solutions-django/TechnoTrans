@@ -4,6 +4,7 @@ from core.services import convert_image_to_webp, add_watermark
 from django.dispatch import receiver
 from django.db.models.signals import post_delete
 import os
+from django.db.models.signals import pre_delete
 
 
 class Category(models.Model): 
@@ -176,3 +177,14 @@ def delete_video_file(sender, instance, **kwargs):
     """
     if instance.video and os.path.isfile(instance.video.path):
         os.remove(instance.video.path)
+
+
+@receiver(pre_delete, sender=Container)
+def delete_container_files(sender, instance, **kwargs):
+    for image in instance.images.all():
+        if image.image and os.path.isfile(image.image.path):
+            os.remove(image.image.path)
+    
+    for video in instance.videos.all():
+        if video.video and os.path.isfile(video.video.path):
+            os.remove(video.video.path)
