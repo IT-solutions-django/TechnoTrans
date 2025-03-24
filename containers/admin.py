@@ -8,6 +8,7 @@ from .models import (
     Category,
     ContainerVideo,
     Compressor,
+    LocalizationCity,
 )
 
 
@@ -61,3 +62,8 @@ class ContainerAdmin(admin.ModelAdmin):
     ]
     list_filter = ['categories']
     prepopulated_fields = {'slug': ('name',)}
+
+
+@admin.register(LocalizationCity)
+class LocalizationCity(admin.ModelAdmin): 
+    list_display = ['name']
