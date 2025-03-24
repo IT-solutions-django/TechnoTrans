@@ -5,6 +5,7 @@ from .models import (
     GeneratorPower, 
     GeneratorType,
     GeneratorImage,
+    GeneratorModel,
 )
 
 
@@ -35,4 +36,9 @@ class GeneratorPowerAdmin(admin.ModelAdmin):
 
 @admin.register(GeneratorType)
 class GeneratorTypeAdmin(admin.ModelAdmin): 
+    list_display = ['name']
+
+
+@admin.register(GeneratorModel)
+class GeneratorModelAdmin(admin.ModelAdmin): 
     list_display = ['name']

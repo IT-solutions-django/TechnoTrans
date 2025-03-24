@@ -51,10 +51,12 @@
                         <span class="container__table-label">Год выпуска</span>
                         <span class="container__table-value">{{ generator.year    }}</span>
                     </div>
-                    <div class="container__table-row">
-                        <span class="container__table-label">Тип</span>
-                        <span class="container__table-value">{{ generator.generator_type }}</span>
-                    </div>
+                    {% if generator.generator_model %}
+                        <div class="container__table-row">
+                            <span class="container__table-label">Модель</span>
+                            <span class="container__table-value">{{ generator.generator_model }}</span>
+                        </div>
+                    {% endif %}
                     {% if generator.power %}
                         <div class="container__table-row container__table-row--last">
                             <span class="container__table-label">Номинальная мощность, квт</span>
@@ -72,7 +74,9 @@
                 <div class="container__order-card-price-block">
                     <div class="container__order-card-prices">
                         <p class="container__order-card-price--main">{{ generator.price|price_format }} ₽ </p>
-                        <p class="container__order-card-price--crossed">{{ generator.old_price|price_format }} ₽ </p>
+                        {% if generator.old_price %}
+                            <p class="container__order-card-price--crossed">{{ generator.old_price|price_format }} ₽ </p>
+                        {% endif %}
                     </div>
                     <div class="container__order-card-in-stock">
                         {% if generator.is_in_stock %}
@@ -115,21 +119,6 @@
                         Характеристики
                     </button>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="delivery-tab" data-bs-toggle="tab" data-bs-target="#tab-delivery" type="button" role="tab" aria-controls="tab-delivery" aria-selected="false">
-                        Доставка
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#tab-payment" type="button" role="tab" aria-controls="tab-payment" aria-selected="false">
-                        Оплата
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="warranty-tab" data-bs-toggle="tab" data-bs-target="#tab-warranty" type="button" role="tab" aria-controls="tab-warranty" aria-selected="false">
-                        Гарантия
-                    </button>
-                </li>
             </ul>
         </div>
 
@@ -140,10 +129,6 @@
             <div class="tab-pane fade" id="tab-specs" role="tabpanel" aria-labelledby="specs-tab">
                 <p class="container__specs-subheading">Общая информация</p>
                 <div>
-                    <div class="container__specs-row">
-                        <span class="container__specs-label">Название</span>
-                        <span>{{ generator.name }}</span>
-                    </div> 
                     {% if generator.power %} 
                     <div class="container__specs-row">
                         <span class="container__specs-label">Номинальная мощность, квт</span>
@@ -154,16 +139,13 @@
                         <span class="container__specs-label">Год выпуска</span>
                         <span>{{ generator.year }}</span>
                     </div>  
+                    {% if generator.generator_model %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Модель</span>
+                            <span>{{ generator.generator_model }}</span>
+                        </div>  
+                    {% endif %}
                 </div>
-            </div>
-            <div class="tab-pane fade" id="tab-delivery" role="tabpanel" aria-labelledby="delivery-tab">
-                Текст о доставке   
-            </div>
-            <div class="tab-pane fade" id="tab-payment" role="tabpanel" aria-labelledby="payment-tab">
-                Текст об оплате    
-            </div>
-            <div class="tab-pane fade" id="tab-warranty" role="tabpanel" aria-labelledby="warranty-tab">
-                Текст о гарантии  
             </div>
         </div>
     </div>

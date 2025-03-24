@@ -34,6 +34,17 @@ class GeneratorPower(models.Model):
     
     def __str__(self):
         return f'{self.name}'
+    
+
+class GeneratorModel(models.Model): 
+    name = models.CharField('Название', max_length=50) 
+
+    class Meta: 
+        verbose_name = 'Модель генератора'
+        verbose_name_plural = 'Модели генераторов'
+    
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Generator(models.Model): 
@@ -48,6 +59,7 @@ class Generator(models.Model):
     description = models.TextField('Описание', max_length=2000, null=True, blank=True)
     power = models.ForeignKey(verbose_name='Мощность номинальная, квт', to=GeneratorPower, on_delete=models.CASCADE, related_name='power_generators', null=True, blank=True)
     with_nds = models.BooleanField('Цены указаны с НДС', default=True)
+    generator_model = models.ForeignKey(verbose_name='Модель', to=GeneratorModel, null=True, blank=True, on_delete=models.SET_NULL)
     
     class Meta: 
         verbose_name = 'Дизель-генератор'
