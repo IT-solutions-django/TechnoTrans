@@ -70,6 +70,12 @@
                         <span class="container__table-label">Год выпуска</span>
                         <span class="container__table-value">{{ container.year    }}</span>
                     </div>
+                    {% if container.localization_cities.all %}
+                        <div class="container__table-row">
+                            <span class="container__table-label">Город локализации</span>
+                            <span class="container__table-value">{{ container.localization_cities.all|join:", " }}</span>
+                        </div>
+                    {% endif %}
                     <div class="container__table-row container__table-row--last">
                         <span class="container__table-label">Тип</span>
                         <span class="container__table-value">{{ container.container_type }}</span>
@@ -174,6 +180,12 @@
                     <div class="container__specs-row">
                         <span class="container__specs-label">Компрессор</span>
                         <span>{{ container.compressor }}</span>
+                    </div> 
+                {% endif %}
+                {% if container.localization_cities.all %}
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Город локализации</span>
+                        <span>{{ container.localization_cities.all|join:", " }}</span>
                     </div> 
                 {% endif %}
                 {% if container.length_outer or container.width_outer or container.height_outer or container.length_inner or container.width_inner or container.height_inner or container.door_width or container.doorh_height %}
