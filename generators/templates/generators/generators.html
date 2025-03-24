@@ -72,75 +72,38 @@
             <div class="generators-list">
                 <p class="block-heading">Популярные предложения</p>
                 <div class="home__containers-cards">
-                    {% if generators|length == 1 %}
-            {% for _ in "1234" %}
-                {% with generator=generators.0 %}
-                    <div class="home__container-card">
-                        <a href="{{ generator.get_absolute_url }}">
-                            <img src="{{ generator.images.all.0.image.url }}" alt="Фото генератора">
-                        </a>
-                        <div class="home__container-card-text">
-                            <div class="home__container-card-name">
-                                <a href="{{ generator.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ generator.name }}</a>
-                                <p class="home__container-card-name--small">{{ generator.generator_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ generator.year }}г.</p>
-                            </div>
-                            <div class="home__container-lower">
-                                <div class="home__container-lower-left">
-                                    <p class="home__container-card-price">{{ generator.price|price_format }} ₽ </p>
-                                    {% if generator.is_in_stock %}
-                                        <div class="home__container-card-in-stock">
-                                            <img src="{% static 'images/green-mark.svg' %}" alt="Галочка">
-                                            В наличии
-                                        </div>
-                                    {% else %}
-                                        <div class="home__container-card-in-stock">
-                                            <img src="{% static 'images/gray-circle.svg' %}" alt="Крест">
-                                            Под заказ
-                                        </div>
-                                    {% endif %}
+                    {% for generator in generators %}
+                        <div class="home__container-card {% if generators_count < 4 %} if-less-than-4 {% endif %}">
+                            <a href="{{ generator.get_absolute_url }}">
+                                <img src="{{ generator.images.all.0.image.url }}" alt="Фото генератора">
+                            </a>
+                            <div class="home__container-card-text">
+                                <div class="home__container-card-name">
+                                    <a href="{{ generator.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ generator.name }}</a>
+                                    <p class="home__container-card-name--small">{{ generator.generator_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ generator.year }}г.</p>
                                 </div>
-                                <div class="home__container-button-container">
-                                    <a href="{{ generator.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                <div class="home__container-lower">
+                                    <div class="home__container-lower-left">
+                                        <p class="home__container-card-price">{{ generator.price|price_format }} ₽ </p>
+                                        {% if generator.is_in_stock %}
+                                            <div class="home__container-card-in-stock">
+                                                <img src="{% static 'images/green-mark.svg' %}" alt="Галочка">
+                                                В наличии
+                                            </div>
+                                        {% else %}
+                                            <div class="home__container-card-in-stock">
+                                                <img src="{% static 'images/gray-circle.svg' %}" alt="Крест">
+                                                Под заказ
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="home__container-button-container">
+                                        <a href="{{ generator.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% endwith %}
-            {% endfor %}
-        {% else %}
-            {% for generator in generators %}
-                <div class="home__container-card">
-                    <a href="{{ generator.get_absolute_url }}">
-                        <img src="{{ generator.images.all.0.image.url }}" alt="Фото генератора">
-                    </a>
-                    <div class="home__container-card-text">
-                        <div class="home__container-card-name">
-                            <a href="{{ generator.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ generator.name }}</a>
-                            <p class="home__container-card-name--small">{{ generator.generator_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ generator.year }}г.</p>
-                        </div>
-                        <div class="home__container-lower">
-                            <div class="home__container-lower-left">
-                                <p class="home__container-card-price">{{ generator.price|price_format }} ₽ </p>
-                                {% if generator.is_in_stock %}
-                                    <div class="home__container-card-in-stock">
-                                        <img src="{% static 'images/green-mark.svg' %}" alt="Галочка">
-                                        В наличии
-                                    </div>
-                                {% else %}
-                                    <div class="home__container-card-in-stock">
-                                        <img src="{% static 'images/gray-circle.svg' %}" alt="Крест">
-                                        Под заказ
-                                    </div>
-                                {% endif %}
-                            </div>
-                            <div class="home__container-button-container">
-                                <a href="{{ generator.get_absolute_url }}" class="home__container-button">Подробнее</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        {% endif %}
+                    {% endfor %}
                 </div>
                 <a class="home__containers-watch-all openModal">
                     Получить консультацию
@@ -215,7 +178,7 @@ $(document).ready((function() {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 2,
         adaptiveHeight: false,
         autoplay: false,
         responsive: [{

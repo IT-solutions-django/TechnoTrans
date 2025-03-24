@@ -33,7 +33,6 @@ DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://*.83.222.8.148', 
     'https://*ttrans.pro',
     'https://www.ttrans.pro',
 ]
