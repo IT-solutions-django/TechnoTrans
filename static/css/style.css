@@ -2020,12 +2020,13 @@ footer {
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
 }
 
 .catalog .home__container-card {
     max-width: calc((100% - 16px * 3) / 4);
     margin: 0;
+    width: 100%;
 }
 
 .home__container-card.slick-slide {
@@ -2888,6 +2889,9 @@ footer {
     .main-image {
         right: 0;
         transform: scale(0.9) translateX(40px);
+    }
+    .catalog__cards {
+        justify-content: space-evenly;
     }
 
     .catalog .home__container-card {
