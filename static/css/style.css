@@ -2834,6 +2834,12 @@ footer {
 .documentation__sidebar-list a {
     font-size: 14px;
 }
+.generators-list .home__container-card.if-less-than-4 {
+    /* max-width: inherit !important; */
+    /* width: 100%; */
+    min-width: 220px;
+    max-width: 280px;
+}
 
 @media (max-width: 1420px) {
     .main {
@@ -2885,7 +2891,6 @@ footer {
 
     .catalog .home__container-card {
         max-width: min(calc((100% - 16px * 2) / 3), 280px);
-        width: 100%;
     }
 
     .main__prices {

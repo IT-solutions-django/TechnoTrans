@@ -73,6 +73,7 @@ class GeneratorsCatalogView(View):
 
         context = {
             'generators': generators,
+            'generators_count': generators.object_list.count(),
             'filter_form': filter_form,
             'applied_filters': applied_filters,
             'selected_years': ', '.join(selected_years),
