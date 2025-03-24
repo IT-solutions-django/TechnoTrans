@@ -62,6 +62,17 @@ class Compressor(models.Model):
     
     def __str__(self):
         return f'{self.name}'
+    
+
+class LocalizationCity(models.Model): 
+    name = models.CharField('Название', max_length=100) 
+
+    class Meta: 
+        verbose_name = 'Город локализации'
+        verbose_name_plural = 'Города локализации'
+    
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Container(models.Model): 
@@ -77,6 +88,7 @@ class Container(models.Model):
     price = models.IntegerField(verbose_name='Цена', default=0)
     description = models.TextField('Описание', max_length=2000, default='', null=True, blank=True)
     with_nds = models.BooleanField('Цены указаны с НДС', default=True)
+    localization_city = models.ManyToManyField(verbose_name='Город локализации', to=LocalizationCity)
 
     length_outer = models.SmallIntegerField('Длина внешняя', null=True, blank=True)
     width_outer = models.SmallIntegerField('Ширина внешняя', null=True, blank=True)
