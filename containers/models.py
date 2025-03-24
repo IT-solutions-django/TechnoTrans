@@ -89,7 +89,7 @@ class Container(models.Model):
     price = models.IntegerField(verbose_name='Цена', default=0)
     description = models.TextField('Описание', max_length=2000, default='', null=True, blank=True)
     with_nds = models.BooleanField('Цены указаны с НДС', default=True)
-    localization_cities = models.ManyToManyField(verbose_name='Город локализации', to=LocalizationCity)
+    localization_cities = models.ManyToManyField(verbose_name='Город локализации', to=LocalizationCity, null=True, blank=True)
 
     length_outer = models.SmallIntegerField('Длина внешняя', null=True, blank=True)
     width_outer = models.SmallIntegerField('Ширина внешняя', null=True, blank=True)
