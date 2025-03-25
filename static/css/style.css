@@ -874,6 +874,10 @@ body,
     font-size: 38px;
 }
 
+.rent-section .block-heading {
+    font-size: 32px;
+}
+
 .home__containers .nav-tabs,
 .container__info .nav-tabs {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -3247,6 +3251,7 @@ footer {
     .rent .rent-price ul li {
         font-size: 14px;
     }
+    .rent-section .block-heading,
     .block-heading {
         font-size: 24px;
     }
