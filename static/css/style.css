@@ -2837,10 +2837,27 @@ footer {
     font-size: 14px;
 }
 .generators-list .home__container-card.if-less-than-4 {
-    /* max-width: inherit !important; */
-    /* width: 100%; */
     min-width: 220px;
     max-width: 280px;
+}
+.about-company__description {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.about-company__description ul {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.about-company__description ul li {
+    font-size: 14px;
+    margin-left: 42px;
+}
+.extended-point-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
 }
 
 @media (max-width: 1420px) {
@@ -3249,6 +3266,17 @@ footer {
         font-size: 12px;
     }
 
+    .about-company__description .main__checkbox-label {
+        font-size: 14px;
+    }
+    .about-company__description ul {
+        gap: 4px;
+    }
+    .about-company__description ul li {
+        font-size: 12px;
+        margin-left: 26px;
+    }
+
     .main__buttons {
         gap: 8px;
     }
@@ -3608,6 +3636,9 @@ footer {
     .about-company__description,
     .about-company__stage-heading {
         font-size: 14px;
+    }
+    .about-company__description {
+        gap: 4px
     }
 
     .about-company__body .home__service-point-heading {
