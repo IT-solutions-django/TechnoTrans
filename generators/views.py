@@ -92,3 +92,13 @@ class GeneratorView(View):
             'generator': generator,
         }
         return render(request, self.template_name, context)
+    
+
+class GeneratorsRentView(View): 
+    template_name = 'generators/rent.html' 
+
+    def get(self, request): 
+        context = {
+            'generator': 'generator',
+        }
+        return render(request, self.template_name, context)

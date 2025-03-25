@@ -1,0 +1,81 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load tags %}
+{% load container_tags %}
+
+
+{% block title %}Арендовать дизель-генераторы | Технотранс{% endblock %} 
+{% block meta_title %}Арендовать дизель-генераторы | Технотранс{% endblock %} 
+{% block description %}Аренда дизель-генераторов. Доставка по всей России. Стоимость аренды на сайте ТехноТранс.{% endblock %} 
+{% block meta_description %}Аренда дизель-генераторов. Доставка по всей России. Стоимость аренды на сайте ТехноТранс.{% endblock %} 
+
+
+{% block content %}
+<div class="breadcrumbs container">
+    <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
+    <a href=" " class="active">Аренда генераторов</a>
+</div>
+<div class="about-company container rent">
+    <h1 class="catalog__heading">Аренда генераторов</h1>
+    <div class="usual-text">
+        <p>Оптимальное решение для минимизации рисков повреждения груза — аренда автономного навесного дизель-генератора (GENSET). Это оборудование гарантирует непрерывную подачу электроэнергии, необходимой для работы рефрижераторной установки контейнера. Благодаря этому на протяжении всего маршрута перевозки поддерживается стабильная заданная температура, что исключает порчу груза.</p>
+        <p>Наша компания предоставляет технически исправные дизель-генераторы в требуемом количестве. Мы гарантируем бесперебойную работу оборудования на протяжении всего срока аренды.  </p>
+    </div>
+    <div class="rent-section">
+        <div>
+            <p class="block-heading">Преимущества сотрудничества</p>
+        </div>
+        <div class="catalog-body">
+            <div class="home__questions-body">
+                <div class="about-company__description">
+                    <div class="extended-point-container">
+                        <div class="main__checkbox">
+                            <div class="main__checkbox-wrap">
+                                <input checked type="checkbox" id="efficiency" name="efficiency" required>
+                            </div>
+                            <div>
+                                <label for="efficiency" class="main__checkbox-label">
+                                    Оплата после завершения аренды
+                                </label>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>вам не потребуется вносить предоплату или тратить время на ожидание подтверждения платежей.</li>
+                        </ul>
+                    </div>
+                    <div class="extended-point-container">
+                        <div class="main__checkbox">
+                            <div class="main__checkbox-wrap">
+                                <input checked type="checkbox" id="flexibility" name="flexibility" required>
+                            </div>
+                            <div>
+                                <label for="flexibility" class="main__checkbox-label">
+                                    Гибкий график
+                                </label>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>забрать оборудование можно в любое удобное для вас время.</li>
+                        </ul>
+                    </div>
+                </div>
+                    <div class="home__questions-right">
+                        <p>Заполните, пожалуйста, форму обратной связи и наши специалисты с радостью подберут для вас эффективное решение.</p>
+                        <button class="red-button openModal">Связаться с нами</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="rent-price rent-section">
+        <p class="block-heading">Стоимость аренды навесного генератора Genset</p>
+        <ul>
+            <li>зависимость бизнеса от сезонного спроса, который существенно влияет на объемы закупок товара и в разгар сезона требует дополнительных складских площадей;</li><br>
+            <li>у вновь создаваемых торгово-производственных фирм не всегда имеется финансовая возможность для строительства склада или покупки рефоборудования в постоянное пользование;</li><br>
+            <li>производственным и торговым организациям периодически требуется транспортировка товаров в условиях определенных температур.</li><br>
+        </ul>
+    </div>
+</div>
+{% include 'home/includes/questions_block.html' %}
+{% include 'home/includes/contacts_block.html' %}
+{% endblock %}

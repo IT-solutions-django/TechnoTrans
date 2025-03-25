@@ -36,6 +36,7 @@ class StaticViewSitemap(BaseSitemap):
             'containers:catalog', 
             'generators:catalog',
             'containers:rent',
+            'generators:rent',
             'contacts:about_company', 
             'contacts:documentation',
         ]  
