@@ -823,6 +823,9 @@ body,
     font-weight: 600;
     font-size: 28px;
 }
+.main__price-big.little-smaller {
+    font-size: 26px;
+}
 
 .home__stats {
     background-color: rgba(255, 255, 255, 0.03);
@@ -2989,6 +2992,7 @@ footer {
         width: 550px;
     }
 
+    .main__price-big.little-smaller,
     .main__price-big {
         font-size: 24px;
     }
@@ -3316,6 +3320,7 @@ footer {
         font-size: 12px;
     }
 
+    .main__price-big.little-smaller,
     .main__price-big {
         font-size: 16px;
     }
@@ -3951,6 +3956,13 @@ footer {
         height: auto;
         width: auto;
     }
+    .main__price-big.little-smaller, .main__price-big {
+        font-size: 14px;
+    }
+    .main__price-label {
+        font-size: 10px;
+        margin-bottom: 5px;
+    }
 }
 @media (max-width: 348px) {
     .container .main__buttons {
@@ -3977,6 +3989,7 @@ footer {
         display: flex;
         align-items: end;
     }
+    .main__price-big.little-smaller,
     .main__price-big {
         font-size: 14px;
     }
