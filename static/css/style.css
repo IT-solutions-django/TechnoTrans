@@ -2197,7 +2197,12 @@ footer {
     max-width: 800px;
     line-height: 22px;
 }
-
+.rent-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.rent .rent-price ul li::before,
 .container__info #tab-description ul li::before,
 .about-company__description ul li::before {
     content: "•";
@@ -2840,18 +2845,18 @@ footer {
     min-width: 220px;
     max-width: 280px;
 }
-.about-company__description {
+.rent .about-company__description {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
-.about-company__description ul {
+.rent .about-company__description ul {
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
-.about-company__description ul li {
-    font-size: 14px;
+.rent .about-company__description ul li {
+    font-size: 16px;
     margin-left: 42px;
 }
 .extended-point-container {
@@ -3236,6 +3241,12 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .usual-text {
+        font-size: 14px;
+    }
+    .rent .rent-price ul li {
+        font-size: 14px;
+    }
     .block-heading {
         font-size: 24px;
     }
@@ -3266,13 +3277,13 @@ footer {
         font-size: 12px;
     }
 
-    .about-company__description .main__checkbox-label {
+    .rent .about-company__description .main__checkbox-label {
         font-size: 14px;
     }
-    .about-company__description ul {
+    .rent .about-company__description ul {
         gap: 4px;
     }
-    .about-company__description ul li {
+    .rent .about-company__description ul li {
         font-size: 12px;
         margin-left: 26px;
     }
