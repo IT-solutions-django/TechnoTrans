@@ -1,53 +1,45 @@
 from django.shortcuts import render
+from django.views.generic import ListView, TemplateView
 from django.views import View 
 from .models import (
     CompanyInfo, 
     PrivacyPolicy,
     DocumentationSection, 
-    DocumentationFile,
     Partner,
     WorkStage,
 )
 
 
-class AboutCompanyView(View): 
+class AboutCompanyView(TemplateView): 
     template_name = 'contacts/about-company.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-    def get(self, request): 
-        company_info = CompanyInfo.get_instance()
-        partners = Partner.objects.all()
-        stages = WorkStage.objects.all()
+        context['company_info'] = CompanyInfo.get_instance()
+        context['partners'] = Partner.objects.all() 
+        context['stages'] = WorkStage.objects.all()
 
-        context = {
-            'company_info': company_info,
-            'partners': partners,
-            'stages': stages,
-        }
-
-        return render(request, self.template_name, context)
+        return context
     
 
-class PrivacyPolicyView(View): 
-    template_name = 'contacts/privacy_policy.html' 
+class PrivacyPolicyView(TemplateView):
+    template_name = 'contacts/privacy_policy.html'
 
-    def get(self, request): 
-        privacy_policy =  PrivacyPolicy.get_instance()
-
-        context = {
-            'privacy_policy': privacy_policy,
-        }
-
-        return render(request, self.template_name, context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['privacy_policy'] = PrivacyPolicy.get_instance()
+        return context
     
 
-class DocumentationView(View): 
-    template_name = 'contacts/documentation.html' 
+class DocumentationView(ListView):
+    model = DocumentationSection
+    template_name = 'contacts/documentation.html'
+    context_object_name = 'doc_sections'
+
+
+class ContactsView(View): 
+    template_name = 'contacts/contacts.html' 
 
     def get(self, request): 
-        doc_sections = DocumentationSection.objects.all()
-
-        context = {
-            'doc_sections': doc_sections,
-        }
-
-        return render(request, self.template_name, context)
+        return render(request, self.template_name, )
