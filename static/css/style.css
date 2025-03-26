@@ -411,7 +411,6 @@ body,
 }
 
 @media (max-width: 1100px) {
-
     .header__logo,
     .header__logo-link img {
         width: 60px;
@@ -1555,6 +1554,11 @@ body,
     background-color: #1B1C26;
     padding-bottom: 126px;
 }
+.contacts .home__questions {
+    padding-top: 0;
+    background-color: inherit;
+    padding-bottom: 0;
+}
 
 .home__questions-inner {
     display: flex;
@@ -1583,11 +1587,76 @@ body,
     cursor: pointer;
 }
 
+.contacts-card {
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255, 0.03);
+    overflow: hidden
+}
+.contacts.about-company {
+    padding-bottom: 58px;
+}
+.map,
+.map-1, .map-2 {
+    width: 100%;
+    height: 226px;
+}
+.contacts-card-content {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.contacts-card-data {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.contacts-card-data__row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+.contacts-card-data__2-columns {
+    display: flex;
+    gap: 8px;
+}
+.contacts .home__contacts-city-contacts-column {
+    min-width: 276px;
+    font-size: 14px;
+}
+.messengers-links {
+    display: flex;
+    gap: 31px;
+}
+.messenger-link {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.messenger-link img {
+    width: 24px;
+    height: 24px;
+}
+.address-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.address-info .city {
+    font-size: 20px;
+    font-weight: 600; 
+    line-height: 108%;
+}
+
 .home__questions-left {
     display: flex;
     flex-direction: column;
     gap: 12px;
     flex: 1;
+}
+.contacts .home__questions-left {
+    gap: 60px;
+    width: calc((100% - 481px - 40px) );
 }
 
 .home__question img {
@@ -3009,6 +3078,9 @@ footer {
     .home__parts-left {
         max-width: 760px;
     }
+    .contacts .home__contacts-city-contacts-column {
+        min-width: 220px;
+    }
 }
 
 @media (max-width: 1100px) {
@@ -3042,6 +3114,12 @@ footer {
     .home__questions {
         padding-top: 80px;
         padding-bottom: 80px;
+    }
+    .contacts .home__questions-body {
+        flex-direction: column;
+    }
+    .contacts .home__questions-left {
+        width: 100%;
     }
 }
 
@@ -3705,6 +3783,9 @@ footer {
     .about-company .home__questions {
         padding-top: 20px;
     }
+    .contacts .home__questions {
+        padding-top: 0;
+    }
 
     .breadcrumbs {
         padding-top: 18px;
@@ -3856,6 +3937,9 @@ footer {
     }
     .not-found {
         padding-top: 18px;
+    }
+    .contacts .contacts-card-data__2-columns {
+        flex-direction: column;
     }
 }
 

@@ -1,0 +1,151 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load tags %}
+{% load container_tags %}
+
+
+{% block title %}Контакты | ТехноТранс{% endblock %} 
+{% block meta_title %}Контакты | ТехноТранс{% endblock %} 
+
+
+{% block content %}
+<div class="breadcrumbs container">
+    <p>Главная</p>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
+    <p class="active">Контакты</p>
+</div>
+<div class="about-company container contacts">
+    <h1 class="catalog__heading">Контакты</h1>
+    <div class="about-company__body">
+        <div class="home__questions">
+            <div class="container">
+                <div class="home__questions-inner"> 
+                    <div class="home__questions-body">
+                        <div class="home__questions-left">
+                            {% for filial in filials %}
+                                <div class="contacts-card">
+                                    <div class="map map-{{ forloop.counter }}" id="map-{{ forloop.counter }}"></div>
+                                    <div class="contacts-card-content">
+                                        <div class="contacts-card-data">
+                                            <div class="contacts-card-data__row">
+                                                <img src="{% static 'images/location-icon.svg' %}" alt="">
+                                                <div class="address-info">
+                                                    <div class="city">
+                                                        {{ filial.name }}
+                                                    </div>
+                                                    <div>
+                                                        {{ filial.address }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="contacts-card-data__2-columns">
+                                                <div class="contacts-card-data__row">
+                                                    <img src="{% static 'images/call-icon.svg' %}" alt="">
+                                                    <div class="home__contacts-city-contacts-column">
+                                                        <p>Телефон:</p>
+                                                        <a href="tel:{{ filial.phone }}" class="home__contacts-phone">{{ filial.phone }}</a>
+                                                    </div>
+                                                </div>
+                                                <div class="contacts-card-data__row">
+                                                    <img src="{% static 'images/call-icon.svg' %}" alt="">
+                                                    <div class="home__contacts-city-contacts-column">
+                                                        <p>Почта:</p>
+                                                        <a href="tel:{{ filial.email }}" class="home__contacts-phone">{{ filial.email }}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="messengers-links">
+                                            <a href="{{ company_info.whatsapp_link }}" class="messenger-link">
+                                                <img src="{% static 'images/whatsapp.svg' %}" alt="WhatsApp">
+                                                WhatsApp
+                                            </a>
+                                            <a href="{{ company_info.telegram_link }}" class="messenger-link">
+                                                <img src="{% static 'images/telegram.svg' %}" alt="WhatsApp">
+                                                Telegram
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="home__questions-right">
+                            <form id="questionsBlockForm" class="home__service-form" action="">
+                                {% csrf_token %}
+                                <p class="home__service-form-heading">Остались вопросы? Свяжитесь с нами</p>
+                                <div class="home__service-form-inputs">
+                                    {{ feedback_form.name }}
+                                    {{ feedback_form.phone }}
+                                    {{ feedback_form.message }}
+                                    <div class="form__checkbox">
+                                        <div class=form__checkbox-wrap>
+                                            <input checked type=checkbox id=questionsCheckbox name=consent required>
+                                        </div>
+                                        <div>
+                                            <label for=questionsCheckbox class=form__checkbox-label>
+                                                Согласен с обработкой персональных данных
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button class="red-button">Отправить</button>
+                                </div>  
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
+<script>
+    ymaps.ready(function () {
+        var officeLocations = {
+            "Владивосток": { coords: [43.206562, 131.949975], address: "Ул. Маковского, 36а" },
+            "Москва": { coords: [55.690679, 37.667303], address: "Пр-кт Андропова, д. 9/1" }
+        };
+
+        document.querySelectorAll('.contacts-card').forEach(function (card, index) {
+            var cityElement = card.querySelector('.city');
+            var mapElement = card.querySelector('.map');
+
+            if (cityElement && mapElement) {
+                var cityName = cityElement.textContent.trim();
+                var office = officeLocations[cityName];
+
+                if (office) {
+                    var myMap = new ymaps.Map(mapElement.id, {
+                        center: office.coords,
+                        zoom: 15,
+                        controls: [], 
+                    });
+
+                    var zoomControl = new ymaps.control.ZoomControl({
+                        options: {
+                            position: { right: 10, top: 50 },
+                            size: "small"
+                        }
+                    });
+
+                    myMap.controls.add(zoomControl);
+                    myMap.behaviors.disable("scrollZoom");
+
+                    var placemark = new ymaps.Placemark(office.coords, {
+                        hintContent: office.address,
+                        balloonContent: office.address
+                    }, {
+                        iconLayout: "default#image",
+                        iconImageHref: "/static/images/location-icon.svg",
+                        iconImageSize: [30, 42],
+                        iconImageOffset: [-15, -42]
+                    });
+
+                    myMap.geoObjects.add(placemark);
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

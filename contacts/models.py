@@ -41,6 +41,7 @@ class CityInfo(models.Model):
     name = models.CharField('Город', max_length=100) 
     phone = models.CharField('Телефон', max_length=18) 
     email = models.EmailField('Электронная почта', max_length=100) 
+    full_address = models.CharField('Адрес', max_length=150)
 
     class Meta: 
         verbose_name = 'Филиал'
