@@ -39,6 +39,7 @@ class StaticViewSitemap(BaseSitemap):
             'generators:rent',
             'contacts:about_company', 
             'contacts:documentation',
+            'contacts:contacts',
         ]  
 
     def location(self, item):
