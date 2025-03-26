@@ -4,8 +4,15 @@
 {% load container_tags %}
 
 
-{% block title %}Контакты | ТехноТранс{% endblock %} 
-{% block meta_title %}Контакты | ТехноТранс{% endblock %} 
+{% block title %}Компания по продаже рефконтейнеров и дизельных генераторов - контакты | ТехноТранс{% endblock %}
+{% block meta_title %}Компания по продаже рефконтейнеров и дизельных генераторов - контакты | ТехноТранс{% endblock %}
+{% block description %}Контактные данные компании ТехноТранс. Оставьте
+заявку на нашем сайте для получения подробного расчета стоимости рефконтейнера, дизель генератора или запчастей для
+них.{% endblock %}
+{% block meta_description %}Контактные данные компании ТехноТранс. Оставьте
+заявку на нашем сайте для получения подробного расчета стоимости рефконтейнера, дизель генератора или запчастей для
+них.{% endblock %}
+
 
 
 {% block content %}
@@ -34,7 +41,7 @@
                                                         {{ filial.name }}
                                                     </div>
                                                     <div>
-                                                        {{ filial.address }}
+                                                        {{ filial.full_address }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -43,14 +50,14 @@
                                                     <img src="{% static 'images/call-icon.svg' %}" alt="">
                                                     <div class="home__contacts-city-contacts-column">
                                                         <p>Телефон:</p>
-                                                        <a href="tel:{{ filial.phone }}" class="home__contacts-phone">{{ filial.phone }}</a>
+                                                        <a target="_blank" href="tel:{{ filial.phone }}" class="home__contacts-phone">{{ filial.phone }}</a>
                                                     </div>
                                                 </div>
                                                 <div class="contacts-card-data__row">
                                                     <img src="{% static 'images/call-icon.svg' %}" alt="">
                                                     <div class="home__contacts-city-contacts-column">
                                                         <p>Почта:</p>
-                                                        <a href="tel:{{ filial.email }}" class="home__contacts-phone">{{ filial.email }}</a>
+                                                        <a target="_blank" href="tel:{{ filial.email }}" class="home__contacts-phone">{{ filial.email }}</a>
                                                     </div>
                                                 </div>
                                             </div>
