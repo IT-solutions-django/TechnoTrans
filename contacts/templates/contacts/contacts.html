@@ -4,12 +4,12 @@
 {% load container_tags %}
 
 
-{% block title %}Компания по продаже рефконтейнеров и дизельных генераторов - контакты | ТехноТранс{% endblock %}
-{% block meta_title %}Компания по продаже рефконтейнеров и дизельных генераторов - контакты | ТехноТранс{% endblock %}
-{% block description %}Контактные данные компании ТехноТранс. Оставьте
+{% block title %}Компания по продаже рефконтейнеров и дизельных генераторов - контакты | Техно Транс{% endblock %}
+{% block meta_title %}Компания по продаже рефконтейнеров и дизельных генераторов - контакты | Техно Транс{% endblock %}
+{% block description %}Контактные данные компании Техно Транс. Оставьте
 заявку на нашем сайте для получения подробного расчета стоимости рефконтейнера, дизель генератора или запчастей для
 них.{% endblock %}
-{% block meta_description %}Контактные данные компании ТехноТранс. Оставьте
+{% block meta_description %}Контактные данные компании Техно Транс. Оставьте
 заявку на нашем сайте для получения подробного расчета стоимости рефконтейнера, дизель генератора или запчастей для
 них.{% endblock %}
 
@@ -63,7 +63,7 @@
                                             </div>
                                         </div>
                                         <div class="messengers-links">
-                                            <a href="{{ company_info.whatsapp_link }}" class="messenger-link">
+                                            <a href="{% if filial.whatsapp_link %}{{ filial.whatsapp_link }}{% else %}{{ company.whatsapp_link }}{% endif %}" class="messenger-link">
                                                 <img src="{% static 'images/whatsapp.svg' %}" alt="WhatsApp">
                                                 WhatsApp
                                             </a>
