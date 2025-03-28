@@ -42,6 +42,7 @@ class CityInfo(models.Model):
     phone = models.CharField('Телефон', max_length=18) 
     email = models.EmailField('Электронная почта', max_length=100) 
     full_address = models.CharField('Адрес', max_length=150)
+    whatsapp_link = models.CharField('Ссылка на WhatsApp', max_length=150, null=True, blank=True)
 
     class Meta: 
         verbose_name = 'Филиал'

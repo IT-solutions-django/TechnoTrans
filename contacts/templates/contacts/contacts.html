@@ -63,7 +63,7 @@
                                             </div>
                                         </div>
                                         <div class="messengers-links">
-                                            <a href="{{ company_info.whatsapp_link }}" class="messenger-link">
+                                            <a href="{% if filial.whatsapp_link %}{{ filial.whatsapp_link }}{% else %}{{ company.whatsapp_link }}{% endif %}" class="messenger-link">
                                                 <img src="{% static 'images/whatsapp.svg' %}" alt="WhatsApp">
                                                 WhatsApp
                                             </a>

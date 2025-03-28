@@ -22,7 +22,7 @@
                         <div class="home__contacts-social-links">
                             <div class="home__contacts-social-link">
                                 <img src="{% static 'images/whatsapp.svg' %}" alt="Логотип WhatsApp">
-                                <a href="{{ company_info.whatsapp_link }}" target="_blank">WhatsApp</a>
+                                <a href="{% if filial.whatsapp_link %}{{ filial.whatsapp_link }}{% else %}{{ company.whatsapp_link }}{% endif %}" target="_blank">WhatsApp</a>
                             </div>
                             <div class="home__contacts-social-link">
                                 <img src="{% static 'images/telegram.svg' %}" alt="Логотип Telegram">
