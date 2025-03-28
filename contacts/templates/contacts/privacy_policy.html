@@ -10,9 +10,9 @@
 
 {% block content %}
 <div class="breadcrumbs container">
-    <p>Главная</p>
+    <a href="{% url 'home:home' %}">Главная</a>
     <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
-    <p class="active">Политика конфиденциальности</p>
+    <a href=" " class="active">Политика конфиденциальности</a>
 </div>
 <div class="about-company container privacy-policy">
     <h1 class="catalog__heading">Политика конфиденциальности</h1>
