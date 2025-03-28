@@ -17,9 +17,9 @@
 
 {% block content %}
 <div class="breadcrumbs container">
-    <p>Главная</p>
+    <a href="{% url 'home:home' %}">Главная</a>
     <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
-    <p class="active">Контакты</p>
+    <a href=" " class="active">Контакты</a>
 </div>
 <div class="about-company container contacts">
     <h1 class="catalog__heading">Контакты</h1>
