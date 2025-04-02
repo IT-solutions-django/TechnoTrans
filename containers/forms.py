@@ -49,6 +49,11 @@ class FilterForm(forms.Form):
 
         self.fields['container_type'].choices = ContainerType.objects.values_list('id', 'name')
         self.fields['brand'].choices = Brand.objects.values_list('id', 'name')
-        self.fields['category'].choices = Category.objects.values_list('id', 'name')
+        categories = list(Category.objects.values_list('id', 'name'))
+
+        self.fields['category'].choices = sorted(
+            categories,
+            key=lambda x: 'аренда' in x[1].lower()
+        )
         self.fields['container_type'].choices = ContainerType.objects.values_list('id', 'name')
         self.fields['brand'].choices = Brand.objects.values_list('id', 'name')
