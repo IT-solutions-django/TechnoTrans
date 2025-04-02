@@ -323,7 +323,11 @@
         </div>
         <div class="catalog__main">
             <div class="catalog__description">
-                <p>Выберите надежные рефконтейнеры для перевозки и хранения грузов. В наличии новые и б/у модели от Carrier, Thermo King, Daikin, Star Cool. Доступна аренда, продажа и доставка по всей России. Гарантия качества, выгодные условия и полный сервис. Найдите идеальный контейнер для вашего бизнеса!</p>
+                    {% if selected_category %}
+                        {{ selected_category.description|linebreaks }}
+                    {% else %}
+                        <p>Выберите надежные рефконтейнеры для перевозки и хранения грузов. В наличии новые и б/у модели от Carrier, Thermo King, Daikin, Star Cool. Доступна аренда, продажа и доставка по всей России. Гарантия качества, выгодные условия и полный сервис. Найдите идеальный контейнер для вашего бизнеса!</p>
+                    {% endif %}
             </div>
             {% if applied_filters %}
                 <div class="catalog__applied-filters">

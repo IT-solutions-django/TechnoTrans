@@ -1821,6 +1821,16 @@ footer {
 
 .footer-lower {
     padding-top: 40px;
+    position: relative;
+}
+footer .header__right-part {
+    position: absolute;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+footer .container {
+    overflow: hidden;
 }
 
 .footer__left {
@@ -2016,6 +2026,12 @@ footer {
 
 .catalog__description p {
     line-height: 24px;
+}
+
+.catalog__description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .catalog__applied-filters {
@@ -3266,12 +3282,17 @@ footer {
     footer .header__right-part {
         margin: 0px;
         gap: 2px;
+        position:static;
         align-items: start;
         align-self: flex-start;
+        width: 100%;
+        justify-content: center;
     }
 
     footer .header__phone a {
         font-size: 18px;
+        width: 100vw;
+        text-align: center;
     }
 
     .catalog__filters {
@@ -4061,6 +4082,9 @@ footer {
         padding: 32px 16px;
         height: 100vh;
     }
+    .catalog__description {
+        gap: 6px;
+    }
 }
 @media (max-width: 370px) {
     .main__price .transparent-button {
@@ -4083,6 +4107,11 @@ footer {
     }
     .header__phone a {
         font-size: 15.5px;
+    }
+    footer .header__phone a {
+        font-size: 18px;
+        width: 100vw;
+        text-align: start;
     }
 }
 @media (max-width: 348px) {
