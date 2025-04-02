@@ -394,7 +394,7 @@ body,
     }
 
     .header__phone a {
-        font-size: 14px;
+        font-size: 20px;
     }
 }
 
@@ -423,7 +423,7 @@ body,
     }
 
     .header__phone a {
-        font-size: 13px;
+        font-size: 20px;
         gap: 6px
     }
 
@@ -594,11 +594,6 @@ body,
         font-size: 10px;
     }
 }
-@media (max-width: 400px) {
-    .header__phone {
-        font-size: 15.5px;
-    }
-}
 
 .main {
     display: flex;
@@ -630,6 +625,17 @@ body,
     font-weight: 500;
     font-size: 42px;
     margin-bottom: 47px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-weight: 800;
+}
+.flags {
+    display: flex;
+    gap: 35.11px;
+}
+.flags img {
+    border-radius: 7px;
 }
 
 
@@ -3359,6 +3365,13 @@ footer {
         padding-top: 17px;
         margin-bottom: 20px;
     }
+    .flags {
+        gap: 14px;
+    }
+    .flags img {
+        width: 60px;
+        border-radius: 7px;
+    }
 
     .main__points {
         gap: 4px;
@@ -3972,6 +3985,20 @@ footer {
 }
 
 @media (max-width: 500px) {
+    .main__heading {
+        gap: 16px;
+    }
+    .header__phone a {
+        font-size: 18px;
+    }
+    
+    .flags {
+        gap: 12px;
+    }
+    .flags img {
+        width: 40px;
+        border-radius: 7px;
+    }
     .catalog .home__container-card {
 
         max-width: 100%;
@@ -4054,6 +4081,9 @@ footer {
         font-size: 10px;
         margin-bottom: 5px;
     }
+    .header__phone a {
+        font-size: 15.5px;
+    }
 }
 @media (max-width: 348px) {
     .container .main__buttons {
@@ -4083,5 +4113,8 @@ footer {
     .main__price-big.little-smaller,
     .main__price-big {
         font-size: 14px;
+    }
+    .header__phone a {
+        font-size: 15px;
     }
 }
