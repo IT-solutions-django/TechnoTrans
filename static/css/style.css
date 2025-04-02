@@ -1823,7 +1823,7 @@ footer {
     padding-top: 40px;
     position: relative;
 }
-.header__right-part {
+footer .header__right-part {
     position: absolute;
     width: 100%;
     justify-content: center;
