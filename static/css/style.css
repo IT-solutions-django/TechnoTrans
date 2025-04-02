@@ -258,7 +258,7 @@ body,
 .header__phone {
     font-family: 'Inter', sans-serif;
     font-weight: 900;
-    font-size: 18px;
+    font-size: 24px;
     text-wrap: nowrap;
     display: flex;
     gap: 10.75px;
@@ -472,7 +472,9 @@ body,
     .header__hamburger-wrapper {
         position: relative;
     }
-
+    .header__phone {
+        font-size: 18px;
+    }
     .header__phone-adaptive {
         display: flex;
         flex-direction: column;
@@ -590,6 +592,11 @@ body,
 
     .header__contact-link a {
         font-size: 10px;
+    }
+}
+@media (max-width: 400px) {
+    .header__phone {
+        font-size: 15.5px;
     }
 }
 
