@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.views import View 
 from django.db.models import Min
-from .models import Container, ContainerType, Brand, ContainerImage
+from .models import Container, ContainerType, Brand, ContainerImage, Category
 from .forms import FilterForm
 from django.core.files.temp import NamedTemporaryFile
 from .services import get_paginated_collection
@@ -25,13 +25,18 @@ class CatalogView(View):
         selected_years = []
         selected_brands = []
         selected_types = []
+        selected_category = None
 
         if filter_form.is_valid():
             cd = filter_form.cleaned_data
 
             selected_categories = cd.get('category')
             if selected_categories: 
-                containers = containers.filter(categories__id__in=selected_categories)
+                containers = containers.filter(categories__id__in=selected_categories)\
+                
+            if len(selected_categories) == 1: 
+                [category_id] = selected_categories
+                selected_category = Category.objects.get(id=category_id)
 
             if cd.get('category'):
                 containers = containers.filter(categories__id__in=cd['category']).distinct()
@@ -84,6 +89,7 @@ class CatalogView(View):
             'selected_types': ', '.join(selected_types),
             'min_price': min_price,
             'brands_list': brands_list,
+            'selected_category': selected_category,
         }
         return render(request, self.template_name, context)
     

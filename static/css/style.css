@@ -2018,6 +2018,12 @@ footer {
     line-height: 24px;
 }
 
+.catalog__description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .catalog__applied-filters {
     display: flex;
     gap: 10px;
@@ -4060,6 +4066,9 @@ footer {
     #modalSuccess .home__service-form {
         padding: 32px 16px;
         height: 100vh;
+    }
+    .catalog__description {
+        gap: 6px;
     }
 }
 @media (max-width: 370px) {
