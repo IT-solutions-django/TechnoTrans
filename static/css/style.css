@@ -103,6 +103,10 @@ header {
     border-bottom: 1px solid rgb(255, 255, 255, 0.03);
 }
 
+header {
+    text-transform: uppercase;
+}
+
 main {
     margin-top: 150px;
 }
@@ -198,6 +202,8 @@ body,
     height: fit-content;
     padding: 24px 44px;
     border-radius: 60px;
+
+    font-size: 14px;
 }
 
 .header__menu-link {
@@ -358,7 +364,17 @@ body,
     .header__row {
         gap: 18px;
     }
+
+    .header__phone a {
+        font-size: 22px;
+    }
 }
+@media (max-width: 1300px) { 
+    .header__phone a {
+        font-size: 20px;
+    }
+}
+
 
 @media (max-width: 1280px) {
     .header__row {
@@ -397,7 +413,11 @@ body,
         font-size: 20px;
     }
 }
-
+@media (max-width: 1200px) {
+    .header__phone a {
+        font-size: 17.7px;
+    }
+}
 @media (max-width: 1180px) {
     .header__menu {
         gap: 14px;
@@ -431,11 +451,17 @@ body,
         gap: 10px;
     }
 }
+@media (max-width: 1020px) {
+    .header__phone a {
+        font-size: 18px;
+    }
+}
 
 @media (max-width: 990px) {
     .header__logo {
         margin-top: 8px;
         margin-bottom: 10px;
+        padding-left: 14px;
     }
 
     .header__hamburger {
@@ -605,6 +631,16 @@ body,
     background-position: right 85px bottom 100px;
 
     justify-content: space-between;
+}
+@media (max-width: 360px) {
+    .header__logo {
+        padding-left: 12px;
+    }
+}
+@media (max-width: 330px) {
+    .header__phone a {
+        font-size: 13px !important;
+    }
 }
 
 .main__left {
