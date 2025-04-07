@@ -316,17 +316,23 @@ $(".container__current-slide").slick({
     fade: true,
     infinite: true,
     asNavFor: ".container__slider-nav", 
-});
+}); 
 $(".container__slider-nav").slick({
-    slidesToShow: 5,
-    slidesToScroll: 1,
+    slidesToShow: 5, 
+    slidesToScroll: 1, 
     asNavFor: ".container__current-slide",
     dots: false,
     arrows: false,
     infinite: true,
-    focusOnSelect: true, 
-    variableWidth: true, 
-}); 
+    focusOnSelect: true,
+    variableWidth: true,
+    centerMode: true,
+    centerPadding: '0px',
+    edgeFriction: 0.15, 
+    freeScroll: true,
+    draggable: true,
+    swipe: true
+});
 
 // Все характеристики
 const specsButton = document.getElementById("specs-tab");
