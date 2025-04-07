@@ -103,6 +103,10 @@ header {
     border-bottom: 1px solid rgb(255, 255, 255, 0.03);
 }
 
+header {
+    text-transform: uppercase;
+}
+
 main {
     margin-top: 150px;
 }
@@ -198,6 +202,8 @@ body,
     height: fit-content;
     padding: 24px 44px;
     border-radius: 60px;
+
+    font-size: 14px;
 }
 
 .header__menu-link {
@@ -358,7 +364,17 @@ body,
     .header__row {
         gap: 18px;
     }
+
+    .header__phone a {
+        font-size: 22px;
+    }
 }
+@media (max-width: 1300px) { 
+    .header__phone a {
+        font-size: 20px;
+    }
+}
+
 
 @media (max-width: 1280px) {
     .header__row {
@@ -397,7 +413,11 @@ body,
         font-size: 20px;
     }
 }
-
+@media (max-width: 1200px) {
+    .header__phone a {
+        font-size: 17.7px;
+    }
+}
 @media (max-width: 1180px) {
     .header__menu {
         gap: 14px;
@@ -431,11 +451,17 @@ body,
         gap: 10px;
     }
 }
+@media (max-width: 1020px) {
+    .header__phone a {
+        font-size: 18px;
+    }
+}
 
 @media (max-width: 990px) {
     .header__logo {
         margin-top: 8px;
         margin-bottom: 10px;
+        padding-left: 14px;
     }
 
     .header__hamburger {
@@ -606,6 +632,16 @@ body,
 
     justify-content: space-between;
 }
+@media (max-width: 360px) {
+    .header__logo {
+        padding-left: 12px;
+    }
+}
+@media (max-width: 330px) {
+    .header__phone a {
+        font-size: 13px !important;
+    }
+}
 
 .main__left {
     max-width: 50%;
@@ -633,6 +669,10 @@ body,
 .flags {
     display: flex;
     gap: 35.11px;
+
+    max-width: calc(68px * 4 + 35.12px * 3);
+    flex-wrap: wrap;
+    row-gap: 18px;
 }
 .flags img {
     border-radius: 7px;
@@ -3358,6 +3398,11 @@ footer .container {
     .home__contacts-city-contacts-column:first-child {
         width: auto;
     }
+    .flags {
+        gap: 26px;
+        max-width: 100%;
+        row-gap: 18px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -3982,6 +4027,11 @@ footer .container {
     .contacts .contacts-card-data__2-columns {
         flex-direction: column;
     }
+    .flags {
+        gap: 22px;
+        max-width: 100%;
+        row-gap: 18px;
+    }
 }
 
 @media (max-width: 720px) {
@@ -4005,6 +4055,14 @@ footer .container {
     }
 }
 
+@media (max-width: 600px) {
+    .flags {
+        gap: 18px;
+    }
+    .flags img {
+        width: 53.3px;
+    }
+}
 @media (max-width: 500px) {
     .main__heading {
         gap: 16px;
@@ -4086,6 +4144,11 @@ footer .container {
         gap: 6px;
     }
 }
+@media (max-width: 385px) {
+    .flags {
+        gap: 8px;
+    }
+}
 @media (max-width: 370px) {
     .main__price .transparent-button {
         height: 54px;
@@ -4145,5 +4208,8 @@ footer .container {
     }
     .header__phone a {
         font-size: 15px;
+    }
+    .flags img {
+        width: 36px;
     }
 }
