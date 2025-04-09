@@ -126,6 +126,11 @@
                         <div class="header__phone">
                             <a target="_blank" href="tel:{{ company_info.phone }}">{{ company_info.phone }}</a>
                         </div>
+                        {% if company_info.email %}
+                            <div class="header__email">
+                                <a target="_blank" href="mailto:{{ company_info.email }}">{{ company_info.email }}</a>
+                            </div>
+                        {% endif %}
                     </div>
                     <button class="header__hamburger" aria-label="Toggle menu">
                         <div class="header__hamburger--menu-container">
@@ -170,11 +175,14 @@
                         <div class="header__menu-link">
                             <a class="red-hover" href="{% url 'contacts:contacts' %}">Контакты</a>
                         </div>
-                        <div class="header__menu-link">
+                        <div class="header__menu-link header__menu-link--dropdown nav__dropdown">
                             <a class="red-hover" href="{% url 'contacts:about_company' %}">О компании</a>
-                        </div>
-                        <div class="header__menu-link">
-                            <a class="red-hover" href="{% url 'contacts:documentation' %}">Документация</a>
+                            <div class="nav__dropdown-content-wrapper">
+                                <div class="nav__dropdown-content">
+                                    <a href="{% url 'contacts:documentation' %}" class="nav__link red-hover">Документация</a>
+                                    <a href="#" class="nav__link red-hover">Блог</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="header__right-part">
@@ -182,6 +190,11 @@
                             <img src="{% static 'images/call-icon.svg' %}" alt="">
                             <a target="_blank" href="tel:{{ company_info.phone }}">{{ company_info.phone }}</a>
                         </div>
+                        {% if company_info.email %}
+                            <div class="header__email">
+                                <a target="_blank" href="mailto:{{ company_info.email }}">{{ company_info.email }}</a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
                 
