@@ -160,7 +160,7 @@ body,
 
 .header__row {
     display: flex;
-    gap: 20px;
+    gap: 40px;
     align-items: center;
 }
 
@@ -470,7 +470,7 @@ body,
 }
 @media (max-width: 1020px) {
     .header__phone a {
-        font-size: 18px;
+        font-size: 17px;
     }
 }
 
