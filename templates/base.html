@@ -126,6 +126,11 @@
                         <div class="header__phone">
                             <a target="_blank" href="tel:{{ company_info.phone }}">{{ company_info.phone }}</a>
                         </div>
+                        {% if company_info.email %}
+                            <div class="header__email">
+                                <a target="_blank" href="mailto:{{ company_info.email }}">{{ company_info.email }}</a>
+                            </div>
+                        {% endif %}
                     </div>
                     <button class="header__hamburger" aria-label="Toggle menu">
                         <div class="header__hamburger--menu-container">
@@ -182,6 +187,11 @@
                             <img src="{% static 'images/call-icon.svg' %}" alt="">
                             <a target="_blank" href="tel:{{ company_info.phone }}">{{ company_info.phone }}</a>
                         </div>
+                        {% if company_info.email %}
+                            <div class="header__email">
+                                <a target="_blank" href="mailto:{{ company_info.email }}">{{ company_info.email }}</a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
                 

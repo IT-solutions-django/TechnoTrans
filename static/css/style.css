@@ -277,6 +277,16 @@ body,
     gap: 10.75px;
     align-items: center;
 }
+.header__email {
+    text-transform: none;
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    width: 100%;
+}
+.header__phone-adaptive .header__email {
+    justify-content: end;
+}
 
 .header__contacts-block {
     display: flex;
