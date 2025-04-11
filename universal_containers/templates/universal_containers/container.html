@@ -45,7 +45,7 @@
                     {% endfor %}
                 </div>
                 <div class="container__slider-nav">
-                    {% for image in container.images.all %}
+                    {% for image in container.universal_images.all %}
                         <div class="container__slide">
                             <img src="{{ image.image.url }}" alt="Фото контейнера">
                         </div>
