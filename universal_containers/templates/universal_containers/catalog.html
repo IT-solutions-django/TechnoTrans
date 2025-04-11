@@ -1,0 +1,469 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load tags %}
+{% load universal_containers_tags %} 
+
+
+{% block title %}Контейнеры на 20, 30 футов - покупка, аренда, цены | Техно Транс{% endblock %} 
+{% block meta_title %}Контейнеры на 20, 30 футов - покупка, аренда, цены | Техно Транс{% endblock %} 
+{% block description %}
+    {% if applied_filters %}
+        Контейнеры под любые цели с доставкой по России. Контейнеры {% if selected_types %} размером {{ selected_types }}{% endif %}{% if selected_years %} {{ selected_years }} года производства{% endif %}{% if selected_brands %} {{ selected_brands }}{% endif %}. Цены от {{ min_price|price_format }}! Оставьте заявку или рассчитайте стоимость на нашем сайте. 
+    {% else %}
+        Контейнеры под любые цели. Контейнеры для перевозок новые и б/у от брендов {{ brands_list }} с доставкой по России. Оставьте заявку на покупку или аренду на нашем сайте!
+    {% endif %}
+{% endblock %} 
+{% block meta_description %}
+    {% if applied_filters %}
+        Контейнеры под любые цели с доставкой по России. Контейнеры {% if selected_types %} размером {{ selected_types }}{% endif %}{% if selected_years %} {{ selected_years }} года производства{% endif %}{% if selected_brands %} {{ selected_brands }}{% endif %}. Цены от {{ min_price|price_format }}! Оставьте заявку или рассчитайте стоимость на нашем сайте. 
+    {% else %}
+        Контейнеры под любые цели. Контейнеры для перевозок новые и б/у от брендов {{ brands_list }} с доставкой по России. Оставьте заявку на покупку или аренду на нашем сайте!
+    {% endif %}
+{% endblock %} 
+
+
+{% block content %}
+<div class="breadcrumbs container">
+    <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
+    <a href=" " class="active">Контейнеры</a>
+</div>
+
+<div id="mobileFilters" class="mobile-filters">
+    <div class="mobile__upper">
+        <div>
+            <p class="mobile__heading">Фильтры</p>
+        </div>
+        <img id="closeMobileFilters" class="" src="{% static 'images/close.svg' %}" alt="Закрыть">
+    </div>
+    <form method="get" action="" class="mobileFiltersForm">
+        <div class="catalog__filter-field">
+            <p class="catalog__filter-subtitle">Тип контейнера</p>
+            <div class="catalog__filter-field-variants">
+                {% for category_input in filter_form.category %}
+                    {% if category_input.choice_label == 'Аренда' %}
+                        <div class="form__checkbox">
+                            <a href="{% url 'containers:rent' %}" class="form__checkbox-wrap pointer-events-none">
+                                
+                                <input type="checkbox"
+                                    name="{{ filter_form.category.html_name }}" 
+                                    value="{{ category_input.data.value }}" 
+                                    id="mobile_{{ category_input.id_for_label }}"
+                                    {% if category_input.data.selected %}checked{% endif %}
+                                >
+                            </a>
+                            <div>
+                                <a href="{% url 'containers:rent' %}" for="mobile_{{ category_input.id_for_label }}" class="form__checkbox-label">
+                                    {{ category_input.choice_label }}
+                                </a>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers"></p> 
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="form__checkbox">
+                            <div class="form__checkbox-wrap">
+                                
+                                <input type="checkbox"
+                                    name="{{ filter_form.category.html_name }}" 
+                                    value="{{ category_input.data.value }}" 
+                                    id="mobile_{{ category_input.id_for_label }}"
+                                    {% if category_input.data.selected %}checked{% endif %}
+                                >
+                            </div>
+                            <div>
+                                <label for="mobile_{{ category_input.id_for_label }}" class="form__checkbox-label">
+                                    {{ category_input.choice_label }}
+                                </label>
+                            </div>
+                            <div>
+                                <p class="catalog__filter-numbers">{% container_count_for_category category_input.data.value %}</p> 
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="catalog__filter-field">
+            <p class="catalog__filter-subtitle">Цена</p>
+            <div class="catalog__filter-field-variants">
+                {% for price_input in filter_form.price %}
+                    <div class="form__checkbox">
+                        <div class="form__checkbox-wrap">
+                            <input type="checkbox"
+                                name="{{ filter_form.price.html_name }}" 
+                                value="{{ price_input.data.value }}" 
+                                id="mobile_{{ price_input.id_for_label }}"
+                                {% if price_input.data.selected %}checked{% endif %}
+                            >
+                        </div>
+                        <div>
+                            <label for="mobile_{{ price_input.id_for_label }}" class="form__checkbox-label">
+                                {{ price_input.choice_label }}
+                            </label>
+                        </div>
+                        <div>
+                            <p class="catalog__filter-numbers">{% container_count_for_price price_input.data.value %}</p> 
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="catalog__filter-field">
+            <p class="catalog__filter-subtitle">Производитель</p>
+            <div class="catalog__filter-field-variants">
+                {% for brand_input in filter_form.brand %}
+                    <div class="form__checkbox">
+                        <div class="form__checkbox-wrap">
+                            <input type="checkbox"
+                                name="{{ filter_form.brand.html_name }}" 
+                                value="{{ brand_input.data.value }}" 
+                                id="mobile_{{ brand_input.id_for_label }}"
+                                {% if brand_input.data.selected %}checked{% endif %}
+                            >
+                        </div>
+                        <div>
+                            <label for="mobile_{{ brand_input.id_for_label }}" class="form__checkbox-label">
+                                {{ brand_input.choice_label }}
+                            </label>
+                        </div>
+                        <div>
+                            <p class="catalog__filter-numbers">{% container_count_for_brand brand_input.data.value %}</p> 
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="catalog__filter-field">
+            <p class="catalog__filter-subtitle">Год выпуска</p>
+            <div class="catalog__filter-field-variants">
+                {% for year_input in filter_form.year %}
+                    <div class="form__checkbox">
+                        <div class="form__checkbox-wrap">
+                            <input type="checkbox"
+                                name="{{ filter_form.year.html_name }}" 
+                                value="{{ year_input.data.value }}" 
+                                id="mobile_{{ year_input.id_for_label }}"
+                                {% if year_input.data.selected %}checked{% endif %}
+                            >
+                        </div>
+                        <div>
+                            <label for="mobile_{{ year_input.id_for_label }}" class="form__checkbox-label">
+                                {{ year_input.choice_label }}
+                            </label>
+                        </div>
+                        <div>
+                            <p class="catalog__filter-numbers">{% container_count_for_year year_input.data.value %}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="catalog__filter-field">
+            <p class="catalog__filter-subtitle">Размер</p>
+            <div class="catalog__filter-field-variants">
+                {% for container_type in filter_form.container_type %}
+                    <div class="form__checkbox">
+                        <div class="form__checkbox-wrap">
+                            <input type="checkbox"
+                                name="{{ container_type.year.html_name }}" 
+                                value="{{ container_type.data.value }}" 
+                                id="mobile_{{ container_type.id_for_label }}"
+                                {% if container_type.data.selected %}checked{% endif %}
+                            >
+                        </div>
+                        <div>
+                            <label for="mobile_{{ container_type.id_for_label }}" class="form__checkbox-label">{{ container_type.choice_label }}</label>
+                        </div>
+                        <div>
+                            <p class="catalog__filter-numbers">{% container_count_for_container_type container_type.data.value %}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="catalog__filter-form-buttons">
+            <button type="submit" class="red-button home__container-button">Применить</button>
+            <a href="{% url 'containers:catalog' %}" class="catalog__reset-button">Сбросить</a>
+        </div>
+    </form>
+</div>
+
+<div class="catalog container">
+    <h1 class="catalog__heading">Контейнеры</h1>
+    <div id="openMobileFilters" class="catalog__open-filters-button transparent-button">
+        <div class="catalog__open-filters-button--label">
+            <img src="{% static 'images/settings.svg' %}" alt="Фильтры">
+            <p>Фильтры</p>
+        </div>
+    </div>
+    <div class="catalog-body">
+        <div class="catalog__filters">
+            <form method="get" action="" class="catalog__filter-form">
+                <div class="catalog__filter-field">
+                    <p class="catalog__filter-subtitle">Тип контейнера</p>
+                    <div class="catalog__filter-field-variants">
+                        {% for category_input in filter_form.category %}
+                            {% if category_input.choice_label == 'Аренда' %}
+                                <div class="form__checkbox">
+                                    <a href="{% url 'containers:rent' %}" class="form__checkbox-wrap pointer-events-none">
+                                        {{ category_input.tag }} 
+                                    </a>
+                                    <div>
+                                        <a href="{% url 'containers:rent' %}" for="{{ category_input.id_for_label }}" class="form__checkbox-label">
+                                            {{ category_input.choice_label }}
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <p class="catalog__filter-numbers"></p> 
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="form__checkbox">
+                                    <div class="form__checkbox-wrap">
+                                        {{ category_input.tag }} 
+                                    </div>
+                                    <div>
+                                        <label for="{{ category_input.id_for_label }}" class="form__checkbox-label">
+                                            {{ category_input.choice_label }}
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <p class="catalog__filter-numbers">{% container_count_for_category category_input.data.value %}</p> 
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="catalog__filter-field">
+                    <p class="catalog__filter-subtitle">Цена</p>
+                    <div class="catalog__filter-field-variants">
+                        {% for price_input in filter_form.price %}
+                            <div class="form__checkbox">
+                                <div class="form__checkbox-wrap">
+                                    {{ price_input.tag }} 
+                                </div>
+                                <div>
+                                    <label for="{{ price_input.id_for_label }}" class="form__checkbox-label">
+                                        {{ price_input.choice_label }}
+                                    </label>
+                                </div>
+                                <div>
+                                    <p class="catalog__filter-numbers">{% container_count_for_price price_input.data.value %}</p> 
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="catalog__filter-field">
+                    <p class="catalog__filter-subtitle">Производитель</p>
+                    <div class="catalog__filter-field-variants">
+                        {% for brand_input in filter_form.brand %}
+                            <div class="form__checkbox">
+                                <div class="form__checkbox-wrap">
+                                    {{ brand_input.tag }} 
+                                </div>
+                                <div>
+                                    <label for="{{ brand_input.id_for_label }}" class="form__checkbox-label">
+                                        {{ brand_input.choice_label }}
+                                    </label>
+                                </div>
+                                <div>
+                                    <p class="catalog__filter-numbers">{% container_count_for_brand brand_input.data.value %}</p> 
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="catalog__filter-field">
+                    <p class="catalog__filter-subtitle">Год выпуска</p>
+                    <div class="catalog__filter-field-variants">
+                        {% for year_input in filter_form.year %}
+                            <div class="form__checkbox">
+                                <div class="form__checkbox-wrap">
+                                    {{ year_input.tag }}
+                                </div>
+                                <div>
+                                    <label for="{{ year_input.id_for_label }}" class="form__checkbox-label">
+                                        {{ year_input.choice_label }}
+                                    </label>
+                                </div>
+                                <div>
+                                    <p class="catalog__filter-numbers">{% container_count_for_year year_input.data.value %}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="catalog__filter-field">
+                    <p class="catalog__filter-subtitle">Размер</p>
+                    <div class="catalog__filter-field-variants">
+                        {% for container_type in filter_form.container_type %}
+                            <div class="form__checkbox">
+                                <div class="form__checkbox-wrap">
+                                    {{ container_type.tag }}
+                                </div>
+                                <div>
+                                    <label for="{{ container_type.id_for_label }}" class="form__checkbox-label">{{ container_type.choice_label }}</label>
+                                </div>
+                                <div>
+                                    <p class="catalog__filter-numbers">{% container_count_for_container_type container_type.data.value %}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="catalog__filter-form-buttons">
+                    <button type="submit" class="red-button home__container-button">Применить</button>
+                    <a href="{% url 'containers:catalog' %}" class="catalog__reset-button">Сбросить</a>
+                </div>
+            </form>
+        </div>
+        <div class="catalog__main">
+            <div class="catalog__description">
+                    {% if selected_category %}
+                        {{ selected_category.description|linebreaks }}
+                    {% else %}
+                        <p>Выберите надежные контейнеры для перевозки и хранения грузов. В наличии новые и б/у модели от Carrier, Thermo King, Daikin, Star Cool. Доступна аренда, продажа и доставка по всей России. Гарантия качества, выгодные условия и полный сервис. Найдите идеальный контейнер для вашего бизнеса!</p>
+                    {% endif %}
+            </div>
+            {% if applied_filters %}
+                <div class="catalog__applied-filters">
+                    {% for applied_filter in applied_filters %}
+                        <button 
+                            data-filter-name="{{ applied_filter.name }}" 
+                            data-filter-value="{{ applied_filter.value }}"
+                            class="catalog__applied-filter">
+                            {{ applied_filter.name|applied_filter_name_translate }}: {{ applied_filter.human_value }}
+                        </button>
+                    {% endfor %}
+                    <a href="{% url 'containers:catalog' %}" class="catalog__reset-button">
+                        Сбросить все
+                    </a>
+                </div>
+            {% endif %}
+            <div class="catalog__cards">
+                {% for container in containers %}
+                    <div class="home__container-card">
+                        <a class="home__container-image-link" href="{{ container.get_absolute_url }}">
+                            <img loading="lazy" src="{{ container.universal_images.all.0.image.url }}" alt="Фото контейнера">
+                        </a>
+                        <div class="home__container-card-text">
+                            <div class="home__container-card-name">
+                                <a href="{{ container.get_absolute_url }}" class="home__container-card-name--big red-hover">{{ container.name }}</a>
+                                <p class="home__container-card-name--small">{{ container.container_type.name|foot_to_symbol }} <span class="container__name-divider">|</span> {{ container.year }}г. <span class="container__name-divider">|</span> {{ container.model }}</p>
+                            </div>
+                            <div class="home__container-lower">
+                                <div class="home__container-lower-left">
+                                    <p class="home__container-card-price">{{ container.price|price_format }} ₽ </p>
+                                    {% if container.is_in_stock %}
+                                        <div class="home__container-card-in-stock">
+                                            <img loading="lazy" src="{% static 'images/green-mark.svg' %}" alt="Галочка">
+                                            В наличии
+                                        </div>
+                                    {% else %}
+                                        <div class="home__container-card-in-stock">
+                                            <img loading="lazy" src="{% static 'images/gray-circle.svg' %}" alt="Крест">
+                                            Под заказ
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <a href="{{ container.get_absolute_url }}" class="home__container-button">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>Ничего не найдено</p>
+                {% endfor %}
+            </div>
+            {% if containers %}
+            <div class="pagination">
+                {% for num in containers.paginator.page_range %}
+                    <a href="?page={{ num }}" class="pagination-button {% if num == containers.number %}active{% endif %}">
+                        <p class="red-hover">{{ num }}</p>
+                    </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% include 'home/includes/questions_block.html' %}
+{% include 'home/includes/contacts_block.html' %}
+{% endblock %}
+
+{% block script %}
+<script> 
+document.addEventListener("DOMContentLoaded", () => {
+    // Пагинация
+    document.querySelectorAll(".pagination a").forEach((e) => {
+        e.addEventListener("click", (a) => {
+            a.preventDefault();
+            const n = new URL(e.href);
+            const currentParams = new URLSearchParams(window.location.search);
+
+            currentParams.delete('page');
+
+            const page = new URL(n).searchParams.get('page');
+            if (page) {
+                currentParams.set('page', page);
+            }
+
+            n.search = currentParams.toString();
+            window.location.href = n.toString();
+        });
+    });
+
+    // Обработчик клика по кнопкам фильтров
+    document.querySelectorAll(".catalog__applied-filter").forEach((button) => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            const filterName = button.getAttribute("data-filter-name");
+            const filterValue = button.getAttribute("data-filter-value");
+
+            const url = new URL(window.location.href);
+            const params = new URLSearchParams(url.search);
+
+            const filterValues = params.getAll(filterName);
+
+            const newFilterValues = filterValues.filter(value => value !== filterValue);
+
+            if (newFilterValues.length > 0) {
+                params.delete(filterName); 
+                newFilterValues.forEach(value => {
+                    params.append(filterName, value); 
+                });
+            } else {
+                params.delete(filterName);
+            }
+
+            params.delete("page");
+
+            url.search = params.toString();
+            window.location.href = url.toString();
+        });
+    });
+
+    // Мобильные фильтры
+    const openMobileFilters = document.getElementById('openMobileFilters');
+    const closeMobileFilters = document.getElementById('closeMobileFilters');
+    const mobileFilters = document.getElementById('mobileFilters'); 
+    
+    openMobileFilters.addEventListener('click', () => {
+        mobileFilters.classList.add('active');
+    });
+
+    closeMobileFilters.addEventListener('click', () => {
+        mobileFilters.classList.remove('active');
+    });
+
+});
+
+</script>
+{% endblock %}

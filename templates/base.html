@@ -145,6 +145,25 @@
                             <a class="red-hover" href="#">Перевозка грузов</a>
                         </div>
                         <div class="header__menu-link header__menu-link--dropdown nav__dropdown">
+                            <a class="red-hover" href="{% url 'universal_containers:catalog' %}">Контейнеры</a>
+                            <div class="nav__dropdown-content-wrapper">
+                                <div class="nav__dropdown-content">
+                                    {% for category in categories %}
+                                        {% if not 'Аренда' in category.full_name %}
+                                            <a href="{% url 'universal_containers:catalog' %}?category={{ category.pk }}" class="nav__link red-hover">
+                                                {% if category.full_name %}
+                                                    {{ category.full_name }}
+                                                {% else %}
+                                                    {{ category.title }}
+                                                {% endif %}
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <a class="nav__link red-hover" href="{% url 'containers:rent' %}">Аренда контейнеров</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header__menu-link header__menu-link--dropdown nav__dropdown">
                             <a class="red-hover" href="{% url 'containers:catalog' %}">Рефконтейнеры</a>
                             <div class="nav__dropdown-content-wrapper">
                                 <div class="nav__dropdown-content">
@@ -159,7 +178,7 @@
                                             </a>
                                         {% endif %}
                                     {% endfor %}
-                                    <a class="nav__link red-hover" href="{% url 'containers:rent' %}">{{ rent_category.full_name }}</a>
+                                    <a class="nav__link red-hover" href="{% url 'containers:rent' %}">Аренда рефконтейнеров</a>
                                 </div>
                             </div>
                         </div>
@@ -172,13 +191,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="header__menu-link">
-                            <a class="red-hover" href="{% url 'contacts:contacts' %}">Контакты</a>
-                        </div>
                         <div class="header__menu-link header__menu-link--dropdown nav__dropdown">
                             <a class="red-hover" href="{% url 'contacts:about_company' %}">О компании</a>
                             <div class="nav__dropdown-content-wrapper">
                                 <div class="nav__dropdown-content">
+                                    <a href="{% url 'contacts:contacts' %}" class="nav__link red-hover">Контакты</a>
                                     <a href="{% url 'contacts:documentation' %}" class="nav__link red-hover">Документация</a>
                                     <a href="#" class="nav__link red-hover">Блог</a>
                                 </div>

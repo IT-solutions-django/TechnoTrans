@@ -1,0 +1,360 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load tags %}
+{% load universal_container_tags %} 
+
+
+{% block title %}Контейнер {{ container.brand }} {{  container.container_type}} за {{ container.price }} р | Техно Транс{% endblock %} 
+{% block meta_title %}Контейнер {{ container.brand }} {{  container.container_type}} за {{ container.price }} р | Техно Транс{% endblock %} 
+{% block description %}Контейнеры под любые цели с доставкой по России. Контейнеры размером {{ container.container_type }} {{ container.year }} года производства {{ container.brand }}. Цены от {{ container.price|price_format }} р! Оставьте заявку или рассчитайте стоимость на нашем сайте. {% endblock %} 
+{% block meta_description %}Контейнеры под любые цели с доставкой по России. Контейнеры размером {{ container.container_type }} {{ container.year }} года производства {{ container.brand }}. Цены от {{ container.price|price_format }} р! Оставьте заявку или рассчитайте стоимость на нашем сайте. {% endblock %} 
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+<script src="{% static 'js/slick/slick/slick.min.js' %}"></script>
+<div class="breadcrumbs container">
+    <a class="red-hover" href="{% url 'home:home' %}">Главная</a>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
+    <a class="red-hover" href="{% url 'universal_containers:catalog' %}">Контейнеры</a>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
+    <a class="red-hover" href="{% url 'universal_containers:catalog' %}?brand={{ container.brand.pk }}">{{ container.brand.name }}</a>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
+    <a class="active" href=" ">{{ container.name }}</a>
+</div>
+
+<div class="catalog container">
+    <h1 class="catalog__heading">{{ container.name }} {{ container.container_type.name|foot_to_symbol }}</h1>
+    <div class="container__general-info">
+        <div class="container__left">
+            <div class="container__slider">
+                <div class="container__current-slide" href="">
+                    {% for image in container.universal_images.all %}
+                        <div>
+                            <a href="{{ image.image.url }}">
+                                <img loading="lazy" src="{{ image.image.url }}" alt="Фото контейнера">
+                            </a>
+                        </div>
+                    {% endfor %}
+                    {% for video in container.universal_videos.all %}
+                    <div>
+                        <video controls width="500">
+                            <source src="{{ video.video.url }}" type="video/mp4">
+                        </video>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="container__slider-nav">
+                    {% for image in container.images.all %}
+                        <div class="container__slide">
+                            <img src="{{ image.image.url }}" alt="Фото контейнера">
+                        </div>
+                    {% endfor %}
+                    {% for video in container.videos.all %}
+                        <div class="container__slide video-preview-container">
+                            <img loading="lazy" class="video-preview" src="{{ container.images.all.0.image.url }}" alt="Видео контейнера">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="container__right">
+            <div class="container__short-info">
+                <img class="container__brand-logo" src="{{ container.brand.image.url }}" alt="Бренд">
+                <div class="container__table-info">
+                    <div class="container__table-row">
+                        <span class="container__table-label">Модель</span>
+                        <span class="container__table-value">{{ container.model }}</span>
+                    </div>
+                    <div class="container__table-row">
+                        <span class="container__table-label">Год выпуска</span>
+                        <span class="container__table-value">{{ container.year    }}</span>
+                    </div>
+                    {% if container.localization_cities.all %}
+                        <div class="container__table-row">
+                            <span class="container__table-label">Город локализации</span>
+                            <span class="container__table-value">{{ container.localization_cities.all|join:", " }}</span>
+                        </div>
+                    {% endif %}
+                    <div class="container__table-row container__table-row--last">
+                        <span class="container__table-label">Тип</span>
+                        <span class="container__table-value">{{ container.container_type }}</span>
+                    </div>
+                </div>
+                <div>
+                    <a href="" class="container__all-specs">
+                        <p>Все характеристики</p>
+                    </a>
+                </div>
+            </div>
+            <div class="container__order-card">
+                <div class="container__order-card-price-block">
+                    <div class="container__order-card-prices">
+                        <p class="container__order-card-price--main">{{ container.price|price_format }} ₽ </p>
+                        {% if container.old_price %}
+                            <p class="container__order-card-price--crossed">{{ container.old_price|price_format }} ₽ </p>
+                        {% endif %}
+                    </div>
+                    <div class="container__order-card-in-stock">
+                        {% if container.is_in_stock %}
+                            <img src="{% static 'images/green-mark.svg' %}" alt="Галочка">
+                            В наличии
+                        {% else %}
+                            <img src="{% static 'images/gray-circle.svg' %}" alt="Крест">
+                            Под заказ
+                        {% endif %}
+                    </div>
+                    
+                </div>
+                <div class="main__buttons">
+                    <button class="main__button-red openModal background-red-hover">
+                        Оформить заказ
+                    </button>
+                    <a href="{{ company_info.whatsapp_link }}" target="_blank" class="main__button-transparent">
+                        <img src="{% static 'images/whatsapp.svg' %}" alt="Логотип WhatsApp">
+                        <p>Написать в Whatsapp</p>
+                    </a>
+                </div>
+                {% if container.with_nds %}
+                    <div class="tab__label">
+                        *Обратите внимание, цены указаны с НДС
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="container__info container">
+        <div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#tab-description" type="button" role="tab" aria-controls="tab-description" aria-selected="false">
+                        Описание
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#tab-specs" type="button" role="tab" aria-controls="tab-specs" aria-selected="false">
+                        Характеристики
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="delivery-tab" data-bs-toggle="tab" data-bs-target="#tab-delivery" type="button" role="tab" aria-controls="tab-delivery" aria-selected="false">
+                        Доставка
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#tab-payment" type="button" role="tab" aria-controls="tab-payment" aria-selected="false">
+                        Оплата
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="warranty-tab" data-bs-toggle="tab" data-bs-target="#tab-warranty" type="button" role="tab" aria-controls="tab-warranty" aria-selected="false">
+                        Гарантия
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="tab-description" role="tabpanel" aria-labelledby="description-tab">
+                {% if container.description %}
+                    {{ container.description|markdown }}     
+                {% else %}
+                Прочное и надежное оборудование, предназначенное для безопасной перевозки различных грузов. Контейнер изготовлен из высококачественной стали, что обеспечивает его долговечность и устойчивость к внешним воздействиям.
+                {% endif %}
+            </div>
+            <div class="tab-pane fade" id="tab-specs" role="tabpanel" aria-labelledby="specs-tab">
+                <p class="container__specs-subheading">Общая информация</p>
+                <div class="container__specs-row">
+                    <span class="container__specs-label">Модель</span>
+                    <span>{{ container.model }}</span>
+                </div>  
+                <div class="container__specs-row">
+                    <span class="container__specs-label">Год выпуска</span>
+                    <span>{{ container.year }}</span>
+                </div>  
+                <div class="container__specs-row">
+                    <span class="container__specs-label">Тип</span>
+                    <span>{{ container.container_type }}</span>
+                </div>  
+                {% if container.compressor %}
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Компрессор</span>
+                        <span>{{ container.compressor }}</span>
+                    </div> 
+                {% endif %}
+                {% if container.localization_cities.all %}
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Город локализации</span>
+                        <span>{{ container.localization_cities.all|join:", " }}</span>
+                    </div> 
+                {% endif %}
+                {% if container.length_outer or container.width_outer or container.height_outer or container.length_inner or container.width_inner or container.height_inner or container.door_width or container.doorh_height %}
+                    <p class="container__specs-subheading">Размеры (мм)</p>
+                    <div>
+                        {% if container.length_outer %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Длина внешняя</span>
+                            <span>{{ container.length_outer }}</span>
+                        </div>  
+                        {% endif %}
+                    
+                        {% if container.width_outer %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Ширина внешняя</span>
+                            <span>{{ container.width_outer }}</span>
+                        </div>  
+                        {% endif %}
+                    
+                        {% if container.height_outer %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Высота внешняя</span>
+                            <span>{{ container.height_outer }}</span>
+                        </div>  
+                        {% endif %}
+                    
+                        {% if container.length_inner %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Длина внутренняя</span>
+                            <span>{{ container.length_inner }}</span>
+                        </div>  
+                        {% endif %}
+                    
+                        {% if container.width_inner %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Ширина внутренняя</span>
+                            <span>{{ container.width_inner }}</span>
+                        </div>  
+                        {% endif %}
+                    
+                        {% if container.height_inner %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Высота внутренняя</span>
+                            <span>{{ container.height_inner }}</span>
+                        </div>  
+                        {% endif %}
+                    
+                        {% if container.door_width %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Ширина дверного проёма</span>
+                            <span>{{ container.door_width }}</span>
+                        </div>  
+                        {% endif %}
+                    
+                        {% if container.doorh_height %}
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Высота дверного проёма</span>
+                            <span>{{ container.doorh_height }}</span>
+                        </div>  
+                        {% endif %}
+                    </div>
+                {% endif %}
+                
+                {% if container.max_weight_gross or container.tare_weight or container.max_load %}
+                <p class="container__specs-subheading">Вес (кг)</p>  
+                <div>
+                    {% if container.max_weight_gross %}
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Макс. масса брутто</span>
+                        <span>{{ container.max_weight_gross }}</span>
+                    </div>  
+                    {% endif %}
+                
+                    {% if container.tare_weight %}
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Вес тары</span>
+                        <span>{{ container.tare_weight }}</span>
+                    </div>  
+                    {% endif %}
+                
+                    {% if container.max_load %}
+                    <div class="container__specs-row">
+                        <span class="container__specs-label">Максимальная загрузка</span>
+                        <span>{{ container.max_load }}</span>
+                    </div>  
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if container.volume %}
+                    <p class="container__specs-subheading">Объём</p>  
+                    <div>
+                        <div class="container__specs-row">
+                            <span class="container__specs-label">Объём, м. куб. не более</span>
+                            <span>{{ container.volume }}</span>
+                        </div>  
+                    </div>
+                {% endif %}
+            </div>
+            </div>
+            <div class="tab-pane fade" id="tab-delivery" role="tabpanel" aria-labelledby="delivery-tab">
+                {{ company_info.delivery_info|markdown }}
+            </div>
+            <div class="tab-pane fade" id="tab-payment" role="tabpanel" aria-labelledby="payment-tab">
+                {{ company_info.payment_info|markdown }}
+            </div>
+            <div class="tab-pane fade" id="tab-warranty" role="tabpanel" aria-labelledby="warranty-tab">
+                {% if container.is_new %}
+                    {{ company_info.warranty_info_for_new|markdown }}
+                {% else %}
+                    {{ company_info.warranty_info_for_used|markdown }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'home/includes/questions_block.html' %}
+{% include 'home/includes/contacts_block.html' %}
+{% endblock %}
+
+{% block script %}
+<!-- Слайдеры -->
+<script defer>
+$(".container__current-slide").slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    fade: true,
+    infinite: true,
+    asNavFor: ".container__slider-nav", 
+}); 
+$(".container__slider-nav").slick({
+    slidesToShow: 5, 
+    slidesToScroll: 1, 
+    asNavFor: ".container__current-slide",
+    dots: false,
+    arrows: false,
+    infinite: true,
+    focusOnSelect: true,
+    variableWidth: true,
+    centerMode: true,
+    centerPadding: '0px',
+    edgeFriction: 0.15, 
+    freeScroll: true,
+    draggable: true,
+    swipe: true
+});
+
+// Все характеристики
+const specsButton = document.getElementById("specs-tab");
+document.querySelector(".container__all-specs").addEventListener("click", (button) => {
+    event.preventDefault();
+    specsButton.click();
+    document.getElementById("specs-tab").scrollIntoView({ behavior: "smooth" });
+
+});
+</script>
+
+<script type=module>
+    import{L as LuminousGallery}from"/static/js/luminous-lightbox/luminous-lightbox.js";
+
+    function initGallery() {
+        var l = document.querySelectorAll(".container__current-slide a");
+        const e = {
+            showCloseButton: !0
+        };
+        l.length > 0 && new LuminousGallery(l, e);
+    }
+    
+    initGallery()
+</script>
+{% endblock %}

@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'contacts',
     'repair_parts',
     'generators',
+    'universal_containers',
 ]
 
 MIDDLEWARE = [
@@ -155,9 +156,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Loguru 
 logger.add("logs/logs.log", 
-           format='{time} {level} {message}', 
-           rotation="10 MB", 
-           retention="7 days",
-           compression="zip", 
-           level="DEBUG", 
-           enqueue=True)
+    format='{time} {level} {message}', 
+    rotation="10 MB", 
+    retention="7 days",
+    compression="zip", 
+    level="DEBUG", 
+    enqueue=True
+)
