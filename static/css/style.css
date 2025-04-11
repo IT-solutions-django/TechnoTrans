@@ -853,7 +853,40 @@ body,
     width: 700px;
     float: right;
     flex: 1;
+    height: 100%;
     /* padding-top: 600px; */
+}
+
+.custom-slick-arrows {
+    display: flex;
+    justify-content: end;
+    gap: 30px; 
+    height: 60px;
+    padding-top: 25px;
+}
+.custom-slick-arrows div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.custom-slick-prev,
+.custom-slick-next {
+    width: 60px;
+    height: 60px;
+    border-radius: 0px;
+    border: 2px solid transparent;
+
+    background-image: 
+        linear-gradient(#262734, #262734),
+        linear-gradient(to bottom, transparent, rgb(255, 255, 255, 0.05));
+        background-origin: border-box;
+    background-clip: padding-box, border-box;
+
+    cursor: pointer;
+}
+.custom-slick-prev:hover,
+.custom-slick-next:hover {
+    opacity: 0.8;
 }
 
 .main__price {
@@ -861,17 +894,21 @@ body,
     padding: 0px 42px 26px 20px;
     backdrop-filter: blur(6px);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);;
     border-top: none;
 
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     gap: 10px;
     justify-content: flex-end;
     border-bottom: 6px solid transparent;
 
-    transition: all 0.2s ease;
-}
+    justify-content: end;
 
+    transition: all 0.2s ease;
+
+    height: 730px !important;
+}
 .main__price.active {
     border-bottom: 6px solid var(--color-red);
     backdrop-filter: blur(26px);
@@ -2709,17 +2746,19 @@ footer .container {
 }
 
 
-#mainImage1,
-#mainImage2,
-#mainImage3 {
+.mainImage1,
+.mainImage2,
+.mainImage3, 
+.mainImage4, 
+.mainImage5,
+.mainImage6,
+.mainImage7 {
     position: absolute;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-}
-
-#mainImage1 {
-    opacity: 1;
-    max-width: 790px;
+    user-select: none;
+    pointer-events: none;
+    object-fit: contain;
 }
 
 .main-image {
@@ -2729,6 +2768,33 @@ footer .container {
     right: calc((100% - 1380px) / 2);
     top: 165px;
     transition: all 0.3s ease-in-out;
+}
+
+.mainImage1 {
+    opacity: 1;
+    max-width: 790px;
+}
+.mainImage2 {
+    max-width: 780px !important;
+    width: 100%;
+}
+.mainImage3 {
+    transform: translateX(-60px);
+}
+.mainImage5 {
+    max-width: 740px !important;
+    transform: translateX(-36px) translateY(-20px);
+}
+.mainImage6 {
+    max-width: 780px !important;
+    width: 100%;
+    /* transform: translateX(16px); */
+}
+
+@media (max-width: 1400px) {
+    .mainImage3 {
+        transform: translateX(-50px);
+    }
 }
 
 .main-image {
@@ -3071,6 +3137,12 @@ footer .container {
         right: 0;
         transform: scale(0.9) translateX(40px);
     }
+    .mainImage3 {
+        transform: translateX(-20px);
+    }
+    .mainImage5 {
+        transform: scale(0.9) translateY(-46px) translateX(-20px);
+    }
     .catalog__cards {
         justify-content: space-evenly;
     }
@@ -3154,8 +3226,20 @@ footer .container {
         transform: scale(0.7) translateX(130px);
     }
 
-    #mainImage1 {
-        /* transform: scale(0.7) translateX(90px); */
+    .mainImage1 {
+        transform: scale(0.9) translateX(90px);
+    }
+    .mainImage3 {
+        transform: scale(0.8) translateX(0px);
+    }
+    .mainImage4 {
+        transform: scale(0.8) translateX(80px);
+    }
+    .mainImage5 {
+        transform: scale(0.8) translateX(50px);
+    }
+    .mainImage6 {
+        transform: scale(0.85) translateX(80px);
     }
 
     .home__parts-left {
@@ -3219,6 +3303,24 @@ footer .container {
         right: 0;
         transform: scale(0.7) translateX(140px);
     }
+    .mainImage1 {
+        transform: scale(0.8) translateX(90px);
+    }
+    .mainImage3 {
+        transform: scale(0.7) translateX(20px);
+    }
+    .mainImage4 {
+        transform: scale(0.7) translateX(90px);
+    }
+    .mainImage5 {
+        transform: scale(0.7) translateX(50px);
+    }
+    .mainImage6 {
+        transform: scale(0.8) translateX(80px);
+    }
+    .mainImage7 {
+        transform: scale(0.8) translateX(70px);
+    }
 }
 
 @media (max-width: 990px) {
@@ -3246,6 +3348,12 @@ footer .container {
     .main__prices {
         min-height: 600px;
     }
+    .main__prices .main__price {
+        max-height: 600px;
+    }
+    .main-image {
+        top: 625px;
+    }
 
     #mainDivision2 {
         overflow: visible;
@@ -3261,10 +3369,22 @@ footer .container {
         max-height: 400px;
         object-fit: contain;
     }
+    .custom-slick-arrows {
+        padding-right: 30px;
+    }
 
     .main-image {
-        display: none;
+        bottom: 0px;
+        right: 0;
+        max-width: 80vw !important;
+        transform: scale(1) translateX(-50%);
+        left: 50%;
     }
+    
+
+    /* .main-image {
+        display: none;
+    } */
 
     .main__price,
     .main__price.active {
@@ -3440,6 +3560,18 @@ footer .container {
         width: 24px;
         height: 24px;
     }
+    .custom-slick-arrows {
+        padding-top: 10px;
+    }
+    .custom-slick-prev, 
+    .custom-slick-next {
+        width: 40px;
+        height: 40px;
+    }
+    .main-image {
+        top: 448px;
+        max-height: 270px;
+    }
 
     .main__heading {
         padding-top: 17px;
@@ -3527,6 +3659,10 @@ footer .container {
 
     .main {
         padding-bottom: 74px;
+    }
+
+    .main__price {
+        height: 400px !important;
     }
 
 
@@ -4158,10 +4294,20 @@ footer .container {
     .catalog__description {
         gap: 6px;
     }
+    .main-image {
+        top: 500px;
+    }
 }
 @media (max-width: 385px) {
     .flags {
         gap: 8px;
+    }
+    .main-image {
+        top: 508px;
+        max-height: 270px;
+    }
+    .mainImage5 {
+        max-width: 70vw;
     }
 }
 @media (max-width: 370px) {
@@ -4190,6 +4336,11 @@ footer .container {
         font-size: 18px;
         width: 100vw;
         text-align: start;
+    }
+}
+@media (max-width: 348px) {
+    .main-image {
+        top: 530px
     }
 }
 @media (max-width: 348px) {
@@ -4226,5 +4377,8 @@ footer .container {
     }
     .flags img {
         width: 36px;
+    }
+    .main-image {
+        top: 580px;
     }
 }
