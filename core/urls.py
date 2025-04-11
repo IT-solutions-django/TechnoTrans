@@ -42,11 +42,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', include('home.urls', namespace='home')),
-    path('containers/', include('containers.urls', namespace='containers')),
+    path('refcontainers/', include('containers.urls', namespace='containers')),
     path('about/', include('contacts.urls', namespace='contacts')),
     path('repair-parts/', include('repair_parts.urls', namespace='repair_parts')),
     path('generators/', include('generators.urls', namespace='generators')),
-    # path('not-found/', handler404, name='not-found'),
+    path('containers/', include('universal_containers.urls', namespace='universal_containers')),
 
     re_path(r'^robots\.txt$', serve, {
         'document_root': settings.BASE_DIR,
