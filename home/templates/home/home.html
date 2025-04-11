@@ -534,7 +534,7 @@
 
 
 {% block script %}
-<script>
+<script defer>
     // Слайдеры
 $(document).ready((function() {
     $(".home__containers-cards").slick({
@@ -602,6 +602,7 @@ $(document).ready((function() {
             breakpoint: 576,
             settings: {
                 centerMode: false,
+                draggable: false,
                 slidesToShow: 3,
                 slidesToScroll: 1
             }
@@ -689,25 +690,35 @@ function makeActive(columnIndex) {
         }
 }
 
+function isMobile() {
+    if (window.innerWidth < 568) {
+        return true;
+    }
+    return false;
+}
+
 
 // Главная 
-document.querySelectorAll('.main__price').forEach((division) => {
-    division.addEventListener('mouseenter', () => {
-        makeActive(division.dataset.columnIndex);
-    });
-});
-document.querySelectorAll('.main__price').forEach((division) => {
-    division.addEventListener('mouseenter', () => {
-        document.querySelectorAll('.main__price').forEach((div) => {
-            div.classList.remove('active');
-        });
 
-        division.classList.add('active');
+if (!isMobile()) {
+    document.querySelectorAll('.main__price').forEach((division) => {
+        division.addEventListener('mouseenter', () => {
+            makeActive(division.dataset.columnIndex);
+        });
     });
-});
-if (division.classList.contains('.slick-active')) {
-        division.classList.add('active');
+    document.querySelectorAll('.main__price').forEach((division) => {
+        division.addEventListener('mouseenter', () => {
+            document.querySelectorAll('.main__price').forEach((div) => {
+                div.classList.remove('active');
+            });
+    
+            division.classList.add('active');
+        });
+    });
+    if (division.classList.contains('.slick-active')) {
+            division.classList.add('active');
     }
+}
 
 // Форма ОС в блоке "Обслуживание контейнеров"
 const feedbackForm = document.getElementById("serviceBlockForm");
