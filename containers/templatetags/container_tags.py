@@ -52,3 +52,8 @@ def container_count_for_year(year: int):
 @register.simple_tag
 def container_count_for_container_type(container_type: int):
     return Container.objects.filter(container_type=container_type).count()
+
+
+@register.filter(name='remove_ref_substring')
+def remove_ref_substring(string: str): 
+    return string.replace('реф', '').replace('Реф', '')

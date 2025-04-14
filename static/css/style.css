@@ -10,6 +10,9 @@
 .color-red {
     color: var(--color-red);
 }
+.uppercase {
+    text-transform: uppercase;
+}
 
 a {
     text-decoration: none;
@@ -478,7 +481,7 @@ body,
     .header__logo {
         margin-top: 8px;
         margin-bottom: 10px;
-        padding-left: 14px;
+        padding-left: 22px;
     }
 
     .header__hamburger {
@@ -498,7 +501,7 @@ body,
     }
 
     .header__row {
-        gap: 20px;
+        gap: 10px;
         justify-content: space-between;
     }
 
@@ -629,8 +632,9 @@ body,
 
     .header__logo,
     .header__logo-link img {
-        height: 70px;
-        width: 70px;
+        height: 60px;
+        width: 60px;
+        min-width: 60px;
     }
 
     .header__contact-link a {
@@ -651,7 +655,7 @@ body,
 }
 @media (max-width: 360px) {
     .header__logo {
-        padding-left: 12px;
+        padding-left: 20px;
     }
 }
 @media (max-width: 330px) {

@@ -1,4 +1,6 @@
 {% load static %}
+{% load container_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -152,9 +154,9 @@
                                         {% if not 'Аренда' in category.full_name %}
                                             <a href="{% url 'universal_containers:catalog' %}?category={{ category.pk }}" class="nav__link red-hover">
                                                 {% if category.full_name %}
-                                                    {{ category.full_name }}
+                                                    {{ category.full_name|remove_ref_substring }}
                                                 {% else %}
-                                                    {{ category.title }}
+                                                    {{ category.title|remove_ref_substring }}
                                                 {% endif %}
                                             </a>
                                         {% endif %}
