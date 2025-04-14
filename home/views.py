@@ -7,6 +7,8 @@ from containers.models import (
     Container, 
     ContainerType,
 )
+from .forms import CargoTransportationForm
+from .models import CargoTransportationRequest
 from django.urls import reverse
 from contacts.models import Partner
 from loguru import logger
@@ -98,3 +100,35 @@ class Test404View(View):
 
 def handler404(request, *args, **argv):
     return render(request, '404.html', status=404)
+
+
+class SaveCargoTransportationRequestView(View): 
+    def post(self, request): 
+        form = CargoTransportationForm(request.POST) 
+        if form.is_valid():
+            try: 
+                new_request: CargoTransportationRequest = form.save() 
+
+                email_subject = 'Новая заявка на перевозку груза с сайта'
+                email_message = (
+                    f'Имя: {new_request.name}\n'
+                    f'Телефон: {new_request.phone}\n'
+                    f'E-mail: {new_request.email}\n'
+                )
+                if new_request.inn:
+                    email_message += f'ИНН: {new_request.inn}\n'
+                email_message += f'Сообщение: {new_request.message}'
+
+                send_email(
+                    subject=email_subject, 
+                    content=email_message
+                )
+
+                logger.info(f"Заявка на перевозку грузов сохранена: {new_request}")
+                return JsonResponse({'status': 'ok'}, status=200)
+
+            except Exception as e: 
+                logger.error(f'Ошибка при сохранении заявки на перевозку: {e}')
+                return JsonResponse({'status': 'error'}, status=500)
+
+        return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)

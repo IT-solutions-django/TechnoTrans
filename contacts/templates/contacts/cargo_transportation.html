@@ -1,0 +1,110 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load tags %}
+{% load container_tags %}
+
+
+{% block title %}Перевозки грузов по России и СНГ | Техно Транс{% endblock %}
+{% block meta_title %}Перевозки грузов по России и СНГ | Техно Транс{% endblock %}
+{% block description %}Оставьте заявку на нашем сайте для получения подробного расчета стоимости транспортировки груза.{% endblock %}
+{% block meta_description %}Оставьте заявку на нашем сайте для получения подробного расчета стоимости транспортировки груза.{% endblock %}
+
+
+
+{% block content %}
+<div class="breadcrumbs container">
+    <a href="{% url 'home:home' %}">Главная</a>
+    <img src="{% static 'images/arrow-right-gray.svg' %}" alt="Стрелка">
+    <a href=" " class="active">Перевозки грузов</a>
+</div>
+<div class="about-company container contacts">
+    <h1 class="catalog__heading">Перевозки грузов</h1>
+    <div class="cargo__body">
+       <p class="cargo__heading">Рассчитать стоимость</p>
+       <div class="cargo__two-columns">
+            <div class="cargo__left-column">
+                <form id="cargoForm" class="cargo__form" action="">
+                    {% csrf_token %}
+                    <p class="cargo__form-heading cargo__subheading">
+                        Остались вопросы? Свяжитесь с нами
+                    </p>
+                    <div class="cargo__form-two-columns">
+                        <div class="cargo__form-left-column">
+                            {{ cargo_form.name }}
+                            {{ cargo_form.phone }}
+                            {{ cargo_form.email }}
+                            {{ cargo_form.inn }}
+                        </div>
+                        <div class="cargo__form-right-column">
+                            {{ cargo_form.message }}
+                        </div>
+                    </div>
+                    <div class="cargo__form-buttons">
+                        <div class="form__checkbox">
+                            <div class="form__checkbox-wrap">
+                                <input checked="" type="checkbox" id="service-form-input" name="consent" required="">
+                            </div>
+                            <div>
+                                <label for="service-form-input" class="form__checkbox-label">
+                                    Согласен с обработкой персональных данных
+                                </label>
+                            </div>
+                        </div>
+                        <button class="red-button">Отправить</button>
+                    </div>
+                </form>
+            </div>
+            <div class="cargo__right-column">
+                <p class="cargo__subheading">Как ускорить расчёт</p>
+                <div class="cargo__points">
+                    <div class="cargo__point">
+                        <img src="{% static 'images/red-mark.svg' %}" alt="">
+                        <p>Укажите пункты назначения и отправления</p>
+                    </div>
+                    <div class="cargo__point">
+                        <img src="{% static 'images/red-mark.svg' %}" alt="">
+                        <p>Для сборной отправки - вес и объем груза</p>
+                    </div>
+                    <div class="cargo__point">
+                        <img src="{% static 'images/red-mark.svg' %}" alt="">
+                        <p>Укажите характер груза</p>
+                    </div>
+                    <div class="cargo__point">
+                        <img src="{% static 'images/red-mark.svg' %}" alt="">
+                        <p>Оставьте контактный номер, чтобы мы могли оперативно связаться с вами</p>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </div>
+</div>
+
+<script defer>
+const cargoForm = document.getElementById("cargoForm");
+
+cargoForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const successSection = document.getElementById('modalSuccess');
+
+    successSection.style.display = 'flex'; 
+
+    let data = new FormData(cargoForm);
+    let csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+    
+    cargoForm.reset();
+
+    try {
+        let s = await fetch(`/api/save-cargo-request/`, {
+        method: "POST",
+        body: data,
+        headers: {
+            "X-CSRFToken": csrfToken
+        }
+    });
+        s.status
+    } catch (n) {
+        console.error("Ошибка запроса:", n)
+    }
+});
+</script>
+{% endblock %}

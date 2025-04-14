@@ -1448,6 +1448,8 @@ body,
     cursor: pointer;
 }
 
+.cargo__form input,
+.cargo__form textarea,
 .home__service-form-inputs select,
 .home__service-form-inputs input,
 .home__service-form-inputs textarea {
@@ -1459,7 +1461,26 @@ body,
 
     transition: all 0.3s ease;
 }
+.cargo__form input {
+    width: 100%;
+    max-width: 100%;
+}
+.cargo__form textarea {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+}
+.cargo__form-right-column {
+    flex: 1;
+}
+.cargo__form-buttons {
+    display: flex;
+    justify-content: end;
+    gap: 12px;
+}
 
+.cargo__form input:focus, 
+.cargo__form textarea:focus,
 .home__service-form-inputs input:focus,
 .home__service-form-inputs textarea:focus {
     background-color: white;
@@ -2032,6 +2053,7 @@ footer .container {
     padding-bottom: 96px;
 }
 
+.cargo__heading,
 .catalog__heading {
     font-weight: 500;
     font-size: 38px;
@@ -2581,6 +2603,63 @@ footer .container {
     gap: 60px;
     overflow: hidden;
 }
+.cargo__body {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.cargo__two-columns {
+    display: flex;
+    gap: 40px;
+}
+.cargo__left-column {
+    width: 100%;
+}
+.cargo__right-column  {
+    width: 512px;
+    min-width: 512px;
+    background-color: rgb(255, 255, 255, 0.03);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 28px 20px;
+    border-radius: 12px;
+}
+.cargo__subheading {
+    font-size: 20px;
+    font-weight: 500;
+
+}
+.cargo__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 28px 20px;
+    background-color: rgb(255, 255, 255, 0.03);
+    border-radius: 12px;
+}
+.cargo__form-two-columns {
+    display: flex;
+    gap: 12px;
+}
+.cargo__form-left-column {
+    display: flex; 
+    flex-direction: column;
+    gap: 12px;
+}
+.cargo__form-left-column {
+    width: 369px;
+}
+.cargo__points {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.cargo__point {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
 
 .about-company .home__service-points,
 .about-company__stages {
@@ -3089,6 +3168,9 @@ footer .container {
     flex-direction: column;
     gap: 0px;
 }
+.cargo__heading {
+
+}
 
 @media (max-width: 1420px) {
     .main {
@@ -3126,7 +3208,15 @@ footer .container {
         justify-content: start;
     }
 }
-
+@media (max-width: 1300px) {
+    .cargo__form-left-column {
+        width: 300px;
+    }
+    .cargo__right-column {
+        width: 450px;
+        min-width: 450px;
+    }
+}
 @media (max-width: 1380px) {
     .container {
         padding-left: 8px;
@@ -3287,6 +3377,13 @@ footer .container {
     }
     .contacts .home__questions-left {
         width: 100%;
+    }
+    .cargo__form-left-column {
+        width: 250px;
+    }
+    .cargo__right-column {
+        width: 350px;
+        min-width: 350px;
     }
 }
 
@@ -3536,6 +3633,23 @@ footer .container {
         gap: 26px;
         max-width: 100%;
         row-gap: 18px;
+    }
+    .cargo__form-left-column {
+        width: 300px;
+    }
+    .cargo__right-column {
+        width: 450px;
+        min-width: 450px;
+    }
+    .cargo__two-columns {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .cargo__form-left-column {
+        width: 369px;
+    }
+    .cargo__form {
+        width: 100%;
     }
 }
 
@@ -3903,6 +4017,24 @@ footer .container {
         gap: 20px;
     }
 
+    .cargo__form-buttons {
+        flex-direction: column;
+    }
+    .cargo__form {
+        gap: 12px
+    }
+    .cargo__form-left-column {
+        width: 100%;
+    }
+    .cargo__form input {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+    .cargo__body {
+        gap: 20px;
+    }
+    .cargo__subheading,
     .home__questions-body p {
         font-size: 14px;
     }
@@ -3954,6 +4086,7 @@ footer .container {
         gap: 20px;
     }
 
+    .cargo__heading,
     .catalog__heading {
         font-size: 24px;
     }
@@ -4182,6 +4315,13 @@ footer .container {
         gap: 22px;
         max-width: 100%;
         row-gap: 18px;
+    }
+    .cargo__form-two-columns {
+        flex-direction: column;
+    }
+    .cargo__right-column {
+        width: 100%;
+        min-width: 100%
     }
 }
 
