@@ -2861,12 +2861,12 @@ footer .container {
     max-width: 780px !important;
     width: 100%;
 }
-.mainImage3 {
-    transform: translateX(-60px);
+.mainImage4 {
+    transform: translateX(-70px);
 }
 .mainImage5 {
     max-width: 740px !important;
-    transform: translateX(-36px) translateY(-20px);
+    transform: translateX(36px) translateY(-20px);
 }
 .mainImage6 {
     max-width: 780px !important;
@@ -3324,13 +3324,13 @@ footer .container {
         transform: scale(0.9) translateX(90px);
     }
     .mainImage3 {
-        transform: scale(0.8) translateX(0px);
+        transform: scale(0.8) translateX(70px);
     }
     .mainImage4 {
-        transform: scale(0.8) translateX(80px);
+        transform: scale(0.8) translateX(20px);
     }
     .mainImage5 {
-        transform: scale(0.8) translateX(50px);
+        transform: scale(0.8) translateX(80px);
     }
     .mainImage6 {
         transform: scale(0.85) translateX(80px);
@@ -3408,13 +3408,13 @@ footer .container {
         transform: scale(0.8) translateX(90px);
     }
     .mainImage3 {
-        transform: scale(0.7) translateX(20px);
-    }
-    .mainImage4 {
         transform: scale(0.7) translateX(90px);
     }
+    .mainImage4 {
+        transform: scale(0.7) translateX(40px);
+    }
     .mainImage5 {
-        transform: scale(0.7) translateX(50px);
+        transform: scale(0.7) translateX(60px);
     }
     .mainImage6 {
         transform: scale(0.8) translateX(80px);
@@ -3480,6 +3480,15 @@ footer .container {
         max-width: 80vw !important;
         transform: scale(1) translateX(-50%);
         left: 50%;
+    }
+    .mainImage2 {
+        top: 680px;
+    }
+    .mainImage3 {
+        top: 680px
+    }
+    .mainImage6 {
+        top: 660px;
     }
     
 
@@ -3687,8 +3696,17 @@ footer .container {
         height: 40px;
     }
     .main-image {
-        top: 448px;
+        top: 460px;
         max-height: 270px;
+    }
+    .mainImage2 {
+        top: 470px;
+    }
+    .mainImage4 {
+        top: 415px;
+    }
+    .mainImage5 {
+        top: 420px
     }
 
     .main__heading {
@@ -4439,7 +4457,28 @@ footer .container {
         gap: 6px;
     }
     .main-image {
+        top: 530px;
+    }
+    .mainImage1 {
         top: 500px;
+    }
+    .mainImage2 {
+        top: 520px
+    }
+    .mainImage3 {
+
+    }
+    .mainImage4 {
+        top: 500px;
+    }
+    .mainImage5 {
+        top: 500px;
+    }
+    .mainImage6 {
+        
+    }
+    .mainImage7 {
+        
     }
 }
 @media (max-width: 385px) {
@@ -4447,11 +4486,30 @@ footer .container {
         gap: 8px;
     }
     .main-image {
-        top: 508px;
+        top: 555px;
         max-height: 270px;
     }
+    .mainImage1 {
+        top: 540px;
+        /* transform: scale(0.8) translateX(-50%); */
+    }
+    .mainImage2 {
+
+    }
+    .mainImage3 {
+
+    }
+    .mainImage4 {
+        top: 530px;
+    }
     .mainImage5 {
-        max-width: 70vw;
+        /* top: 480px; */
+    }
+    .mainImage6 {
+        
+    }
+    .mainImage7 {
+        
     }
 }
 @media (max-width: 370px) {
@@ -4484,7 +4542,25 @@ footer .container {
 }
 @media (max-width: 348px) {
     .main-image {
-        top: 530px
+        top: 600px
+    }
+    .mainImage1 {
+    }
+    .mainImage2 {
+
+    }
+    .mainImage3 {
+
+    }
+    .mainImage4 {
+    }
+    .mainImage5 {
+    }
+    .mainImage6 {
+        
+    }
+    .mainImage7 {
+        
     }
 }
 @media (max-width: 348px) {
@@ -4523,6 +4599,24 @@ footer .container {
         width: 36px;
     }
     .main-image {
-        top: 580px;
+        top: 600px;
+    }
+    .mainImage1 {
+    }
+    .mainImage2 {
+        top: 622px
+    }
+    .mainImage3 {
+        top: 622px
+    }
+    .mainImage4 {
+    }
+    .mainImage5 {
+    }
+    .mainImage6 {
+        
+    }
+    .mainImage7 {
+        
     }
 }
