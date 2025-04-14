@@ -143,8 +143,24 @@
                 </div>
                 <div class="header__nav">
                     <div class="header__menu">
-                        <div class="header__menu-link">
-                            <a class="red-hover" href="{% url 'contacts:cargo_transportation' %}">Перевозки грузов</a>
+                        <div class="header__menu-link header__menu-link--dropdown nav__dropdown">
+                            <a class="red-hover" href="{% url 'containers:catalog' %}">Рефконтейнеры</a>
+                            <div class="nav__dropdown-content-wrapper">
+                                <div class="nav__dropdown-content">
+                                    {% for category in categories %}
+                                        {% if not 'Аренда' in category.full_name %}
+                                            <a href="{% url 'containers:catalog' %}?category={{ category.pk }}" class="nav__link red-hover">
+                                                {% if category.full_name %}
+                                                    {{ category.full_name }}
+                                                {% else %}
+                                                    {{ category.title }}
+                                                {% endif %}
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <a class="nav__link red-hover" href="{% url 'containers:rent' %}">Аренда рефконтейнеров</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="header__menu-link header__menu-link--dropdown nav__dropdown">
                             <a class="red-hover" href="{% url 'universal_containers:catalog' %}">Контейнеры</a>
@@ -166,25 +182,6 @@
                             </div>
                         </div>
                         <div class="header__menu-link header__menu-link--dropdown nav__dropdown">
-                            <a class="red-hover" href="{% url 'containers:catalog' %}">Рефконтейнеры</a>
-                            <div class="nav__dropdown-content-wrapper">
-                                <div class="nav__dropdown-content">
-                                    {% for category in categories %}
-                                        {% if not 'Аренда' in category.full_name %}
-                                            <a href="{% url 'containers:catalog' %}?category={{ category.pk }}" class="nav__link red-hover">
-                                                {% if category.full_name %}
-                                                    {{ category.full_name }}
-                                                {% else %}
-                                                    {{ category.title }}
-                                                {% endif %}
-                                            </a>
-                                        {% endif %}
-                                    {% endfor %}
-                                    <a class="nav__link red-hover" href="{% url 'containers:rent' %}">Аренда рефконтейнеров</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="header__menu-link header__menu-link--dropdown nav__dropdown">
                             <a class="red-hover" href="{% url 'generators:catalog' %}">НДГУ (GENSET)</a>
                             <div class="nav__dropdown-content-wrapper">
                                 <div class="nav__dropdown-content">
@@ -192,6 +189,9 @@
                                     <a href="{% url 'generators:rent' %}" class="nav__link red-hover">Аренда генераторов</a>
                                 </div>
                             </div>
+                        </div>
+                        <div class="header__menu-link">
+                            <a class="red-hover" href="{% url 'contacts:cargo_transportation' %}">Перевозки грузов</a>
                         </div>
                         <div class="header__menu-link header__menu-link--dropdown nav__dropdown">
                             <a class="red-hover" href="{% url 'contacts:about_company' %}">О компании</a>
