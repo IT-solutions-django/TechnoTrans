@@ -1,5 +1,5 @@
 from django import forms 
-from .models import Request, CalculatePriceRequest
+from .models import Request, CalculatePriceRequest, CargoTransportationRequest
 
 
 class FeedbackForm(forms.ModelForm): 
@@ -45,6 +45,39 @@ class CalculatePriceRequestForm(forms.ModelForm):
             }),
             'message': forms.Textarea(attrs={
                 'placeholder': 'Сообщение',
+                'rows': 5,
+            })
+        }
+
+
+class CargoTransportationForm(forms.ModelForm):
+    class Meta:
+        model = CargoTransportationRequest
+        fields = ['name', 'phone', 'email', 'message', 'inn']
+        labels = {
+            'name': 'Имя *',
+            'phone': 'Телефон *',
+            'message': 'Сообщение *', 
+            'email': 'E-mail', 
+            'inn': 'ИНН',
+        }
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'placeholder': 'Имя *',
+            }),
+            'phone': forms.TextInput(attrs={
+                'type': 'tel', 
+                'placeholder': 'Телефон *',
+            }),
+            'email': forms.TextInput(attrs={
+                'type': 'email', 
+                'placeholder': 'E-mail *',
+            }),
+            'inn': forms.TextInput(attrs={
+                'placeholder': 'ИНН',
+            }),
+            'message': forms.Textarea(attrs={
+                'placeholder': 'Сообщение *',
                 'rows': 5,
             })
         }

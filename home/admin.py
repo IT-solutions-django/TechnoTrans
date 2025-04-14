@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Request, CalculatePriceRequest, ServiceType
+from .models import Request, CalculatePriceRequest, ServiceType, CargoTransportationRequest
 from. filters import IsClosed
 
 
@@ -14,6 +14,14 @@ class RequestAdmin(admin.ModelAdmin):
 @admin.register(CalculatePriceRequest)
 class CalculatePriceRequestAdmin(admin.ModelAdmin): 
     list_display = ['city', 'phone', 'created_at', 'is_closed']
+    list_filter = [
+        IsClosed
+    ]
+
+
+@admin.register(CargoTransportationRequest)
+class CargoTransportationRequestAdmin(admin.ModelAdmin): 
+    list_display = ['name', 'phone', 'email', 'message', 'inn', 'created_at', 'is_closed']
     list_filter = [
         IsClosed
     ]

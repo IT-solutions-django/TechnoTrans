@@ -8,6 +8,7 @@ from .models import (
     Partner,
     WorkStage,
 )
+from home.forms import CargoTransportationForm
 
 
 class AboutCompanyView(TemplateView): 
@@ -43,3 +44,14 @@ class ContactsView(View):
 
     def get(self, request): 
         return render(request, self.template_name, )
+    
+
+class CargoTransportationView(View): 
+    template_name = 'contacts/cargo_transportation.html'
+
+    def get(self, request): 
+        cargo_form = CargoTransportationForm(request.GET)
+        context = {
+            'cargo_form': cargo_form
+        }
+        return render(request, self.template_name, context)

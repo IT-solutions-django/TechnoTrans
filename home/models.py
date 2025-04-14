@@ -56,3 +56,20 @@ class CalculatePriceRequest(models.Model):
     
     def __str__(self) -> str: 
         return f'{"Обработано" if self.is_closed else "Не обработано"}, {self.created_at}, {self.phone}'
+    
+
+class CargoTransportationRequest(models.Model): 
+    name = models.CharField('Имя', max_length=100) 
+    phone = models.CharField('Телефон', max_length=18) 
+    email = models.EmailField('Email', max_length=100)
+    inn = models.CharField('ИНН', max_length=12, null=True, blank=True)
+    message = models.TextField('Сообщение', max_length=500)
+    created_at = models.DateTimeField('Дата и время создания', auto_now_add=True)
+    is_closed = models.BooleanField('Обработано', default=False)
+
+    def __str__(self) -> str: 
+        return f'{"Обработано" if self.is_closed else "Не обработано"}, {self.created_at}, {self.phone}'
+    
+    class Meta: 
+        verbose_name = 'Заявка на перевозку грузов'
+        verbose_name_plural = 'Заявки на перевозки грузов'
