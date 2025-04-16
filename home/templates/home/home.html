@@ -130,39 +130,30 @@
                 </div>
             </div>
             <div data-aos="fade-left" data-aos-duration="1000" id="mainDivision3" data-column-index="4" class="main__price main-division">
-                <div class="main__price-label">Услуги импорта и экспорта</div>
-                <div class="main__price-value">
-                    <span class="main__price-big">По запросу</span>
-                </div>
-                <div class="transparent-button openModal">
-                    <button>Консультация</button>
+                <div class="main__price-label only-label">Железно<span class="only-mobile--inline">-<br></span>дорожные перевозки</div>
+                <div class="transparent-button">
+                    <a href="{% url 'contacts:cargo_transportation' %}">Подробнее</a>
                 </div>
             </div>
             <div data-aos="fade-left" data-aos-duration="1000" id="mainDivision3" data-column-index="5" class="main__price main-division">
-                <div class="main__price-label">Услуги импорта и экспорта</div>
-                <div class="main__price-value">
-                    <span class="main__price-big">По запросу</span>
-                </div>
-                <div class="transparent-button openModal">
-                    <button>Консультация</button>
+                <div class="main__price-label only-label">Авто<span class="only-mobile--inline-348">-<br></span>мобильные перевозки</div>
+                <div class="transparent-button">
+                    <a href="{% url 'contacts:cargo_transportation' %}">Связаться с нами</a>
                 </div>
             </div>
             <div data-aos="fade-left" data-aos-duration="1000" id="mainDivision3" data-column-index="6" class="main__price main-division">
-                <div class="main__price-label">Услуги импорта и экспорта</div>
-                <div class="main__price-value">
-                    <span class="main__price-big">По запросу</span>
-                </div>
-                <div class="transparent-button openModal">
-                    <button>Консультация</button>
+                <div class="main__price-label only-label-temperature">Перевозки с температурным режимом</div>
+                <div class="transparent-button">
+                    <a href="{% url 'contacts:cargo_transportation' %}">Консультация</a>
                 </div>
             </div>
             <div data-aos="fade-left" data-aos-duration="1000" id="mainDivision3" data-column-index="7" class="main__price main-division">
-                <div class="main__price-label">Услуги импорта и экспорта</div>
+                <div class="main__price-label">Аренда НДГУ</div>
                 <div class="main__price-value">
-                    <span class="main__price-big">По запросу</span>
+                    <span class="main__price-big">от 1500₽</span>
                 </div>
-                <div class="transparent-button openModal">
-                    <button>Консультация</button>
+                <div class="transparent-button">
+                    <a href="{% url 'containers:rent' %}">Подробнее</a>
                 </div>
             </div>
         </div>
@@ -581,7 +572,7 @@ $(document).ready((function() {
         adaptiveHeight: false,
         prevArrow: $('.custom-slick-prev'),
         nextArrow: $('.custom-slick-next'),
-        autoplay: true, 
+        autoplay: false, 
         autoplaySpeed: 4500,
         draggable: false,
         responsive: [{
