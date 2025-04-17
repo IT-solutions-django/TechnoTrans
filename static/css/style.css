@@ -2873,7 +2873,8 @@ footer .container {
     width: 100%;
 }
 .mainImage4 {
-    transform: translateX(-70px);
+    /* transform: translateX(px); */
+    max-width: 640px;
 }
 .mainImage5 {
     max-width: 740px !important;
@@ -2883,6 +2884,9 @@ footer .container {
     max-width: 780px !important;
     width: 100%;
     /* transform: translateX(16px); */
+}
+.mainImage7 {
+    max-width: 660px;
 }
 
 @media (max-width: 1400px) {
@@ -3718,10 +3722,10 @@ footer .container {
         top: 470px;
     }
     .mainImage4 {
-        top: 415px;
+        /* top: 415px; */
     }
     .mainImage5 {
-        top: 420px
+        /* top: 420px */
     }
 
     .main__heading {
