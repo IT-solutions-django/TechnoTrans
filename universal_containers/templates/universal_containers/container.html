@@ -11,6 +11,11 @@
 
 
 {% block content %}
+<!-- Swiper -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
 <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
 <script src="{% static 'js/slick/slick/slick.min.js' %}"></script>
 <div class="breadcrumbs container">
@@ -28,33 +33,39 @@
     <div class="container__general-info">
         <div class="container__left">
             <div class="container__slider">
-                <div class="container__current-slide" href="">
-                    {% for image in container.universal_images.all %}
-                        <div>
-                            <a href="{{ image.image.url }}">
-                                <img loading="lazy" src="{{ image.image.url }}" alt="Фото контейнера">
-                            </a>
-                        </div>
-                    {% endfor %}
-                    {% for video in container.universal_videos.all %}
-                    <div>
-                        <video controls width="500">
-                            <source src="{{ video.video.url }}" type="video/mp4">
-                        </video>
+                <div class="swiper container__current-slide">
+                    <div class="swiper-wrapper">
+                        {% for image in container.universal_images.all %}
+                            <div class="swiper-slide current">
+                                <a href="{{ image.image.url }}">
+                                    <img loading="lazy" src="{{ image.image.url }}" alt="Фото контейнера">
+                                </a>
+                            </div>
+                        {% endfor %}
+                        {% for video in container.universal_videos.all %}
+                            <div class="swiper-slide current">
+                                <video controls width="500">
+                                    <source src="{{ video.video.url }}" type="video/mp4">
+                                </video>
+                            </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
-                <div class="container__slider-nav">
-                    {% for image in container.universal_images.all %}
-                        <div class="container__slide">
-                            <img src="{{ image.image.url }}" alt="Фото контейнера">
-                        </div>
-                    {% endfor %}
-                    {% for video in container.videos.all %}
-                        <div class="container__slide video-preview-container">
-                            <img loading="lazy" class="video-preview" src="{{ container.images.all.0.image.url }}" alt="Видео контейнера">
-                        </div>
-                    {% endfor %}
+            
+                <div class="swiper container__slider-nav">
+                    <div class="swiper-wrapper">
+                        {% for image in container.universal_images.all %}
+                            <div class="swiper-slide container__slide mini">
+                                <img src="{{ image.image.url }}" alt="Фото контейнера">
+                            </div>
+                        {% endfor %}
+                        {% for video in container.universal_videos.all %}
+                            <div class="swiper-slide container__slide mini video-preview-container">
+                                <img loading="lazy" class="video-preview" src="{{ container.universal_images.all.0.image.url }}" alt="Видео контейнера">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-button-next swiper-thumbs-next"></div>
                 </div>
             </div>
         </div>
@@ -309,29 +320,38 @@
 {% block script %}
 <!-- Слайдеры -->
 <script defer>
-$(".container__current-slide").slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    fade: true,
-    infinite: true,
-    asNavFor: ".container__slider-nav", 
-}); 
-$(".container__slider-nav").slick({
-    slidesToShow: 5, 
-    slidesToScroll: 1, 
-    asNavFor: ".container__current-slide",
-    dots: false,
-    arrows: false,
-    infinite: true,
-    focusOnSelect: true,
-    variableWidth: true,
-    centerMode: true,
-    centerPadding: '0px',
-    edgeFriction: 0.15, 
-    freeScroll: true,
-    draggable: true,
-    swipe: true
+const swiperThumbs = new Swiper('.container__slider-nav', {
+    spaceBetween: 10,
+    slidesPerView: 'auto',
+    freeMode: true,
+    watchSlidesProgress: true,
+    slideToClickedSlide: true,
+    simulateTouch: true,     
+    touchRatio: 0.8,   
+    navigation: {
+        nextEl: '.swiper-thumbs-next',
+    },        
+});
+
+const swiperMain = new Swiper('.container__current-slide', {
+    spaceBetween: 5, 
+    effect: 'creative',
+    creativeEffect: {
+        prev: {
+            opacity: 0,
+            translate: [0, 0, 0],
+            scale: 1,
+        },
+        next: {
+            opacity: 0,
+            translate: [0, 0, 0],
+            scale: 1,
+        },
+    },
+    allowTouchMove: true, 
+    thumbs: {
+        swiper: swiperThumbs,
+    },
 });
 
 // Все характеристики
