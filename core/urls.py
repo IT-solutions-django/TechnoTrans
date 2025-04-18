@@ -26,6 +26,7 @@ from .sitemaps import (
     StaticViewSitemap, 
     ContainerViewSitemap, 
     GeneratorViewSitemap,
+    UnversalContainerViewSitemap
 )
 from home.views import handler404
 
@@ -33,8 +34,9 @@ from home.views import handler404
 sitemaps = {
     'home': HomeViewSitemap,
     'static': StaticViewSitemap,
-    'containers': ContainerViewSitemap,
+    'refcontainers': ContainerViewSitemap,
     'generators': GeneratorViewSitemap,
+    'containers': UnversalContainerViewSitemap,
 }
 
 
