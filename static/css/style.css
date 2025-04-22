@@ -4690,14 +4690,13 @@ footer .container {
 .container__slider-nav .swiper-slide-thumb-active {
     border: 2px solid var(--color-red);
 }
-
+.swiper-thumbs-prev,
 .swiper-thumbs-next {
   width: 36px !important;
   height: 36px !important;
   background: rgba(35, 36, 50, 0.8);
   border-radius: 50%;
   position: absolute;
-  right: 0;
   top: 75% !important;
   transform: translateY(-50%) !important;
   z-index: 10 !important;
@@ -4705,9 +4704,17 @@ footer .container {
 
   transition: all 0.3s ease;
 }
+.swiper-thumbs-prev {
+    left: 0;
+}
+.swiper-thumbs-next {
+    right: 0;
+}
+.swiper-thumbs-prev,:hover,
 .swiper-thumbs-next:hover {
     background: rgba(35, 36, 50, 1);
 }
+.swiper-thumbs-prev::after,
 .swiper-thumbs-next::after {
   content: '>';
   color: white;
@@ -4715,7 +4722,12 @@ footer .container {
   line-height: 32px !important;
   text-align: center;
   display: block;
-  transform: translateX(1.5px);
+}
+.swiper-thumbs-prev::after {
+    transform: translateX(-1.5px);
+}
+.swiper-thumbs-next::after {
+    transform: translateX(1.5px);
 }
 @media (max-width: 768px) {
     .swiper-slide.current {
@@ -4731,6 +4743,7 @@ footer .container {
         height: 48px !important;
         width: 48px !important;
     }
+    .swiper-thumbs-prev,
     .swiper-thumbs-next { 
         top: 94% !important;
     }

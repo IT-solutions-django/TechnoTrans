@@ -67,6 +67,7 @@
                         {% endfor %}
                     </div>
                     <div class="swiper-button-next swiper-thumbs-next"></div>
+                    <div class="swiper-button-prev swiper-thumbs-prev"></div>
                 </div>
             </div>
         </div>
@@ -332,6 +333,7 @@ const swiperThumbs = new Swiper('.container__slider-nav', {
     touchRatio: 0.8,   
     navigation: {
         nextEl: '.swiper-thumbs-next',
+        prevEl: '.swiper-thumbs-prev'
     },        
 });
 
