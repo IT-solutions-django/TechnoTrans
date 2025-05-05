@@ -41,7 +41,6 @@ class StaticViewSitemap(BaseSitemap):
             'generators:rent',
             'contacts:about_company', 
             'contacts:cargo_transportation', 
-            'contacts:documentation',
             'contacts:contacts',
         ]  
 
