@@ -3,5 +3,6 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /about/privacy-policy/
+Disallow: /about/documentation/
 
 Sitemap: https://ttrans.pro/sitemap.xml
